@@ -1,0 +1,443 @@
+:root {
+
+    /* ========== HEADER ========= */
+    --logo-color-start: #00d2ff;
+    --logo-color-end: #f44336;
+    /* MAU CHU VA BORDER KHI HOVER NUT DANG KY */
+    --register-text-color: rgba(244, 67, 54, 0.507);
+    --register-border-hover: rgba(244, 67, 54, 0.945);
+    /* MAU NEN VA KHI HOVER NUT DANG NHAP */
+    --login-bg-color: #f44336;
+    --login-bg-color-hover: #d34238;
+    /* MAU NEN VA KHI HOVER NUT KICH HOAT KHOA HOC */
+    --active-course-bg-color: #50ad4e;
+    --active-course-bg-color-hover: #439141;
+
+    /* ========== BANNER ========= */
+    /* BOX SHADOW CUA DANH MUC  */
+    --box-shadow-category: 0 0 5px 0 rgb(0 0 0 / 16%);
+    /* MAU NEN CUA DANH MUC */
+    --category-bg-color: #fff;
+    --category-text-color: #000;
+    --category-text-hover: rgba(80, 173, 78, .2);
+
+
+
+
+    /* ========== KHOA HOC ========= */
+    /* MAU NEN KHOA HOC */
+    --course-bg-color: #fff;
+    /* MÀU TÊN KHÓA HỌC */
+    --title-course-color: #000
+        /* MÀU TÊN GIẢNG VIÊN VÀ KHUYẾN MÃI  */
+        --span-color: #888;
+    /* MÀU DANH GIA  */
+    --star-color: #eb8a2f;
+    /* KHI HOVER VAO TUNG KHOA HOC */
+    --box-shadow-name-course: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+    ---box-shadow-hover: 0 4px 8px #62b0fd, 0 4px 12px rgb(0 0 0 / 8%);
+
+
+    /* ===== FOOTER ===== */
+    --footer-bg-color: #F2F2F2;
+    --footer-text-color: #444;
+
+
+    /* ===== SWIPER  ===== */
+    --swiper-btn-color: #f44336;
+}
+
+.navbar-top {
+    margin: 0;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.fl-basics-30 {
+    flex-basis: 30%;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+.d-flex {
+    display: flex;
+
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-space {
+    justify-content: space-between;
+}
+
+.header-wrap {
+    padding: 20px 0;
+}
+
+.nav-link a,
+.nav-item a {
+    text-decoration: none;
+}
+
+.star-color {
+    color: var(--star-color);
+}
+
+.name-web {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(to right bottom, var(--logo-color-start), var(--logo-color-end));
+}
+
+.name-web:hover,
+.name-web:focus {
+    color: transparent;
+    text-decoration: none;
+    outline: none;
+}
+
+.header .navbar-top-left .search-button {
+    position: absolute;
+    left: 50px;
+}
+
+.header .navbar .form-inline #search-form button:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+.header .navbar-top .register-btn {
+    color: var(--register-text-color);
+    border: 1px solid;
+    transition: all .4s ease-in-out;
+    border-radius: 8px;
+
+}
+
+.header .navbar-top .register-btn:hover {
+    border-color: var(--register-border-hover);
+}
+
+.header .navbar-top .login-btn {
+    background-color: var(--login-bg-color);
+    border: 1px solid;
+    transition: all .4s ease-in-out;
+    border-radius: 8px;
+
+}
+
+.header .navbar-top .login-btn:hover {
+    background-color: var(--login-bg-color-hover);
+
+}
+
+.header .navbar-top .head-direction .nav-link.cod-btn {
+    background-color: var(--active-course-bg-color);
+    border: 1px solid var(--active-course-bg-color);
+    border-radius: 8px;
+}
+
+.header .navbar-top .head-direction .nav-link.cod-btn:hover {
+    background-color: var(--active-course-bg-color-hover);
+}
+
+/* SECTION CATEROY  */
+section.category {
+    margin-top: 30px;
+
+}
+
+section.category .list-category {
+    flex-basis: 26%;
+    min-height: 365px;
+    position: relative;
+}
+
+section.category .list-category .list-item .sub-menu-category {
+    position: absolute;
+    left: 290px;
+    z-index: 9000;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-color: var(--category-bg-color);
+    box-shadow: var(--box-shadow-category);
+    padding: 14px 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.4s linear;
+}
+
+/* .sub-menu-item.active {
+    background: var(--category-text-hover);
+} */
+section.category .list-category .list-item .sub-menu-category a {
+    color: var(--category-text-color);
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+
+section.category .slide-category {
+    flex-basis: 70%;
+}
+
+ul.list-category {
+    list-style: none;
+    background-color: var(--category-bg-color);
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-category);
+    padding: 14px 0 14px 0;
+}
+
+ul.list-category li {
+    cursor: pointer;
+    transition: all 0.4s linear;
+}
+
+ul.list-category li a {
+    color: var(--category-text-color);
+    text-decoration: none;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+
+}
+
+ul.list-category .list-item img {
+    max-height: 14px;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+ul.list-category li:hover {
+    background: var(--category-text-hover);
+}
+
+ul.list-category .list-item:hover .sub-menu-category {
+    opacity: 1;
+    visibility: visible;
+}
+
+.swiper-pagination-bullet {
+    width: 18px;
+    height: 18px;
+    border: 1px solid;
+    border-color: var(--swiper-btn-color);
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--swiper-btn-color);
+}
+
+/* SECTION BEST SELLER */
+.best-seller {
+    margin-top: 30px;
+}
+
+h3.title-course {
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+.list-best-seller-courses,
+.list-special-offer-courses {
+    margin-left: -20px;
+}
+
+.list-best-seller-courses li,
+.list-special-offer-courses li {
+    width: calc(25% - 20px);
+    margin-left: 20px;
+
+}
+
+.list-course .list-item .course-box {
+    text-decoration: none;
+    color: var(--title-course-color);
+    display: inline-block;
+    background: var(--course-bg-color);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: var(--box-shadow-name-course);
+
+}
+
+.list-course .list-item .course-des {
+    padding: 0 10px;
+}
+
+.list-course .list-item .course-box:hover {
+    box-shadow: var(---box-shadow-hover);
+
+}
+
+.name-course {
+    margin-top: 10px;
+    max-height: 42px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.name-teacher p,
+.name-teacher .price-course {
+    font-weight: 400;
+    color: var(--span-color);
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.star-rate i {
+    font-size: 12px;
+}
+
+.price-course {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background-color: var(--footer-bg-color);
+    padding: 30px 0;
+    font-size: 16px;
+}
+
+.footer p,
+.footer h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.footer-item {
+    flex-basis: 30%;
+}
+
+.footer-head h3 {
+    color: var(--logo-color-end);
+    font-size: 25px;
+}
+
+.footer-body {
+    margin-top: 20px;
+}
+
+.footer-body a {
+    display: inline-block;
+    color: var(--footer-text-color);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.4s linear;
+}
+
+.footer-body a:hover {
+    color: var(--logo-color-end);
+    margin-left: 5px;
+}
+
+.footer-body .footer-list-detail i {
+    color: var(--logo-color-end);
+}
+
+/* SWIPER CUSTOM */
+section.free-course {
+    position: relative;
+}
+
+.btn-next-free-course,
+.btn-prev-free-course {
+    color: var(--swiper-btn-color);
+}
+
+.btn-next-free-course {
+    right: 150px;
+}
+
+.btn-prev-free-course {
+    left: 150px;
+}
+
+/* LOADING EFFECT  */
+.load{
+    position: fixed;
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left:0;
+    z-index: 9999999;
+    display: block;
+    overflow:hidden;
+}
+.double-loading {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.double-loading .c1 {
+    width: 100%;
+    height: 100%;
+    border: 5px solid #6a5af9;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-radius: 100rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: c1 1s infinite linear;
+}
+.double-loading .c2 {
+    width: 50%;
+    height: 50%;
+    border: 5px solid #6a5af9;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-radius: 100rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: c2 1s infinite linear;
+}
+@keyframes c1 {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes c2 {
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
