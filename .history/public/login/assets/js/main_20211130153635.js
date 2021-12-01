@@ -1,7 +1,7 @@
 // LOADING EFFECT
 $(window).on("load", function (event) {
   $("body").removeClass("preLoading");
-  $(".load").delay(100).fadeOut("fast");
+  $(".load").delay(400).fadeOut("fast");
 });
 
 (function ($) {
