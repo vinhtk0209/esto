@@ -4,31 +4,32 @@
            <div class="container">
                <div class="row">
                    <div class="col-lg-12">
-                       <h3 class="title-course">TOP BÁN CHẠY</h3>
+                       <h3 class="title-course">NGOẠI NGỮ</h3>
                    </div>
                </div>
            </div>
        </div>
        <div class="best-seller-body">
            <div class="container">
-
                <ul class="list-best-seller-courses list-course d-flex flex-wrap">
+                   @foreach ($courses as $value)
                    <li class="list-best-seller list-item">
-                       <a href="" class="course-box">
+                       <a href="{{URL::to('/courseDetail/'.$value->MAKH)}}" class="course-box">
                            <div class="img-course">
                                <img class="img-responsive "
-                                   src="https://static.unica.vn/upload/images/2019/04/ky-thuat-viet-pr-quang-cao-ban-hang_m_1555570144.jpg"
-                                   alt="Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng">
+                                   src="{{asset('public/user/assets/imgCourse')}}/{{$value->ANH}}"
+                                   alt="{{$value->TENKH}}">
                            </div>
                            <div class="course-des">
                                <div class="name-course">
-                                   <h4>Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng </h4>
+                                   <h4>{{$value->TENKH}}</h4>
                                </div>
+
                                <div class="name-teacher d-flex flex-space">
-                                   <p class="">Vinh Nguyen</p>
-                                   <div class="price price-discount">
+                                   <p class="">{{$value->HOTEN}}</p>
+                                   {{-- <div class="price price-discount">
                                        <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                   </div>
+                                   </div> --}}
                                </div>
                                <div class="price-course d-flex flex-space">
                                    <div class="rate">
@@ -41,12 +42,13 @@
                                            </span>
                                        </p>
                                    </div>
-                                   <p>600.000 <span class="price-unit"><sup>vnd</sup></span></p>
+                                   <p>{{number_format($value->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
                                </div>
                            </div>
                        </a>
                    </li>
-                   <li class="list-best-seller list-item">
+                   @endforeach
+                   {{-- <li class="list-best-seller list-item">
                        <a href="" class="course-box">
                            <div class="img-course">
                                <img class="img-responsive "
@@ -78,208 +80,11 @@
                                </div>
                            </div>
                        </a>
-                   </li>
-                   <li class="list-best-seller list-item">
-                       <a href="" class="course-box">
-                           <div class="img-course">
-                               <img class="img-responsive "
-                                   src="https://static.unica.vn/upload/images/2019/04/khoa-hoc-lam-chu-giong-noi_m_1555570795.jpg"
-                                   alt="Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng">
-                           </div>
-                           <div class="course-des">
-                               <div class="name-course">
-                                   <h4>Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng </h4>
-                               </div>
-                               <div class="name-teacher d-flex flex-space">
-                                   <p class="">Vinh Nguyen</p>
-                                   <div class="price price-discount">
-                                       <p><del>1.499.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                   </div>
-                               </div>
-                               <div class="price-course d-flex flex-space">
-                                   <div class="rate">
-                                       <p>
-                                           <span class="star-rate">
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                           </span>
-                                       </p>
-                                   </div>
-                                   <p>1.000.000 <span class="price-unit"><sup>vnd</sup></span></p>
-                               </div>
-                           </div>
-                       </a>
-                   </li>
-                   <li class="list-best-seller list-item">
-                       <a href="" class="course-box">
-                           <div class="img-course">
-                               <img class="img-responsive "
-                                   src="https://static.unica.vn/upload/images/2019/04/bi-quyet-luyen-giong-thanh-cong_m_1555575739.jpg"
-                                   alt="Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng">
-                           </div>
-                           <div class="course-des">
-                               <div class="name-course">
-                                   <h4>Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng </h4>
-                               </div>
-                               <div class="name-teacher d-flex flex-space">
-                                   <p class="">Vinh Nguyen</p>
-                                   <div class="price price-discount">
-                                       <p><del>800.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                   </div>
-                               </div>
-                               <div class="price-course d-flex flex-space">
-                                   <div class="rate">
-                                       <p>
-                                           <span class="star-rate">
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                           </span>
-                                       </p>
-                                   </div>
-                                   <p>500.000 <span class="price-unit"><sup>vnd</sup></span></p>
-                               </div>
-                           </div>
-                       </a>
-                   </li>
-                   <li class="list-best-seller list-item">
-                       <a href="" class="course-box">
-                           <div class="img-course">
-                               <img class="img-responsive "
-                                   src="https://static.unica.vn/upload/images/2019/09/thumb_m_1568254672.jpg"
-                                   alt="Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng">
-                           </div>
-                           <div class="course-des">
-                               <div class="name-course">
-                                   <h4>Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng </h4>
-                               </div>
-                               <div class="name-teacher d-flex flex-space">
-                                   <p class="">Vinh Nguyen</p>
-                                   <div class="price price-discount">
-                                       <p><del>650.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                   </div>
-                               </div>
-                               <div class="price-course d-flex flex-space">
-                                   <div class="rate">
-                                       <p>
-                                           <span class="star-rate">
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                           </span>
-                                       </p>
-                                   </div>
-                                   <p>400.000 <span class="price-unit"><sup>vnd</sup></span></p>
-                               </div>
-                           </div>
-                       </a>
-                   </li>
-                   <li class="list-best-seller list-item">
-                       <a href="" class="course-box">
-                           <div class="img-course">
-                               <img class="img-responsive "
-                                   src="https://static.unica.vn/upload/images/2019/04/tu-do-tai-chinh-cung-chung-khoan_m_1555558460.jpg"
-                                   alt="Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng">
-                           </div>
-                           <div class="course-des">
-                               <div class="name-course">
-                                   <h4>Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng </h4>
-                               </div>
-                               <div class="name-teacher d-flex flex-space">
-                                   <p class="">Vinh Nguyen</p>
-                                   <div class="price price-discount">
-                                       <p><del>800.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                   </div>
-                               </div>
-                               <div class="price-course d-flex flex-space">
-                                   <div class="rate">
-                                       <p>
-                                           <span class="star-rate">
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                           </span>
-                                       </p>
-                                   </div>
-                                   <p>350.000 <span class="price-unit"><sup>vnd</sup></span></p>
-                               </div>
-                           </div>
-                       </a>
-                   </li>
-                   <li class="list-best-seller list-item">
-                       <a href="" class="course-box">
-                           <div class="img-course">
-                               <img class="img-responsive "
-                                   src="https://static.unica.vn/upload/images/2019/04/nghe-thuat-tan-gai-bac-thay_m_1555573992.jpg"
-                                   alt="Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng">
-                           </div>
-                           <div class="course-des">
-                               <div class="name-course">
-                                   <h4>Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng </h4>
-                               </div>
-                               <div class="name-teacher d-flex flex-space">
-                                   <p class="">Vinh Nguyen</p>
-                                   <div class="price price-discount">
-                                       <p><del>1.500.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                   </div>
-                               </div>
-                               <div class="price-course d-flex flex-space">
-                                   <div class="rate">
-                                       <p>
-                                           <span class="star-rate">
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                           </span>
-                                       </p>
-                                   </div>
-                                   <p>1.000.000 <span class="price-unit"><sup>vnd</sup></span></p>
-                               </div>
-                           </div>
-                       </a>
-                   </li>
-                   <li class="list-best-seller list-item">
-                       <a href="" class="course-box">
-                           <div class="img-course">
-                               <img class="img-responsive "
-                                   src="https://static.unica.vn/uploads/images/hongvt@unica.vn/lap-trinh-android-tu-co-ban-den-thanh-thao_m.png"
-                                   alt="Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng">
-                           </div>
-                           <div class="course-des">
-                               <div class="name-course">
-                                   <h4>Kỹ thuật viết PR - Quảng cáo - Bán hàng đúng tâm lý khách hàng </h4>
-                               </div>
-                               <div class="name-teacher d-flex flex-space">
-                                   <p class="">Vinh Nguyen</p>
-                                   <div class="price price-discount">
-                                       <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                   </div>
-                               </div>
-                               <div class="price-course d-flex flex-space">
-                                   <div class="rate">
-                                       <p>
-                                           <span class="star-rate">
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                           </span>
-                                       </p>
-                                   </div>
-                                   <p>600.000 <span class="price-unit"><sup>vnd</sup></span></p>
-                               </div>
-                           </div>
-                       </a>
-                   </li>
+                   </li>--}}
                </ul>
            </div>
        </div>
+
    </section>
    <!-- SECTION TOP-SELLER ENDS -->
 
@@ -289,7 +94,7 @@
            <div class="container">
                <div class="row">
                    <div class="col-lg-12">
-                       <h3 class="title-course">siêu ưu đãi hôm nay</h3>
+                       <h3 class="title-course">KINH DOANH KHỞI NGHIỆP</h3>
                    </div>
                </div>
            </div>
@@ -330,7 +135,7 @@
                            </div>
                        </a>
                    </li>
-                   <li class="list-special-offer list-item">
+                   {{-- <li class="list-special-offer list-item">
                        <a href="" class="course-box">
                            <div class="img-course">
                                <img class="img-responsive "
@@ -560,7 +365,7 @@
                                </div>
                            </div>
                        </a>
-                   </li>
+                   </li> --}}
                </ul>
            </div>
        </div>

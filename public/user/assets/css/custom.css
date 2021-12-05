@@ -21,7 +21,7 @@
     --category-text-color: #000;
     --category-text-hover: rgba(80, 173, 78, .2);
 
-
+    --bg-body: #F5F5F5;
 
 
     /* ========== KHOA HOC ========= */
@@ -32,15 +32,15 @@
         /* MÀU TÊN GIẢNG VIÊN VÀ KHUYẾN MÃI  */
         --span-color: #888;
     /* MÀU DANH GIA  */
-    --star-color: #eb8a2f;
+    --star-color: #FFED00;
     /* KHI HOVER VAO TUNG KHOA HOC */
     --box-shadow-name-course: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
     ---box-shadow-hover: 0 4px 8px #62b0fd, 0 4px 12px rgb(0 0 0 / 8%);
 
 
     /* ===== FOOTER ===== */
-    --footer-bg-color: #F2F2F2;
-    --footer-text-color: #444;
+    --footer-bg-color: #2C3238;
+    --footer-text-color: #fff;
 
 
     /* ===== SWIPER  ===== */
@@ -85,6 +85,10 @@ ul {
     justify-content: space-between;
 }
 
+body {
+    background: var(--bg-body);
+}
+
 .header-wrap {
     padding: 20px 0;
 }
@@ -112,10 +116,11 @@ ul {
     outline: none;
 }
 
-.header .navbar-top-left .search-button {
-    position: absolute;
-    left: 50px;
+.form-control:focus {
+    box-shadow: none;
 }
+
+
 
 .header .navbar .form-inline #search-form button:focus {
     border: none !important;
@@ -263,17 +268,16 @@ h3.title-course {
     height: auto;
 }
 
-.list-best-seller-courses,
-.list-special-offer-courses {
+.list-course {
     margin-left: -20px;
 }
 
-.list-best-seller-courses li,
-.list-special-offer-courses li {
+.list-course .list-item {
     width: calc(25% - 20px);
     margin-left: 20px;
-
 }
+
+
 
 .list-course .list-item .course-box {
     text-decoration: none;
@@ -292,14 +296,13 @@ h3.title-course {
 
 .list-course .list-item .course-box:hover {
     box-shadow: var(---box-shadow-hover);
-
 }
 
 .name-course {
     margin-top: 10px;
     max-height: 42px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -366,6 +369,10 @@ h3.title-course {
     color: var(--logo-color-end);
 }
 
+.footer-body .footer-list-detail p {
+    color: var(--footer-text-color);
+}
+
 /* SWIPER CUSTOM */
 section.free-course {
     position: relative;
@@ -382,62 +389,4 @@ section.free-course {
 
 .btn-prev-free-course {
     left: 150px;
-}
-
-/* LOADING EFFECT  */
-.load{
-    position: fixed;
-    background: #ffffff;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left:0;
-    z-index: 9999999;
-    display: block;
-    overflow:hidden;
-}
-.double-loading {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.double-loading .c1 {
-    width: 100%;
-    height: 100%;
-    border: 5px solid #6a5af9;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-radius: 100rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: c1 1s infinite linear;
-}
-.double-loading .c2 {
-    width: 50%;
-    height: 50%;
-    border: 5px solid #6a5af9;
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-    border-radius: 100rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: c2 1s infinite linear;
-}
-@keyframes c1 {
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-@keyframes c2 {
-    to {
-        transform: translate(-50%, -50%) rotate(-360deg);
-    }
 }
