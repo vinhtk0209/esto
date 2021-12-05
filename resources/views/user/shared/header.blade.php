@@ -9,7 +9,7 @@
                             <div class="navbar-brand logo">
                                 <!-- LOGO -->
                                 <h1>
-                                    <a href="" class="name-web"> ESTO</a>
+                                    <a href="{{URL::to('/home/')}}" class="name-web"> ESTO</a>
                                 </h1>
                                 <!-- END LOGO -->
                             </div>
