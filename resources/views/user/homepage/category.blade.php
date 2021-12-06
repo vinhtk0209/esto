@@ -2,17 +2,19 @@
     <div class="container">
         <div class="d-flex flex-wrap flex-space">
             <ul class="list-category">
+                @foreach ($data as $value)
                 <li class="list-item">
                     <a href="">
-                        <img src="https://media-kyna.cdn.vccloud.vn/uploads/categories/112/img/menu_icon-1595586642.png"
-                            alt="">
-                        Ngoại ngữ
+                        {{$value->TENDM}}
                     </a>
-                    <ul class="sub-menu-category">
-                        <li class="sub-menu-item active">
-                            <a href="">Tiếng anh</a>
-                        </li>
-                        <li class="sub-menu-item">
+                    {{-- <ul class="sub-menu-category">
+                        @foreach ($value->childCategory as $item)
+                            <li class="sub-menu-item active">
+                                <a href="">{{$item->TENDMC}}</a>
+                            </li>
+                        @endforeach --}}
+
+                        {{-- <li class="sub-menu-item">
                             <a href="">Tiếng pháp</a>
                         </li>
                         <li class="sub-menu-item">
@@ -20,10 +22,14 @@
                         </li>
                         <li class="sub-menu-item">
                             <a href="">Tiếng nhật</a>
-                        </li>
-                    </ul>
+                        </li> --}}
+                    {{-- </ul> --}}
                 </li>
-                <li class="list-item">
+                @endforeach
+
+
+
+                {{-- <li class="list-item">
                     <a href="">
                         <img src="https://media-kyna.cdn.vccloud.vn/uploads/categories/126/img/menu_icon-1595588118.png"
                             alt="">
@@ -182,7 +188,7 @@
                         </li>
 
                     </ul>
-                </li>
+                </li> --}}
             </ul>
             <div class="swiper slide-category">
                 <div class="swiper-wrapper">

@@ -8,11 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DanhMuc extends Model
 {
     protected $table = "danhmuc";
-    protected $primaryKey = 'MADM';
-    public $timestamps = false;
-
-    public function rKhoaHoc()
+    protected $guarded = [];
+    public function childCategory()
     {
-        return $this->hasMany('App\Models\KhoaHoc', 'MADM');
+        return $this->hasMany(DanhMuc::class, 'MADMC');
     }
 }

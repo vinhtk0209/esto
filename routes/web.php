@@ -25,3 +25,16 @@ Route::get('/register', [
     'as' => 'login.register',
     'uses' => 'App\Http\Controllers\user\loginController@register'
 ]);
+
+Route::get('/courseDetail/{productId}', [
+    'as' => 'home.detailProduct',
+    'uses' => 'App\Http\Controllers\user\productController@detailProduct'
+]);
+Route::get('/infoUser', [
+    'as' => 'home.infoManager',
+    'uses' => 'App\Http\Controllers\user\homeController@infoManager'
+]);
+Route::get('/listCourse', [
+    'as' => 'home.listCourse',
+    'uses' => 'App\Http\Controllers\user\homeController@listCourse'
+]);
