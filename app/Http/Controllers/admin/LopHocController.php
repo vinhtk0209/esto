@@ -5,12 +5,12 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TaiKhoanController extends Controller
+class LopHocController extends Controller
 {
     public function index()
     {
-        return view('admin.taikhoan.index');
-    }
+        return view('admin.lophoc.index');
+    } 
     
     public function create()
     {
