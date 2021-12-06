@@ -1,0 +1,254 @@
+:root {
+    --bg-header: #0b3955;
+    --text-header: #fff;
+    --text-body: #333;
+    --box-shadow-category: 0 0 5px 0 rgb(0 0 0 / 16%);
+    --bg-tab-li: #e1e1e1;
+    --color-tab-a: #000;
+
+    --bg-buy-now-btn: #df322f;
+    --bg-cart-now-btn: #0bb732;
+    --box-shadow-buy-course: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+}
+
+ul {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    text-transform: capitalize;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+/* ======= HEADER =====*/
+.course-detail-header {
+    background: var(--bg-header);
+    color: var(--text-header);
+    padding: 10px 0;
+}
+
+.title-des {
+    max-width: 70%;
+}
+
+.name-course {
+    font-weight: 700;
+}
+
+.des-course-short {
+    font-weight: 400;
+}
+
+.teacher-course {
+    display: flex;
+    max-width: 500px;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+a.name-teacher {
+    color: var(--text-header);
+    font-weight: 500;
+}
+
+a.name-teacher:hover {
+    color: var(--text-header);
+}
+
+.picture-teacher-circle {
+    width: 30px;
+    border-radius: 100%;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* ======= CONTENT =====*/
+.tab-detail {
+    margin-top: 10px;
+}
+
+.list-tab-detail {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    max-width: 70%;
+    box-shadow: var(--box-shadow-category);
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.list-tab-detail li {
+    display: inline-block;
+    padding: 15px 25px;
+    cursor: pointer;
+}
+
+.list-tab-detail li:hover {
+    background: var(--bg-tab-li);
+    color: var(--color-tab-a);
+}
+
+.tab-name {
+    color: var(--text-body);
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.tab-name:focus {
+    outline: none;
+    outline-offset: 0;
+    text-decoration: none;
+    color: var(--text-body);
+}
+
+.tab-name:hover {
+    text-decoration: none;
+    color: var(--text-body);
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+/* INTRO COURSE */
+.intro-course-des {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    max-width: 70%;
+    box-shadow: var(--box-shadow-category);
+}
+
+.intro-title h3 {
+    padding: 15px 25px;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.intro-body {
+    padding: 10px;
+}
+
+.intro-body-header {
+    text-align: justify;
+}
+
+/* CONTENT COURSE  */
+.list-lesson li:not(:first-child) {
+    margin-top: 10px;
+}
+
+.lesson-icon-play {
+    color: #838383;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #F6F6F6;
+    color: var(--text-body);
+}
+
+.accordion-button:focus {
+    border: none;
+    outline: none;
+    box-shadow: var(--box-shadow-category);
+}
+
+.rate-course-summary {
+    text-align: center;
+    padding-left: 27px;
+    padding-right: 44px;
+    min-width: 110px;
+}
+
+.rate-course-summary .rate-course-ratingnumber {
+    font-size: 55px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: normal;
+}
+
+/* BUY COURSE OR ADD TO CART */
+
+.buy-course {
+    position: fixed;
+    top: 90px;
+    right: 180px;
+    z-index: 999;
+    color: var(--text-body);
+    display: flex;
+    background: #fff;
+    box-shadow: var(--box-shadow-buy-course);
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    align-items: center;
+    flex-direction: column;
+    width: 340px;
+    margin: 0;
+}
+
+.buy-course .price-container {
+    display: flex;
+}
+
+.buy-course .main-price {
+    margin-right: 25px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.buy-course .price-discount {
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 2;
+}
+
+.buy-course .btn-to-do-course {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.buy-course .btn-course {
+    display: inline-block;
+    line-height: 1.5;
+    text-decoration: none;
+    vertical-align: middle;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    color: var(--text-header);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.buy-course .btn-to-do-course:hover {
+    opacity: 0.8;
+}
+
+.buy-now {
+    background-color: var(--bg-buy-now-btn);
+}
+
+.cart-now {
+    background-color: var(--bg-cart-now-btn);
+}
+
+.cart-now i {
+    font-size: 28px;
+    margin-right: 10px;
+    vertical-align: sub;
+}

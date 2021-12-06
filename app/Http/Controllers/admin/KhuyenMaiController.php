@@ -20,4 +20,29 @@ class KhuyenMaiController extends Controller
         $khoahoc = KhoaHoc::all();
         return view('admin.khuyenmai.chitietkm', ['khoahoc'=>$khoahoc]);
     }
+    
+    public function create()
+    {
+        
+    }
+
+    public function store(Request $request)
+    {
+        
+    }
+
+    public function edit($id)
+    {
+        
+    }
+
+    public function update(Request $request, $id)
+    {
+        
+    }
+
+    public function delete($id)
+    {
+        
+    }
 }
