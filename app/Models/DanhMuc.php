@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class DanhMuc extends Model
 {
     protected $table = "danhmuc";
+    protected $primaryKey = 'MADM';
+    public $timestamps = false;
+
+    public function rKhoaHoc()
+    {
+        return $this->hasMany('App\Models\KhoaHoc', 'MADM');
+    }
 }
