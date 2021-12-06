@@ -5,13 +5,13 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class KhuyenMaiController extends Controller
+class BaiHocController extends Controller
 {
     public function index()
     {
-        return view('admin.khuyenmai.index');
-    }
-    
+        return view('admin.baihoc.index');
+    } 
+
     public function create()
     {
         
