@@ -1,24 +1,49 @@
 @extends('admin.layout.index')
 @section('content')
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="admin/khoahoc/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/khoahoc/">Quản Lý Khóa Học</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <a href="admin/khoahoc/them" class="btn btn-sm btn-neutral">Thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid mt--6">
     <div class="row">
         <div class="col">
             <div class="card">
                 <!-- Card header -->
-                <div class="card-header border-0">
-                    <h3 class="mb-0">Light table</h3>
+                <div class="card-header border-0 text-blue">
+                    <h3 class="mb-0">Khóa học</h3>
                 </div>
+                @if (session('thongbao'))
+                <div class="alert alert-success">
+                    {{session('thongbao')}}
+                </div>
+                @endif
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="anh"></th>
+                                <th scope="col" class="sort" data-sort="anh">Ảnh</th>
                                 <th scope="col" class="sort" data-sort="khoahoc">Khóa học</th>
                                 <th scope="col" class="sort" data-sort="gia">Giá</th>
                                 <th scope="col" class="sort" data-sort="gioithieu">Giới thiệu</th>
                                 <th scope="col" class="sort" data-sort="loai">Môn học</th>
-                                <th scope="col" class="sort" data-sort="loai">Trực tuyến</th>
+                                <th scope="col" class="sort" data-sort="loai">Hình thức</th>
+                                <th scope="col" class="sort" data-sort="options"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
@@ -30,7 +55,7 @@
                                     </div>
                                 </th>
                                 <td class="budget">
-                                    {{$kh->TENKH}}
+                                    {{substr($kh->TENKH, 0, 30)}}..
                                 </td>
                                 <td class="budget">
                                     {{$kh->DONGIA}}
@@ -39,10 +64,14 @@
                                     {{substr($kh->GIOITHIEUKH, 0, 50)}}...
                                 </td>
                                 <td class="budget">
-                                    {{$kh->MADMC}}
+                                    {{$kh->rDanhMuc->TENDM}}
                                 </td>
                                 <td class="budget">
-                                    {{$kh->TRUCTUYEN}}
+                                    {{$kh->TRUCTUYEN==1?'Trực tuyến':'Video'}}
+                                </td>
+                                <td class="center">
+                                    <a href="admin/khoahoc/sua/{{$kh->MAKH}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/khoahoc/xoa/{{$kh->MAKH}}" class="delete text-red" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                                 </td>
                                 @endforeach
                         </tbody>
