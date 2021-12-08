@@ -4,6 +4,15 @@
     <div class="container-fluid">
         <div class="header-body">
             <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="admin/khoahoc/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/khoahoc/">Quản Lý Khóa Học</a></li>
+                            <li class="breadcrumb-item"><a href="admin/khoahoc/sua/{{$khoahoc->MAKH}}">Sửa Khóa Học</a></li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -15,12 +24,12 @@
                 <img src="public/images/{{$khoahoc->ANH}}" alt="Image placeholder" class="card-img-top">
                 <div class="course-des">
                     <div class="name-course">
-                        <h4>{{$khoahoc->TENKH}}</h4>
+                        <h4 id="tenkhoahoc">{{$khoahoc->TENKH}}</h4>
                     </div>
                     <div class="name-teacher d-flex flex-space">
-                        <p class="">Giang Vien</p>
+                        <p class="" id="giangvien">{{$khoahoc->rTaiKhoan->HOTEN}}</p>
                         <div class="price price-discount">
-                            <p><del>{{$khoahoc->DONGIA}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+                            <p><del id="dongia">{{$khoahoc->DONGIA}}</del><span class="price-unit"><sup>vnd</sup></span></p>
                         </div>
                     </div>
                     <div class="price-course d-flex flex-space">
@@ -35,7 +44,7 @@
                                 </span>
                             </p>
                         </div>
-                        <p>{{$khoahoc->DONGIA}}<span class="price-unit"><sup>vnd</sup></span></p>
+                        <p id="giamgia">{{$khoahoc->DONGIA}}<span class="price-unit"><sup>vnd</sup></span></p>
                     </div>
                 </div>
             </div>
@@ -65,14 +74,31 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">Giảng viên</label></br>
+                                        <select name="MATK" id="MATK">
+                                            @foreach($taikhoan as $tk)
+                                            <option @if($khoahoc->MAGV == $tk->ID)
+                                                {{"selected"}}
+                                                @endif
+                                                value="{{ $tk->ID }}">{{ $tk->HOTEN }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
                                         <label class="form-control-label" for="input-username">Tên khóa học</label>
-                                        <input type="text" name="TENKH" class="form-control" value="{{$khoahoc->TENKH}}">
+                                        <input type="text" id="TENKH" name="TENKH" class="form-control" value="{{$khoahoc->TENKH}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Giá khóa học</label>
-                                        <input type="text" name="DONGIA" class="form-control" value="{{$khoahoc->DONGIA}}">
+                                        <input type="text" id="DONGIA" name="DONGIA" class="form-control" value="{{$khoahoc->DONGIA}}">
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +111,7 @@
                                             <option @if($khoahoc->MADM == $dm->MADM)
                                                 {{"selected"}}
                                                 @endif
-                                                value="{{ $dm->MADM }}">{{ $dm->TENDM }}
+                                                value="{{$dm->MADM }}">{{ $dm->TENDM }}
                                             </option>
                                             @endforeach
                                         </select>
@@ -94,11 +120,11 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Hình thức</label></br>
-                                        <input name="type" type="radio" id="video" value="0" style="vertical-align:middle; cursor: pointer;" @if($khoahoc->TRUCTUYEN == false)
+                                        <input name="hinhthuc" type="radio" id="video" value="0" style="vertical-align:middle; cursor: pointer;" @if($khoahoc->TRUCTUYEN == false)
                                         {{"checked"}}
                                         @endif>
                                         <label for="video">Video</label><br>
-                                        <input name="type" type="radio" id="tructuyen" value="1" style="vertical-align:middle; cursor: pointer;" @if($khoahoc->TRUCTUYEN == true)
+                                        <input name="hinhthuc" type="radio" id="tructuyen" value="1" style="vertical-align:middle; cursor: pointer;" @if($khoahoc->TRUCTUYEN == true)
                                         {{"checked"}}
                                         @endif>
                                         <label for="tructuyen">Trực tuyến</label>
@@ -109,7 +135,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Hình ảnh</label>
-                                <input type="file" name="ANH" class="form-control">
+                                <input type="file" id="ANH" name="ANH" class="form-control">
                             </div>
                         </div>
                         <div class="pl-lg-4">
@@ -127,10 +153,11 @@
                         <div class="row align-items-center">
                             <div class="col-8">
                                 <button type="submit" class="btn btn-default">Sửa</button>
+                                <button type="button" onclick="textChange()" class="btn btn-default">Xem trước</button>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="admin/khoahoc/" id="baihoc" class="btn btn-primary">Sửa bài học</a>
-                                <a href="admin/khoahoc/" id="lophoc" class="btn btn-primary" style="display: none;">Sửa lớp học</a>
+                                <a href="admin/baihoc/them?id={{$khoahoc->MAKH}}" id="baihoc" class="btn btn-primary">Thêm bài học</a>
+                                <a href="admin/lophoc/" id="lophoc" class="btn btn-primary" style="display: none">Thêm lớp học</a>
                             </div>
                         </div>
                     </form>
