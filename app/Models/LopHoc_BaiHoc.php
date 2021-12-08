@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class LopHoc_BaiHoc extends Model
 {
     protected $table = "lophoc_baihoc";
+    protected $primaryKey = ['MABH', 'MALH'];   
+     
+    public function rBaiHoc()
+    {
+        return $this->belongsTo('App\Models\BaiHoc', 'MABH');
+    }
+
+    public function rLopHoc()
+    {
+        return $this->belongsTo('App\Models\LopHoc', 'MALH');
+    }
 }

@@ -16,4 +16,19 @@ class KhoaHoc extends Model
     {
         return $this->belongsTo('App\Models\DanhMuc', 'MADM');
     }
+
+    public function rBaiHoc()
+    {
+        return $this->hasMany('App\Models\BaiHoc', 'MAKH');
+    }
+
+    public function rLopHoc()
+    {
+        return $this->hasMany('App\Models\LopHoc', 'MAKH');
+    }
+
+    public function rTaiKhoan()
+    {
+        return $this->belongsTo('App\Models\TaiKhoan', 'MAGV');
+    }
 }
