@@ -285,13 +285,26 @@
           if ($("#video").is(':checked')) {
             $("#baihoc").show();
             $("#lophoc").hide();
-          } 
+          }
           if ($("#tructuyen").is(':checked')) {
             $("#baihoc").hide();
             $("#lophoc").show();
           }
         });
       });
+    </script>
+    <script>  
+       function textChange() {
+        document.getElementById("tenkhoahoc").innerHTML = document.getElementById("TENKH").value;
+        document.getElementById("dongia").innerHTML = document.getElementById("DONGIA").value;
+        document.getElementById("giamgia").innerHTML = document.getElementById("DONGIA").value;
+        var e = document.getElementById("MATK");
+        document.getElementById("giangvien").innerHTML = e.options[e.selectedIndex].text;
+        document.getElementById("anhkh").src = "public/images/" + document.getElementById("ANH").files[0].name;;
+        }
+        function xemAnh() {
+        document.getElementById("anhtk").src = "public/images/" + document.getElementById("ANH").files[0].name;;
+        }
     </script>
 </body>
 

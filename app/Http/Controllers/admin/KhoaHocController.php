@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BaiHoc;
 use App\Models\DanhMuc;
 use App\Models\KhoaHoc;
 use App\Models\DanhMucCon;
+use App\Models\LopHoc;
+use App\Models\LopHoc_BaiHoc;
+use App\Models\TaiKhoan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,14 +17,15 @@ class KhoaHocController extends Controller
 {
     public function index()
     {
-        $khoahoc = KhoaHoc::all();
+        $khoahoc = KhoaHoc::paginate(5);
         return view('admin.khoahoc.index', ['khoahoc' => $khoahoc]);
     }
 
     public function create()
     {
         $danhmuc = DanhMuc::where('MADMCHA', '>', 0)->get();
-        return view('admin.khoahoc.create', ['danhmuc' => $danhmuc]);
+        $taikhoan = TaiKhoan::where('MALOAI', '=', 2)->get();
+        return view('admin.khoahoc.create', compact('danhmuc', 'taikhoan'));
     }
 
     public function store(Request $request)
@@ -29,7 +34,8 @@ class KhoaHocController extends Controller
         $khoahoc->TENKH = $request->TENKH;
         $khoahoc->DONGIA = $request->DONGIA;
         $khoahoc->MADM = $request->MADM;
-        if($request->tructuyen == 'checked'){
+        $khoahoc->MATK = $request->MATK;
+        if($request->hinhthuc == '1'){
 
             $khoahoc->TRUCTUYEN = true;  
         } 
@@ -61,7 +67,8 @@ class KhoaHocController extends Controller
     {
         $danhmuc = DanhMuc::where('MADMCHA', '>', 0)->get();
         $khoahoc = KhoaHoc::find($id);
-        return view('admin.khoahoc.edit', ['khoahoc' => $khoahoc], ['danhmuc' => $danhmuc]);
+        $taikhoan = TaiKhoan::where('MALOAI', '=', 2)->get();
+        return view('admin.khoahoc.edit', compact('danhmuc', 'khoahoc', 'taikhoan'));
     }
 
     public function update(Request $request, $id)
@@ -69,14 +76,15 @@ class KhoaHocController extends Controller
         $khoahoc = KhoaHoc::find($id);
         $khoahoc->TENKH = $request->TENKH;
         $khoahoc->DONGIA = $request->DONGIA;
+        $khoahoc->MAGV = $request->MATK;
         $khoahoc->MADM = $request->MADM;
-        if($request->video == 'checked'){
+        if($request->hinhthuc == '1'){
 
-            $khoahoc->TRUCTUYEN = false;  
+            $khoahoc->TRUCTUYEN = true;  
         } 
         else {
 
-            $khoahoc->TRUCTUYEN = true;  
+            $khoahoc->TRUCTUYEN = false;  
         }   
         $khoahoc->GIOITHIEUKH = $request->GIOITHIEUKH;
         $khoahoc->CHITIETKH = $request->CHITIETKH;

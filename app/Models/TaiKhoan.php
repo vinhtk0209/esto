@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class TaiKhoan extends Model
 {
     protected $table = "taikhoan";
-
+    protected $primaryKey = "ID";
+    public $timestamps = false;
+    protected $casts = ['TRANGTHAI' => 'boolean', 'GIOITINH' => 'boolean'];
     protected $fillable = ['EMAIL', 'MATKHAU'];
+
+    public function rKhoaHoc()
+    {
+        return $this->hasMany('App\Models\KhoaHoc', 'ID');
+    }
 }
