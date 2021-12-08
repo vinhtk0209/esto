@@ -9,5 +9,5 @@ class TaiKhoan extends Model
 {
     protected $table = "taikhoan";
 
-    protected $fillable = ['EMAIL', 'MATKHAU'];
+    protected $fillable = ['HOTEN', 'NGAYSINH', 'GIOITINH', 'SODIENTHOAI', 'EMAIL', 'MATKHAU', 'MALOAI'];
 }

@@ -8,20 +8,18 @@
   <meta name="author" content="Creative Tim">
   <title>TRANG QUAN TRI</title>
   <!-- Favicon -->
-  <base href="{{asset('')}}">
-  <link rel="icon" href="public/admin_assets/img/brand/favicon.png" type="image/png">
+  <link rel="iconasset" href="{{('admin_assets/img/brand/favicon.png')}}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Icons -->
-  <link rel="stylesheet" href="public/admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="public/admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="{{asset('admin_assets/vendor/nucleo/css/nucleo.css')}}" type="text/css">
+  <link rel="stylesheet" href="{{asset('admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
   <!-- Page plugins -->
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="public/admin_assets/css/argon.css?v=1.2.0" type="text/css">
-  <link rel="stylesheet" href="public/user/assets/css/main.css">
-  <link rel="stylesheet" href="public/user/assets/css/custom.css">
+
+  <link rel="stylesheet" href="{{asset('admin_assets/css/argon.css?v=1.2.0')}}" type="text/css">
 </head>
 
 <body>
@@ -79,7 +77,11 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
+<<<<<<< HEAD
+                        <img alt="Image placeholder" src="{{asset('admin_assets/img/theme/team-1.jpg')}}" class="avatar rounded-circle">
+=======
                         <img alt="Image placeholder" src="public/admin_assets/img/theme/team-1.jpg" class="avatar rounded-circle">
+>>>>>>> 0bd98c91bfb6dd6b176d350434688dd4551262cb
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -98,7 +100,11 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
+<<<<<<< HEAD
+                        <img alt="Image placeholder" src="{{asset('admin_assets/img/theme/team-2.jpg')}}" class="avatar rounded-circle">
+=======
                         <img alt="Image placeholder" src="public/admin_assets/img/theme/team-2.jpg" class="avatar rounded-circle">
+>>>>>>> 0bd98c91bfb6dd6b176d350434688dd4551262cb
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -117,7 +123,11 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
+<<<<<<< HEAD
+                        <img alt="Image placeholder" src="{{asset('admin_assets/img/theme/team-3.jpg')}}" class="avatar rounded-circle">
+=======
                         <img alt="Image placeholder" src="public/admin_assets/img/theme/team-3.jpg" class="avatar rounded-circle">
+>>>>>>> 0bd98c91bfb6dd6b176d350434688dd4551262cb
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -136,7 +146,11 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
+<<<<<<< HEAD
+                        <img alt="Image placeholder" src="{{asset('admin_assets/img/theme/team-4.jpg')}}" class="avatar rounded-circle">
+=======
                         <img alt="Image placeholder" src="public/admin_assets/img/theme/team-4.jpg" class="avatar rounded-circle">
+>>>>>>> 0bd98c91bfb6dd6b176d350434688dd4551262cb
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -155,7 +169,11 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
+<<<<<<< HEAD
+                        <img alt="Image placeholder" src="{{asset('admin_assets/img/theme/team-5.jpg')}}" class="avatar rounded-circle">
+=======
                         <img alt="Image placeholder" src="public/admin_assets/img/theme/team-5.jpg" class="avatar rounded-circle">
+>>>>>>> 0bd98c91bfb6dd6b176d350434688dd4551262cb
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -226,7 +244,11 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
+<<<<<<< HEAD
+                    <img alt="Image placeholder" src="{{asset('admin_assets/img/theme/team-4.jpg')}}">
+=======
                     <img alt="Image placeholder" src="public/admin_assets/img/theme/team-4.jpg">
+>>>>>>> 0bd98c91bfb6dd6b176d350434688dd4551262cb
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
@@ -266,6 +288,21 @@
     </nav>
     <!-- Page content -->
     @yield('content')
+<<<<<<< HEAD
+  </div>
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="{{asset('admin_assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/js-cookie/js.cookie.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
+  <!-- Optional JS -->
+  <script src="{{asset('admin_assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
+  <!-- Argon JS -->
+  <script src="{{asset('admin_assets/js/argon.js?v=1.2.0')}}"></script>
+=======
     <!-- Argon Scripts -->
     <!-- Core -->
     <script src="public/admin_assets/vendor/jquery/dist/jquery.min.js"></script>
@@ -293,6 +330,7 @@
         });
       });
     </script>
+>>>>>>> 0bd98c91bfb6dd6b176d350434688dd4551262cb
 </body>
 
 </html>
