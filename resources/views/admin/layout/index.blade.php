@@ -22,8 +22,8 @@
   <link rel="stylesheet" href="public/admin_assets/css/argon.css?v=1.2.0" type="text/css">
   <link rel="stylesheet" href="public/user/assets/css/main.css">
   <link rel="stylesheet" href="public/user/assets/css/custom.css">
-</head>
 
+</head>
 <body>
   <!-- Sidenav -->
   @include('admin.layout.header')
