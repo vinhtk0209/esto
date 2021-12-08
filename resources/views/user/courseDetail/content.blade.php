@@ -1,7 +1,7 @@
 <div class="buy-course">
     <div class="img-course">
         <img class="img-responsive "
-            src="{{asset('public/user/assets/imgCourse')}}/{{$product->ANH}}"
+            src="{{asset('user/assets/imgCourse')}}/{{$product->ANH}}"
             alt="{{$product->TENKH}}">
         </div>
     <div class="price-container">

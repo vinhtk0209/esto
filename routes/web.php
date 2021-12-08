@@ -13,17 +13,29 @@ use App\Http\Controllers\user;
 |
 */
 
-Route::get('/home', [
+Route::get('/', [
     'as' =>  'home.index',
     'uses' => 'App\Http\Controllers\user\homeController@index'
 ]);
-Route::get('/login', [
+Route::get('/lg', [
     'as' => 'login.login',
     'uses' => 'App\Http\Controllers\user\loginController@login'
 ]);
-Route::get('/register', [
+Route::post('/lg', [
+    'as' => 'post.login',
+    'uses' => 'App\Http\Controllers\user\loginController@postLogin'
+]);
+Route::get('/rs', [
     'as' => 'login.register',
     'uses' => 'App\Http\Controllers\user\loginController@register'
+]);
+Route::post('/rs', [
+    'as' => 'post.register',
+    'uses' => 'App\Http\Controllers\user\loginController@postRegister'
+]);
+Route::get('/logout', [
+    'as' => 'logout',
+    'uses' => 'App\Http\Controllers\user\loginController@logout'
 ]);
 
 Route::get('/courseDetail/{productId}', [
