@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="public/admin_assets/css/argon.css?v=1.2.0" type="text/css">
   <link rel="stylesheet" href="public/user/assets/css/main.css">
   <link rel="stylesheet" href="public/user/assets/css/custom.css">
-
 </head>
 <body>
   <!-- Sidenav -->
@@ -266,6 +265,7 @@
     </nav>
     <!-- Page content -->
     @yield('content')
+  </div>
     <!-- Argon Scripts -->
     <!-- Core -->
     <script src="public/admin_assets/vendor/jquery/dist/jquery.min.js"></script>

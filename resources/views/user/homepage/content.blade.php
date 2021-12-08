@@ -17,7 +17,7 @@
                        <a href="{{URL::to('/courseDetail/'.$value->MAKH)}}" class="course-box">
                            <div class="img-course">
                                <img class="img-responsive "
-                                   src="{{asset('public/user/assets/imgCourse')}}/{{$value->ANH}}"
+                                   src="{{asset('user/assets/imgCourse')}}/{{$value->ANH}}"
                                    alt="{{$value->TENKH}}">
                            </div>
                            <div class="course-des">
