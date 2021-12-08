@@ -51,7 +51,7 @@
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
-                                        <img src="public/images/{{$kh->ANH}}" width="90px" height="50px">
+                                        <img src=" {{asset('user/assets/imgCourse')}}/{{$kh->ANH}}"Width="262.5px" Height="131.25px">
                                     </div>
                                 </th>
                                 <td class="budget">
