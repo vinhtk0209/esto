@@ -13,22 +13,13 @@ class homeController extends Controller
 {
     public function index()
     {
-        $data = DanhMuc::where('MADMCHA', 0)->get();
-        // $courses = DB::table('khoahoc')
-        //     ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
-        //     ->select('*')
-        //     ->get();
-        $courses = DB::table('khoahoc')
-            ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
-            ->where('MADM', '=', 1)->select('*')->get();
-        return view('user.homepage.index', compact('data', 'courses'));
+        $cateCourse = DB::table('danhmuc')->where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
+        $listCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->orderby('MAKH', 'desc')->limit(8)->get();
+        return view('user.homepage.index')->with('category', $cateCourse)->with('listCourse', $listCourse);
     }
     public function infoManager()
     {
         return view('user.infoManager.index');
     }
-    public function listCourse()
-    {
-        return view('user.listCourse.index');
-    }
+
 }

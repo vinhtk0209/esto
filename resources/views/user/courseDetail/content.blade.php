@@ -109,7 +109,7 @@
                      <h3>Nội dung khóa học</h3>
                  </div>
                  <div class="intro-body">
-                    <div class="accordion" id="accordionExample">
+                    {{-- <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                           <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -295,7 +295,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div>--}}
                  </div>
                 </div>
                 </div>
@@ -332,9 +332,72 @@
              </section>
         {{-- RATE COURSE ENDS --}}
 
+        {{-- RELATED SCIENCE START --}}
+            {{-- <section class="related-course mt-10">
+                <div class="related-course-head ">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 intro-title ">
+                                <h3 class="intro-header intro-course-des ">khóa học liên quan</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="related-course-body mt--20">
+                    <div class="container">
+                        <ul class="swiper list-related-courses list-course mw-70p">
+                            <div class="swiper-wrapper">
+                                @foreach ($relatedCourse as $relaCourse)
+                                <li class="swiper-slide list-related-course list-item">
+                                    <a href="" class="course-box">
+                                        <div class="img-course">
+                                                <img class="img-responsive "
+                                                src="{{asset('user/assets/imgCourse')}}/{{$relaCourse->ANH}}"
+                                                alt="{{$relaCourse->TENKH}}">
+                                        </div>
+                                        <div class="course-des">
+                                            <div class="name-course">
+                                                <h4>{{$relaCourse->TENKH}} </h4>
+                                            </div>
+                                            <div class="name-teacher d-flex flex-space">
+                                                <p class="">{{$relaCourse->HOTEN}}</p>
+                                                <div class="price price-discount">
+                                                    <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                                </div>
+                                            </div>
+                                            <div class="price-course d-flex flex-space">
+                                                <div class="rate">
+                                                    <p>
+                                                        <span class="star-rate">
+                                                            <i class="fas fa-star star-color"></i>
+                                                            <i class="fas fa-star star-color"></i>
+                                                            <i class="fas fa-star star-color"></i>
+                                                            <i class="fas fa-star star-color"></i>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                @endforeach
 
+
+
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </ul>
+                        <div class="swiper-button-next btn-next-free-course"></div>
+                        <div class="swiper-button-prev btn-prev-free-course"></div>
+                    </div>
+                </div>
+            </section> --}}
+         {{-- RELATED SCIENCE END --}}
      </div>
 </section>
+
 
 
 

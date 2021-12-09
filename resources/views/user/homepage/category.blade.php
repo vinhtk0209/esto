@@ -2,10 +2,10 @@
     <div class="container">
         <div class="d-flex flex-wrap flex-space">
             <ul class="list-category">
-                @foreach ($data as $value)
+                @foreach ($category as $cate)
                 <li class="list-item">
-                    <a href="">
-                        {{$value->TENDM}}
+                    <a href="{{URL::to('/listCourse/' . $cate->MADM)}}">
+                        {{$cate->TENDM}}
                     </a>
                     {{-- <ul class="sub-menu-category">
                         @foreach ($value->childCategory as $item)

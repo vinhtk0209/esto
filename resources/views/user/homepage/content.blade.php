@@ -1,10 +1,10 @@
    <!-- SECTION BEST-SELLER STARTS -->
-   <section class="best-seller mb-16">
+    <section class="best-seller mb-16">
        <div class="best-seller-head">
            <div class="container">
                <div class="row">
                    <div class="col-lg-12">
-                       <h3 class="title-course">NGOẠI NGỮ</h3>
+                       <h3 class="title-course">Sản phẩm mới nhất</h3>
                    </div>
                </div>
            </div>
@@ -12,25 +12,25 @@
        <div class="best-seller-body">
            <div class="container">
                <ul class="list-best-seller-courses list-course d-flex flex-wrap">
-                   @foreach ($courses as $value)
+                   @foreach ($listCourse as $course)
                    <li class="list-best-seller list-item">
-                       <a href="{{URL::to('/courseDetail/'.$value->MAKH)}}" class="course-box">
+                       <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                            <div class="img-course">
                                <img class="img-responsive "
-                                   src="{{asset('user/assets/imgCourse')}}/{{$value->ANH}}"
-                                   alt="{{$value->TENKH}}">
+                                   src="{{asset('user/assets/imgCourse')}}/{{$course->ANH}}"
+                                   alt="{{$course->TENKH}}">
                            </div>
                            <div class="course-des">
                                <div class="name-course">
-                                   <h4>{{$value->TENKH}}</h4>
+                                   <h4>{{$course->TENKH}}</h4>
                                </div>
 
                                <div class="name-teacher d-flex flex-space">
-                                   <p class="">{{$value->HOTEN}}</p>
+                                   <p class="">{{$course->HOTEN}}</p>
                                    {{-- <div class="price price-discount">
                                        <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
                                    </div> --}}
-                               </div>
+                                </div>
                                <div class="price-course d-flex flex-space">
                                    <div class="rate">
                                        <p>
@@ -42,7 +42,7 @@
                                            </span>
                                        </p>
                                    </div>
-                                   <p>{{number_format($value->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
+                                   <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
                                </div>
                            </div>
                        </a>
@@ -81,15 +81,15 @@
                            </div>
                        </a>
                    </li>--}}
-               </ul>
+                </ul>
            </div>
        </div>
 
-   </section>
+    </section>
    <!-- SECTION TOP-SELLER ENDS -->
 
    <!-- SECTION SPECIAL OFFER COURSE STARTS-->
-   <section class="special-offer mb-16">
+   {{-- <section class="special-offer mb-16">
        <div class="special-offer-head">
            <div class="container">
                <div class="row">
@@ -370,11 +370,11 @@
            </div>
        </div>
 
-   </section>
+   {{-- </section> --}}
    <!-- SECTION SPECIAL OFFER COURSE ENDS-->
 
    <!-- SECTION FREE COURSE STARTS -->
-   <section class="free-course mb-16">
+   {{-- <section class="free-course mb-16">
        <div class="free-course-head">
            <div class="container">
                <div class="row">
@@ -660,11 +660,11 @@
                <div class="swiper-button-prev btn-prev-free-course"></div>
 
            </div>
-   </section>
+   </section> --}}
    <!-- SECTION FREE COURSE ENDS -->
 
    <!-- SECTION ENGLISH COURSE STARTS -->
-   <section class="english-course mb-16">
+   {{-- <section class="english-course mb-16">
        <div class="special-offer-head">
            <div class="container">
                <div class="row">
@@ -944,5 +944,5 @@
                </ul>
            </div>
        </div>
-   </section>
+   </section> --}}
    <!-- SECTION ENGLISH COURSE ENDS -->

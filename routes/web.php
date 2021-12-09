@@ -46,7 +46,7 @@ Route::get('/infoUser', [
     'as' => 'home.infoManager',
     'uses' => 'App\Http\Controllers\user\homeController@infoManager'
 ]);
-Route::get('/listCourse', [
+Route::get('/listCourse/{courseCate}', [
     'as' => 'home.listCourse',
-    'uses' => 'App\Http\Controllers\user\homeController@listCourse'
+    'uses' => 'App\Http\Controllers\user\productController@listCourse'
 ]);

@@ -41,3 +41,16 @@ const swiperFreeCourse = new Swiper(".list-free-courses", {
         prevEl: ".swiper-button-prev",
     },
 });
+// SWIPER SECTION RELATED COURSE
+const swiperRelatedCourse = new Swiper(".list-related-courses", {
+    slidesPerView: 3,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});

@@ -20,10 +20,10 @@ class loginController extends Controller
         $users = TaiKhoan::all();
         foreach ($users as $user) {
             if ($user['EMAIL'] == $data['email'] && Hash::check($data['pass'], $user['MATKHAU'])) {
-                if(Session::has('customer')){
+                if (Session::has('customer')) {
                     Session::forget('customer');
                     Session::put('customer', $user);
-                }else{
+                } else {
                     Session::put('customer', $user);
                 }
             }

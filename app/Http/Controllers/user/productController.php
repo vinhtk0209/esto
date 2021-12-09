@@ -15,6 +15,26 @@ class productController extends Controller
             ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->where('MAKH', '=', $productId)->select('*')->first();
 
         // $product = KhoaHoc::where('MAKH', '=', $productId)->select('*')->first();
+        // related course
+        // foreach ($product as $value) {
+        //     $courseCate = $value->MADM;
+        // }
+        // $relatedCourse  = DB::table('khoahoc')
+        //     ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')
+        //     ->where('MAKH', '=', $productId)->select('*')->first();
         return view('/user/courseDetail/index', compact('product'));
+    }
+    public function listCourse($courseCate)
+    {
+        $cateCourse = DB::table('danhmuc')->where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
+        // $listCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->orderby('MAKH', 'desc')->limit(8)->get();
+
+        //lay gia tri danh muc theo danh muc cua khoa hoc duoc truyen vao hien thi ra mot danh sach cac khoa hoc thuoc danh muc do
+        $cateById = DB::table('khoahoc')->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')->where('khoahoc.MADM', '=', $courseCate)->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->get();
+        //hien thi mot lan ten cua danh muc
+        $cateName = DB::table('danhmuc')->where('danhmuc.MADM', $courseCate)->limit(1)->get();
+
+
+        return view('user.listCourse.index')->with('category', $cateCourse)->with('cateById', $cateById)->with('cateName', $cateName);
     }
 }

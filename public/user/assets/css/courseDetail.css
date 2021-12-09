@@ -14,11 +14,15 @@
 ul {
     margin: 0;
 }
-
+.mw-70p{
+    max-width: 70%;
+}
 a {
     text-decoration: none;
 }
-
+.mt--20{
+    margin-top: -20px;
+}
 h1,
 h2,
 h3,
