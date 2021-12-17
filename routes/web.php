@@ -50,3 +50,35 @@ Route::get('/listCourse/{courseCate}', [
     'as' => 'home.listCourse',
     'uses' => 'App\Http\Controllers\user\productController@listCourse'
 ]);
+Route::post('/search', [
+    'as' =>  'home.search',
+    'uses' => 'App\Http\Controllers\user\homeController@search'
+]);
+Route::get('/add-to-cart', [
+    'as' =>  'add.to.cart',
+    'uses' => 'App\Http\Controllers\user\productController@addToCart'
+]);
+Route::get('/cart', [
+    'as' =>  'home.cart',
+    'uses' => 'App\Http\Controllers\user\productController@getCart'
+]);
+Route::get('/delete-item/{id}', [
+    'as' =>  'delete.item',
+    'uses' => 'App\Http\Controllers\user\productController@deleteItem'
+]);
+Route::get('/increase-item/{id}', [
+    'as' =>  'increase.item',
+    'uses' => 'App\Http\Controllers\user\productController@increaseItem'
+]);
+Route::get('/decrease-item/{id}', [
+    'as' =>  'decrease.item',
+    'uses' => 'App\Http\Controllers\user\productController@decreaseItem'
+]);
+Route::get('/checkout', [
+    'as' =>  'home.checkout',
+    'uses' => 'App\Http\Controllers\user\orderController@checkout'
+]);
+Route::post('/checkout', [
+    'as' =>  'handle.checkout',
+    'uses' => 'App\Http\Controllers\user\orderController@handleCheckout'
+]);

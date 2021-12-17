@@ -22,4 +22,10 @@ class homeController extends Controller
         return view('user.infoManager.index');
     }
 
+    public function search(Request $request)
+    {
+        $q = $request->q;
+        $courses = KhoaHoc::where('TENKH','like','%' . $q . '%')->get();
+        return view('user.search.index',compact('courses', 'q'));
+    }
 }
