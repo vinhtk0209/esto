@@ -8,18 +8,18 @@ use App\Models\DanhMucCon;
 use App\Models\KhoaHoc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class homeController extends Controller
 {
     public function index()
     {
-        $cateCourse = DB::table('danhmuc')->where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
+        $cateCourse = DanhMuc::where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
         $listCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->orderby('MAKH', 'desc')->limit(8)->get();
-        return view('user.homepage.index')->with('category', $cateCourse)->with('listCourse', $listCourse);
+        return view('user.homepage.index', compact('cateCourse', 'listCourse'));
     }
     public function infoManager()
     {
         return view('user.infoManager.index');
     }
-
 }

@@ -35,6 +35,7 @@
                             <label for="fullname" class="label-input">Họ tên</label>
                             <input type="text" class="form-input" name="fullname" id="fullname"
                                 placeholder="Họ tên..." required/>
+                            <span class="error-message">@error('fullname'){{$message}}@enderror</span>
                         </div>
                         <!-- <div class="form-group">
                             <input type="text" class="form-input" name="name" id="name"
@@ -43,6 +44,7 @@
                         <div class="form-group">
                             <label for="email" class="label-input">Email</label>
                             <input type="email" class="form-input" name="email" id="email" placeholder="Email..." required/>
+                            <span class="error-message">@error('email'){{$message}}@enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="birthday" class="label-input">Ngày sinh</label>
@@ -61,17 +63,20 @@
                             <label for="phonenumber" class="label-input">Số điện thoại</label>
                             <input type="text" class="form-input" name="phonenumber" id="phonenumber"
                                 placeholder="Số điện thoại..." required/>
+                                <span class="error-message">@error('phonenumber'){{$message}}@enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="password" class="label-input">Mật khẩu</label>
                             <input type="password" class="form-input" name="password" id="password"
                                 placeholder="Mật khẩu,lớn hơn 6 ký tự..." required/>
                             <span toggle="#password" class="zmdi zmdi-eye-off field-icon toggle-password"></span>
+                            <span class="error-message">@error('password'){{$message}}@enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="re_password" class="label-input">Nhập lại mật khẩu</label>
                             <input type="password" class="form-input" name="re_password" id="re_password"
                                 placeholder="Nhập lại mật khẩu..." required/>
+                            <span class="error-message">@error('re_password'){{$message}}@enderror</span>
                         </div>
                         <!-- <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />

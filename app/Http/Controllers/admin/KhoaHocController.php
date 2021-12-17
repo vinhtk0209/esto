@@ -37,12 +37,12 @@ class KhoaHocController extends Controller
         $khoahoc->MATK = $request->MATK;
         if($request->hinhthuc == '1'){
 
-            $khoahoc->TRUCTUYEN = true;  
-        } 
+            $khoahoc->TRUCTUYEN = true;
+        }
         else {
 
-            $khoahoc->TRUCTUYEN = false;  
-        }   
+            $khoahoc->TRUCTUYEN = false;
+        }
         $khoahoc->GIOITHIEUKH = $request->GIOITHIEUKH;
         $khoahoc->CHITIETKH = $request->CHITIETKH;
         if ($request->hasFile('ANH')) {
@@ -80,12 +80,12 @@ class KhoaHocController extends Controller
         $khoahoc->MADM = $request->MADM;
         if($request->hinhthuc == '1'){
 
-            $khoahoc->TRUCTUYEN = true;  
-        } 
+            $khoahoc->TRUCTUYEN = true;
+        }
         else {
 
-            $khoahoc->TRUCTUYEN = false;  
-        }   
+            $khoahoc->TRUCTUYEN = false;
+        }
         $khoahoc->GIOITHIEUKH = $request->GIOITHIEUKH;
         $khoahoc->CHITIETKH = $request->CHITIETKH;
         if ($request->hasFile('ANH')) {
@@ -97,7 +97,7 @@ class KhoaHocController extends Controller
             }
             $file->move("public/images/", $hinh);
             $khoahoc->ANH = $hinh;
-        } 
+        }
         $khoahoc->save();
 
         return redirect('admin/khoahoc/sua/' . $id)->with('thongbao', 'Sửa thành công!');

@@ -1,6 +1,7 @@
 <div class="buy-course">
     <div class="img-course">
         <img class="img-responsive "
+        @foreach ($productDetail as $product)
             src="{{asset('user/assets/imgCourse')}}/{{$product->ANH}}"
             alt="{{$product->TENKH}}">
         </div>
@@ -26,6 +27,7 @@
     <div class="course-detail-header">
         <div class="container">
            <div class="title-des">
+               
             <div class="name-course-detail">
                 <h1>{{$product->TENKH}}</h1>
             </div>
@@ -57,7 +59,7 @@
                 </div>
             </div>
         </div>
-
+        @endforeach
     </div>
     <div class="course-detail-body">
         {{-- TAB STARTS --}}
@@ -333,7 +335,7 @@
         {{-- RATE COURSE ENDS --}}
 
         {{-- RELATED SCIENCE START --}}
-            {{-- <section class="related-course mt-10">
+            <section class="related-course mt-10">
                 <div class="related-course-head ">
                     <div class="container">
                         <div class="row">
@@ -344,56 +346,52 @@
                     </div>
                 </div>
                 <div class="related-course-body mt--20">
-                    <div class="container">
-                        <ul class="swiper list-related-courses list-course mw-70p">
+                    <div class="container postion-relative">
+                        <ul class="swiper list-related-courses list-course mw-70p ">
                             <div class="swiper-wrapper">
                                 @foreach ($relatedCourse as $relaCourse)
-                                <li class="swiper-slide list-related-course list-item">
-                                    <a href="" class="course-box">
-                                        <div class="img-course">
-                                                <img class="img-responsive "
-                                                src="{{asset('user/assets/imgCourse')}}/{{$relaCourse->ANH}}"
-                                                alt="{{$relaCourse->TENKH}}">
-                                        </div>
-                                        <div class="course-des">
-                                            <div class="name-course">
-                                                <h4>{{$relaCourse->TENKH}} </h4>
-                                            </div>
-                                            <div class="name-teacher d-flex flex-space">
-                                                <p class="">{{$relaCourse->HOTEN}}</p>
-                                                <div class="price price-discount">
-                                                    <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                    <li class="swiper-slide list-free-course list-item">
+                                            <a href="{{URL::to('/courseDetail/'.$relaCourse->MAKH)}}" class="course-box">
+                                                <div class="img-course">
+                                                    <img class="img-responsive "
+                                                        src="{{asset('user/assets/imgCourse')}}/{{$relaCourse->ANH}}"
+                                                        alt="{{$relaCourse->TENKH}}">
                                                 </div>
-                                            </div>
-                                            <div class="price-course d-flex flex-space">
-                                                <div class="rate">
-                                                    <p>
-                                                        <span class="star-rate">
-                                                            <i class="fas fa-star star-color"></i>
-                                                            <i class="fas fa-star star-color"></i>
-                                                            <i class="fas fa-star star-color"></i>
-                                                            <i class="fas fa-star star-color"></i>
-                                                        </span>
-                                                    </p>
+                                                <div class="course-des">
+                                                    <div class="name-course">
+                                                        <h4>{{$relaCourse->TENKH}} </h4>
+                                                    </div>
+                                                    <div class="name-teacher d-flex flex-space">
+                                                        <p class="">{{$relaCourse->HOTEN}}</p>
+                                                        {{-- <div class="price price-discount">
+                                                            <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                                        </div> --}}
+                                                    </div>
+                                                    <div class="price-course d-flex flex-space">
+                                                        <div class="rate">
+                                                            <p>
+                                                                <span class="star-rate">
+                                                                    <i class="fas fa-star star-color"></i>
+                                                                    <i class="fas fa-star star-color"></i>
+                                                                    <i class="fas fa-star star-color"></i>
+                                                                    <i class="fas fa-star star-color"></i>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                        <p>{{number_format($relaCourse->DONGIA)}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                                    </div>
                                                 </div>
-                                                <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                            </a>
+                                    </li>
                                 @endforeach
-
-
-
-
                             </div>
                             <div class="swiper-pagination"></div>
                         </ul>
-                        <div class="swiper-button-next btn-next-free-course"></div>
-                        <div class="swiper-button-prev btn-prev-free-course"></div>
+                        <div class="swiper-button-next btn-next-free-course postion-right-310"></div>
+                        <div class="swiper-button-prev btn-prev-free-course postion-left-45"></div>
                     </div>
                 </div>
-            </section> --}}
+            </section>
          {{-- RELATED SCIENCE END --}}
      </div>
 </section>

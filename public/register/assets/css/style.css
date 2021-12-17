@@ -432,3 +432,9 @@ input[type=checkbox]:not(old):checked+label>span:before {
 }
 
 .form-checkbox:checked {}
+
+/* CUSTOM ERROR */
+.error-message{
+    color:red;
+    font-style: italic;
+}

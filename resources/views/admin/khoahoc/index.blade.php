@@ -64,7 +64,7 @@
                                     {{substr($kh->GIOITHIEUKH, 0, 50)}}...
                                 </td>
                                 <td class="budget">
-                                    {{-- {{$kh->rDanhMuc->TENDM}} --}}
+                                    {{$kh->rDanhMuc->TENDM}}
                                 </td>
                                 <td class="budget">
                                     {{$kh->TRUCTUYEN==1?'Trực tuyến':'Video'}}
