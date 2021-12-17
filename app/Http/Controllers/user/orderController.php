@@ -8,7 +8,6 @@ use App\Models\HoaDon;
 use App\Models\CTHoaDon;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Session;
-use Carbon\Carbon;
 
 class orderController extends Controller
 {
@@ -26,14 +25,13 @@ class orderController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         $bill = HoaDon::create([
-            'NGAYHD' => Carbon::now(),
             'MAHV'   => Session::get('customer')->ID
         ]);
 
         foreach($cart->items as $row){
             CTHoaDon::create([
-                'MAHD' => $bill->ID,
-                'MAKH' => $row['item']['id']
+                'MAHD' => $bill->MAHD,
+                'MAKH' => $row['item']['MAKH']
             ]);
         }
 
