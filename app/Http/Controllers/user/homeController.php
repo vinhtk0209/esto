@@ -14,7 +14,7 @@ class homeController extends Controller
 {
     public function index()
     {
-        $cateCourse = DanhMuc::where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
+        $cateCourse = DanhMuc::where('MADMCHA', 0)->where('ACTIVE', 1)->orderby('MADM', 'desc')->get();
         $listCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->orderby('MAKH', 'desc')->limit(8)->get();
         return view('user.homepage.index', compact('cateCourse', 'listCourse'));
     }

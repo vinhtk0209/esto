@@ -32,9 +32,9 @@ class productController extends Controller
     {
 
 
-        $cateById = DB::table('khoahoc')->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')->where('khoahoc.MADM', '=', $courseCate)->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->get();
+        $cateById = DB::table('khoahoc')->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')->where('khoahoc.MADM', '=', $courseCate)->orWhere('danhmuc.MADMCHA', '=', $courseCate)->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->get();
         //hien thi mot lan ten cua danh muc
-        $cateName = DB::table('danhmuc')->where('danhmuc.MADM', $courseCate)->limit(1)->get();
+        $cateName = DB::table('danhmuc')->where('danhmuc.MADM', $courseCate)->get();
 
 
         return view('user.listCourse.index')->with('cateById', $cateById)->with('cateName', $cateName);

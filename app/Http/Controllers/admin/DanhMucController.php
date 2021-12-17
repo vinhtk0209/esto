@@ -12,7 +12,7 @@ class DanhMucController extends Controller
 
     public function index()
     {
-        $cateList = DanhMuc::orderby('MADM', 'desc')->paginate(30);
+        $cateList = DanhMuc::orderby('MADM', 'desc')->get();
         return view('admin.danhmuc.index')->with('cateList', $cateList);
     }
 
@@ -48,8 +48,8 @@ class DanhMucController extends Controller
 
     public function edit($id)
     {
-        $cateParent = DanhMuc::where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
         $cate = DanhMuc::find($id);
+        $cateParent = DanhMuc::where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
         return view('admin.danhmuc.edit')->with('cate', $cate)->with('cateParent', $cateParent);
     }
 
@@ -66,10 +66,17 @@ class DanhMucController extends Controller
         );
         try {
             $cate = DanhMuc::find($id);
+            if($data['parent_id'] != $cate->MADM)
+            {
+                $cate->update(
+                    [
+                        'MADMCHA' => $data['parent_id'],
+                    ]
+                );
+            }
             $cate->update(
                 [
                     'TENDM' => $data['name'],
-                    'MADMCHA' => $data['parent_id'],
                     'ACTIVE' => $data['active'],
                 ]
             );

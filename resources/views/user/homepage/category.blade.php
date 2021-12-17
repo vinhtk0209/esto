@@ -4,6 +4,7 @@
             <ul class="list-category">
                 @foreach ($cateCourse as $cate)
                 <li class="list-item">
+                    @if ($cate->childCategory->count())
                     <a href="{{URL::to('/listCourse/' . $cate->MADM)}}">
                         {{$cate->TENDM}}
                     </a>
@@ -14,6 +15,11 @@
                             </li>
                         @endforeach
                      </ul>
+                    @else
+                    <a href="{{URL::to('/listCourse/' . $cate->MADM)}}">
+                        {{$cate->TENDM}}
+                    </a>
+                    @endif
                 </li>
                 @endforeach
              {{--<li class="list-item">
