@@ -19,7 +19,6 @@
                             <th>Ảnh</th>
                             <th>Sản phẩm</th>
                             <th>Đơn giá</th>
-                            <th>Số lượng</th>
                             <th>Tổng tiền</th>
                             <th></th>
                         </tr>
@@ -42,15 +41,7 @@
                                     <td>
                                         {{ number_format($row['item']['DONGIA'],-3,',',',') }} vnd
                                     </td>
-                                    <td>
-                                        <div class="quantity">
-                                            <div style="display:flex;justify-content:center;">
-                                                <a href="{{ route('decrease.item', ['id' => $row['item']['MAKH']]) }}"><span class="text-success" style="font-size: 20px;">-</span></a>
-                                                <input type="text" value="{{ $row['qty'] }}" class="form-control" style="margin-left:0.5rem;margin-right:0.5rem;" readonly>
-                                                <a href="{{ route('increase.item', ['id' => $row['item']['MAKH']]) }}"><span class="text-success" style="font-size: 20px;">+</span></a>
-                                            </div>
-                                        </div>
-                                    </td>
+
                                     <td>
                                         {{ number_format($row['price'],-3,',',',') }} VND
                                     </td>
