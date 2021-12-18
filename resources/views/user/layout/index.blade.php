@@ -35,11 +35,13 @@
      <!-- LIST COURSE CSS -->
     <link rel="stylesheet" href="{{asset('user/assets/css/listCourse.css')}}">
     <link rel="stylesheet" href="{{asset('user/assets/css/custom.css')}}">
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <!-- CUSTOM CSS -->
     <title>ESTO</title>
 </head>
 
 <body class="preLoading">
+    @include('sweetalert::alert')
     <!-- LOADING STARTS-->
     <div class="load">
         <div class="double-loading">
@@ -74,6 +76,8 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="{{asset('user/assets/js/main.js')}}">
+    </script>
+    <script src="{{asset('user/assets/js/add-to-cart.js')}}">
     </script>
      <!-- JS  -->
 </body>
