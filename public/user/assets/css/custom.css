@@ -196,6 +196,7 @@ section.category .list-category .list-item .sub-menu-category a {
     color: var(--category-text-color);
     padding-left: 10px;
     padding-bottom: 5px;
+    text-transform: capitalize;
 }
 
 

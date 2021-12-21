@@ -33,6 +33,7 @@ Route::post('/rs', [
     'as' => 'post.register',
     'uses' => 'App\Http\Controllers\user\loginController@postRegister'
 ]);
+
 Route::get('/logout', [
     'as' => 'logout',
     'uses' => 'App\Http\Controllers\user\loginController@logout'
@@ -81,4 +82,31 @@ Route::get('/checkout', [
 Route::post('/checkout', [
     'as' =>  'handle.checkout',
     'uses' => 'App\Http\Controllers\user\orderController@handleCheckout'
+]);
+//XAC NHAN EMAIL
+Route::get('/confirmEmail', [
+    'as' => 'mail.confirmEmail',
+    'uses' => 'App\Http\Controllers\user\mailController@confirmEmail'
+]);
+Route::get('/actived/{taikhoan}/{token}', [
+    'as' => 'taikhoan.actived',
+    'uses' => 'App\Http\Controllers\user\loginController@actived'
+]);
+
+//QUEN MAT KHAU
+Route::get('/forgotPassword', [
+    'as' => 'login.forgotPass',
+    'uses' => 'App\Http\Controllers\user\loginController@forgotPass'
+]);
+Route::post('/forgotPassword', [
+    'as' => 'login.postForgotPass',
+    'uses' => 'App\Http\Controllers\user\loginController@postForgotPass'
+]);
+Route::get('/getPassword/{taikhoan}/{token}', [
+    'as' => 'taikhoan.getPass',
+    'uses' => 'App\Http\Controllers\user\loginController@getPass'
+]);
+Route::post('/getPassword/{taikhoan}/{token}', [
+    'as' => 'taikhoan.postGetPass',
+    'uses' => 'App\Http\Controllers\user\loginController@postGetPass'
 ]);
