@@ -284,14 +284,39 @@
         </div>
     </div>
 </section> --}}
+
 <section class="best-seller mb-16">
     <div class="best-seller-head">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 mb-16">
                     @foreach ($cateName as $cName)
-                    <h3 class="title-course">{{$cName->TENDM}}</h3>
+                     <h3 class="title-course">{{$cName->TENDM}}</h3>
                     @endforeach
+                </div>
+                <div class="col-lg-12">
+                    {{-- @foreach ($cate->childCategory as $valueCheck)
+                    @if ($cate->childCategory->count() && $valueCheck->ACTIVE == 1)
+                    <ul class="sub-menu-category">
+                        @foreach ($cate->childCategory as $value)
+                            @if ($value->ACTIVE == 1)
+                                <li class="sub-menu-item active">
+                                    <a href="{{URL::to('/listCourse/' . $value->MADM)}}">{{$value->TENDM}}</a>
+                                </li>
+                            @endif
+                        @endforeach
+                     </ul>
+                    @endif
+                 @endforeach
+                </li>
+                @endforeach --}}
+                    <ul class="list-cate">
+                        @foreach ($listCate as $cate)
+                        <li>
+                            <a href="{{URL::to('/listCourse/' . $cate->MADM)}}">{{$cate->TENDM}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
@@ -338,9 +363,75 @@
              </ul>
         </div>
     </div>
-
  </section>
 <!-- SECTION ENGLISH COURSE ENDS -->
+
+
+{{-- SECTION PAGINATION STARTS --}}
+<section class="pagination mb-16">
+    <div class="container">
+        <ul class="pagination justify-content-end pagintaion-custom">
+
+            @if ($cateById->currentPage() == 1)
+            <li class="page-item disabled">
+                @else
+            <li class="page-item ">
+                @endif
+                <a class="page-link" href="?page=1">
+                    <i class="fas fa-angle-double-left"></i>
+                </a>
+            </li>
+
+            @if ($cateById->currentPage() == 1)
+            <li class="page-item disabled">
+                @else
+            <li class="page-item">
+                @endif
+                <a class="page-link" href="{{$cateById->previousPageUrl()}}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            </li>
+
+            @if ($cateById->currentPage() == $cateById->lastPage())
+            <li class="page-item disabled">
+                @else
+            <li class="page-item">
+                @endif
+                <a class="page-link" href="{{$cateById->nextPageUrl()}}">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </li>
+
+            @if ($cateById->currentPage() == $cateById->lastPage())
+            <li class="page-item disabled">
+                @else
+            <li class="page-item">
+                @endif
+                <a class="page-link" href="?page={{$cateById->lastPage()}}">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</section>
+
+{{-- SECTION PAGINATION ENDS --}}
+
+{{-- SECTION CATEGORY DESCRIPTION STARTS --}}
+<section class="category-des mb-16">
+  <div class="container">
+    @foreach ($cateName as $cName)
+      <div class="category-des-short mb-16">
+        {!!$cName->GIOITHIEUDM!!}
+      </div>
+      <div class="category-des-long mb-16">
+        {!!$cName->CHITIETDM!!}
+      </div>
+      @endforeach
+  </div>
+</section>
+{{-- SECTION CATEGORY DESCRIPTION ENDS --}}
 
  <!-- SECTION SPECIAL OFFER COURSE STARTS-->
  {{-- <section class="special-offer mb-16">

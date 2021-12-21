@@ -19,6 +19,7 @@ class productController extends Controller
             ->join('danhmuc', 'danhmuc.MADM', '=', 'khoahoc.MADM')
             ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
 
+
         foreach ($productDetail as $value) {
             $courseCate = $value->MADM;
         }
@@ -34,12 +35,14 @@ class productController extends Controller
     {
 
 
-        $cateById = DB::table('khoahoc')->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')->where('khoahoc.MADM', '=', $courseCate)->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->get();
-        //hien thi mot lan ten cua danh muc
-        $cateName = DB::table('danhmuc')->where('danhmuc.MADM', $courseCate)->limit(1)->get();
+        // $cateById = DB::table('khoahoc')->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')->where('khoahoc.MADM', '=', $courseCate)->orWhere('danhmuc.MADMCHA', '=', $courseCate)->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->get();
+        $cateById = DB::table('khoahoc')->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')->where('khoahoc.MADM', '=', $courseCate)->orWhere('danhmuc.MADMCHA', '=', $courseCate)->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->paginate(12);
 
+        $cateName = DB::table('danhmuc')->where('danhmuc.MADM', $courseCate)->get();
 
-        return view('user.listCourse.index')->with('cateById', $cateById)->with('cateName', $cateName);
+        $listCate = DB::table('danhmuc')->where('danhmuc.MADMCHA', $courseCate)->get();
+
+        return view('user.listCourse.index')->with('cateById', $cateById)->with('cateName', $cateName)->with('listCate', $listCate);
     }
 
     public function addToCart(Request $request)
@@ -47,8 +50,8 @@ class productController extends Controller
         $product = KhoaHoc::find($request->id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add($product,$product->MAKH);
-        $request->session()->put('cart',$cart);
+        $cart->add($product, $product->MAKH);
+        $request->session()->put('cart', $cart);
         return response()->json([
             'status' => 200,
             'qty'    => Session::get('cart')->totalQty,
@@ -66,9 +69,9 @@ class productController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->deleteItem($id);
-        if(count($cart->items) > 0){
-            Session::put('cart',$cart);
-        }else{
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
             Session::forget('cart');
         }
         return redirect()->back();
@@ -79,7 +82,7 @@ class productController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->increaseItemByOne($id);
-        Session::put('cart',$cart);
+        Session::put('cart', $cart);
         return redirect()->back();
     }
 
@@ -88,9 +91,9 @@ class productController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->decreaseItemByOne($id);
-        if(count($cart->items) > 0){
-            Session::put('cart',$cart);
-        }else{
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
             Session::forget('cart');
         }
         return redirect()->back();

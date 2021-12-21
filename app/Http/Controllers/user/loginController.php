@@ -81,7 +81,7 @@ class loginController extends Controller
             'GIOITINH' => $data['gender'],
             'SODIENTHOAI' => $data['phonenumber'],
             'MATKHAU' => bcrypt($data['password']),
-            'MALOAI' => 1,
+            'LOAITK' => 1,
             'TOKEN' => $token
         ]);
         $toEmail = $data['email'];

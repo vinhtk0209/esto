@@ -6,25 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-
-    {{-- BO SUNG --}}
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- BO SUNG --}}
-
   <title>TRANG QUAN TRI</title>
   <!-- Favicon -->
   <base href="{{asset('')}}">
-
-
-  {{-- BO SUNG --}}
-  <link rel="stylesheet" href="admin_assets/template/admin/plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="admin_assets/template/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <link rel="stylesheet" href="admin_assets/template/admin/dist/css/adminlte.min.css">
-  {{-- BO SUNG --}}
-
-
-
   <link rel="icon" href="admin_assets/img/brand/favicon.png" type="image/png">
+
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap" rel="stylesheet">
@@ -37,6 +23,8 @@
   <link rel="stylesheet" href="admin_assets/css/argon.css?v=1.2.0" type="text/css">
   <link rel="stylesheet" href="user/assets/css/main.css">
   <link rel="stylesheet" href="user/assets/css/custom.css">
+  {{-- CKEDITOR --}}
+  <script src="ckeditor/ckeditor.js"></script>
 </head>
 <body>
   <!-- Sidenav -->
@@ -288,9 +276,6 @@
     <script src="admin_assets/vendor/js-cookie/js.cookie.js"></script>
     <script src="admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
     <script src="admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-    {{-- BO SUNG --}}
-    <script src="admin_assets/template/admin/js/main.js"></script>
-    {{-- BO SUNG --}}
     <!-- Optional JS -->
     <script src="admin_assets/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="admin_assets/vendor/chart.js/dist/Chart.extension.js"></script>
@@ -324,6 +309,9 @@
         document.getElementById("anhtk").src = "images/" + document.getElementById("ANH").files[0].name;;
         }
     </script>
+
+    {{-- CKEDITOR --}}
+    @yield("ckeditor")
 </body>
 
 </html>
