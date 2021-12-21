@@ -1,3 +1,4 @@
+{{-- BUY COURSE STARTS --}}
 <div class="buy-course">
     <div class="img-course">
         <img class="img-responsive "
@@ -18,11 +19,13 @@
          </a>
      </div>
  </div>
+{{-- BUY COURSE ENDS --}}
+{{-- COURSE DETAIL STARTS --}}
 <section id="course-detail">
     <div class="course-detail-header">
         <div class="container">
            <div class="title-des">
-               
+
             <div class="name-course-detail">
                 <h1>{{$product->TENKH}}</h1>
             </div>
@@ -382,14 +385,15 @@
                             </div>
                             <div class="swiper-pagination"></div>
                         </ul>
-                        <div class="swiper-button-next btn-next-free-course postion-right-310"></div>
-                        <div class="swiper-button-prev btn-prev-free-course postion-left-45"></div>
+                        <div class="swiper-button-next btn-next-courses postion-right-310"></div>
+                        <div class="swiper-button-prev btn-prev-courses postion-left-45"></div>
                     </div>
                 </div>
             </section>
          {{-- RELATED SCIENCE END --}}
      </div>
 </section>
+{{-- COURSE DETAIL ENDS --}}
 
 
 

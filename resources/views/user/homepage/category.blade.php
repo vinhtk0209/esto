@@ -4,22 +4,22 @@
             <ul class="list-category">
                 @foreach ($cateCourse as $cate)
                 <li class="list-item">
-                    @if ($cate->childCategory->count())
                     <a href="{{URL::to('/listCourse/' . $cate->MADM)}}">
                         {{$cate->TENDM}}
                     </a>
+                @foreach ($cate->childCategory as $valueCheck)
+                    @if ($cate->childCategory->count() && $valueCheck->ACTIVE == 1)
                     <ul class="sub-menu-category">
                         @foreach ($cate->childCategory as $value)
-                            <li class="sub-menu-item active">
-                                <a href="{{URL::to('/listCourse/' . $value->MADM)}}">{{$value->TENDM}}</a>
-                            </li>
+                            @if ($value->ACTIVE == 1)   
+                                <li class="sub-menu-item active">
+                                    <a href="{{URL::to('/listCourse/' . $value->MADM)}}">{{$value->TENDM}}</a>
+                                </li>
+                            @endif
                         @endforeach
                      </ul>
-                    @else
-                    <a href="{{URL::to('/listCourse/' . $cate->MADM)}}">
-                        {{$cate->TENDM}}
-                    </a>
                     @endif
+                 @endforeach
                 </li>
                 @endforeach
              {{--<li class="list-item">

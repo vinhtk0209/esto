@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="nav-item right-line">
-                                <a class="nav-link cod-btn" href="">Kích hoạt khóa học</a>
+                                <a class="nav-link cod-btn" href="">Vào phòng thi</a>
                             </div>
                             <div class="nav-item">
                                 @if (!Session::has('customer'))

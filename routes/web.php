@@ -51,7 +51,6 @@ Route::get('/listCourse/{courseCate}', [
     'as' => 'home.listCourse',
     'uses' => 'App\Http\Controllers\user\productController@listCourse'
 ]);
-<<<<<<< HEAD
 
 //XAC NHAN EMAIL
 Route::get('/confirmEmail', [
@@ -79,7 +78,7 @@ Route::get('/getPassword/{taikhoan}/{token}', [
 Route::post('/getPassword/{taikhoan}/{token}', [
     'as' => 'taikhoan.postGetPass',
     'uses' => 'App\Http\Controllers\user\loginController@postGetPass'
-=======
+]);
 Route::post('/search', [
     'as' =>  'home.search',
     'uses' => 'App\Http\Controllers\user\homeController@search'
@@ -111,5 +110,4 @@ Route::get('/checkout', [
 Route::post('/checkout', [
     'as' =>  'handle.checkout',
     'uses' => 'App\Http\Controllers\user\orderController@handleCheckout'
->>>>>>> 04aafd3fb84206c6b04b1914836f96b1b969406a
 ]);

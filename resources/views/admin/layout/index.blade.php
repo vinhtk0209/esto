@@ -10,6 +10,7 @@
   <!-- Favicon -->
   <base href="{{asset('')}}">
   <link rel="icon" href="admin_assets/img/brand/favicon.png" type="image/png">
+
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap" rel="stylesheet">
@@ -22,6 +23,8 @@
   <link rel="stylesheet" href="admin_assets/css/argon.css?v=1.2.0" type="text/css">
   <link rel="stylesheet" href="user/assets/css/main.css">
   <link rel="stylesheet" href="user/assets/css/custom.css">
+  {{-- CKEDITOR --}}
+  <script src="ckeditor/ckeditor.js"></script>
 </head>
 <body>
   <!-- Sidenav -->
@@ -306,6 +309,9 @@
         document.getElementById("anhtk").src = "images/" + document.getElementById("ANH").files[0].name;;
         }
     </script>
+
+    {{-- CKEDITOR --}}
+    @yield("ckeditor")
 </body>
 
 </html>

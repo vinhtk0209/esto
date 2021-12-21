@@ -16,21 +16,25 @@ class homeController extends Controller
     {
         $cateCourse = DanhMuc::where('MADMCHA', 0)->where('ACTIVE', 1)->orderby('MADM', 'desc')->get();
         $listCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->orderby('MAKH', 'desc')->limit(8)->get();
-        return view('user.homepage.index', compact('cateCourse', 'listCourse'));
+        //2
+        $listEnglishCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->where("khoahoc.MADM", 9)->orderby('MAKH', 'desc')->limit(8)->get();
+
+        //3
+        $listBusinessCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->where("khoahoc.MADM", 18)->orderby('MAKH', 'desc')->get();
+
+        //4
+        $listHealthyCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->where("khoahoc.MADM", 15)->orderby('MAKH', 'desc')->limit(8)->get();
+
+        return view('user.homepage.index', compact('cateCourse', 'listCourse', 'listEnglishCourse', 'listBusinessCourse', 'listHealthyCourse'));
     }
     public function infoManager()
     {
         return view('user.infoManager.index');
     }
-<<<<<<< HEAD
-}
-=======
-
     public function search(Request $request)
     {
         $q = $request->q;
-        $courses = KhoaHoc::where('TENKH','like','%' . $q . '%')->get();
-        return view('user.search.index',compact('courses', 'q'));
+        $courses = KhoaHoc::join("taikhoan", 'khoahoc.MAGV', '=', 'ID')->where('TENKH', 'like', '%' . $q . '%')->orWhere('HOTEN', 'like', '%' . $q . '%')->get();
+        return view('user.search.index', compact('courses', 'q'));
     }
 }
->>>>>>> 04aafd3fb84206c6b04b1914836f96b1b969406a

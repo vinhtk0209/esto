@@ -31,12 +31,13 @@ class DanhMucController extends Controller
             ],
             [
                 'name.required' => 'Không được để trống trường này',
-                'name.unique' => 'Đã tồn tại danh mục này',
             ]
         );
         try {
             DanhMuc::create([
                 'TENDM' => $data['name'],
+                'GIOITHIEUDM' => $data['cat-short-des'],
+                'CHITIETDM' => $data['cat-long-des'],
                 'MADMCHA' => $data['parent_id'],
                 'ACTIVE' => $data['active'],
             ]);
@@ -45,6 +46,7 @@ class DanhMucController extends Controller
             return redirect()->back()->with('failed', 'Thêm thất bại');
         }
     }
+
 
     public function edit($id)
     {
@@ -66,8 +68,7 @@ class DanhMucController extends Controller
         );
         try {
             $cate = DanhMuc::find($id);
-            if($data['parent_id'] != $cate->MADM)
-            {
+            if ($data['parent_id'] != $cate->MADM) {
                 $cate->update(
                     [
                         'MADMCHA' => $data['parent_id'],
@@ -77,19 +78,24 @@ class DanhMucController extends Controller
             $cate->update(
                 [
                     'TENDM' => $data['name'],
+                    'GIOITHIEUDM' => $data['cat-short-des'],
+                    'CHITIETDM' => $data['cat-long-des'],
                     'ACTIVE' => $data['active'],
                 ]
             );
             return redirect()->back()->with('success', 'Cập nhật thành công');
         } catch (Exception $error) {
-            return redirect()->back()->with('failed', 'Cập nhật thất bài');
+            return redirect()->back()->with('failed', 'Cập nhật thất bại');
         }
     }
 
     public function delete($id)
     {
-        $cat = DanhMuc::find($id);
-        $cat->delete();
-        return redirect()->back()->with('success', 'Xóa thành công!');
+        try {
+            $cat = DanhMuc::where('MADM', $id)->orWhere('MADMCHA', $id)->delete();
+            return redirect()->back()->with('success', 'Xóa thành công!');
+        } catch (Exception $error) {
+            return redirect()->back()->with('failed', 'Xóa thất bại');
+        }
     }
 }
