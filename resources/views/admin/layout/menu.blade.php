@@ -19,12 +19,14 @@
                 <span class="nav-link-text">Lớp Học</span>
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'chuonghoc') ? 'active' : '' }}" href="admin/chuonghoc/">
                 <i class="ni ni-caps-small text-black"></i>
                 <span class="nav-link-text">Chương Học</span>
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'baihoc') ? 'active' : '' }}" href="admin/baihoc/">
                 <i class="ni ni-books text-yellow"></i>

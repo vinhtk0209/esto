@@ -11,7 +11,7 @@ class TaiKhoan extends Model
     protected $primaryKey = "ID";
     public $timestamps = false;
     protected $casts = ['TRANGTHAI' => 'boolean', 'GIOITINH' => 'boolean'];
-    protected $fillable = ['EMAIL', 'MATKHAU'];
+    protected $fillable = ['HOTEN', 'NGAYSINH', 'GIOITINH', 'SODIENTHOAI', 'TRANGTHAI', 'EMAIL', 'TOKEN', 'MATKHAU', 'LOAITK'];
 
     public function rKhoaHoc()
     {

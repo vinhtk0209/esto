@@ -1,12 +1,15 @@
-<section class="list-course">
+{{-- <section class="list-course">
      <!-- SECTION ENGLISH COURSE STARTS -->
  <section class="english-course mb-16">
     <div class="special-offer-head">
         <div class="container">
             <div class="row">
+                @foreach ($cateById as $item)
                 <div class="col-lg-12">
                     <h3 class="title-course">khóa học tiếng anh</h3>
                 </div>
+                @endforeach
+
             </div>
         </div>
     </div>
@@ -280,11 +283,158 @@
             </ul>
         </div>
     </div>
-</section>
+</section> --}}
+
+<section class="best-seller mb-16">
+    <div class="best-seller-head">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mb-16">
+                    @foreach ($cateName as $cName)
+                     <h3 class="title-course">{{$cName->TENDM}}</h3>
+                    @endforeach
+                </div>
+                <div class="col-lg-12">
+                    {{-- @foreach ($cate->childCategory as $valueCheck)
+                    @if ($cate->childCategory->count() && $valueCheck->ACTIVE == 1)
+                    <ul class="sub-menu-category">
+                        @foreach ($cate->childCategory as $value)
+                            @if ($value->ACTIVE == 1)
+                                <li class="sub-menu-item active">
+                                    <a href="{{URL::to('/listCourse/' . $value->MADM)}}">{{$value->TENDM}}</a>
+                                </li>
+                            @endif
+                        @endforeach
+                     </ul>
+                    @endif
+                 @endforeach
+                </li>
+                @endforeach --}}
+                    <ul class="list-cate">
+                        @foreach ($listCate as $cate)
+                        <li>
+                            <a href="{{URL::to('/listCourse/' . $cate->MADM)}}">{{$cate->TENDM}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="best-seller-body">
+        <div class="container">
+            <ul class="list-best-seller-courses list-course d-flex flex-wrap">
+                @foreach ($cateById as $course)
+                <li class="list-best-seller list-item">
+                    <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
+                        <div class="img-course">
+                            <img class="img-responsive "
+                                src="{{asset('user/assets/imgCourse')}}/{{$course->ANH}}"
+                                alt="{{$course->TENKH}}">
+                        </div>
+                        <div class="course-des">
+                            <div class="name-course">
+                                <h4>{{$course->TENKH}}</h4>
+                            </div>
+
+                            <div class="name-teacher d-flex flex-space">
+                                <p class="">{{$course->HOTEN}}</p>
+                                {{-- <div class="price price-discount">
+                                    <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                </div> --}}
+                             </div>
+                            <div class="price-course d-flex flex-space">
+                                <div class="rate">
+                                    <p>
+                                        <span class="star-rate">
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                                <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                @endforeach
+             </ul>
+        </div>
+    </div>
+ </section>
 <!-- SECTION ENGLISH COURSE ENDS -->
 
+
+{{-- SECTION PAGINATION STARTS --}}
+<section class="pagination mb-16">
+    <div class="container">
+        <ul class="pagination justify-content-end pagintaion-custom">
+
+            @if ($cateById->currentPage() == 1)
+            <li class="page-item disabled">
+                @else
+            <li class="page-item ">
+                @endif
+                <a class="page-link" href="?page=1">
+                    <i class="fas fa-angle-double-left"></i>
+                </a>
+            </li>
+
+            @if ($cateById->currentPage() == 1)
+            <li class="page-item disabled">
+                @else
+            <li class="page-item">
+                @endif
+                <a class="page-link" href="{{$cateById->previousPageUrl()}}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            </li>
+
+            @if ($cateById->currentPage() == $cateById->lastPage())
+            <li class="page-item disabled">
+                @else
+            <li class="page-item">
+                @endif
+                <a class="page-link" href="{{$cateById->nextPageUrl()}}">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </li>
+
+            @if ($cateById->currentPage() == $cateById->lastPage())
+            <li class="page-item disabled">
+                @else
+            <li class="page-item">
+                @endif
+                <a class="page-link" href="?page={{$cateById->lastPage()}}">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</section>
+
+{{-- SECTION PAGINATION ENDS --}}
+
+{{-- SECTION CATEGORY DESCRIPTION STARTS --}}
+<section class="category-des mb-16">
+  <div class="container">
+    @foreach ($cateName as $cName)
+      <div class="category-des-short mb-16">
+        {!!$cName->GIOITHIEUDM!!}
+      </div>
+      <div class="category-des-long mb-16">
+        {!!$cName->CHITIETDM!!}
+      </div>
+      @endforeach
+  </div>
+</section>
+{{-- SECTION CATEGORY DESCRIPTION ENDS --}}
+
  <!-- SECTION SPECIAL OFFER COURSE STARTS-->
- <section class="special-offer mb-16">
+ {{-- <section class="special-offer mb-16">
     <div class="special-offer-head">
         <div class="container">
             <div class="row">
@@ -565,6 +715,6 @@
         </div>
     </div>
 
-</section>
+</section> --}}
 <!-- SECTION SPECIAL OFFER COURSE ENDS-->
 </section>

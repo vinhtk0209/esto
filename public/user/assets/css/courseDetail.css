@@ -15,8 +15,16 @@ ul {
     margin: 0;
 }
 
+.mw-70p {
+    max-width: 70%;
+}
+
 a {
     text-decoration: none;
+}
+
+.mt--20 {
+    margin-top: -20px;
 }
 
 h1,
@@ -37,6 +45,18 @@ p {
     background: var(--bg-header);
     color: var(--text-header);
     padding: 10px 0;
+}
+
+.postion-relative {
+    position: relative !important;
+}
+
+.postion-right-310 {
+    right: 310px !important;
+}
+
+.postion-left-45 {
+    left: -45px !important;
 }
 
 .title-des {
@@ -186,7 +206,7 @@ a.name-teacher:hover {
 .buy-course {
     position: fixed;
     top: 90px;
-    right: 180px;
+    right: 110px;
     z-index: 999;
     color: var(--text-body);
     display: flex;

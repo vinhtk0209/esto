@@ -196,6 +196,7 @@ section.category .list-category .list-item .sub-menu-category a {
     color: var(--category-text-color);
     padding-left: 10px;
     padding-bottom: 5px;
+    text-transform: capitalize;
 }
 
 
@@ -374,19 +375,19 @@ h3.title-course {
 }
 
 /* SWIPER CUSTOM */
-section.free-course {
+section.courses {
     position: relative;
 }
 
-.btn-next-free-course,
-.btn-prev-free-course {
+.btn-next-courses,
+.btn-prev-courses {
     color: var(--swiper-btn-color);
 }
 
-.btn-next-free-course {
+.btn-next-courses {
     right: 150px;
 }
 
-.btn-prev-free-course {
+.btn-prev-courses {
     left: 150px;
 }

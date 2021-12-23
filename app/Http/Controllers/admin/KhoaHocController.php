@@ -40,7 +40,12 @@ class KhoaHocController extends Controller
         if ($request->hinhthuc == '1') {
 
             $khoahoc->TRUCTUYEN = true;
+
         } else {
+
+        }
+        else {
+
 
             $khoahoc->TRUCTUYEN = false;
         }
@@ -131,7 +136,12 @@ class KhoaHocController extends Controller
         if ($request->hinhthuc == '1') {
 
             $khoahoc->TRUCTUYEN = true;
+
         } else {
+
+        }
+        else {
+
 
             $khoahoc->TRUCTUYEN = false;
         }
@@ -159,6 +169,7 @@ class KhoaHocController extends Controller
 
         return redirect('admin/khoahoc/')->with('thongbao', 'Xóa thành công!');
     }
+
 
     public function search(Request $request)
     {
@@ -202,3 +213,6 @@ class KhoaHocController extends Controller
         }
     }
 }
+
+}
+

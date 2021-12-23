@@ -11,8 +11,10 @@
     <!-- BOOTSTRAP  -->
     <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link type="text/css" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
+
+
     <!-- <link rel="stylesheet" href="./assets/css/main.css"> -->
     <link rel="stylesheet" href="public/user/assets/css/main.css">
     <!-- <link rel="stylesheet" href="./assets/css/app.css"> -->
@@ -25,6 +27,8 @@
 
 
     <!-- CUSTOM CSS -->
+    <!-- PAGINATION CSS -->
+    <link rel="stylesheet" href="{{asset('user/assets/css/pagination.css')}}" >
     <!-- LOADING CSS -->
     <link rel="stylesheet" href="public/user/assets/css/loading.css">
      <!-- BACKTOP CSS -->
@@ -34,13 +38,20 @@
      <!-- INFO MANAGER CSS -->
     <link rel="stylesheet" href="public/user/assets/css/infoManager.css">
      <!-- LIST COURSE CSS -->
+
     <link rel="stylesheet" href="public/user/assets/css/listCourse.css">
     <link rel="stylesheet" href="public/user/assets/css/custom.css">
+
+    <link rel="stylesheet" href="{{asset('user/assets/css/listCourse.css')}}">
+    <link rel="stylesheet" href="{{asset('user/assets/css/custom.css')}}">
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+
     <!-- CUSTOM CSS -->
     <title>ESTO</title>
 </head>
 
 <body class="preLoading">
+    @include('sweetalert::alert')
     <!-- LOADING STARTS-->
     <div class="load">
         <div class="double-loading">
@@ -75,6 +86,8 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="public/user/assets/js/main.js">
+    </script>
+    <script src="{{asset('user/assets/js/add-to-cart.js')}}">
     </script>
      <!-- JS  -->
 </body>
