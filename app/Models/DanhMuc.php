@@ -13,7 +13,7 @@ class DanhMuc extends Model
     protected $fillable = ['TENDM', 'MADMCHA', 'GIOITHIEUDM', 'CHITIETDM', 'ACTIVE'];
     public function childCategory()
     {
-        return $this->hasMany(DanhMuc::class, 'MADMCHA');
+        return $this->hasMany('App\Models\DanhMuc', 'MADMCHA');
     }
 
     public function rKhoaHoc()

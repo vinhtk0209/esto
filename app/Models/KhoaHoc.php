@@ -31,4 +31,9 @@ class KhoaHoc extends Model
     {
         return $this->belongsTo('App\Models\TaiKhoan', 'MAGV');
     }
+
+    public function rChuongHoc()
+    {
+        return $this->hasMany('App\Models\ChuongHoc', 'MAKH');
+    }
 }

@@ -111,3 +111,13 @@ Route::post('/checkout', [
     'as' =>  'handle.checkout',
     'uses' => 'App\Http\Controllers\user\orderController@handleCheckout'
 ]);
+
+//THI
+Route::get('/exam', [
+    'as' =>  'productController.exam',
+    'uses' => 'App\Http\Controllers\user\productController@exam'
+]);
+Route::post('/exam', [
+    'as' =>  'productController.handleExam',
+    'uses' => 'App\Http\Controllers\user\orderController@handleExam'
+]);

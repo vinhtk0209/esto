@@ -77,8 +77,6 @@ class loginController extends Controller
         $taikhoan =   TaiKhoan::create([
             'HOTEN' => $data['fullname'],
             'EMAIL' => $data['email'],
-            'NGAYSINH' => $data['birthday'],
-            'GIOITINH' => $data['gender'],
             'SODIENTHOAI' => $data['phonenumber'],
             'MATKHAU' => bcrypt($data['password']),
             'LOAITK' => 1,

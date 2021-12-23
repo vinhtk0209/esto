@@ -1,0 +1,101 @@
+:root {
+    --text-color: #333;
+    --bg-color: #408A3E;
+}
+
+.modal-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.2);
+    display: none;
+}
+.modal-custom.open{
+    display: flex;
+}
+.modal-custom-container {
+    position: relative;
+    margin: auto;
+    width: 400px;
+    max-width: calc(100% - 20px);
+    background: #fff;
+    min-height: 200px;
+    border-radius: 8px;
+    animation:modalFadeIn ease 0.5s;
+}
+
+.modal-custom-close {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+}
+
+.btn-custom-close {
+    padding: 12px;
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.btn-custom-close:hover {
+    opacity: 0.5;
+}
+
+.modal-custom-header {
+    background: var(--bg-color);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.modal-custom-body {
+    padding: 10px;
+}
+
+.label-custom {
+    color: #030303;
+    font-weight: 600;
+}
+
+.code-to-test {
+    width: 100%;
+    border: 1px solid #ccc;
+    outline: none;
+    padding: 5px;
+    color: #999;
+    border-radius: 4px;
+}
+
+.btn-to-test {
+    color: #fff;
+    width: 100%;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-weight: bold;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+}
+
+.btn-to-test:hover {
+    opacity: 0.9;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-200px);
+    };
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    };
+}

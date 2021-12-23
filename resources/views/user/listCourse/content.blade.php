@@ -294,22 +294,9 @@
                      <h3 class="title-course">{{$cName->TENDM}}</h3>
                     @endforeach
                 </div>
-                <div class="col-lg-12">
-                    {{-- @foreach ($cate->childCategory as $valueCheck)
-                    @if ($cate->childCategory->count() && $valueCheck->ACTIVE == 1)
-                    <ul class="sub-menu-category">
-                        @foreach ($cate->childCategory as $value)
-                            @if ($value->ACTIVE == 1)
-                                <li class="sub-menu-item active">
-                                    <a href="{{URL::to('/listCourse/' . $value->MADM)}}">{{$value->TENDM}}</a>
-                                </li>
-                            @endif
-                        @endforeach
-                     </ul>
-                    @endif
-                 @endforeach
-                </li>
-                @endforeach --}}
+
+           {{-- SORTBY STARTS --}}
+                <div class="d-flex align-items-center mb-16">
                     <ul class="list-cate">
                         @foreach ($listCate as $cate)
                         <li>
@@ -317,7 +304,43 @@
                         </li>
                         @endforeach
                     </ul>
+                    <div class="list-order d-flex align-item-center">
+                        <h4 class="title-course-filter">
+                            <img src="{{asset('user/assets/img/icon-filter.svg')}}" alt="">
+                            Bộ lọc:
+                        </h4>
+                        <form action="">
+                            @csrf
+                            <select class="form-select" aria-label="Default select example" name="filter" id="filter">
+                                <option value="{{Request::url()}}?sortBy=none" >Lọc theo</option>
+                                <option value="{{Request::url()}}?sortBy=tangdan">Giá thấp đến cao</option>
+                                <option value="{{Request::url()}}?sortBy=giamdan">Giá cao đến thấp</option>
+                                <option value="{{Request::url()}}?sortBy=az">Từ A đến Z</option>
+                                <option value="{{Request::url()}}?sortBy=za">Từ Z đến A</option>
+                              </select>
+                        </form>
+                    </div>
                 </div>
+            {{-- SORTBY ENDS --}}
+
+            {{-- FILTER BY RANGE STARTS --}}
+                <div class="range-filter">
+                    <form action="">
+                      <div class="range-container d-flex flex-space">
+                        <div id="slider-range"></div>
+                        <div class="range-amount">
+                             <input type="text" id="amountStart" readonly  class="amount-price">
+                             <input type="text" id="amountEnd" readonly  class="amount-price">
+                        </div>
+                      </div>
+                       <div class="input-amount">
+                            <input type="hidden" name="startPrice" id="startPrice"  >
+                            <input type="hidden" name="endPrice" id="endPrice"  >
+                            <input type="submit" name="filtePrice" value="Lọc giá" class="btn btn-danger btnFilter">
+                        </div>
+                    </form>
+                </div>
+            {{-- FILTER BY RANGE ENDS --}}
             </div>
         </div>
     </div>
@@ -375,16 +398,6 @@
             @if ($cateById->currentPage() == 1)
             <li class="page-item disabled">
                 @else
-            <li class="page-item ">
-                @endif
-                <a class="page-link" href="?page=1">
-                    <i class="fas fa-angle-double-left"></i>
-                </a>
-            </li>
-
-            @if ($cateById->currentPage() == 1)
-            <li class="page-item disabled">
-                @else
             <li class="page-item">
                 @endif
                 <a class="page-link" href="{{$cateById->previousPageUrl()}}">
@@ -399,16 +412,6 @@
                 @endif
                 <a class="page-link" href="{{$cateById->nextPageUrl()}}">
                     <i class="fas fa-angle-right"></i>
-                </a>
-            </li>
-
-            @if ($cateById->currentPage() == $cateById->lastPage())
-            <li class="page-item disabled">
-                @else
-            <li class="page-item">
-                @endif
-                <a class="page-link" href="?page={{$cateById->lastPage()}}">
-                    <i class="fas fa-angle-double-right"></i>
                 </a>
             </li>
 
@@ -718,3 +721,4 @@
 </section> --}}
 <!-- SECTION SPECIAL OFFER COURSE ENDS-->
 </section>
+
