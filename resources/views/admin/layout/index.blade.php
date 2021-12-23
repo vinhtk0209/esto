@@ -24,7 +24,9 @@
   <link rel="stylesheet" href="public/user/assets/css/main.css">
   <link rel="stylesheet" href="public/user/assets/css/custom.css">
   {{-- CKEDITOR --}}
-  <script src="ckeditor/ckeditor.js"></script>
+  <!-- <script src="ckeditor/ckeditor.js"></script> -->
+  <script type="text/javascript" language="javascript" src="public/ckeditor/ckeditor.js" ></script>
+
 
 </head>
 

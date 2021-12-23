@@ -138,13 +138,13 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Giới thiệu khóa học</label>
-                                <textarea rows="4" id="GIOITHIEUKH" name="GIOITHIEUKH" class="form-control"></textarea>
+                                <textarea rows="4" id="GIOITHIEUKH" name="GIOITHIEUKH" class="ckeditor form-control"></textarea>
                             </div>
                         </div>
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Chi tiết khóa học</label>
-                                <textarea rows="6" id="CHITIETKH" name="CHITIETKH" class="form-control"></textarea>
+                                <textarea rows="6" id="CHITIETKH" name="CHITIETKH" class="ckeditor form-control"></textarea>
                             </div>
                         </div>
                     </div>
