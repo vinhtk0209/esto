@@ -10,10 +10,10 @@ class DanhMuc extends Model
     protected $table = "danhmuc";
     protected $primaryKey = 'MADM';
     public $timestamps = false;
-    protected $fillable = ['TENDM', 'MADMCHA', 'ACTIVE'];
+    protected $fillable = ['TENDM', 'MADMCHA', 'GIOITHIEUDM', 'CHITIETDM', 'ACTIVE'];
     public function childCategory()
     {
-        return $this->hasMany(DanhMuc::class, 'MADMCHA');
+        return $this->hasMany('App\Models\DanhMuc', 'MADMCHA');
     }
 
     public function rKhoaHoc()

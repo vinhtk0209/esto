@@ -27,10 +27,10 @@
         <section class="signup">
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
-                <div class="signup-content">
+                <div class="signup-content p-y-5">
                     <form method="POST" id="signup-form" class="signup-form" action="{{ route('post.register') }}">
                         @csrf
-                        <h2 class="form-title">Đăng ký</h2>
+                        <h2 class="form-title mb-10">Đăng ký</h2>
                         <div class="form-group">
                             <label for="fullname" class="label-input">Họ tên</label>
                             <input type="text" class="form-input" name="fullname" id="fullname"
@@ -46,11 +46,11 @@
                             <input type="email" class="form-input" name="email" id="email" placeholder="Email..." required/>
                             <span class="error-message">@error('email'){{$message}}@enderror</span>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="birthday" class="label-input">Ngày sinh</label>
                             <input type="date" class="form-input" name="birthday" id="birthday" required/>
-                        </div>
-                        <div class="form-group">
+                        </div> --}}
+                        {{-- <div class="form-group">
                             <label for="male" class="label-input">Giới tính</label>
                             <div class="form-checkbox">
                                 <input type="radio" class="form-checkbox" name="gender" id="male" value="1" checked/>
@@ -58,7 +58,7 @@
                                 <input type="radio" class="form-checkbox" name="gender" id="female" value="0" />
                                 <label for="female" class="">Nữ</label>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="phonenumber" class="label-input">Số điện thoại</label>
                             <input type="text" class="form-input" name="phonenumber" id="phonenumber"

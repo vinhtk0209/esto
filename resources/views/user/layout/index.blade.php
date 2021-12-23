@@ -12,6 +12,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link type="text/css" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
+
+
     <!-- <link rel="stylesheet" href="./assets/css/main.css"> -->
     <link rel="stylesheet" href="{{asset('user/assets/css/main.css')}}">
     <!-- <link rel="stylesheet" href="./assets/css/app.css"> -->
@@ -24,6 +26,12 @@
 
 
     <!-- CUSTOM CSS -->
+    {{-- RANGE JQUERY CSS --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <!-- MODAL CSS -->
+    <link rel="stylesheet" href="{{asset('user/assets/css/modal.css')}}" >
+    <!-- PAGINATION CSS -->
+    <link rel="stylesheet" href="{{asset('user/assets/css/pagination.css')}}" >
     <!-- LOADING CSS -->
     <link rel="stylesheet" href="{{asset('user/assets/css/loading.css')}}">
      <!-- BACKTOP CSS -->
@@ -41,7 +49,13 @@
 </head>
 
 <body class="preLoading">
+
+
+    <!-- SWEETALERT STARTS-->
     @include('sweetalert::alert')
+    <!-- SWEETALERT ENDS-->
+
+
     <!-- LOADING STARTS-->
     <div class="load">
         <div class="double-loading">
@@ -51,30 +65,93 @@
     </div>
     <!-- LOADING ENDS-->
 
+
+    <!--MODAL STARTS -->
+    <div class="modal-custom">
+        <div class="modal-custom-container">
+            <div class="modal-custom-close">
+                <span class="btn-custom-close ">X</span>
+            </div>
+            <header class="modal-custom-header">
+                   <h2 class="modal-custom-title"> Vào phòng thi</h2>
+            </header>
+            <div class="modal-custom-body">
+              <form  method="POST" action="{{ route('productController.handleExam') }}">
+                @csrf
+                <div class="form-group">
+                  <label for="code-to-test" class="label-custom">Mã phòng thi:</label>
+                  <div class="form-row">
+                    <input type="text" name="code-to-test" id="code-to-test" class="code-to-test" placeholder="Nhập mã phòng thi..." required>
+                  </div>
+                </div>
+                <div class="form-group ">
+                    <input type="submit" name="submit" id="btn-to-test" class="btn-to-test" value="Vào thi" />
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL ENDS -->
+
+
     <!-- HEADER STARTS -->
     @include('user.shared.header')
     <!-- HEADER ENDS -->
+
 
     <!-- CONTENT STARTS -->
     @yield('content')
     <!-- COTENT ENDS -->
 
+
     <!-- BACKTOP STARTS -->
     <p id="button"></p>
     <!-- BACKTOP ENDS -->
+
 
     <!-- FOOTER STARTS -->
     @include('user.shared.footer')
     <!-- FOOTER ENDS -->
 
+
     <!-- JS  -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{{asset('user/assets/js/jquery.min.js')}}">
+    </script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="{{asset('user/assets/js/filter.js')}}">
+    </script>
+    <script src="{{asset('user/assets/js/simple.money.format.js')}}">
+    </script>
+    <script>
+        $(document).ready(function () {
+        $("#slider-range").slider({
+            orientation: "vertical",
+            range: true,
+            min: {{$minPrice}},
+            max: {{$maxPrice}},
+            step: 50000,
+            values:[{{$minPrice}},{{$maxPrice}}],
+            slide: function (event, ui) {
+                $("#amountStart").val( ui.values[1]+'vnd').simpleMoneyFormat();
+                $("#amountEnd").val(ui.values[0]+'vnd').simpleMoneyFormat();
+
+                $("#startPrice").val(ui.values[0]);
+                $("#endPrice").val(ui.values[1]);
+            },
+        });
+        $("#amountStart").val(
+                $("#slider-range").slider("values", 1)+'vnd').simpleMoneyFormat();
+
+        $("#amountEnd").val(
+                $("#slider-range").slider("values", 0)+'vnd').simpleMoneyFormat();
+
+         });
+    </script>
+    
     <script src="{{asset('user/assets/js/main.js')}}">
     </script>
     <script src="{{asset('user/assets/js/add-to-cart.js')}}">

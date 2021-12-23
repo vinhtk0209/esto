@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\KhoaHoc;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +25,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        view()->composer('*', function ($view) {
+            $minPrice = KhoaHoc::min('DONGIA');
+            $maxPrice = KhoaHoc::max('DONGIA');
+            $view->with('minPrice', $minPrice)->with('maxPrice', $maxPrice);
+        });
     }
 }

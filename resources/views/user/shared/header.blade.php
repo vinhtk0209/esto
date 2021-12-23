@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="nav-item right-line">
-                                <a class="nav-link cod-btn" href="">Kích hoạt khóa học</a>
+                                <button class="nav-link cod-btn btn-show-test " href="" id="test-room" >Vào phòng thi</button>
                             </div>
                             <div class="nav-item">
                                 @if (!Session::has('customer'))
@@ -53,6 +53,7 @@
                                     <a href="{{route('login.login')}}" class="login-btn">Đăng
                                         nhập</a>
                                 @else
+                                        
                                     <a href="javascript:void(0)" class="register-btn">{{ Session::get('customer')->HOTEN }}</a>
                                     <a href="{{route('logout')}}" class="login-btn">Đăng xuất</a>
                                 @endif

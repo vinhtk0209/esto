@@ -19,6 +19,19 @@ class productController extends Controller
             ->join('danhmuc', 'danhmuc.MADM', '=', 'khoahoc.MADM')
             ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
 
+        $sectionCourse  = DB::table('chuonghoc')
+            ->where('chuonghoc.MAKH', '=', $productId)->get();
+
+        if (count($sectionCourse) > 0) {
+            foreach ($sectionCourse as $sec) {
+                $sections = $sec->MACHUONG;
+            }
+            $lessonCourse = DB::table('baihoc')
+                ->where('baihoc.MACHUONG',  $sections)->get();
+        } else {
+            $lessonCourse = "";
+        }
+
         foreach ($productDetail as $value) {
             $courseCate = $value->MADM;
         }
@@ -28,18 +41,77 @@ class productController extends Controller
             ->where('danhmuc.MADM', $courseCate)
             ->whereNotIn('khoahoc.MAKH', [$productId])->get();
 
-        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse);
+        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse);
     }
+
     public function listCourse($courseCate)
     {
+        $minPrice = KhoaHoc::min('DONGIA');
+        $maxPrice = KhoaHoc::max('DONGIA');
 
+        if (isset($_GET['sortBy'])) {
+            $sortBy = $_GET['sortBy'];
+            if ($sortBy == 'giamdan') {
+                $cateById = KhoaHoc::with('rDanhMuc')
+                    ->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')
+                    ->where('khoahoc.MADM', '=', $courseCate)
+                    ->orWhere('danhmuc.MADMCHA', '=', $courseCate)
+                    ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+                    ->orderby('DONGIA', 'DESC')
+                    ->paginate(12)
+                    ->appends(request()->query());
+            } elseif ($sortBy == 'tangdan') {
+                $cateById = KhoaHoc::with('rDanhMuc')
+                    ->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')
+                    ->where('khoahoc.MADM', '=', $courseCate)->orWhere('danhmuc.MADMCHA', '=', $courseCate)
+                    ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+                    ->orderby('DONGIA', 'ASC')
+                    ->paginate(12)
+                    ->appends(request()->query());
+            } elseif ($sortBy == 'za') {
+                $cateById = KhoaHoc::with('rDanhMuc')
+                    ->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')
+                    ->where('khoahoc.MADM', '=', $courseCate)
+                    ->orWhere('danhmuc.MADMCHA', '=', $courseCate)
+                    ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+                    ->orderby('TENKH', 'DESC')
+                    ->paginate(12)
+                    ->appends(request()->query());
+            } elseif ($sortBy == 'az') {
+                $cateById = KhoaHoc::with('rDanhMuc')
+                    ->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')
+                    ->where('khoahoc.MADM', '=', $courseCate)
+                    ->orWhere('danhmuc.MADMCHA', '=', $courseCate)
+                    ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+                    ->orderby('TENKH', 'ASC')
+                    ->paginate(12)
+                    ->appends(request()->query());
+            }
+        } elseif (isset($_GET['filtePrice']) && isset($_GET['endPrice'])) {
+            $minPrice = $_GET['startPrice'];
+            $maxPrice = $_GET['endPrice'];
+            $cateById = KhoaHoc::with('rDanhMuc')
+                ->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')
+                ->where('khoahoc.MADM', '=', $courseCate)
+                ->orWhere('danhmuc.MADMCHA', '=', $courseCate)
+                ->whereBetween('DONGIA', [$minPrice, $maxPrice])
+                ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+                ->orderby('DONGIA', 'ASC')
+                ->paginate(12)
+                ->appends(request()->query());
+        } else {
+            $cateById = DB::table('khoahoc')->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')->where('khoahoc.MADM', '=', $courseCate)->orWhere('danhmuc.MADMCHA', '=', $courseCate)->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->paginate(12);
+        }
+        $cateName = DB::table('danhmuc')->where('danhmuc.MADM', $courseCate)->get();
 
-        $cateById = DB::table('khoahoc')->join('danhmuc', 'khoahoc.MADM', '=', 'danhmuc.MADM')->where('khoahoc.MADM', '=', $courseCate)->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->get();
-        //hien thi mot lan ten cua danh muc
-        $cateName = DB::table('danhmuc')->where('danhmuc.MADM', $courseCate)->limit(1)->get();
+        $listCate = DB::table('danhmuc')->where('danhmuc.MADMCHA', $courseCate)->get();
 
-
-        return view('user.listCourse.index')->with('cateById', $cateById)->with('cateName', $cateName);
+        return view('user.listCourse.index')
+            ->with('cateById', $cateById)
+            ->with('cateName', $cateName)
+            ->with('listCate', $listCate)
+            ->with('minPrice', $minPrice)
+            ->with('maxPrice', $maxPrice);
     }
 
     public function addToCart(Request $request)
@@ -47,8 +119,8 @@ class productController extends Controller
         $product = KhoaHoc::find($request->id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add($product,$product->MAKH);
-        $request->session()->put('cart',$cart);
+        $cart->add($product, $product->MAKH);
+        $request->session()->put('cart', $cart);
         return response()->json([
             'status' => 200,
             'qty'    => Session::get('cart')->totalQty,
@@ -66,9 +138,9 @@ class productController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->deleteItem($id);
-        if(count($cart->items) > 0){
-            Session::put('cart',$cart);
-        }else{
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
             Session::forget('cart');
         }
         return redirect()->back();
@@ -79,7 +151,7 @@ class productController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->increaseItemByOne($id);
-        Session::put('cart',$cart);
+        Session::put('cart', $cart);
         return redirect()->back();
     }
 
@@ -88,11 +160,18 @@ class productController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->decreaseItemByOne($id);
-        if(count($cart->items) > 0){
-            Session::put('cart',$cart);
-        }else{
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
             Session::forget('cart');
         }
         return redirect()->back();
+    }
+
+    public function handleExam(Request $request)
+    {
+        $data = $request->all();
+        // $data['code-to-test'];
+
     }
 }

@@ -19,7 +19,6 @@
                             <th>Ảnh</th>
                             <th>Sản phẩm</th>
                             <th>Đơn giá</th>
-                            <th>Tổng tiền</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -40,10 +39,6 @@
                                     </td>
                                     <td>
                                         {{ number_format($row['item']['DONGIA'],-3,',',',') }} vnd
-                                    </td>
-
-                                    <td>
-                                        {{ number_format($row['price'],-3,',',',') }} VND
                                     </td>
                                     <td>
                                         <a href="{{ route('delete.item', ['id' => $row['item']['MAKH']]) }}">

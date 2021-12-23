@@ -62,6 +62,15 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="cat-short-des">Mô tả</label>
+            <textarea name="cat-short-des" class="form-control" id="cat-short-des"  placeholder="Nhập nội dung..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="cat-long-des">Mô tả chi tiết</label>
+            <textarea name="cat-long-des" class="form-control" id="cat-long-des"  placeholder="Nhập nội dung..."></textarea>
+        </div>
 
         <div class="form-group">
             <label>Kích Hoạt</label>
@@ -81,4 +90,11 @@
     @csrf
 </form>
 </div>
+@endsection
+
+@section('ckeditor')
+<script>
+    CKEDITOR.replace( 'cat-short-des' );
+    CKEDITOR.replace( 'cat-long-des' );
+</script>
 @endsection
