@@ -87,6 +87,7 @@ ul {
 
 body {
     background: var(--bg-body);
+    overflow-x: hidden;
 }
 
 .header-wrap {
