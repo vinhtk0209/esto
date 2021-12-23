@@ -42,11 +42,6 @@ class KhoaHocController extends Controller
             $khoahoc->TRUCTUYEN = true;
 
         } else {
-
-        }
-        else {
-
-
             $khoahoc->TRUCTUYEN = false;
         }
         $khoahoc->GIOITHIEUKH = $request->GIOITHIEUKH;
@@ -138,11 +133,6 @@ class KhoaHocController extends Controller
             $khoahoc->TRUCTUYEN = true;
 
         } else {
-
-        }
-        else {
-
-
             $khoahoc->TRUCTUYEN = false;
         }
         $khoahoc->GIOITHIEUKH = $request->GIOITHIEUKH;
@@ -212,7 +202,5 @@ class KhoaHocController extends Controller
             return response()->json($output);
         }
     }
-}
-
 }
 
