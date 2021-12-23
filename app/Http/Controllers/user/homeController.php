@@ -31,18 +31,10 @@ class homeController extends Controller
     {
         return view('user.infoManager.index');
     }
-<<<<<<< HEAD
-
-    public function search(Request $request)
-    {
-        $q = $request->q;
-        $courses = KhoaHoc::where('TENKH', 'like', '%' . $q . '%')->get();
-=======
     public function search(Request $request)
     {
         $q = $request->q;
         $courses = KhoaHoc::join("taikhoan", 'khoahoc.MAGV', '=', 'ID')->where('TENKH', 'like', '%' . $q . '%')->orWhere('HOTEN', 'like', '%' . $q . '%')->get();
->>>>>>> vinh
         return view('user.search.index', compact('courses', 'q'));
     }
 }
