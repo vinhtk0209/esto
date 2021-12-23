@@ -11,8 +11,8 @@ class DanhMuc extends Model
     protected $primaryKey = 'MADM';
     protected $guarded = [];
     
-    public function childCategory()
+    public function rKhoaHoc()
     {
-        return $this->hasMany(DanhMuc::class, 'MADMC');
+        return $this->hasMany('App\Models\KhoaHoc', 'MADM');
     }
 }
