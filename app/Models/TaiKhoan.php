@@ -17,4 +17,9 @@ class TaiKhoan extends Model
     {
         return $this->hasMany('App\Models\KhoaHoc', 'ID');
     }
+
+    public function rBaiThi()
+    {
+        return $this->hasMany('App\Models\BaiThi', 'ID');
+    }
 }

@@ -17,9 +17,9 @@ class KhoaHoc extends Model
         return $this->belongsTo('App\Models\DanhMuc', 'MADM');
     }
 
-    public function rBaiHoc()
+    public function rChuongHoc()
     {
-        return $this->hasMany('App\Models\BaiHoc', 'MAKH');
+        return $this->hasMany('App\Models\ChuongHoc', 'MAKH');
     }
 
     public function rLopHoc()
@@ -32,8 +32,14 @@ class KhoaHoc extends Model
         return $this->belongsTo('App\Models\TaiKhoan', 'MAGV');
     }
 
+<<<<<<< HEAD
     public function rChuongHoc()
     {
         return $this->hasMany('App\Models\ChuongHoc', 'MAKH');
+=======
+    public function rLop($id)
+    {
+        return $this->hasMany('App\Models\LopHoc', 'MAKH')->where('MAKH', '=', $id);
+>>>>>>> ba8a0328bff9d9d1b76f7253bfea2863ffc4d85c
     }
 }

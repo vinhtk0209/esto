@@ -17,7 +17,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid mt--6">
+<div class="container-fluid mt--6 ">
     <div class="row">
         <div class="col-xl-8 order-xl-1">
             <div class="card">
@@ -44,6 +44,18 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">Khóa học</label></br>
+                                        <select name="MAKH">
+                                            @foreach($khoahoc as $kh)
+                                            <option value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
                                         <label class="form-control-label" for="input-username">Tên lớp học</label>
                                         <input type="text" name="TENLOP" class="form-control">
                                     </div>
@@ -52,18 +64,6 @@
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Số học viên tối đa</label>
                                         <input type="text" name="SLGIOIHAN" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-first-name">Khóa học</label></br>
-                                        <select name="MAKH">
-                                            @foreach($khoahoc as $kh)
-                                            <option value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>
-                                            @endforeach
-                                        </select>
                                     </div>
                                 </div>
                             </div>

@@ -16,17 +16,24 @@ use Illuminate\Contracts\Container;
 |
 */
 
-// Route::get('/admin', [
-//     'as' =>  'dangnhap.login',
-//     'uses' => 'App\Http\Controllers\admin\LoginController@getLogin'
-// ]);
+Route::get('/admin', [
+    'as' =>  'dangnhap.login',
+    'uses' => 'App\Http\Controllers\admin\LoginController@getLogin'
+]);
 
-// Route::post('/admin', [
-//     'as' =>  'dangnhap.login',
-//     'uses' => 'App\Http\Controllers\admin\LoginController@postLogin'
-// ]);
+Route::post('/admin', [
+    'as' =>  'dangnhap.login',
+    'uses' => 'App\Http\Controllers\admin\LoginController@postLogin'
+]);
 
+// Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
+
+
+    Route::prefix('/logout')->name('logout.')->group(function () {
+        Route::get('/', 'App\Http\Controllers\admin\LoginController@getLogout');
+    });
+
 
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\DashBoardController@index');
@@ -34,7 +41,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('khoahoc')->name('khoahoc.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\KhoaHocController@index');
+
+        Route::get('/search', 'App\Http\Controllers\admin\KhoaHocController@search');
         Route::get('/them', 'App\Http\Controllers\admin\KhoaHocController@create');
+        Route::post('/them/baihoc', 'App\Http\Controllers\admin\KhoaHocController@storeBaiHoc');
+
+        Route::get('/them', 'App\Http\Controllers\admin\KhoaHocController@create');
+
         Route::post('/them', 'App\Http\Controllers\admin\KhoaHocController@store');
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\KhoaHocController@edit');
         Route::post('/sua/{id}', 'App\Http\Controllers\admin\KhoaHocController@update');
@@ -43,19 +56,46 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('baihoc')->name('baihoc.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\BaiHocController@index');
+
+        Route::get('/search={id}', 'App\Http\Controllers\admin\BaiHocController@index');
+        Route::get('/them', 'App\Http\Controllers\admin\BaiHocController@create');
+        Route::post('/them', 'App\Http\Controllers\admin\BaiHocController@store');
+        Route::post('/them/hinhthuc', 'App\Http\Controllers\admin\BaiHocController@hinhthuc');
+        Route::get('/sua/bh={id}&lh={lh}', 'App\Http\Controllers\admin\BaiHocController@edit');
+        Route::post('/sua/bh={id}&lh={lh}', 'App\Http\Controllers\admin\BaiHocController@update');
+        Route::get('/xoa/bh={id}&lh={lh}', 'App\Http\Controllers\admin\BaiHocController@delete');
+    });
+
+    Route::prefix('chuonghoc')->name('chuonghoc.')->group(function () {
+        Route::get('/', 'App\Http\Controllers\admin\ChuongHocController@index');
+        Route::post('/them', 'App\Http\Controllers\admin\ChuongHocController@store');
+        Route::get('/sua/{id}', 'App\Http\Controllers\admin\ChuongHocController@edit');
+        Route::post('/sua/{id}', 'App\Http\Controllers\admin\ChuongHocController@update');
+        Route::get('/xoa/{id}', 'App\Http\Controllers\admin\ChuongHocController@delete');
+
         Route::get('/them', 'App\Http\Controllers\admin\BaiHocController@create');
         Route::post('/them', 'App\Http\Controllers\admin\BaiHocController@store');
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\BaiHocController@edit');
         Route::post('/sua/{id}', 'App\Http\Controllers\admin\BaiHocController@update');
         Route::get('/xoa/{id}', 'App\Http\Controllers\admin\BaiHocController@delete');
+
     });
 
     Route::prefix('baithi')->name('baithi.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\BaiThiController@index');
+
+        Route::get('/search={id}', 'App\Http\Controllers\admin\BaiThiController@index');
+        Route::get('/them/{id}', 'App\Http\Controllers\admin\BaiThiController@create');
+        Route::post('/them/{id}', 'App\Http\Controllers\admin\BaiThiController@store');
+        Route::post('/them/1/hinhthuc', 'App\Http\Controllers\admin\BaiThiController@hinhthuc');
+
         Route::post('/them', 'App\Http\Controllers\admin\BaiThiController@store');
+
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\BaiThiController@edit');
         Route::post('/sua/{id}', 'App\Http\Controllers\admin\BaiThiController@update');
         Route::get('/xoa/{id}', 'App\Http\Controllers\admin\BaiThiController@delete');
+        Route::get('/them/{id}/cauhoi', 'App\Http\Controllers\admin\BaiThiController@createCauHoi');
+        Route::post('/them/{id}/cauhoi', 'App\Http\Controllers\admin\BaiThiController@storeCauHoi');
     });
 
     Route::prefix('lophoc')->name('lophoc.')->group(function () {

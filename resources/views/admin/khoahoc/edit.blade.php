@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xl-4 order-xl-2">
             <div class="card card-profile">
-                <img src="public/images/{{$khoahoc->ANH}}" alt="Image placeholder" class="card-img-top">
+                <img src="public/user/assets/imgCourse/{{$khoahoc->ANH}}" id="anhkh" alt="Image placeholder" class="card-img-top">
                 <div class="course-des">
                     <div class="name-course">
                         <h4 id="tenkhoahoc">{{$khoahoc->TENKH}}</h4>
@@ -80,7 +80,8 @@
                                             <option @if($khoahoc->MAGV == $tk->ID)
                                                 {{"selected"}}
                                                 @endif
-                                                value="{{ $tk->ID }}">{{ $tk->HOTEN }}</option>
+                                                value="{{ $tk->ID }}">{{ $tk->HOTEN }}
+                                            </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -92,13 +93,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Tên khóa học</label>
-                                        <input type="text" id="TENKH" name="TENKH" class="form-control" value="{{$khoahoc->TENKH}}">
+                                        <input type="text" id="TENKH" name="TENKH" class="form-control" value="{{$khoahoc->TENKH}}" onkeyup="textChange()">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Giá khóa học</label>
-                                        <input type="text" id="DONGIA" name="DONGIA" class="form-control" value="{{$khoahoc->DONGIA}}">
+                                        <input type="text" id="DONGIA" name="DONGIA" class="form-control" value="{{$khoahoc->DONGIA}}" onkeyup="textChange()">
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +136,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Hình ảnh</label>
-                                <input type="file" id="ANH" name="ANH" class="form-control">
+                                <input type="file" id="ANH" name="ANH" class="form-control" onchange="imgchange(event)">
                             </div>
                         </div>
                         <div class="pl-lg-4">
@@ -153,11 +154,14 @@
                         <div class="row align-items-center">
                             <div class="col-8">
                                 <button type="submit" class="btn btn-default">Sửa</button>
-                                <button type="button" onclick="textChange()" class="btn btn-default">Xem trước</button>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="admin/baihoc/them?id={{$khoahoc->MAKH}}" id="baihoc" class="btn btn-primary">Thêm bài học</a>
-                                <a href="admin/lophoc/" id="lophoc" class="btn btn-primary" style="display: none">Thêm lớp học</a>
+                                <a href="admin/baihoc/them/{{$khoahoc->MAKH}}" id="baihoc" class="btn btn-primary" @if($khoahoc->TRUCTUYEN == true)
+                                        {{"style=display:none"}}
+                                        @endif>Thêm bài học</a>
+                               <a href="admin/lophoc/them/{{$khoahoc->MAKH}}" id="lophoc" class="btn btn-primary" @if($khoahoc->TRUCTUYEN == false)
+                                        {{"style=display:none"}}
+                                        @endif>Thêm lớp học</a>
                             </div>
                         </div>
                     </form>
