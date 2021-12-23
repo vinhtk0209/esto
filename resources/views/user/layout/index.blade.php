@@ -30,9 +30,9 @@
     {{-- RANGE JQUERY CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <!-- MODAL CSS -->
-    <link rel="stylesheet" href="{{asset('user/assets/css/modal.css')}}" >
+    <link rel="stylesheet" href="public/user/assets/css/modal.css" >
     <!-- PAGINATION CSS -->
-    <link rel="stylesheet" href="{{asset('user/assets/css/pagination.css')}}" >
+    <link rel="stylesheet" href="public/user/assets/css/pagination.css" >
     <!-- LOADING CSS -->
     <link rel="stylesheet" href="public/user/assets/css/loading.css">
      <!-- BACKTOP CSS -->
@@ -46,8 +46,8 @@
     <link rel="stylesheet" href="public/user/assets/css/listCourse.css">
     <link rel="stylesheet" href="public/user/assets/css/custom.css">
 
-    <link rel="stylesheet" href="{{asset('user/assets/css/listCourse.css')}}">
-    <link rel="stylesheet" href="{{asset('user/assets/css/custom.css')}}">
+    <link rel="stylesheet" href="public/user/assets/css/listCourse.css">
+    <link rel="stylesheet" href="public/user/assets/css/custom.css">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 
     <!-- CUSTOM CSS -->
@@ -122,16 +122,15 @@
 
     <!-- JS  -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="{{asset('user/assets/js/jquery.min.js')}}">
+    <script src="public/user/assets/js/jquery.min.js">
     </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-<<<<<<< HEAD
-    <script src="{{asset('user/assets/js/filter.js')}}">
+    <script src="public/user/assets/js/filter.js">
     </script>
-    <script src="{{asset('user/assets/js/simple.money.format.js')}}">
+    <script src="public/user/assets/js/simple.money.format.js">
     </script>
     <script>
         $(document).ready(function () {
@@ -159,12 +158,9 @@
          });
     </script>
     
-    <script src="{{asset('user/assets/js/main.js')}}">
-=======
-    <script src="public/user/assets/js/main.js">
->>>>>>> ba8a0328bff9d9d1b76f7253bfea2863ffc4d85c
-    </script>
-    <script src="{{asset('user/assets/js/add-to-cart.js')}}">
+    <script src="public/user/assets/js/main.js"></script>
+    <script src="public/user/assets/js/main.js"></script>
+    <script src="public/user/assets/js/add-to-cart.js">
     </script>
      <!-- JS  -->
 </body>
