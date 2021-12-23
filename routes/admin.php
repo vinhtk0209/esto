@@ -34,20 +34,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\LoginController@getLogout');
     });
 
-
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\DashBoardController@index');
     });
 
     Route::prefix('khoahoc')->name('khoahoc.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\KhoaHocController@index');
-
         Route::get('/search', 'App\Http\Controllers\admin\KhoaHocController@search');
         Route::get('/them', 'App\Http\Controllers\admin\KhoaHocController@create');
         Route::post('/them/baihoc', 'App\Http\Controllers\admin\KhoaHocController@storeBaiHoc');
-
         Route::get('/them', 'App\Http\Controllers\admin\KhoaHocController@create');
-
         Route::post('/them', 'App\Http\Controllers\admin\KhoaHocController@store');
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\KhoaHocController@edit');
         Route::post('/sua/{id}', 'App\Http\Controllers\admin\KhoaHocController@update');
@@ -72,13 +68,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\ChuongHocController@edit');
         Route::post('/sua/{id}', 'App\Http\Controllers\admin\ChuongHocController@update');
         Route::get('/xoa/{id}', 'App\Http\Controllers\admin\ChuongHocController@delete');
-
-        Route::get('/them', 'App\Http\Controllers\admin\BaiHocController@create');
-        Route::post('/them', 'App\Http\Controllers\admin\BaiHocController@store');
-        Route::get('/sua/{id}', 'App\Http\Controllers\admin\BaiHocController@edit');
-        Route::post('/sua/{id}', 'App\Http\Controllers\admin\BaiHocController@update');
-        Route::get('/xoa/{id}', 'App\Http\Controllers\admin\BaiHocController@delete');
-
     });
 
     Route::prefix('baithi')->name('baithi.')->group(function () {
