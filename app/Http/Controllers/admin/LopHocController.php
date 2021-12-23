@@ -11,7 +11,7 @@ class LopHocController extends Controller
 {
     public function index()
     {
-        $lophoc = LopHoc::paginate(5);
+        $lophoc = LopHoc::paginate(10);
         return view('admin.lophoc.index', ['lophoc'=>$lophoc]);
     } 
     
