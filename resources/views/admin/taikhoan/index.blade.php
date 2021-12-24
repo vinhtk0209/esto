@@ -16,6 +16,16 @@
                     <a href="admin/taikhoan/them" class="btn btn-sm btn-neutral">Thêm</a>
                 </div>
             </div>
+            <div>
+            <div class="col-lg-6 col-5 text-right">
+                    
+               
+                <div class="col-lg-6 col-5 text-right">
+                    <a href="admin/taikhoan/search=1" class="btn btn-sm btn-neutral">Học viên</a>
+                    <a href="admin/taikhoan/search=2" class="btn btn-sm btn-neutral">Giảng Viên</a>
+                </div>
+            </div>
+            </div>
         </div>
     </div>
 </div>
@@ -69,7 +79,7 @@
                                 </td>
                                 <td class="center">
                                     <a href="admin/taikhoan/sua/{{$tk->ID}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="admin/taikhoan/xoa/{{$tk->ID}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                    <a href="admin/taikhoan/xoa/{{$tk->ID}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa tài khoản này?')"><i class="material-icons">&#xE872;</i></a>
                                 </td>
                             </tr>
                             @endforeach
