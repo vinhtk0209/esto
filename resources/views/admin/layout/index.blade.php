@@ -306,6 +306,7 @@
         document.getElementById("anhtk").src = "public/images/" + document.getElementById("ANH").files[0].name;;
         }
     </script>
+
 </body>
 
 </html>
