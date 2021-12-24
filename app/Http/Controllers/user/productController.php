@@ -21,16 +21,7 @@ class productController extends Controller
 
         $sectionCourse  = DB::table('chuonghoc')
             ->where('chuonghoc.MAKH', '=', $productId)->get();
-
-        if (count($sectionCourse) > 0) {
-            foreach ($sectionCourse as $sec) {
-                $sections = $sec->MACHUONG;
-            }
-            $lessonCourse = DB::table('baihoc')
-                ->where('baihoc.MACHUONG',  $sections)->get();
-        } else {
-            $lessonCourse = "";
-        }
+        $lessonCourse = DB::table('baihoc')->get();
 
         foreach ($productDetail as $value) {
             $courseCate = $value->MADM;
