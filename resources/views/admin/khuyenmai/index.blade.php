@@ -1,65 +1,38 @@
 @extends('admin.layout.index')
 @section('content')
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="admin/khuyenmai/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/khuyenmai/">Quản Lý Khuyến Mãi</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <a href="admin/khuyenmai/them" class="btn btn-sm btn-neutral">Thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid mt--6">
     <div class="row">
         <div class="col">
             <div class="card">
                 <!-- Card header -->
-                <div class="card-header border-0">
-                    <h3 class="mb-4">KHUYẾN MÃI</h3>
+                <div class="card-header border-0 text-blue">
+                    <h3 class="mb-0">Khuyến Mãi</h3>
                 </div>
-                <div class="col-md-8 center">
-                    <form>
-                        <div class="pl-lg-4">
-                            <div class="row">
-                                <div class="col-lg-10">
-                                    <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Tên khuyến mãi</label>
-                                    <input type="text" class="form-control" value="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Tỷ lệ</label>
-                                    <input type="number" class="form-control" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" >Ngày áp dụng</label>
-                                        <input type="date"  class="form-control" value="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Thời điểm</label>
-                                        <input type="time" class="form-control" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Ngày kết thúc</label>
-                                        <input type="date"  class="form-control" value="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" >Thời điểm</label>
-                                        <input type="time" class="form-control" value="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                      
-                    </form>
-                    <button type ="submit" class="center btn btn-sm btn-success mr-4">Thêm Khuyến Mãi</button>
+                @if (session('thongbao'))
+                <div class="alert alert-success">
+                    {{session('thongbao')}}
                 </div>
-                    
-                <br><br><br>                 
-
+                @endif             
+                <br><br><br>            
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -69,11 +42,11 @@
                                 <th scope="col" class="sort" data-sort="">Ngày bắt đầu</th>
                                 <th scope="col" class="sort" data-sort="">Ngày kết thúc</th>
                                 <th scope="col" class="sort" data-sort="">Trạng thái</th>
-                                <th scope="col" class="sort" data-sort="">Chi tiết</th>
+                                <th scope="col" class="sort" data-sort="">Tùy chọn</th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                            <!-- @foreach($khuyenmai as $km)
+                            @foreach($khuyenmai as $km)
                             <tr>                                
                                 <td class="budget">
                                     {{$km->TENKM}}
@@ -85,56 +58,48 @@
                                     {{$km->NGAYKT}}
                                 </td>
                                 <td class="budget">
-                                    {{$km->MATT}}
+                                    {{$km->MATT==1?'Đang áp dụng':'Ngưng áp dụng'}}
                                 </td>
-                                <td>
-                                    <button class = "btn btn-sm btn-info  mr-4">Chi tiết</button>
+                                <td class="">
+                                    <a href="admin/khuyenmai/sua/{{$km->MAKM}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/khuyenmai/xoa/{{$km->MAKM}}" class="delete text-red" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                                 </td>
-                                @endforeach -->
-                                <tr>                                
-                                    <td class="budget">
-                                        Nhà giáo Việt Nam
-                                    </td>
-                                    <td class="budget">
-                                        10/11/2021
-                                    </td>
-                                    <td class="budget">
-                                        20/11/2021
-                                    </td>
-                                    <td class="budget">
-                                        Ngưng áp dụng
-                                    </td>
-                                    <td>
-                                        <a href="{{route('admin.khuyenmai.chitietkm')}}" class = "btn btn-sm btn-primary">Chi tiết</a>
-                                    </td>
-                                </tr>
+                                @endforeach                                
                         </tbody>
                     </table>
                 </div>
                 <!-- Card footer -->
                 <div class="card-footer py-4">
-                    <nav aria-label="...">
-                        <ul class="pagination justify-content-end mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">
-                                    <i class="fas fa-angle-left"></i>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="fas fa-angle-right"></i>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
+                    <ul class="pagination justify-content-end mb-0">
+                        <li class="page-item">
+                            <a class="page-link" href="admin/khuyenmai?page=1">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        @if ($khuyenmai->currentPage() == 1)
+                        <li class="page-item disabled">
+                            @else
+                        <li class="page-item">
+                            @endif
+                            <a class="page-link" href="{{$khuyenmai->previousPageUrl()}}">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                        </li>
+                        @if ($khuyenmai->currentPage() == $khuyenmai->lastPage())
+                        <li class="page-item disabled">
+                            @else
+                        <li class="page-item">
+                            @endif
+                            <a class="page-link" href="{{$khuyenmai->nextPageUrl()}}">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="admin/khuyenmai?page={{$khuyenmai->lastPage()}}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                    </ul>
                     </nav>
                 </div>
             </div>
