@@ -15,7 +15,10 @@
                             </div>
                             <div class="form-inline header-search">
 
-                                <form id="search-form" action="" method="">
+                                <form id="search-form" action="{{ route('home.search') }}" method="POST">
+
+                                    @csrf
+
                                     <div class="input-group">
                                         <input id="live-search-bar" name="q" type="text"
                                             class="form-control live-search-bar"
@@ -33,16 +36,15 @@
                         <div class="nav head-direction">
                             <div class="nav-item nav-item-cart">
                                 <div class="k-header-info header-cart">
-                                    <div class="cart dropdown">
-                                        <a href="" class="dropdown-toggle cart_anchor">
-                                            <img src="{{asset('user/assets/img/cart.svg')}}" width="24"
-                                                height="24" alt="Khóa học trực tuyến">
-                                        </a>
-                                    </div>
+                                    <a href="{{ route('home.cart') }}">
+                                        <img src="{{asset('user/assets/img/cart.svg')}}" width="24"
+                                            height="24" alt="Khóa học trực tuyến">
+                                            <span id="qty_cart">{{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}</span>
+                                    </a>
                                 </div>
                             </div>
                             <div class="nav-item right-line">
-                                <a class="nav-link cod-btn" href="">Kích hoạt khóa học</a>
+                                <button class="nav-link cod-btn btn-show-test " href="" id="test-room" >Vào phòng thi</button>
                             </div>
                             <div class="nav-item">
                                 @if (!Session::has('customer'))
@@ -51,6 +53,7 @@
                                     <a href="{{route('login.login')}}" class="login-btn">Đăng
                                         nhập</a>
                                 @else
+                                        
                                     <a href="javascript:void(0)" class="register-btn">{{ Session::get('customer')->HOTEN }}</a>
                                     <a href="{{route('logout')}}" class="login-btn">Đăng xuất</a>
                                 @endif

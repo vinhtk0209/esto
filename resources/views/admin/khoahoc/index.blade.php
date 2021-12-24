@@ -46,12 +46,12 @@
                                 <th scope="col" class="sort" data-sort="options"></th>
                             </tr>
                         </thead>
-                        <tbody class="list">
+                        <tbody class="list" id="listKH">
                             @foreach($khoahoc as $kh)
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
-                                        <img src=" {{asset('user/assets/imgCourse')}}/{{$kh->ANH}}"Width="262.5px" Height="131.25px">
+                                        <img src="public/user/assets/imgCourse/{{$kh->ANH}}" width="90px" height="50px">
                                     </div>
                                 </th>
                                 <td class="budget">
@@ -64,14 +64,14 @@
                                     {{substr($kh->GIOITHIEUKH, 0, 50)}}...
                                 </td>
                                 <td class="budget">
-                                    {{-- {{$kh->rDanhMuc->TENDM}} --}}
+                                    {{$kh->rDanhMuc->TENDM}}
                                 </td>
                                 <td class="budget">
                                     {{$kh->TRUCTUYEN==1?'Trực tuyến':'Video'}}
                                 </td>
-                                <td class="center">
-                                    <a href="admin/khoahoc/sua/{{$kh->MAKH}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="admin/khoahoc/xoa/{{$kh->MAKH}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                <td class="budget">
+                                    <a href="admin/khoahoc/sua/{{$kh->MAKH}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/khoahoc/xoa/{{$kh->MAKH}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -110,7 +110,6 @@
                             </a>
                         </li>
                     </ul>
-                    </nav>
                 </div>
             </div>
         </div>

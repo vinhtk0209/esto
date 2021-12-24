@@ -11,10 +11,15 @@ class TaiKhoan extends Model
     protected $primaryKey = "ID";
     public $timestamps = false;
     protected $casts = ['TRANGTHAI' => 'boolean', 'GIOITINH' => 'boolean'];
-    protected $fillable = ['EMAIL', 'MATKHAU'];
+    protected $fillable = ['HOTEN', 'NGAYSINH', 'GIOITINH', 'SODIENTHOAI', 'TRANGTHAI', 'EMAIL', 'TOKEN', 'MATKHAU', 'LOAITK'];
 
     public function rKhoaHoc()
     {
         return $this->hasMany('App\Models\KhoaHoc', 'ID');
+    }
+
+    public function rBaiThi()
+    {
+        return $this->hasMany('App\Models\BaiThi', 'ID');
     }
 }

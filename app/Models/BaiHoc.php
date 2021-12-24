@@ -9,14 +9,16 @@ class BaiHoc extends Model
 {
     protected $table = "baihoc";
     protected $primaryKey = 'MABH';
-
-    public function rKhoaHoc()
-    {
-        return $this->belongsTo('App\Models\KhoaHoc', 'MAKH');
-    }
+    public $timestamps = false;
+    protected $casts = ['HOCTHU' => 'boolean'];
 
     public function rLopHoc_BaiHoc()
     {
         return $this->hasMany('App\Models\LopHoc_BaiHoc', 'MABH');
+    }
+
+    public function rChuongHoc()
+    {
+        return $this->belongsTo('App\Models\ChuongHoc', 'MACHUONG');
     }
 }

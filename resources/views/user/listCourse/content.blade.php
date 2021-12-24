@@ -284,15 +284,63 @@
         </div>
     </div>
 </section> --}}
+
 <section class="best-seller mb-16">
     <div class="best-seller-head">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 mb-16">
                     @foreach ($cateName as $cName)
-                    <h3 class="title-course">{{$cName->TENDM}}</h3>
+                     <h3 class="title-course">{{$cName->TENDM}}</h3>
                     @endforeach
                 </div>
+
+           {{-- SORTBY STARTS --}}
+                <div class="d-flex align-items-center mb-16">
+                    <ul class="list-cate">
+                        @foreach ($listCate as $cate)
+                        <li>
+                            <a href="{{URL::to('/listCourse/' . $cate->MADM)}}">{{$cate->TENDM}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                    <div class="list-order d-flex align-item-center">
+                        <h4 class="title-course-filter">
+                            <img src="{{asset('user/assets/img/icon-filter.svg')}}" alt="">
+                            Bộ lọc:
+                        </h4>
+                        <form action="">
+                            @csrf
+                            <select class="form-select" aria-label="Default select example" name="filter" id="filter">
+                                <option value="{{Request::url()}}?sortBy=none" >Lọc theo</option>
+                                <option value="{{Request::url()}}?sortBy=tangdan">Giá thấp đến cao</option>
+                                <option value="{{Request::url()}}?sortBy=giamdan">Giá cao đến thấp</option>
+                                <option value="{{Request::url()}}?sortBy=az">Từ A đến Z</option>
+                                <option value="{{Request::url()}}?sortBy=za">Từ Z đến A</option>
+                              </select>
+                        </form>
+                    </div>
+                </div>
+            {{-- SORTBY ENDS --}}
+
+            {{-- FILTER BY RANGE STARTS --}}
+                <div class="range-filter">
+                    <form action="">
+                      <div class="range-container d-flex flex-space">
+                        <div id="slider-range"></div>
+                        <div class="range-amount">
+                             <input type="text" id="amountStart" readonly  class="amount-price">
+                             <input type="text" id="amountEnd" readonly  class="amount-price">
+                        </div>
+                      </div>
+                       <div class="input-amount">
+                            <input type="hidden" name="startPrice" id="startPrice"  >
+                            <input type="hidden" name="endPrice" id="endPrice"  >
+                            <input type="submit" name="filtePrice" value="Lọc giá" class="btn btn-danger btnFilter">
+                        </div>
+                    </form>
+                </div>
+            {{-- FILTER BY RANGE ENDS --}}
             </div>
         </div>
     </div>
@@ -338,9 +386,55 @@
              </ul>
         </div>
     </div>
-
  </section>
 <!-- SECTION ENGLISH COURSE ENDS -->
+
+
+{{-- SECTION PAGINATION STARTS --}}
+<section class="pagination mb-16">
+    <div class="container">
+        <ul class="pagination justify-content-end pagintaion-custom">
+
+            @if ($cateById->currentPage() == 1)
+            <li class="page-item disabled">
+                @else
+            <li class="page-item">
+                @endif
+                <a class="page-link" href="{{$cateById->previousPageUrl()}}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            </li>
+
+            @if ($cateById->currentPage() == $cateById->lastPage())
+            <li class="page-item disabled">
+                @else
+            <li class="page-item">
+                @endif
+                <a class="page-link" href="{{$cateById->nextPageUrl()}}">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</section>
+
+{{-- SECTION PAGINATION ENDS --}}
+
+{{-- SECTION CATEGORY DESCRIPTION STARTS --}}
+<section class="category-des mb-16">
+  <div class="container">
+    @foreach ($cateName as $cName)
+      <div class="category-des-short mb-16">
+        {!!$cName->GIOITHIEUDM!!}
+      </div>
+      <div class="category-des-long mb-16">
+        {!!$cName->CHITIETDM!!}
+      </div>
+      @endforeach
+  </div>
+</section>
+{{-- SECTION CATEGORY DESCRIPTION ENDS --}}
 
  <!-- SECTION SPECIAL OFFER COURSE STARTS-->
  {{-- <section class="special-offer mb-16">
@@ -627,3 +721,4 @@
 </section> --}}
 <!-- SECTION SPECIAL OFFER COURSE ENDS-->
 </section>
+

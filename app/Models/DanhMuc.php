@@ -9,10 +9,17 @@ class DanhMuc extends Model
 {
     protected $table = "danhmuc";
     protected $primaryKey = 'MADM';
+    public $timestamps = false;
+    protected $fillable = ['TENDM', 'MADMCHA', 'GIOITHIEUDM', 'CHITIETDM', 'ACTIVE'];
     protected $guarded = [];
-    
+
+    public function rKhoaHoc()
+    {
+        return $this->hasMany('App\Models\KhoaHoc', 'MADM');
+    }
+
     public function childCategory()
     {
-        return $this->hasMany(DanhMuc::class, 'MADMC');
+        return $this->hasMany('App\Models\DanhMuc', 'MADMCHA');
     }
 }

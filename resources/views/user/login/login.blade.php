@@ -39,7 +39,28 @@
 			<div class="c2"></div>
 		</div>
 	</div>
-	<div class="limiter">
+
+        @if (Session::has('haveActived'))
+            <div class="alert alert-success alert-dismissible m-0 fade show" role="alert">
+                <strong> {!!Session::get('haveActived')!!}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+        @if (Session::has('noActive'))
+         <div class="alert alert-warning alert-dismissible m-0 fade show" role="alert">
+            <strong> {!!Session::get('noActive')!!}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
+
+
+
+	<div class="limiter" style="background-image: url('{{asset('login/assets/images/bg-01.jpg')}}');">
 		<div class="container-login100" style="background-image: url('{{asset('login/assets/images/bg-01.jpg')}}');">
 			<div class="wrap-login100 ">
 				<form class="login100-form validate-form" method="POST" action="{{ route('post.login') }}">
@@ -58,11 +79,18 @@
 						<span class="label-input100">Mật khẩu</span>
 						<input class="input100" type="password" name="pass" placeholder="Mật khẩu..." required>
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
-
 					</div>
 
+                    {{-- @if (Session::has('wrongInfo'))
+                       <span class="error-message">{{Session::get('wrongInfo')}}</span>
+                   @endif --}}
+                   <div class="text-right p-t-8 ">
+                        <a href="{{route('login.forgotPass')}}">
+                        Quên mật khẩu?
+                        </a>
+                    </div>
 
-					<div class="text-right p-t-8 p-b-31">
+					<div class="text-right p-t-8 p-b-20">
 					</div>
 
 					<div class="container-login100-form-btn">

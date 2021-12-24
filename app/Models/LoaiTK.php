@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LoaiTK extends Model
 {
     protected $table = "loaitk";
+    protected $primaryKey = 'ID';
 
 }

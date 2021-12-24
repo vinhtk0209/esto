@@ -59,9 +59,9 @@
                                 <td class="budget">
                                     {{$lh->rKhoaHoc->TENKH}}
                                 </td>
-                                <td class="center">
-                                    <a href="admin/lophoc/sua/{{$lh->MALH}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="admin/lophoc/xoa/{{$lh->MALH}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                <td class="left">
+                                    <a href="admin/lophoc/sua/{{$lh->MALH}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/lophoc/xoa/{{$lh->MALH}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
                                 </td>
                             </tr>
                             @endforeach
