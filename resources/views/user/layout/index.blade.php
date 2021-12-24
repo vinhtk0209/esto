@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <!-- BOOTSTRAP  -->
-       <base href="{{asset('')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- BOOTSTRAP  -->
     <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap"
@@ -16,9 +15,9 @@
 
 
     <!-- <link rel="stylesheet" href="./assets/css/main.css"> -->
-    <link rel="stylesheet" href="public/user/assets/css/main.css">
+    <link rel="stylesheet" href="{{asset('user/assets/css/main.css')}}">
     <!-- <link rel="stylesheet" href="./assets/css/app.css"> -->
-    <link rel="stylesheet" href="public/user/assets/css/app.css">
+    <link rel="stylesheet" href="{{asset('user/assets/css/app.css')}}">
     <!-- <link rel="stylesheet" href="./assets/sweetalert/alert.min.css"> -->
 
     <!-- SWIPER -->
@@ -30,26 +29,21 @@
     {{-- RANGE JQUERY CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <!-- MODAL CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/modal.css" >
+    <link rel="stylesheet" href="{{asset('user/assets/css/modal.css')}}" >
     <!-- PAGINATION CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/pagination.css" >
+    <link rel="stylesheet" href="{{asset('user/assets/css/pagination.css')}}" >
     <!-- LOADING CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/loading.css">
+    <link rel="stylesheet" href="{{asset('user/assets/css/loading.css')}}">
      <!-- BACKTOP CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/backTop.css">
+    <link rel="stylesheet" href="{{asset('user/assets/css/backTop.css')}}">
      <!-- COURSE DETAIL CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/courseDetail.css">
+    <link rel="stylesheet" href="{{asset('user/assets/css/courseDetail.css')}}">
      <!-- INFO MANAGER CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/infoManager.css">
+    <link rel="stylesheet" href="{{asset('user/assets/css/infoManager.css')}}">
      <!-- LIST COURSE CSS -->
-
-    <link rel="stylesheet" href="public/user/assets/css/listCourse.css">
-    <link rel="stylesheet" href="public/user/assets/css/custom.css">
-
-    <link rel="stylesheet" href="public/user/assets/css/listCourse.css">
-    <link rel="stylesheet" href="public/user/assets/css/custom.css">
+    <link rel="stylesheet" href="{{asset('user/assets/css/listCourse.css')}}">
+    <link rel="stylesheet" href="{{asset('user/assets/css/custom.css')}}">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-
     <!-- CUSTOM CSS -->
     <title>ESTO</title>
 </head>
@@ -122,15 +116,15 @@
 
     <!-- JS  -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="public/user/assets/js/jquery.min.js">
+    <script src="{{asset('user/assets/js/jquery.min.js')}}">
     </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="public/user/assets/js/filter.js">
+    <script src="{{asset('user/assets/js/filter.js')}}">
     </script>
-    <script src="public/user/assets/js/simple.money.format.js">
+    <script src="{{asset('user/assets/js/simple.money.format.js')}}">
     </script>
     <script>
         $(document).ready(function () {
@@ -157,10 +151,10 @@
 
          });
     </script>
-    
-    <script src="public/user/assets/js/main.js"></script>
-    <script src="public/user/assets/js/main.js"></script>
-    <script src="public/user/assets/js/add-to-cart.js">
+
+    <script src="{{asset('user/assets/js/main.js')}}">
+    </script>
+    <script src="{{asset('user/assets/js/add-to-cart.js')}}">
     </script>
      <!-- JS  -->
 </body>

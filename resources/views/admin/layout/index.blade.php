@@ -9,23 +9,23 @@
   <title>TRANG QUAN TRI</title>
   <!-- Favicon -->
   <base href="{{asset('')}}">
-  <link rel="icon" href="public/admin_assets/img/brand/favicon.png" type="image/png">
+  <link rel="icon" href="{{asset('admin_assets/img/brand/favicon.png')}}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Icons -->
-  <link rel="stylesheet" href="public/admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="public/admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="{{asset('admin_assets/vendor/nucleo/css/nucleo.css')}}" type="text/css">
+  <link rel="stylesheet" href="{{asset('admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="public/admin_assets/css/argon.css?v=1.2.0" type="text/css">
-  <link rel="stylesheet" href="public/user/assets/css/main.css">
-  <link rel="stylesheet" href="public/user/assets/css/custom.css">
+  <link rel="stylesheet" href="{{asset('admin_assets/css/argon.css?v=1.2.0')}}" type="text/css">
+  <link rel="stylesheet" href="{{asset('user/assets/css/main.css')}}">
+  <link rel="stylesheet" href="{{asset('user/assets/css/custom.css')}}">
   {{-- CKEDITOR --}}
   <!-- <script src="ckeditor/ckeditor.js"></script> -->
-  <script type="text/javascript" language="javascript" src="public/ckeditor/ckeditor.js" ></script>
+  <script type="text/javascript" language="javascript" src="{{asset('ckeditor/ckeditor.js')}}" ></script>
 
 
 </head>
@@ -187,8 +187,8 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{{session('login')==null?'public/images/avatar.png':session('login')->ANHDAIDIEN==''?'public/images/avatar.png':'public/images/'.session('login')->ANHDAIDIEN}}">
-                  </span>
+                    {{-- <img alt="Image placeholder" src="{{session('login')==null?'{{asset('images/avatar.png')}}':session('login')->ANHDAIDIEN==''?'{{asset('images/avatar.png')}}':'{{asset('images/')}}'session('login')->ANHDAIDIEN}}">
+                  </span> --}}
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{session('login')==null?'':session('login')->HOTEN}}</span>
                   </div>
@@ -219,16 +219,16 @@
 
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="public/admin_assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="public/admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="public/admin_assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="public/admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="public/admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <script src="{{asset('admin_assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/js-cookie/js.cookie.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
   <!-- Optional JS -->
-  <script src="public/admin_assets/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="public/admin_assets/vendor/chart.js/dist/Chart.extension.js"></script>
+  <script src="{{asset('admin_assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
+  <script src="{{asset('admin_assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
-  <script src="public/admin_assets/js/argon.js?v=1.2.0"></script>
+  <script src="{{asset('admin_assets/js/argon.js?v=1.2.0')}}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
