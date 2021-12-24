@@ -116,26 +116,25 @@
                                 @foreach ($sectionCourse as $section)
                                     <h2 class="accordion-header" id="heading{{$section->MACHUONG}}">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$section->MACHUONG}}" aria-expanded="true" aria-controls="collapse{{$section->MACHUONG}}">
-                                            {{$section->MACHUONG}}
+                                            {{$section->TENCHUONG}}
                                         </button>
                                     </h2>
-
-                                    <div  id="collapse{{$section->MACHUONG}}" class="accordion-collapse collapse show" aria-labelledby="heading{{$section->MACHUONG}}" >
-                                        <div class="accordion-body">
-                                            <ul class="list-lesson">
-                                                @foreach ($lessonCourse as $lesson)
-                                                    <li>
-                                                        <span class="lesson-icon-play">
-                                                            <img src="{{asset('user/assets/img/play.svg')}}" alt="ESTO" width="20px" height="20px">
-                                                        </span>
-                                                        <span class="lesson-title">
-                                                            {{$lesson->MACHUONG}}
-                                                        </span>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    @foreach ($lessonCourse->where('MACHUONG',$section->MACHUONG) as $lesson)
+                                            <div  id="collapse{{$section->MACHUONG}}" class="accordion-collapse collapse show" aria-labelledby="heading{{$section->MACHUONG}}" >
+                                                <div class="accordion-body">
+                                                    <ul class="list-lesson">
+                                                            <li>
+                                                                <span class="lesson-icon-play">
+                                                                    <img src="{{asset('user/assets/img/play.svg')}}" alt="ESTO" width="20px" height="20px"> 
+                                                                </span>
+                                                                <span class="lesson-title">
+                                                                    {{$lesson->TENBH}}
+                                                                </span>
+                                                            </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                    @endforeach
                                 @endforeach
                             </div>
                         </div>
