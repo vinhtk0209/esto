@@ -8,11 +8,11 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="admin/hocvien/"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="admin/hocvien/">Quản Lý Học Viên</a></li>
+                            <li class="breadcrumb-item"><a href="admin/hocvien/">Quản Lý Lớp Học</a></li>
+                            <li class="breadcrumb-item"><a href="admin/hocvien/ctlop/{{$id}}">Chi Tiết Lớp Học</a></li>
                         </ol>
                     </nav>
                 </div>
-                
             </div>
             <div>
           
@@ -23,10 +23,16 @@
 <div class="container-fluid mt--6">
     <div class="row">
         <div class="col">
-            <div class="card">
-                <!-- Card header -->
-                <div class="card-header border-0 text-blue">
-                    <h3 class="mb-0">Lớp Học</h3>
+        <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Chi tiết lớp học {{$lophoc->TENLOP}}</h3>
+                            
+                        </div>
+                        <div class="col-4 text-right">
+                            <a href="admin/hocvien/" class="btn btn-sm btn-primary">Quay lại</a>
+                        </div>
+                    </div>
                 </div>
                 @if (session('thongbao'))
                 <div class="alert alert-success">
@@ -38,29 +44,32 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="hoten">Lớp Học</th>
-                                <th scope="col" class="sort" data-sort="ngaysinh">Khóa Học</th>
-                                <th scope="col" class="sort" data-sort="gioitinh">Giảng Viên</th>
-                                <th scope="col" class="sort" data-sort="options">###</th>
+                                <th scope="col" class="sort" data-sort="hoten">Họ Tên</th>
+                                <th scope="col" class="sort" data-sort="ngaysinh">Ngày Sinh</th>
+                                <th scope="col" class="sort" data-sort="gioitinh">Giới Tính</th>
+                                <th scope="col" class="sort" data-sort="gioitinh">Sđt</th>
+                                <th scope="col" class="sort" data-sort="gioitinh">Email</th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                        @foreach($lophoc as $lh)
+                        @foreach($ctlophoc as $ctlh)
                             <tr>
                                 <td class="budget">
-                                    {{$lh->TENLOP}}
+                                    {{$ctlh->rTaiKhoan->HOTEN}}
                                 </td>
                                 <td class="budget">
-                                    {{$lh->rKhoaHoc->TENKH}}
+                                    {{$ctlh->rTaiKhoan->NGAYSINH}}
                                 </td>
                                 <td class="budget">
-                                    {{$lh->rKhoaHoc->rTaikhoan->HOTEN}}
+                                    {{$ctlh->rTaiKhoan->GIOITINH==1?'Nam':'Nữ'}}
                                 </td>
                                 <td class="budget">
-                                <div class="col-lg-6 col-5 text-right">
-                                    <a href="admin/hocvien/ctlop/{{$lh->MALH}}" class="btn btn-sm btn-neutral">Xem chi tiết</a>
-                                </div>
+                                    {{$ctlh->rTaiKhoan->SODIENTHOAI}}
                                 </td>
+                                <td class="budget">
+                                    {{$ctlh->rTaiKhoan->EMAIL}}
+                                </td>
+                                
                             </tr>
                         @endforeach
                         </tbody>
@@ -69,30 +78,30 @@
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
-                            <a class="page-link" href="admin/hocvien?page=1">
+                            <a class="page-link" href="admin/hocvien/ctlop/{{$id}}?page=1">
                                 <i class="fas fa-angle-double-left"></i>
                             </a>
                         </li>
-                        @if ($lophoc->currentPage() == 1)
+                        @if ($ctlophoc->currentPage() == 1)
                         <li class="page-item disabled">
                             @else
                         <li class="page-item">
                             @endif
-                            <a class="page-link" href="{{$lophoc->previousPageUrl()}}">
+                            <a class="page-link" href="{{$ctlophoc->previousPageUrl()}}">
                                 <i class="fas fa-angle-left"></i>
                             </a>
                         </li>
-                        @if ($lophoc->currentPage() == $lophoc->lastPage())
+                        @if ($ctlophoc->currentPage() == $ctlophoc->lastPage())
                         <li class="page-item disabled">
                             @else
                         <li class="page-item">
                             @endif
-                            <a class="page-link" href="{{$lophoc->nextPageUrl()}}">
+                            <a class="page-link" href="{{$ctlophoc->nextPageUrl()}}">
                                 <i class="fas fa-angle-right"></i>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="admin/hocvien?page={{$lophoc->lastPage()}}">
+                            <a class="page-link" href="admin/hocvien/ctlop/{{$id}}?page={{$ctlophoc->lastPage()}}">
                                 <i class="fas fa-angle-double-right"></i>
                             </a>
                         </li>
