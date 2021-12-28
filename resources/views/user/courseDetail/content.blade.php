@@ -12,12 +12,12 @@
             <p><del>600,000</del><span class="price-unit"><sup>vnd</sup></span></p>
         </div> --}}
     </div>
-     <div class="cart-now btn-to-do-course mt-10">
-         <a href="javascript:void(0)" onclick="addToCart({{ $product->MAKH }})" class="btn-course">
-            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-             Thêm vào giỏ hàng
-         </a>
-     </div>
+    <div class="cart-now btn-to-do-course mt-10">
+        <a href="javascript:void(0)" onclick="addToCart({{ $product->MAKH }})" class="btn-course">
+           <i class="fa fa-cart-plus" aria-hidden="true"></i>
+            Thêm vào giỏ hàng
+        </a>
+    </div>
  </div>
 {{-- BUY COURSE ENDS --}}
 
