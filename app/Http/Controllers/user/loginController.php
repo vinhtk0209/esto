@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Mail;
 use Illuminate\Support\Str;
+use App\Models\Social;
+use Socialite;
 
 class loginController extends Controller
 {
@@ -147,7 +149,7 @@ class loginController extends Controller
         return abort(404);
     }
 
-    public function postGetPass(Taikhoan $taikhoan, $token,Request $request)
+    public function postGetPass(Taikhoan $taikhoan, $token, Request $request)
     {
         $request->validate(
             [
@@ -159,9 +161,125 @@ class loginController extends Controller
                 're_password.same' => "Hai mật khẩu không giống nhau",
             ]
         );
-        $newPass =bcrypt($request->password) ;
-        $taikhoan->update(['MATKHAU' => $newPass,'TOKEN' => null]);
+        $newPass = bcrypt($request->password);
+        $taikhoan->update(['MATKHAU' => $newPass, 'TOKEN' => null]);
         echo $newPass;
         return redirect()->route('login.login')->with('haveActived', 'Đổi mật khẩu thành công, bạn có thể đăng nhập');
     }
+
+    // public function loginFacebook()
+    // {
+    //     // Socialite
+    //     config(['services.facebook.redirect' => env('FACEBOOK_CLIENT_REDIRECT')]);
+    //     return Socialite::driver('facebook')->redirect();
+    // }
+    // public function callbackFacebook()
+    // {
+    //     config(['services.facebook.redirect' => env('FACEBOOK_CLIENT_REDIRECT')]);
+    //     $provider = Socialite::driver('facebook')->stateless()->user();
+    //     dd($provider);
+    //     // $account = Social::where('PROVIDER', 'facebook')->where('provider_user_id', $provider->getId())->first();
+    //     // if ($account) {
+    //     //     //login in vao trang quan tri
+    //     //     $account_name = Login::where('admin_id', $account->user)->first();
+    //     //     Session::put('admin_login', $account_name->admin_name);
+    //     //     Session::put('admin_id', $account_name->admin_id);
+    //     //     return redirect('/admin/dashboard')->with('message', 'Đăng nhập Admin thành công');
+    //     // } else {
+
+    //     //     $hieu = new Social([
+    //     //         'provider_user_id' => $provider->getId(),
+    //     //         'provider' => 'facebook'
+    //     //     ]);
+
+    //     //     $orang = Login::where('admin_email', $provider->getEmail())->first();
+
+    //     //     if (!$orang) {
+    //     //         $orang = Login::create([
+    //     //             'admin_name' => $provider->getName(),
+    //     //             'admin_email' => $provider->getEmail(),
+    //     //             'admin_password' => '',
+    //     //             'admin_status' => 1
+
+    //     //         ]);
+    //     //     }
+    //     //     $hieu->login()->associate($orang);
+    //     //     $hieu->save();
+
+    //     //     $account_name = Login::where('admin_id', $account->user)->first();
+
+    //     //     Session::put('admin_login', $account_name->admin_name);
+    //     //     Session::put('admin_id', $account_name->admin_id);
+    //     //     return redirect('/admin/dashboard')->with('message', 'Đăng nhập Admin thành công');
+    //     // }
+    // }
+
+    // public function loginGoogle()
+    // {
+    //     config(['services.google.redirect' => 'https://esto.com/esto/lg/google/callback']);
+    //     return Socialite::driver('google')->redirect();
+    // }
+
+    // public function callbackGoogle()
+    // {
+    //     config(['services.google.redirect' => 'https://esto.com/esto/lg/google/callback']);
+
+    //     $users = Socialite::driver('google')->stateless()->user();
+
+    //     $account_name = TaiKhoan::where('ID', '=', $users->id)->first();
+    //     if ($account_name) {
+    //         $account_name->update([
+    //             'GOOGLE_TOKEN' => $users->token,
+    //             'GOOGLE_REFRESH_TOKEN' => $users->refreshToken,
+    //         ]);
+    //         Session::put('customer', $account_name);
+    //     } else {
+    //         $account_name = TaiKhoan::create([
+    //             'GOOGLE_ID' => $users->id,
+    //             'HOTEN' => $users->name,
+    //             'EMAIL' => $users->email,
+    //             'ANHDAIDIEN' => $users->avatar,
+    //             'GOOGLE_TOKEN' => $users->token,
+    //             'GOOGLE_REFRESH_TOKEN' => $users->refreshToken,
+    //             'MATKHAU' => '',
+    //             'SODIENTHOAI' => '',
+    //             'LOAITK' => 1,
+    //             'TRANGTHAI' =>  1
+    //         ]);
+    //         Session::put('customer', $account_name);
+    //     }
+
+    //     return redirect()->route('home.index')->with('haveActived', 'Đăng nhập bằng tài khoản google <span style="text-danger">' . $account_name->EMAIL . '</span> thành công');
+    // }
+    // // public function findOrCreateUser($users, $provider)
+    // // {
+    // //     $authUser = Social::where('PROVIDER-USER-ID', $users->id)->first();
+    // //     if ($authUser) {
+    // //         return $authUser;
+    // //     } else {
+    // //         $customer_new = new Social([
+    // //             'PROVIDER-USER-ID' => $users->id,
+    // //             'PROVIDER-USER-EMAIL' => $users->email,
+    // //             'PROVIDER' => strtoupper($provider),
+    // //         ]);
+
+    // //         $customer = TaiKhoan::where('EMAIL', $users->email)->first();
+
+    // //         if (!$customer) {
+    // //             $customer = TaiKhoan::create([
+    // //                 'HOTEN' => $users->name,
+    // //                 'EMAIL' => $users->email,
+    // //                 'ANHDAIDIEN' => $users->avatar,
+    // //                 'MATKHAU' => '',
+    // //                 'SODIENTHOAI' => '',
+    // //                 'LOAITK' => 1,
+    // //                 'TRANGTHAI' =>  1
+    // //             ]);
+    // //         }
+
+    // //         $customer_new->customer()->associate($customer);
+    // //         $customer_new->save();
+    // //         return $customer_new;
+    // //     }
+    // // }
 }

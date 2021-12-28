@@ -142,13 +142,13 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Giới thiệu khóa học</label>
-                                <textarea rows="4" name="GIOITHIEUKH" class="form-control">{{$khoahoc->GIOITHIEUKH}}</textarea>
+                                <textarea rows="4" name="GIOITHIEUKH" class="form-control ckeditor">{{$khoahoc->GIOITHIEUKH}}</textarea>
                             </div>
                         </div>
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Chi tiết khóa học</label>
-                                <textarea rows="6" name="CHITIETKH" class="form-control">{{$khoahoc->CHITIETKH}}</textarea>
+                                <textarea rows="6" name="CHITIETKH" class="form-control ckeditor">{{$khoahoc->CHITIETKH}}</textarea>
                             </div>
                         </div>
                         <div class="row align-items-center">

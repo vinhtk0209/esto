@@ -14,18 +14,28 @@
                                 <!-- END LOGO -->
                             </div>
                             <div class="form-inline header-search">
-
                                 <form id="search-form" action="{{ route('home.search') }}" method="POST">
 
                                     @csrf
-
-                                    <div class="input-group">
-                                        <input id="live-search-bar" name="q" type="text"
+                                    <div class="input-group ">
+                                        <div class="search-input position-relative">
+                                            <input id="live-search-bar" name="q" type="text"
                                             class="form-control live-search-bar"
-                                            placeholder="Nhập tên khóa học/giảng viên" autocomplete="off">
-                                        <button class="search-button" type="submit">
+                                            placeholder="Nhập tên khóa học/giảng viên" autocomplete="off" required>
 
-                                            <img src="{{asset('user/assets/img/search-icon.svg')}}" width="20"
+                                        {{-- SEARCH AJAX STARTS --}}
+
+                                        <div class="search-ajax-result position-absolute ">
+
+
+
+                                        </div>
+                                        {{-- SEARCH AJAX ENDS --}}
+
+                                        </div>
+
+                                        <button class="search-button" type="submit">
+                                            <img src="public/user/assets/img/search-icon.svg" width="20"
                                                 height="20" alt="Khóa học trực tuyến">
 
                                         </button>
@@ -33,11 +43,12 @@
                                 </form>
                             </div>
                         </div>
+
                         <div class="nav head-direction">
                             <div class="nav-item nav-item-cart">
                                 <div class="k-header-info header-cart">
                                     <a href="{{ route('home.cart') }}">
-                                        <img src="{{asset('user/assets/img/cart.svg')}}" width="24"
+                                        <img src="public/user/assets/img/cart.svg" width="24"
                                             height="24" alt="Khóa học trực tuyến">
                                             <span id="qty_cart">{{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}</span>
                                     </a>
@@ -53,8 +64,8 @@
                                     <a href="{{route('login.login')}}" class="login-btn">Đăng
                                         nhập</a>
                                 @else
-                                        
                                     <a href="javascript:void(0)" class="register-btn">{{ Session::get('customer')->HOTEN }}</a>
+                                    <img width="15%" src="{{ Session::get('customer')->ANHDAIDIEN }}" alt="">
                                     <a href="{{route('logout')}}" class="login-btn">Đăng xuất</a>
                                 @endif
                             </div>

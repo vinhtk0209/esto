@@ -178,7 +178,7 @@ section.category .list-category {
 section.category .list-category .list-item .sub-menu-category {
     position: absolute;
     left: 290px;
-    z-index: 9000;
+    z-index: 8;
     height: 100%;
     width: 100%;
     top: 0;

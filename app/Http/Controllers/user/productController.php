@@ -13,6 +13,9 @@ class productController extends Controller
 {
     public function detailProduct($productId)
     {
+        $countStudent = DB::table('cthoadon')->where('cthoadon.MAKH', $productId)->count();
+        $countRate = DB::table('danhgia')->where('danhgia.MAKH', $productId)->count();
+
         $cateCourse = DB::table('danhmuc')
             ->where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
         $productDetail  = DB::table('khoahoc')
@@ -50,7 +53,7 @@ class productController extends Controller
             ->where('danhmuc.MADM', $courseCate)
             ->whereNotIn('khoahoc.MAKH', [$productId])->get();
 
-        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse);
+        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate);
     }
 
     public function listCourse($courseCate)

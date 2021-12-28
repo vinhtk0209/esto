@@ -16,15 +16,15 @@ use Illuminate\Contracts\Container;
 |
 */
 
-Route::get('/admin', [
-    'as' =>  'dangnhap.login',
-    'uses' => 'App\Http\Controllers\admin\LoginController@getLogin'
-]);
+// Route::get('/admin', [
+//     'as' =>  'dangnhap.login',
+//     'uses' => 'App\Http\Controllers\admin\LoginController@getLogin'
+// ]);
 
-Route::post('/admin', [
-    'as' =>  'dangnhap.login',
-    'uses' => 'App\Http\Controllers\admin\LoginController@postLogin'
-]);
+// Route::post('/admin', [
+//     'as' =>  'dangnhap.login',
+//     'uses' => 'App\Http\Controllers\admin\LoginController@postLogin'
+// ]);
 
 // Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {

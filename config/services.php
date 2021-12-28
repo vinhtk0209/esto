@@ -29,5 +29,16 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'redirect' => env('FACEBOOK_CLIENT_REDIRECT'),
+    ],
+    'google' => [
+        'client_id' => '256629900442-miiktamps2mdkcs3h89v8ra4thdhc8de.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://esto.com/esto/lg/google/callback',
+    ],
+
 
 ];

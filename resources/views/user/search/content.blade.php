@@ -2,8 +2,9 @@
     <div class="best-seller-head">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="title-course">Tìm kiếm với từ khóa: {{$q}}</h3>
+                <div class="col-lg-12 d-flex flex-space">
+                    <h4 class="title-search">Tìm kiếm với từ khóa: {{$q}}</h4>
+                    <h4 class="title-search">Tìm thấy <strong>{{$courses->count()}}</strong> khóa học</h3>
                 </div>
             </div>
         </div>
@@ -16,7 +17,7 @@
                     <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                         <div class="img-course">
                             <img class="img-responsive "
-                                src="{{asset('user/assets/imgCourse')}}/{{$course->ANH}}"
+                                src="public/user/assets/imgCourse/{{$course->ANH}}"
                                 alt="{{$course->TENKH}}">
                         </div>
                         <div class="course-des">
