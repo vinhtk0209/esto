@@ -108,8 +108,8 @@
 							Hoặc đăng nhập với
 						</span>
 					</div>
-
 				</form>
+
                     <div class="flex-c-m">
                         <a href="{{url('/login-facebook')}}" class="login100-social-item bg1">
                             <i class="fa fa-facebook"></i>
@@ -126,6 +126,7 @@
                             Đăng ký
                         </a>
                     </div>
+
 			</div>
 		</div>
 	</div>

@@ -168,52 +168,48 @@ class loginController extends Controller
         return redirect()->route('login.login')->with('haveActived', 'Đổi mật khẩu thành công, bạn có thể đăng nhập');
     }
 
-    // public function loginFacebook()
-    // {
-    //     // Socialite
-    //     config(['services.facebook.redirect' => env('FACEBOOK_CLIENT_REDIRECT')]);
-    //     return Socialite::driver('facebook')->redirect();
-    // }
-    // public function callbackFacebook()
-    // {
-    //     config(['services.facebook.redirect' => env('FACEBOOK_CLIENT_REDIRECT')]);
-    //     $provider = Socialite::driver('facebook')->stateless()->user();
-    //     dd($provider);
-    //     $account = Social::where('PROVIDER', 'facebook')->where('provider_user_id', $provider->getId())->first();
-    //     if ($account) {
-    //         // login in vao trang quan tri
-    //         $account_name = Login::where('admin_id', $account->user)->first();
-    //         Session::put('admin_login', $account_name->admin_name);
-    //         Session::put('admin_id', $account_name->admin_id);
-    //         return redirect('/admin/dashboard')->with('message', 'Đăng nhập Admin thành công');
-    //     } else {
+    public function findOrCreate($provider, $nameProvider)
+    {
+        $customer_new = Social::create([
+            'PROVIDER-USER-ID' => $provider->id,
+            'PROVIDER-USER-EMAIL' => $provider->email,
+            'PROVIDER' => $nameProvider,
+        ]);
+        $authUser = Taikhoan::create([
+            'HOTEN' => $provider->name,
+            'EMAIL' => $provider->email,
+            'ANHDAIDIEN' => $provider->avatar,
+            'MATKHAU' => '',
+            'SODIENTHOAI' => '',
+            'LOAITK' => 1,
+            'TRANGTHAI' =>  1
+        ]);
+        $customer_new->customer()->associate($authUser);
+        $customer_new->save();
+        Session::put('customer', $authUser);
+    }
 
-    //         $hieu = new Social([
-    //             'provider_user_id' => $provider->getId(),
-    //             'provider' => 'facebook'
-    //         ]);
+    public function loginFacebook()
+    {
+        config(['services.facebook.redirect' => 'https://esto.com/esto/lg/facebook/callback']);
+        return Socialite::driver('facebook')->redirect();
+    }
 
-    //         $orang = Login::where('admin_email', $provider->getEmail())->first();
+    public function callbackFacebook()
+    {
+        config(['services.facebook.redirect' => 'https://esto.com/esto/lg/facebook/callback']);
+        $provider = Socialite::driver('facebook')->stateless()->user();
+        $authUser = Taikhoan::join('social', 'social.USER', '=', 'taikhoan.ID')
+            ->where('social.PROVIDER', '=', 'FACEBOOK')
+            ->where('social.PROVIDER-USER-ID', '=', $provider->id)->first();
+        if ($authUser) {
+            Session::put('customer', $authUser);
+        } else {
+            $this->findOrCreate($provider, 'FACEBOOK');
+        }
 
-    //         if (!$orang) {
-    //             $orang = Login::create([
-    //                 'admin_name' => $provider->getName(),
-    //                 'admin_email' => $provider->getEmail(),
-    //                 'admin_password' => '',
-    //                 'admin_status' => 1
-
-    //             ]);
-    //         }
-    //         $hieu->login()->associate($orang);
-    //         $hieu->save();
-
-    //         $account_name = Login::where('admin_id', $account->user)->first();
-
-    //         Session::put('admin_login', $account_name->admin_name);
-    //         Session::put('admin_id', $account_name->admin_id);
-    //         return redirect('/admin/dashboard')->with('message', 'Đăng nhập Admin thành công');
-    //     }
-    // }
+        return redirect()->route('home.index');
+    }
 
     public function loginGoogle()
     {
@@ -224,30 +220,16 @@ class loginController extends Controller
     public function callbackGoogle()
     {
         config(['services.google.redirect' => 'https://esto.com/esto/lg/google/callback']);
-        $users = Socialite::driver('google')->stateless()->user();
-        $account_name = Taikhoan::join('social', 'social.USER', '=', 'taikhoan.ID')->where('social.PROVIDER-USER-ID', '=', $users->id)->first();
-        if ($account_name) {
-            Session::put('customer', $account_name);
+        $provider = Socialite::driver('google')->stateless()->user();
+        $authUser = Taikhoan::join('social', 'social.USER', '=', 'taikhoan.ID')
+            ->where('social.PROVIDER', '=', 'GOOGLE')
+            ->where('social.PROVIDER-USER-ID', '=', $provider->id)->first();
+        if ($authUser) {
+            Session::put('customer', $authUser);
         } else {
-            $customer_new = Social::create([
-                'PROVIDER-USER-ID' => $users->id,
-                'PROVIDER-USER-EMAIL' => $users->email,
-                'PROVIDER' => 'GOOGLE',
-            ]);
-            $account_name = Taikhoan::create([
-                'HOTEN' => $users->name,
-                'EMAIL' => $users->email,
-                'ANHDAIDIEN' => $users->avatar,
-                'MATKHAU' => '',
-                'SODIENTHOAI' => '',
-                'LOAITK' => 1,
-                'TRANGTHAI' =>  1
-            ]);
-            $customer_new->customer()->associate($account_name);
-            $customer_new->save();
-            Session::put('customer', $account_name);
+            $this->findOrCreate($provider, 'GOOGLE');
         }
 
-        return redirect()->route('home.index')->with('haveActived', 'Đăng nhập bằng tài khoản google <span style="text-danger">' . $account_name->EMAIL . '</span> thành công');
+        return redirect()->route('home.index');
     }
 }

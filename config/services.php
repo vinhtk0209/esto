@@ -35,9 +35,9 @@ return [
         'redirect' => env('FACEBOOK_CLIENT_REDIRECT'),
     ],
     'google' => [
-        'client_id' => '256629900442-miiktamps2mdkcs3h89v8ra4thdhc8de.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'https://esto.com/esto/lg/google/callback',
+        'client_id' => env('GOOGLE_ID'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect' => env('GOOGLE_CLIENT_URL'),
     ],
 
 
