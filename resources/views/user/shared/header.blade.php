@@ -35,7 +35,7 @@
                                         </div>
 
                                         <button class="search-button" type="submit">
-                                            <img src="public/user/assets/img/search-icon.svg" width="20"
+                                            <img src="{{('public/user/assets/img/search-icon.svg')}}" width="20"
                                                 height="20" alt="Khóa học trực tuyến">
 
                                         </button>
@@ -48,7 +48,7 @@
                             <div class="nav-item nav-item-cart">
                                 <div class="k-header-info header-cart">
                                     <a href="{{ route('home.cart') }}">
-                                        <img src="public/user/assets/img/cart.svg" width="24"
+                                        <img src="{{('public/user/assets/img/cart.svg')}}" width="24"
                                             height="24" alt="Khóa học trực tuyến">
                                             <span id="qty_cart">{{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}</span>
                                     </a>

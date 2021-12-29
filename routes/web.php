@@ -146,7 +146,7 @@ Route::get('/login-facebook', [
     'as' =>  'login.loginFacebook',
     'uses' => 'App\Http\Controllers\user\loginController@loginFacebook'
 ]);
-Route::get('lg/facebook/callback', [
+Route::get('/lg/facebook/callback', [
     'as' =>  'login.callbackFacebook',
     'uses' => 'App\Http\Controllers\user\loginController@callbackFacebook'
 ]);
@@ -154,7 +154,7 @@ Route::get('/login-google', [
     'as' =>  'login.loginGoogle',
     'uses' => 'App\Http\Controllers\user\loginController@loginGoogle'
 ]);
-Route::get('lg/google/callback', [
+Route::get('/lg/google/callback', [
     'as' =>  'login.callbackGoogle',
     'uses' => 'App\Http\Controllers\user\loginController@callbackGoogle'
 ]);

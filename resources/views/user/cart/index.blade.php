@@ -32,7 +32,7 @@
                             @foreach ($cart->items as $row)
                                 <tr>
                                     <td>
-                                        <img src="public/user/assets/imgCourse/{{$row['item']['ANH']}}" alt="{{ $row['item']['TENKH'] }}" width="100">
+                                        <img src="{{('public/user/assets/imgCourse')}}/{{$row['item']['ANH']}}" alt="{{ $row['item']['TENKH'] }}" width="100">
                                     </td>
                                     <td>
                                         <h5>{{ $row['item']['TENKH'] }}</h5>

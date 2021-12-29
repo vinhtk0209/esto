@@ -3,7 +3,7 @@
     <div class="img-course">
         <img class="img-responsive "
         @foreach ($productDetail as $product)
-            src="public/user/assets/imgCourse/{{$product->ANH}}"
+            src="{{('public/user/assets/imgCourse')}}/{{$product->ANH}}"
             alt="{{$product->TENKH}}">
         </div>
     <div class="price-container">
@@ -133,7 +133,7 @@
                                                     <ul class="list-lesson">
                                                             <li>
                                                                 <span class="lesson-icon-play">
-                                                                    <img src="public/user/assets/img/play.svg" alt="ESTO" width="20px" height="20px">
+                                                                    <img src="{{asset('user/assets/img/play.svg')}}" alt="ESTO" width="20px" height="20px">
                                                                 </span>
                                                                 <span class="lesson-title">
                                                                     {{$lesson->TENBH}}
@@ -204,7 +204,7 @@
                                     <a href="{{URL::to('/courseDetail/'.$relaCourse->MAKH)}}" class="course-box">
                                         <div class="img-course">
                                             <img class="img-responsive "
-                                                src="public/user/assets/imgCourse/{{$relaCourse->ANH}}"
+                                                src="{{('public/user/assets/imgCourse')}}/{{$relaCourse->ANH}}"
                                                 alt="{{$relaCourse->TENKH}}">
                                         </div>
                                         <div class="course-des">

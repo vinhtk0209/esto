@@ -10,26 +10,26 @@
 	<!--===============================================================================================-->
 	<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico" /> -->
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{('public/login/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{('public/login/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="{{('public/login/assets/fonts/iconic/css/material-design-iconic-font.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/vendor/animate/animate.css">
+    <link rel="stylesheet" href="{{('public/login/assets/vendor/animate/animate.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="{{('public/login/assets/vendor/css-hamburgers/hamburgers.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/vendor/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" href="{{('public/login/assets/vendor/vendor/animsition/css/animsition.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/vendor/select2/select2.min.css">
+    <link rel="stylesheet" href="{{('public/login/assets/vendor/select2/select2.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="{{('public/login/assets/vendor/daterangepicker/daterangepicker.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/css/loading.css">
+    <link rel="stylesheet" href="{{('public/login/assets/css/loading.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="public/login/assets/css/util.css">
-    <link rel="stylesheet" href="public/login/assets/css/main.css">
+    <link rel="stylesheet" href="{{('public/login/assets/css/util.css')}}">
+    <link rel="stylesheet" href="{{('public/login/assets/css/main.css')}}">
 	<!--===============================================================================================-->
 </head>
 
@@ -61,8 +61,8 @@
 
 
 
-	<div class="limiter" style="background-image: url('public/login/assets/images/bg-01.jpg');">
-		<div class="container-login100" style="background-image: url('public/login/assets/images/bg-01.jpg');">
+	<div class="limiter" style="background-image: url('{{('public/login/assets/images/bg-01.jpg')}}');">
+		<div class="container-login100" style="background-image: url({{('public/login/assets/images/bg-01.jpg')}} );">
 			<div class="wrap-login100 ">
 				<form class="login100-form validate-form" method="POST" action="{{ route('post.login') }}">
 					@csrf
@@ -135,21 +135,21 @@
 	<div id="dropDownSelect1"></div>
 
 	<!--===============================================================================================-->
-    <script src="public/login/assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="{{('public/login/assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="public/login/assets/vendor/animsition/js/animsition.min.js"></script>
+    <script src="{{('public/login/assets/vendor/animsition/js/animsition.min.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="public/login/assets/vendor/bootstrap/js/popper.js"></script>
-    <script src="public/login/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{('public/login/assets/vendor/bootstrap/js/popper.js')}}"></script>
+    <script src="{{('public/login/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="public/login/assets/vendor/select2/select2.min.js"></script>
+    <script src="{{('public/login/assets/vendor/select2/select2.min.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="public/login/assets/vendor/daterangepicker/moment.min.js"></script>
-    <script src="public/login/assets/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="{{('public/login/assets/vendor/daterangepicker/moment.min.js')}}"></script>
+    <script src="{{('public/login/assets/vendor/daterangepicker/daterangepicker.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="public/login/assets/vendor/countdowntime/countdowntime.js"></script>
+    <script src="{{('public/login/assets/vendor/countdowntime/countdowntime.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="public/login/assets/js/main.js"></script>
+    <script src="{{('public/login/assets/js/main.js')}}"></script>
 </body>
 
 </html>

@@ -16,9 +16,9 @@
 
 
     <!-- <link rel="stylesheet" href="./assets/css/main.css"> -->
-    <link rel="stylesheet" href="public/user/assets/css/main.css">
+    <link rel="stylesheet" href="{{('public/user/assets/css/main.css')}}">
     <!-- <link rel="stylesheet" href="./assets/css/app.css"> -->
-    <link rel="stylesheet" href="public/user/assets/css/app.css">
+    <link rel="stylesheet" href="{{('public/user/assets/css/app.css')}}">
     <!-- <link rel="stylesheet" href="./assets/sweetalert/alert.min.css"> -->
 
     <!-- SWIPER -->
@@ -28,26 +28,26 @@
 
     <!-- CUSTOM CSS -->
     <!-- DARKMODE CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/darkmode.css" >
+    <link rel="stylesheet" href="{{('public/user/assets/css/darkmode.css')}}" >
     <!-- SEARCH CSS -->
-     <link rel="stylesheet" href="public/user/assets/css/search.css" >
+     <link rel="stylesheet" href="{{('public/user/assets/css/search.css')}}" >
     {{-- RANGE JQUERY CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <!-- MODAL CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/modal.css" >
+    <link rel="stylesheet" href="{{('public/user/assets/css/modal.css')}}" >
     <!-- PAGINATION CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/pagination.css" >
+    <link rel="stylesheet" href="{{('public/user/assets/css/pagination.css')}}" >
     <!-- LOADING CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/loading.css">
+    <link rel="stylesheet" href="{{('public/user/assets/css/loading.css')}}">
      <!-- BACKTOP CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/backTop.css">
+    <link rel="stylesheet" href="{{('public/user/assets/css/backTop.css')}}">
      <!-- COURSE DETAIL CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/courseDetail.css">
+    <link rel="stylesheet" href="{{('public/user/assets/css/courseDetail.css')}}">
      <!-- INFO MANAGER CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/infoManager.css">
+    <link rel="stylesheet" href="{{('public/user/assets/css/infoManager.css')}}">
      <!-- LIST COURSE CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/listCourse.css">
-    <link rel="stylesheet" href="public/user/assets/css/custom.css">
+    <link rel="stylesheet" href="{{('public/user/assets/css/listCourse.css')}}">
+    <link rel="stylesheet" href="{{('public/user/assets/css/custom.css')}}">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <!-- CUSTOM CSS -->
     <title>ESTO</title>
@@ -116,7 +116,7 @@
     {{--DARK MODE ENDS --}}
 
     <!-- BACKTOP STARTS -->
-    <p id="button"></p>
+    {{-- <p id="button"></p> --}}
     <!-- BACKTOP ENDS -->
 
 
@@ -127,22 +127,22 @@
 
     <!-- JS  -->
     {{-- JQUERY --}}
-    <script src="public/user/assets/js/jquery.min.js">
-    </script>
+     <script src="{{('public/user/assets/js/jquery.min.js')}}">
+     </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     {{-- DARK MODE --}}
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
     {{-- DARK MODE BOOSTRAP --}}
-    <script src="public/user/assets/js/dark-mode-switch.min.js">
+    <script src="{{('public/user/assets/js/dark-mode-switch.min.js')}}">
     </script>
     {{-- DARK MODE --}}
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="public/user/assets/js/filter.js">
+    <script src="{{('public/user/assets/js/filter.js')}}">
     </script>
-    <script src="public/user/assets/js/simple.money.format.js">
+    <script src="{{('public/user/assets/js/simple.money.format.js')}}">
     </script>
 
     <script>
@@ -192,10 +192,43 @@
         });
     </script>
 
-    <script src="public/user/assets/js/main.js">
+    {{-- MESSEGER STARTS --}}
+<!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+<!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "104918645402384");
+    chatbox.setAttribute("attribution", "biz_inbox");
     </script>
-    <script src="public/user/assets/js/add-to-cart.js">
+
+    <!-- Your SDK code -->
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+        xfbml            : true,
+        version          : 'v12.0'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
     </script>
+    {{-- MESSEGER ENDS --}}
+    <script src="{{('public/user/assets/js/main.js')}}">
+    </script>
+    <script src="{{('public/user/assets/js/add-to-cart.js')}}">
+    </script>
+    
      <!-- JS  -->
 </body>
 

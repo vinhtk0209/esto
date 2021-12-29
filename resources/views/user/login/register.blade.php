@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Đăng ký</title>
     <base href="{{asset('')}}">
-    <link rel="stylesheet" href="public/register/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{('public/register/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap">
     <!-- Font Icon -->
-    <link rel="stylesheet" href="public/register/assets/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="{{('public/register/assets/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
     <!-- Main css -->
-    <link rel="stylesheet" href="public/register/assets/css/style.css">
-    <link rel="stylesheet" href="public/register/assets/css/loading.css">
+    <link rel="stylesheet" href="{{('public/register/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{('public/register/assets/css/loading.css')}}">
 </head>
 
 <body class="preLoading">
@@ -98,8 +98,8 @@
 
     <!-- JS -->
 
-    <script src="public/register/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="public/register/assets/js/main.js"></script>
+    <script src="{{('public/register/assets/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{('public/register/assets/js/main.js')}}"></script>
        <!-- JS -->
 </body>
 
