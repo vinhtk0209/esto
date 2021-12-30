@@ -22,4 +22,12 @@ class TaiKhoan extends Model
     {
         return $this->hasMany('App\Models\BaiThi', 'ID');
     }
+    public function rChungChi()
+    {
+        return $this->hasMany('App\Models\ChungChi', 'MACHUNGCHI');
+    }
+    public function rCTLopHoc()
+    {
+        return $this->hasMany('App\Models\CTLopHoc', 'ID');
+    }
 }
