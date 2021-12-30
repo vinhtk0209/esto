@@ -271,7 +271,7 @@
     }
 
     function imgchange(event) {
-      $("#anhkh").attr('src', URL.createObjectURL(event.target.files[0]));
+      $("#anh").attr('src', URL.createObjectURL(event.target.files[0]));
     }
   </script>
 
