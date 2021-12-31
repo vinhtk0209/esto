@@ -9,6 +9,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="admin/danhmuc/"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="admin/danhmuc/">Quản Lý Danh Mục</a></li>
+                            <li class="breadcrumb-item"><a href="admin/danhmuc/sua">Sửa Danh Mục</a></li>
                         </ol>
                     </nav>
                 </div>

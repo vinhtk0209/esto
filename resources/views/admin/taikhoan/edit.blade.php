@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xl-4 order-xl-2">
             <div class="card card-profile">
-                <img src="public/images/{{$taikhoan->ANHDAIDIEN}}" id="anh" class="card-img-top" width="200px" height="250px">
+                <img src="./images/{{$taikhoan->ANHDAIDIEN}}" id="anh" class="card-img-top" width="200px" height="250px">
             </div>
         </div>
         <div class="col-xl-8 order-xl-1">
@@ -100,9 +100,9 @@
                                         </select>
                             </div>
                         </div>
-                          
+
                         <div class="pl-lg-4">
-                            
+
                             @if($taikhoan->LOAITK==2)
                             <div class="form-group">
                                 <label class="form-control-label">Chi tiết cá nhân</label>
@@ -110,7 +110,7 @@
                             </div>
                             @endif
                         </div>
-                        
+
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Trạng thái</label>
@@ -151,19 +151,19 @@
                                     </th>
                                     <th scope="row">
                                     <div class="media align-items-center">
-                                        <img src="public/images/{{$cc->ANHCHUNGCHI}}" Width="120px" Height="100px">
+                                        <img src="./images/{{$cc->ANHCHUNGCHI}}" Width="120px" Height="100px">
                                     </div>
                                     </th>
                                     <th scope="row">
                                     <a href="admin/taikhoan/sua/chungchi/sua/{{$taikhoan->ID}}&macc={{$cc->MACHUNGCHI}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                     <a href="admin/taikhoan/sua/chungchi/xoa/{{$taikhoan->ID}}&macc={{$cc->MACHUNGCHI}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa tài khoản này?')"><i class="material-icons">&#xE872;</i></a>
                                     </th>
-                                </tr>         
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
-                </div>   
-                @endif 
+                </div>
+                @endif
                 </div>
             </div>
         </div>

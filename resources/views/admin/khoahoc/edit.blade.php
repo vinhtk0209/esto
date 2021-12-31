@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xl-4 order-xl-2">
             <div class="card card-profile">
-                <img src="public/user/assets/imgCourse/{{$khoahoc->ANH}}" id="anhkh" alt="Image placeholder" class="card-img-top">
+                <img src="./user/assets/imgCourse/{{$khoahoc->ANH}}" id="anhkh" alt="Image placeholder" class="card-img-top">
                 <div class="course-des">
                     <div class="name-course">
                         <h4 id="tenkhoahoc">{{$khoahoc->TENKH}}</h4>
@@ -142,13 +142,13 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Giới thiệu khóa học</label>
-                                <textarea rows="4" name="GIOITHIEUKH" class="form-control">{{$khoahoc->GIOITHIEUKH}}</textarea>
+                                <textarea rows="4" name="GIOITHIEUKH" class="form-control ckeditor">{{$khoahoc->GIOITHIEUKH}}</textarea>
                             </div>
                         </div>
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Chi tiết khóa học</label>
-                                <textarea rows="6" name="CHITIETKH" class="form-control">{{$khoahoc->CHITIETKH}}</textarea>
+                                <textarea rows="6" name="CHITIETKH" class="form-control ckeditor">{{$khoahoc->CHITIETKH}}</textarea>
                             </div>
                         </div>
                         <div class="row align-items-center">

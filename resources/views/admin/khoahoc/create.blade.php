@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-xl-4 order-xl-2">
                 <div class="card card-profile">
-                    <img src="public/images/image.png" id="anhkh" class="card-img-top" width="250px" height="160px">
+                    <img src="./images/image.png" id="anhkh" class="card-img-top" width="250px" height="160px">
                     <div class="course-des">
                         <div class="name-course">
                             <h4 id="tenkhoahoc"></h4>

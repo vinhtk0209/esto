@@ -94,6 +94,17 @@ body {
     padding: 20px 0;
 }
 
+.carpet {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 5px dashed;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+
 .nav-link a,
 .nav-item a {
     text-decoration: none;
@@ -178,7 +189,7 @@ section.category .list-category {
 section.category .list-category .list-item .sub-menu-category {
     position: absolute;
     left: 290px;
-    z-index: 9000;
+    z-index: 8;
     height: 100%;
     width: 100%;
     top: 0;
@@ -391,4 +402,107 @@ section.courses {
 
 .btn-prev-courses {
     left: 150px;
+}
+
+
+/* HEADER */
+.header .drop-info-user-container {
+    display: flex;
+    align-items: center;
+}
+
+.header .user-info-header {
+    position: relative;
+}
+
+.drop-info-user-container::before {
+    content: '';
+    position: absolute;
+    width: 180px;
+    top: 55px;
+    height: 20px;
+
+}
+
+.drop-info-user-container:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+.header .drop-info-user-container .drop-info-user {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: right;
+    color: #353535;
+    transition: all .4s ease;
+}
+
+.header .drop-info-user-container .drop-info-user:hover {
+    color: var(--active-course-bg-color);
+}
+
+.header .drop-info-user-container .drop-info-user .user {
+    text-align: right;
+    margin-bottom: 0;
+    display: block;
+    color: #353535;
+    transition: all .4s ease;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.header .drop-info-user-container .drop-info-user .carpet {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translate(50%, -50%);
+}
+
+.header .drop-info-user-container .drop-info-user-ava {
+    margin-left: 10px;
+}
+
+.header .drop-info-user-container .drop-info-user-ava img {
+    max-width: 40px;
+    border-radius: 50%;
+    min-height: 40px;
+}
+
+.dropdown-menu {
+    padding: 10px 5px;
+    top: 75px;
+    right: 190px;
+    min-width: 150px;
+}
+
+
+.dropdown-item {
+    padding: 10px;
+}
+
+.dropdown-item:active {
+    background: transparent;
+
+}
+
+.header .dropdown-menu-list .dropdown-item a {
+    display: block;
+    height: 100%;
+    color: #000;
+    transition: all .3s ease;
+}
+
+.header .dropdown-menu-list .dropdown-item a i {
+    margin-right: 5px;
+}
+
+.header .dropdown-menu-list .dropdown-item a:focus {
+    outline: none;
+}
+
+.header .dropdown-menu-list .dropdown-item a:hover {
+    color: var(--active-course-bg-color);
 }

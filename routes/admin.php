@@ -16,15 +16,15 @@ use Illuminate\Contracts\Container;
 |
 */
 
-Route::get('/admin', [
-    'as' =>  'dangnhap.form.login',
-    'uses' => 'App\Http\Controllers\admin\LoginController@getLogin'
-]);
+// Route::get('/admin', [
+//     'as' =>  'dangnhap.login',
+//     'uses' => 'App\Http\Controllers\admin\LoginController@getLogin'
+// ]);
 
-Route::post('/admin', [
-    'as' =>  'dangnhap.login',
-    'uses' => 'App\Http\Controllers\admin\LoginController@postLogin'
-]);
+// Route::post('/admin', [
+//     'as' =>  'dangnhap.login',
+//     'uses' => 'App\Http\Controllers\admin\LoginController@postLogin'
+// ]);
 
 // Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -126,16 +126,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('taikhoan')->name('taikhoan.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\TaiKhoanController@index');
-        Route::get('/them', 'App\Http\Controllers\admin\TaiKhoanController@create');        
+        Route::get('/them', 'App\Http\Controllers\admin\TaiKhoanController@create');
         Route::post('/them', 'App\Http\Controllers\admin\TaiKhoanController@store');
-        Route::get('/sua/chungchi/{id}', 'App\Http\Controllers\admin\TaiKhoanController@createChungChi');   
+        Route::get('/sua/chungchi/{id}', 'App\Http\Controllers\admin\TaiKhoanController@createChungChi');
         Route::post('/sua/chungchi/{id}', 'App\Http\Controllers\admin\TaiKhoanController@storeChungChi');
-        Route::get('/sua/{id}', 'App\Http\Controllers\admin\TaiKhoanController@edit');        
-        Route::post('/sua/{id}', 'App\Http\Controllers\admin\TaiKhoanController@update');           
+        Route::get('/sua/{id}', 'App\Http\Controllers\admin\TaiKhoanController@edit');
+        Route::post('/sua/{id}', 'App\Http\Controllers\admin\TaiKhoanController@update');
         Route::get('/xoa/{id}', 'App\Http\Controllers\admin\TaiKhoanController@delete');
-        Route::get('/sua/chungchi/sua/{id}&macc={macc}', 'App\Http\Controllers\admin\TaiKhoanController@editChungChi');   
+        Route::get('/sua/chungchi/sua/{id}&macc={macc}', 'App\Http\Controllers\admin\TaiKhoanController@editChungChi');
         Route::post('/sua/chungchi/sua/{id}&macc={macc}', 'App\Http\Controllers\admin\TaiKhoanController@updateChungChi');
-        Route::get('/sua/chungchi/xoa/{id}&macc={macc}', 'App\Http\Controllers\admin\TaiKhoanController@deleteChungChi'); 
+        Route::get('/sua/chungchi/xoa/{id}&macc={macc}', 'App\Http\Controllers\admin\TaiKhoanController@deleteChungChi');
         Route::get('/search={id}', 'App\Http\Controllers\admin\TaiKhoanController@search');
     });
 
