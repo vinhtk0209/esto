@@ -51,6 +51,18 @@ Route::get('/listCourse/{courseCate}', [
     'as' => 'home.listCourse',
     'uses' => 'App\Http\Controllers\user\productController@listCourse'
 ]);
+Route::get('/updateProfile', [
+    'as' => 'update.profile',
+    'uses' => 'App\Http\Controllers\user\userController@showFormUpdateProfile'
+]);
+Route::post('/updateProfile/{id}', [
+    'as' => 'post.update.profile',
+    'uses' => 'App\Http\Controllers\user\userController@updateProfile'
+]);
+Route::get('/showMyCourse', [
+    'as' => 'show.my.course',
+    'uses' => 'App\Http\Controllers\user\userController@showMyCourse'
+]);
 
 //XAC NHAN EMAIL
 Route::get('/confirmEmail', [

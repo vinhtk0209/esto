@@ -17,7 +17,7 @@ use Illuminate\Contracts\Container;
 */
 
 Route::get('/admin', [
-    'as' =>  'dangnhap.login',
+    'as' =>  'dangnhap.form.login',
     'uses' => 'App\Http\Controllers\admin\LoginController@getLogin'
 ]);
 
