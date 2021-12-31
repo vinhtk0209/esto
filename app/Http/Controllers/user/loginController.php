@@ -191,13 +191,13 @@ class loginController extends Controller
 
     public function loginFacebook()
     {
-        config(['services.facebook.redirect' => 'https://esto.com/esto/lg/facebook/callback']);
+        config(['services.facebook.redirect' => 'https://esto.com/lg/facebook/callback']);
         return Socialite::driver('facebook')->redirect();
     }
 
     public function callbackFacebook()
     {
-        config(['services.facebook.redirect' => 'https://esto.com/esto/lg/facebook/callback']);
+        config(['services.facebook.redirect' => 'https://esto.com/lg/facebook/callback']);
         $provider = Socialite::driver('facebook')->stateless()->user();
         $authUser = Taikhoan::join('social', 'social.USER', '=', 'taikhoan.ID')
             ->where('social.PROVIDER', '=', 'FACEBOOK')
@@ -213,13 +213,13 @@ class loginController extends Controller
 
     public function loginGoogle()
     {
-        config(['services.google.redirect' => 'https://esto.com/esto/lg/google/callback']);
+        config(['services.google.redirect' => 'https://esto.com/lg/google/callback']);
         return Socialite::driver('google')->redirect();
     }
 
     public function callbackGoogle()
     {
-        config(['services.google.redirect' => 'https://esto.com/esto/lg/google/callback']);
+        config(['services.google.redirect' => 'https://esto.com/lg/google/callback']);
         $provider = Socialite::driver('google')->stateless()->user();
         $authUser = Taikhoan::join('social', 'social.USER', '=', 'taikhoan.ID')
             ->where('social.PROVIDER', '=', 'GOOGLE')

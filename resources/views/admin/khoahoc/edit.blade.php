@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xl-4 order-xl-2">
             <div class="card card-profile">
-                <img src="public/user/assets/imgCourse/{{$khoahoc->ANH}}" id="anhkh" alt="Image placeholder" class="card-img-top">
+                <img src="./user/assets/imgCourse/{{$khoahoc->ANH}}" id="anhkh" alt="Image placeholder" class="card-img-top">
                 <div class="course-des">
                     <div class="name-course">
                         <h4 id="tenkhoahoc">{{$khoahoc->TENKH}}</h4>

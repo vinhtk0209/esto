@@ -47,11 +47,11 @@
             </ul>
             <div class="swiper slide-category">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="{{('public/user/assets/img/slide-3.png')}}">
+                    <div class="swiper-slide"><img src="{{('./user/assets/img/slide-3.png')}}">
                     </div>
-                    <div class="swiper-slide"><img src="{{('public/user/assets/img/slide-4.png')}}">
+                    <div class="swiper-slide"><img src="{{('./user/assets/img/slide-4.png')}}">
                     </div>
-                    <div class="swiper-slide"><img src="{{('public/user/assets/img/slide-5.png')}}"></div>
+                    <div class="swiper-slide"><img src="{{('./user/assets/img/slide-5.png')}}"></div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>

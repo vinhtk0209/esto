@@ -6,7 +6,7 @@
             <a href='{{URL::to('/courseDetail/'.$course->MAKH)}}'>
                 <div class="img-search-result-container">
                     <div class="img-search-result">
-                        <img  src="{{('public/user/assets/imgCourse')}}/{{$course->ANH}}" alt='{{$course->TENKH}}' class="img-responsive">
+                        <img  src="{{('./user/assets/imgCourse')}}/{{$course->ANH}}" alt='{{$course->TENKH}}' class="img-responsive">
                     </div>
                 </div>
                 <div class="body-search-result">
