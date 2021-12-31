@@ -16,9 +16,9 @@
 
 
     <!-- <link rel="stylesheet" href="./assets/css/main.css"> -->
-    <link rel="stylesheet" href="public/user/assets/css/main.css">
+    <link rel="stylesheet" href="./user/assets/css/main.css">
     <!-- <link rel="stylesheet" href="./assets/css/app.css"> -->
-    <link rel="stylesheet" href="public/user/assets/css/app.css">
+    <link rel="stylesheet" href="./user/assets/css/app.css">
     <!-- <link rel="stylesheet" href="./assets/sweetalert/alert.min.css"> -->
 
     <!-- SWIPER -->
@@ -30,25 +30,34 @@
     {{-- RANGE JQUERY CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <!-- MODAL CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/modal.css" >
+    <link rel="stylesheet" href="./user/assets/css/modal.css" >
     <!-- PAGINATION CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/pagination.css" >
+    <link rel="stylesheet" href="./user/assets/css/pagination.css" >
     <!-- LOADING CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/loading.css">
+    <link rel="stylesheet" href="./user/assets/css/loading.css">
      <!-- BACKTOP CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/backTop.css">
+    <link rel="stylesheet" href="./user/assets/css/backTop.css">
      <!-- COURSE DETAIL CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/courseDetail.css">
+    <link rel="stylesheet" href="./user/assets/css/courseDetail.css">
      <!-- INFO MANAGER CSS -->
-    <link rel="stylesheet" href="public/user/assets/css/infoManager.css">
+    <link rel="stylesheet" href="./user/assets/css/infoManager.css">
      <!-- LIST COURSE CSS -->
 
-    <link rel="stylesheet" href="public/user/assets/css/listCourse.css">
-    <link rel="stylesheet" href="public/user/assets/css/custom.css">
+    <link rel="stylesheet" href="./user/assets/css/listCourse.css">
+    <link rel="stylesheet" href="./user/assets/css/custom.css">
 
-    <link rel="stylesheet" href="public/user/assets/css/listCourse.css">
-    <link rel="stylesheet" href="public/user/assets/css/custom.css">
+    <link rel="stylesheet" href="./user/assets/css/listCourse.css">
+    <link rel="stylesheet" href="./user/assets/css/custom.css">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- CUSTOM CSS -->
     <title>ESTO</title>
@@ -122,15 +131,15 @@
 
     <!-- JS  -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="public/user/assets/js/jquery.min.js">
+    <script src="./user/assets/js/jquery.min.js">
     </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="public/user/assets/js/filter.js">
+    <script src="./user/assets/js/filter.js">
     </script>
-    <script src="public/user/assets/js/simple.money.format.js">
+    <script src="./user/assets/js/simple.money.format.js">
     </script>
     <script>
         $(document).ready(function () {
@@ -158,9 +167,9 @@
          });
     </script>
     
-    <script src="public/user/assets/js/main.js"></script>
-    <script src="public/user/assets/js/main.js"></script>
-    <script src="public/user/assets/js/add-to-cart.js">
+    <script src="./user/assets/js/main.js"></script>
+    <script src="./user/assets/js/main.js"></script>
+    <script src="./user/assets/js/add-to-cart.js">
     </script>
      <!-- JS  -->
 </body>

@@ -53,8 +53,16 @@
                                     <a href="{{route('login.login')}}" class="login-btn">Đăng
                                         nhập</a>
                                 @else
-                                        
-                                    <a href="javascript:void(0)" class="register-btn">{{ Session::get('customer')->HOTEN }}</a>
+                                    <span class="dropdown show">
+                                        <a class="btn register-btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{ Session::get('customer')->HOTEN }}
+                                        </a>
+                                    
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="{{ route('update.profile') }}">Cập nhật thông tin</a>
+                                            <a class="dropdown-item" href="{{ route('show.my.course') }}">Các khóa học đã mua</a>
+                                        </div>
+                                    </span>
                                     <a href="{{route('logout')}}" class="login-btn">Đăng xuất</a>
                                 @endif
                             </div>
