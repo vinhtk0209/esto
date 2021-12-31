@@ -1,6 +1,6 @@
-   <!-- SECTION BEST-SELLER STARTS -->
+    <!-- SECTION BEST-SELLER STARTS -->
     <section class="best-seller mb-16">
-       <div class="best-seller-head">
+        <div class="best-seller-head">
            <div class="container">
                <div class="row">
                    <div class="col-lg-12">
@@ -43,7 +43,8 @@
                                        </p>
                                    </div>
                                    <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
-                               </div>
+                                   <p>{{number_format($course->DONGIA - ($course->DONGIA * $course->TYLEKM / 100))}}</p>
+                                </div>
                            </div>
                        </a>
                    </li>
@@ -120,7 +121,7 @@
                                 {{-- <div class="price price-discount">
                                     <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
                                 </div> --}}
-                             </div>
+                            </div>
                             <div class="price-course d-flex flex-space">
                                 <div class="rate">
                                     <p>
@@ -133,6 +134,7 @@
                                     </p>
                                 </div>
                                 <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
+                                
                             </div>
                         </div>
                     </a>

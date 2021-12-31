@@ -79,21 +79,21 @@
                 <span class="btn-custom-close ">X</span>
             </div>
             <header class="modal-custom-header">
-                   <h2 class="modal-custom-title"> Vào phòng thi</h2>
+                <h2 class="modal-custom-title"> Vào phòng thi</h2>
             </header>
             <div class="modal-custom-body">
-              <form  method="POST" action="{{ route('productController.handleExam') }}">
-                @csrf
-                <div class="form-group">
-                  <label for="code-to-test" class="label-custom">Mã phòng thi:</label>
-                  <div class="form-row">
-                    <input type="text" name="code-to-test" id="code-to-test" class="code-to-test" placeholder="Nhập mã phòng thi..." required>
-                  </div>
-                </div>
-                <div class="form-group ">
-                    <input type="submit" name="submit" id="btn-to-test" class="btn-to-test" value="Vào thi" />
-                </div>
-              </form>
+                <form  method="POST" action="{{ route('productController.handleExam') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="code-to-test" class="label-custom">Mã phòng thi:</label>
+                        <div class="form-row">
+                            <input type="text" name="code-to-test" id="code-to-test" class="code-to-test" placeholder="Nhập mã phòng thi..." required>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <input type="submit" name="submit" id="btn-to-test" class="btn-to-test" value="Vào thi" />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -157,6 +157,7 @@
 
          });
     </script>
+    
     
     <script src="public/user/assets/js/main.js"></script>
     <script src="public/user/assets/js/main.js"></script>

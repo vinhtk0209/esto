@@ -9,7 +9,7 @@ class KhuyenMai extends Model
 {
     protected $table = "khuyenmai";
     protected $primaryKey = 'MAKM';
-    //protected $casts = ['MATT'=>'boolean'];
+    protected $fillable = ['TENKM', 'TYLEKM', 'NGAYBD', 'NGAYKT', 'MATT'];
     public $timestamps = false;
     
 

@@ -187,7 +187,7 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{{session('login')==null?'public/images/avatar.png':session('login')->ANHDAIDIEN==''?'public/images/avatar.png':'public/images/'.session('login')->ANHDAIDIEN}}">
+                    <img alt="Image placeholder" src="{{(session('login')==null?'public/images/avatar.png':session('login')->ANHDAIDIEN=='')?'public/images/avatar.png':'public/images/'.session('login')->ANHDAIDIEN}}">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{session('login')==null?'':session('login')->HOTEN}}</span>
@@ -272,6 +272,16 @@
 
     function imgchange(event) {
       $("#anhkh").attr('src', URL.createObjectURL(event.target.files[0]));
+    }
+  </script>
+  <script>
+    function toggle(oInput) {
+      var aInputs = document.getElementsByTagName('input');
+      for (var i=0;i<aInputs.length;i++) {
+          if (aInputs[i] != oInput) {
+              aInputs[i].checked = oInput.checked;
+          }
+      }
     }
   </script>
 
