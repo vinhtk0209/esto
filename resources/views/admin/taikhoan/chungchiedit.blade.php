@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-xl-4 order-xl-2">
             <div class="card card-profile">
-                <img src="public/images/image.png" id="anhtk" class="card-img-top" width="200px" height="250px">
+                <img src="public/images/image.png" id="anh" class="card-img-top" width="200px" height="250px">
             </div>
         </div>
         <div class="col-xl-8 order-xl-1">
@@ -58,7 +58,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Ảnh chứng chỉ</label>
-                                <input type="file" id="ANH13" name="ANHCC" class="form-control"></br>                                
+                                <input type="file" id="ANH13" name="ANHCC" class="form-control" onchange="imgchange(event)"></br>                                
                                 
                             </div>
                         </div> 

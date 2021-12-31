@@ -83,13 +83,13 @@
                                         <div class="dropdown-menu">
                                             <ul class="dropdown-menu-list " >
                                                 <li class="dropdown-item">
-                                                    <a href="">
+                                                    <a href="{{ route('update.profile') }}">
                                                         <i class="fas fa-edit"></i>
                                                         Chỉnh sửa thông tin
                                                     </a>
                                                 </li>
                                                 <li class="dropdown-item">
-                                                    <a href="">
+                                                    <a href="{{ route('show.my.course') }}">
                                                         <i class="fas fa-list-alt"></i>
                                                         Khoá học của tôi
                                                     </a>

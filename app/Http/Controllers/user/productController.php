@@ -130,6 +130,14 @@ class productController extends Controller
     {
         $product = KhoaHoc::find($request->id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        if (!is_null($oldCart)) {
+            $ids = array_keys($oldCart->items);
+            if (in_array($request->id, $ids)) {
+                return response()->json([
+                    'status' => 403
+                ]);
+            }
+        }
         $cart = new Cart($oldCart);
         $cart->add($product, $product->MAKH);
         $request->session()->put('cart', $cart);
@@ -150,28 +158,6 @@ class productController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->deleteItem($id);
-        if (count($cart->items) > 0) {
-            Session::put('cart', $cart);
-        } else {
-            Session::forget('cart');
-        }
-        return redirect()->back();
-    }
-
-    public function increaseItem($id)
-    {
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->increaseItemByOne($id);
-        Session::put('cart', $cart);
-        return redirect()->back();
-    }
-
-    public function decreaseItem($id)
-    {
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->decreaseItemByOne($id);
         if (count($cart->items) > 0) {
             Session::put('cart', $cart);
         } else {
