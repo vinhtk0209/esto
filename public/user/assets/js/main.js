@@ -80,6 +80,7 @@ const swiperBusinessCourse = new Swiper(".list-business-courses", {
         prevEl: ".swiper-button-prev",
     },
 });
+
 // SWIPER SECTION RELATED COURSE
 const swiperRelatedCourse = new Swiper(".list-related-courses", {
     slidesPerView: 3,
