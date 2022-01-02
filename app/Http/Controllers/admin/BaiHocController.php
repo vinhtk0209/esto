@@ -10,6 +10,7 @@ use App\Models\ChuongHoc;
 use App\Models\KhoaHoc;
 use App\Models\LopHoc;
 use App\Models\LopHoc_BaiHoc;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class BaiHocController extends Controller
@@ -58,7 +59,18 @@ class BaiHocController extends Controller
             $lophoc_baihoc->save();
         } else {
             $baihoc = BaiHoc::find($baihoc->MABH);
-            $baihoc->VIDEO = $request->VIDEO;
+            if ($request->hasFile('VIDEO')) {
+                $file = $request->file('VIDEO');
+                $name = $file->getClientOriginalName();
+                $hinh = Str::random(4) . "_" . $name;
+                while (file_exists("public/video/" . $hinh)) {
+                    $hinh = Str::random(4) . "_" . $name;
+                }
+                $file->move("public/video/", $hinh);
+                $baihoc->VIDEO = $hinh;
+            } else {
+                $baihoc->VIDEO = "";
+            }
             $baihoc->HOCTHU = $request->HOCTHU;
             $baihoc->save();
         }
@@ -133,7 +145,18 @@ class BaiHocController extends Controller
                 ->where('MALH', $lh)->limit(1)
                 ->update(['TGBD' => $request->TGBD, 'TGBD' => $request->TGKT, 'LINK' => $request->LINK]);
         } else {
-            $baihoc->VIDEO = $request->VIDEO;
+            if ($request->hasFile('VIDEO')) {
+                $file = $request->file('VIDEO');
+                $name = $file->getClientOriginalName();
+                $hinh = Str::random(4) . "_" . $name;
+                while (file_exists("public/video/" . $hinh)) {
+                    $hinh = Str::random(4) . "_" . $name;
+                }
+                $file->move("public/video/", $hinh);
+                $baihoc->VIDEO = $hinh;
+            } else {
+                $baihoc->VIDEO = "";
+            }
             $baihoc->HOCTHU = $request->HOCTHU;
         }
         $baihoc->save();

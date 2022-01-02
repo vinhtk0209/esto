@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="admin/baihoc/them" method="POST" enctype="multipart/form-data">
+                    <form action="admin/baihoc/them" id="formthembaihoc" method="POST" enctype="multipart/form-data">
                         @csrf
                         <h6 class="heading-small text-muted mb-4">Thông tin bài học</h6>
                         @if (session('thongbao'))
@@ -70,7 +70,11 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Video</label>
-                                            <input type="file" id="VIDEO" name="VIDEO" class="form-control">
+                                            <input type="file" id="VIDEO" name="VIDEO" class="form-control" onchange="videochange(event)">
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#formvideo" data-whatever="@mdo">Xem video</button>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -110,6 +114,23 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="formvideo" tabindex="-1" role="dialog" aria-labelledby="formvideoLabel" aria-hidden="true">
+    <div class="modal-dialog"  style="max-width: 50%;" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="640" height="360" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+                    <source src="./video/" type="video/mp4" />
+                    <source src="public/video/" type="video/webm" />
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                </video>
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xl-4 order-xl-2">
             <div class="card card-profile">
-                <img src="public/images/image.png" id="anhtk" class="card-img-top" width="200px" height="250px">
+                <img src="./images/image.png" id="anhtk" class="card-img-top" width="200px" height="250px">
             </div>
         </div>
         <div class="col-xl-8 order-xl-1">
@@ -104,7 +104,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Hình ảnh</label>
-                                <input type="file" id="ANH" name="ANH" class="form-control" img src="public/images/{{$taikhoan->ANHDAIDIEN}}"></br>                                
+                                <input type="file" id="ANH" name="ANH" class="form-control" img src="./images/{{$taikhoan->ANHDAIDIEN}}"></br>                                
                                 
                             </div>
                             @if($taikhoan->LOAITK==2)
@@ -155,7 +155,7 @@
                                     </th>
                                     <th scope="row">
                                     <div class="media align-items-center">
-                                        <img src="public/images/{{$cc->ANHCHUNGCHI}}" Width="120px" Height="100px">
+                                        <img src="./images/{{$cc->ANHCHUNGCHI}}" Width="120px" Height="100px">
                                     </div>
                                     </th>
                                     <th scope="row">

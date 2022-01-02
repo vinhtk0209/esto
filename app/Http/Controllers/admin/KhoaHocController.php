@@ -32,6 +32,16 @@ class KhoaHocController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, 
+        [
+            'TENKH' => 'unique:KhoaHoc,TENKH|min:10|max:100'
+        ], 
+        [            
+            'TENKH.unique' => 'Tên khóa học đã tồn tại',
+            'TENKH.min' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự',
+            'TENKH.max' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự'
+        ]);
+
         $khoahoc = new KhoaHoc();
         $khoahoc->TENKH = $request->TENKH;
         $khoahoc->DONGIA = $request->DONGIA;
@@ -40,7 +50,6 @@ class KhoaHocController extends Controller
         if ($request->hinhthuc == '1') {
 
             $khoahoc->TRUCTUYEN = true;
-
         } else {
             $khoahoc->TRUCTUYEN = false;
         }
@@ -131,7 +140,6 @@ class KhoaHocController extends Controller
         if ($request->hinhthuc == '1') {
 
             $khoahoc->TRUCTUYEN = true;
-
         } else {
             $khoahoc->TRUCTUYEN = false;
         }
@@ -160,47 +168,54 @@ class KhoaHocController extends Controller
         return redirect('admin/khoahoc/')->with('thongbao', 'Xóa thành công!');
     }
 
-
     public function search(Request $request)
     {
-        if ($request->ajax()) {
-            $output = '';
-
-            if (empty($request->keyword)) $products = KhoaHoc::all();
-            else $products = KhoaHoc::where('TENKH', 'LIKE', '%' . $request->keyword . '%')->get();
-            if ($products) {
-                foreach ($products as $key => $product) {
-                    $output .= '<tr>
+        $outputKH = 'none';
+        $outputPage = 'all';
+        if (empty($request->keyword)) $khoahoc = DB::table('KhoaHoc')
+            ->join('DanhMuc', 'DanhMuc.MADM', '=', 'KhoaHoc.MADM')
+            ->orderBy('MAKH', 'desc')->paginate(10);
+        else {
+            $khoahoc = DB::table('KhoaHoc')
+                ->join('DanhMuc', 'DanhMuc.MADM', '=', 'KhoaHoc.MADM')
+                ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'KhoaHoc.MAGV')
+                ->where('TENKH', 'LIKE', '%' . $request->keyword . '%')
+                ->orWhere('TENDM', 'LIKE', '%' . $request->keyword . '%')
+                ->orWhere('HOTEN', 'LIKE', '%' . $request->keyword . '%')
+                ->orWhere('DONGIA', '<=', $request->keyword)
+                ->orderBy('MAKH', 'desc')->get();
+            $outputPage = 'none';
+        }
+        foreach ($khoahoc as $kh) {
+            $outputKH .= '<tr>
                                         <th scope="row">
                                             <div class="media align-items-center">
-                                                <img src="public/user/assets/imgCourse/' . $product->ANH . '" width="90px" height="50px">
+                                                <img src="public/user/assets/imgCourse/' . $kh->ANH . '" width="90px" height="50px">
                                             </div>
                                         </th>
                                         <td class="budget">
-                                        ' . substr($product->TENKH, 0, 30) . '
+                                        ' . substr($kh->TENKH, 0, 30) . '
                                         </td>
                                         <td class="budget">
-                                        ' . $product->DONGIA . '
+                                        ' . $kh->DONGIA . '
                                         </td>
                                         <td class="budget">
-                                        ' . substr($product->GIOITHIEUKH, 0, 50) . '
+                                        ' . substr($kh->GIOITHIEUKH, 0, 50) . '
                                         </td>
                                         <td class="budget">
-                                        ' . $product->rDanhMuc->TENDM . '
+                                        ' . $kh->TENDM . '
                                         </td>
                                         <td class="budget">
-                                        ' . ($product->TRUCTUYEN == 1 ? 'Trực tuyến' : 'Video') . '
+                                        ' . ($kh->TRUCTUYEN == 1 ? 'Trực tuyến' : 'Video') . '
                                         </td>
-                                        <td class="center">
-                                            <a href="admin/khoahoc/sua/{{$product->MAKH}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                            <a href="admin/khoahoc/xoa/{{$product->MAKH}}" class="delete text-red" title="Delete" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a>
+                                        <td class="budget">
+                                        <a href="admin/khoahoc/sua/' . $kh->MAKH . '" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                        <a href="admin/khoahoc/xoa/' . $kh->MAKH . '" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm(' . "Bạn có muốn xóa mục này?" . ')"><i class="material-icons">&#xE872;</i></a>
                                         </td>
                                     </tr>';
-                }
-            }
-
-            return response()->json($output);
         }
+        $outputKH = mb_convert_encoding($outputKH, "UTF-8", "auto");
+        $output = array($outputKH, $outputPage);
+        return response()->json($output);
     }
 }
-

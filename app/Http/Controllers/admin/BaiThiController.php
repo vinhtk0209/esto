@@ -58,6 +58,42 @@ class BaiThiController extends Controller
         return response()->json($output);
     }
 
+    public function monhoc(Request $request)
+    {
+        $output = "none";
+        if ($request->key < 0) $cauhoi = CauHoi::all();
+        else $cauhoi = CauHoi::where('MADM', $request->key)->get();
+        foreach ($cauhoi as $ch) {
+            $output .= '<tr>
+            <td class="budget">
+                <input type="checkbox" name="ids[]" value="' . $ch->MACH . '">
+            </td>
+            <td class="budget">
+                ' . $ch->NOIDUNG . '
+            </td>
+            <td class="budget">
+                ' . $ch->A . '
+            </td>
+            <td class="budget">
+                ' . $ch->B . '
+            </td>
+            <td class="budget">
+                ' . $ch->C . '
+            </td>
+            <td class="budget">
+                ' . $ch->D . '
+            </td>
+            <td class="budget">
+                ' . $ch->CAUDUNG . '
+            </td>
+            <td class="budget">
+                ' . $ch->rDanhMuc->TENDM . '
+            </td>
+        </tr>';
+        }
+        return response()->json($output);
+    }
+
     public function store(Request $request, $id)
     {
         $MAKH = $request->MAKHbaithi;
@@ -78,7 +114,9 @@ class BaiThiController extends Controller
                 ->update(['MABT' => $baithi->MABT]);
         }
 
-        return redirect('admin/baithi/them')->with('thongbao', 'Thêm thành công!');
+        DB::table('CTBaiThi')->whereNull('MABT')->update(['MABT' => $baithi->MABT]);
+
+        return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Thêm thành công!');
     }
 
     public function edit($id)
@@ -89,7 +127,63 @@ class BaiThiController extends Controller
             ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
             ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
             ->where('MABT', $id)->get();
-        return view('admin.baithi.edit', compact('khoahoc', 'baithi', 'baihoc'));
+        $cauhoi = DB::table('CTBaiThi')
+            ->join('CauHoi', 'CTBaiThi.MACH', '=', 'CauHoi.MACH')
+            ->whereNull('MABT')
+            ->orwhere('MABT', $baithi->MABT)->get();
+        return view('admin.baithi.edit', compact('khoahoc', 'cauhoi', 'baithi', 'baihoc', 'id'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $MAKH = $request->MAKHbaithi;
+        $khoahoc = KhoaHoc::find($MAKH);
+        $baithi = BaiThi::find($id);
+        $baithi->TENBT = $request->TENBT;
+        if ($id >= 0) {
+            $baithi->TGBD = $request->TGBD;
+            $baithi->TGKT = $request->TGKT;
+            $baithi->save();
+        } else {
+            $baithi->save();
+            DB::table('BaiHoc')
+                ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
+                ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
+                ->where('KhoaHoc.MAKH', $khoahoc->MAKH)
+                ->update(['MABT' => $baithi->MABT]);
+        }
+
+        DB::table('CTBaiThi')->whereNull('MABT')->update(['MABT' => $baithi->MABT]);
+
+        return redirect('admin/baithi/sua/' . $id)->with('thongbao', 'Sửa thành công!');
+    }
+
+    public function delete($id)
+    {
+        $baithi = BaiThi::find($id);
+        $baithi->delete();
+
+        return redirect('admin/baithi/')->with('thongbao', 'Xóa thành công!');
+    }
+
+    public function indexCauHoi($id)
+    {
+        $danhmuc = DanhMuc::where('MADMCHA', '>', '0')->get();
+        $cauhoi = CauHoi::all();
+        return view('admin.cauhoi.index', compact('danhmuc', 'cauhoi', 'id'));
+    }
+
+    public function indexPostCauHoi(Request $request, $id)
+    {
+        $dsch = $request->get('ids');
+        foreach ($dsch as $ch) {
+            $ctbaithi = new CTBaiThi();
+            $ctbaithi->MACH = $ch;
+            $ctbaithi->save();
+        }
+
+        if ($id < 0) return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
+        return redirect('admin/baithi/sua/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
     }
 
     public function createCauHoi($id)
@@ -114,18 +208,84 @@ class BaiThiController extends Controller
         $ctbaithi->MACH = $cauhoi->MACH;
         $ctbaithi->save();
 
-        return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
+        if ($id < 0) return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
+        return redirect('admin/baithi/sua/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
     }
 
-    public function update(Request $request, $id)
+    public function editCauHoi($id, $mach)
     {
+        $danhmuc = DanhMuc::where('MADMCHA', '>', '0')->get();
+        $cauhoi = CauHoi::find($mach);
+        return view('admin.cauhoi.edit', compact('danhmuc', 'cauhoi', 'id', 'mach'));
     }
 
-    public function delete($id)
+    public function updateCauHoi(Request $request, $id, $mach)
     {
-        $baithi = BaiThi::find($id);
-        $baithi->delete();
+        $cauhoi = CauHoi::find($mach);
+        $cauhoi->NOIDUNG = $request->NOIDUNG;
+        $cauhoi->A = $request->A;
+        $cauhoi->B = $request->B;
+        $cauhoi->C = $request->C;
+        $cauhoi->D = $request->D;
+        $cauhoi->CAUDUNG = $request->CAUDUNG;
+        $cauhoi->MADM = $request->MADM;
+        $cauhoi->save();
 
-        return redirect('admin/baithi/')->with('thongbao', 'Xóa thành công!');
+        return redirect('admin/baithi/them/' . $id . '/cauhoi/sua/' . $mach)->with('thongbao', 'Sửa câu hỏi thành công!');
+    }
+
+    public function deleteCauHoi($id, $mach)
+    {
+        if ($id < 0)
+            DB::table('CTBaiThi')->whereNull('MABT')->where('MACH', $mach)->delete();
+        else DB::table('CTBaiThi')->where('MABT', $id)->where('MACH', $mach)->delete();
+
+        if ($id < 0) return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Xóa câu hỏi thành công!');
+        return redirect('admin/baithi/sua/' . $id)->with('thongbao', 'Xóa câu hỏi thành công!');
+    }
+
+    public function search(Request $request)
+    {
+        $outputCH = 'none';
+        $outputPage = 'all';
+        if (empty($request->keyword)) $cauhoi = DB::table('CauHoi')
+            ->join('DanhMuc', 'DanhMuc.MADM', '=', 'CauHoi.MADM')->get();
+        else {
+            $cauhoi = DB::table('CauHoi')
+                ->join('DanhMuc', 'DanhMuc.MADM', '=', 'CauHoi.MADM')
+                ->where('NOIDUNG', 'LIKE', '%' . $request->keyword . '%')->get();
+            $outputPage = 'none';
+        }
+        foreach ($cauhoi as $ch) {
+            $outputCH .= '<tr>
+            <td class="budget">
+                <input type="checkbox" name="ids[]" value="'.$ch->MACH.'">
+            </td>
+            <td class="budget">
+                '.$ch->NOIDUNG.'
+            </td>
+            <td class="budget">
+                '.$ch->A.'
+            </td>
+            <td class="budget">
+                '.$ch->B.'
+            </td>
+            <td class="budget">
+                '.$ch->C.'
+            </td>
+            <td class="budget">
+                '.$ch->D.'
+            </td>
+            <td class="budget">
+                '.$ch->CAUDUNG.'
+            </td>
+            <td class="budget">
+                '.$ch->TENDM.'
+            </td>
+        </tr>';
+        }
+        $outputCH = mb_convert_encoding($outputCH, "UTF-8", "auto");
+        $output = array($outputCH, $outputPage);
+        return response()->json($output);
     }
 }
