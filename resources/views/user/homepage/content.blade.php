@@ -17,7 +17,7 @@
                        <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                            <div class="img-course">
                                <img class="img-responsive "
-                                   src="{{asset('user/assets/imgCourse')}}/{{$course->ANH}}"
+                                    src="{{('./user/assets/imgCourse')}}/{{$course->ANH}}"
                                    alt="{{$course->TENKH}}">
                            </div>
                            <div class="course-des">
@@ -107,7 +107,7 @@
                     <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                         <div class="img-course">
                             <img class="img-responsive "
-                                src="{{asset('user/assets/imgCourse')}}/{{$course->ANH}}"
+                                src="{{('./user/assets/imgCourse')}}/{{$course->ANH}}"
                                 alt="{{$course->TENKH}}">
                         </div>
                         <div class="course-des">
@@ -200,7 +200,7 @@
                                     <a href="{{URL::to('/courseDetail/'.$businessCourse->MAKH)}}" class="course-box">
                                         <div class="img-course">
                                             <img class="img-responsive "
-                                                src="{{asset('user/assets/imgCourse')}}/{{$businessCourse->ANH}}"
+                                                src="{{('./user/assets/imgCourse')}}/{{$businessCourse->ANH}}"
                                                 alt="{{$businessCourse->TENKH}}">
                                         </div>
                                         <div class="course-des">
@@ -259,7 +259,7 @@
                     <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                         <div class="img-course">
                             <img class="img-responsive "
-                                src="{{asset('user/assets/imgCourse')}}/{{$course->ANH}}"
+                                src="{{('./user/assets/imgCourse')}}/{{$course->ANH}}"
                                 alt="{{$course->TENKH}}">
                         </div>
                         <div class="course-des">
@@ -330,4 +330,3 @@
    </section>
    <!-- SECTION HEALTHY COURSE ENDS -->
 
-   

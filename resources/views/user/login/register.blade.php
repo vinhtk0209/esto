@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Đăng ký</title>
-    <link rel="stylesheet" href="{{asset('register/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <base href="{{asset('')}}">
+    <link rel="stylesheet" href="{{('./register/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap">
     <!-- Font Icon -->
-    <link rel="stylesheet" href="{{asset('register/assets/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+    <link rel="stylesheet" href="{{('./register/assets/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
     <!-- Main css -->
-    <link rel="stylesheet" href="{{asset('register/assets/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('register/assets/css/loading.css')}}">
+    <link rel="stylesheet" href="{{('./register/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{('./register/assets/css/loading.css')}}">
 </head>
 
 <body class="preLoading">
@@ -25,7 +26,6 @@
     <div class="main">
 
         <section class="signup">
-            <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content p-y-5">
                     <form method="POST" id="signup-form" class="signup-form" action="{{ route('post.register') }}">
@@ -37,28 +37,11 @@
                                 placeholder="Họ tên..." required/>
                             <span class="error-message">@error('fullname'){{$message}}@enderror</span>
                         </div>
-                        <!-- <div class="form-group">
-                            <input type="text" class="form-input" name="name" id="name"
-                                placeholder="Tên đăng nhập..." />
-                        </div> -->
                         <div class="form-group">
                             <label for="email" class="label-input">Email</label>
                             <input type="email" class="form-input" name="email" id="email" placeholder="Email..." required/>
                             <span class="error-message">@error('email'){{$message}}@enderror</span>
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="birthday" class="label-input">Ngày sinh</label>
-                            <input type="date" class="form-input" name="birthday" id="birthday" required/>
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="male" class="label-input">Giới tính</label>
-                            <div class="form-checkbox">
-                                <input type="radio" class="form-checkbox" name="gender" id="male" value="1" checked/>
-                                <label for="male" class="">Nam</label>
-                                <input type="radio" class="form-checkbox" name="gender" id="female" value="0" />
-                                <label for="female" class="">Nữ</label>
-                            </div>
-                        </div> --}}
                         <div class="form-group">
                             <label for="phonenumber" class="label-input">Số điện thoại</label>
                             <input type="text" class="form-input" name="phonenumber" id="phonenumber"
@@ -78,10 +61,6 @@
                                 placeholder="Nhập lại mật khẩu..." required/>
                             <span class="error-message">@error('re_password'){{$message}}@enderror</span>
                         </div>
-                        <!-- <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                        </div> -->
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit" value="đăng ký" />
                         </div>
@@ -97,8 +76,8 @@
 
     <!-- JS -->
 
-    <script src="{{asset('register/assets/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('register/assets/js/main.js')}}"></script>
+    <script src="{{('./register/assets/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{('./register/assets/js/main.js')}}"></script>
        <!-- JS -->
 </body>
 

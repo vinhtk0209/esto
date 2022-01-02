@@ -34,6 +34,10 @@ class TaiKhoanController extends Controller
     public function store(Request $request)
     {
         $taikhoan = new taikhoan();
+        $this->validate($request,[
+            'SODIENTHOAI' => 'required|digits:10'
+            ]);
+            
         $taikhoan->HOTEN = $request->HOTEN;
         $taikhoan->NGAYSINH = $request->NGAYSINH;
         $taikhoan->SODIENTHOAI = $request->SODIENTHOAI;

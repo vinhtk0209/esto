@@ -11,7 +11,7 @@ class TaiKhoan extends Model
     protected $primaryKey = "ID";
     public $timestamps = false;
     protected $casts = ['TRANGTHAI' => 'boolean', 'GIOITINH' => 'boolean'];
-    protected $fillable = ['HOTEN', 'NGAYSINH', 'GIOITINH', 'SODIENTHOAI', 'TRANGTHAI', 'EMAIL', 'TOKEN', 'MATKHAU', 'LOAITK'];
+    protected $fillable = ['HOTEN', 'NGAYSINH', 'GIOITINH', 'ANHDAIDIEN', 'SODIENTHOAI', 'TRANGTHAI', 'EMAIL', 'TOKEN', 'MATKHAU', 'LOAITK', 'GOOGLE_ID', 'GOOGLE_REFRESH_TOKEN', 'GOOGLE_TOKEN'];
 
     public function rKhoaHoc()
     {
@@ -21,5 +21,13 @@ class TaiKhoan extends Model
     public function rBaiThi()
     {
         return $this->hasMany('App\Models\BaiThi', 'ID');
+    }
+    public function rChungChi()
+    {
+        return $this->hasMany('App\Models\ChungChi', 'MACHUNGCHI');
+    }
+    public function rCTLopHoc()
+    {
+        return $this->hasMany('App\Models\CTLopHoc', 'ID');
     }
 }
