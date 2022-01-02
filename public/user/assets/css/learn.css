@@ -1,0 +1,111 @@
+:root {
+    --content-color: #434343;
+    --text-color: #FFFFFF;
+    --lesson-color: #94C9F5;
+    --lesson-active: #F8EBEB;
+}
+
+.fs-100 {
+    font-size: 100px !important;
+}
+
+.color-cart {
+    color: #ccc !important;
+}
+
+.py-30 {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+
+.pt-30 {
+    padding-top: 30px !important;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
+}
+
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+
+.pl-20 {
+    padding-left: 20px !important;
+}
+
+.mt-10 {
+    margin-top: 20px !important;
+}
+
+.ml-5 {
+    margin-left: 5px !important;
+}
+
+.ml-10 {
+    margin-left: 10px !important;
+}
+
+.ml-20 {
+    margin-left: 20px !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px !important;
+}
+
+.mt-30 {
+    margin-top: 30px !important;
+}
+
+/*
+.userManager h1 {
+    font-size: 24px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-bottom: 10px;
+} */
+.learn .main-video .video iframe {
+    width: 1120px;
+    height: 550px;
+}
+
+.userManager .video-list {
+    flex: 1;
+}
+
+.userManager .video-list .tableOfContent {
+    text-align: center;
+    padding: 10px 0;
+    background: var(--content-color);
+    color: var(--text-color);
+}
+
+.userManager .video-list .title-lesson {
+    display: block;
+    color: var(--content-color);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    background: var(--text-color);
+    padding: 10px 0;
+    margin-bottom: 5px;
+}
+
+.vid.active {
+    border-left: 4px solid #FF0000;
+}
+
+.vid.active .title-lesson {
+    background: var(--lesson-active);
+}
+
+.alert-no-video {
+    min-height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

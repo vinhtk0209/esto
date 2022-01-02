@@ -9,6 +9,8 @@ class CTLopHoc extends Model
 {
     protected $table = "ctlophoc";
     protected $primaryKey = "MAHV";
+    protected $fillable = 'MAHV';
+
     public function rTaiKhoan()
     {
         return $this->belongsTo('App\Models\TaiKhoan', 'MAHV');

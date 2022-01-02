@@ -20,6 +20,8 @@ Route::get('/', [
     'as' =>  'home.index',
     'uses' => 'App\Http\Controllers\user\homeController@index'
 ]);
+
+//REGISTER LOGIN LOGOUT
 Route::get('/lg', [
     'as' => 'login.login',
     'uses' => 'App\Http\Controllers\user\loginController@login'
@@ -36,16 +38,18 @@ Route::post('/rs', [
     'as' => 'post.register',
     'uses' => 'App\Http\Controllers\user\loginController@postRegister'
 ]);
-
 Route::get('/logout', [
     'as' => 'logout',
     'uses' => 'App\Http\Controllers\user\loginController@logout'
 ]);
 
+//COURSE DETAIL
 Route::get('/courseDetail/{productId}', [
     'as' => 'home.detailProduct',
     'uses' => 'App\Http\Controllers\user\productController@detailProduct'
 ]);
+
+//INFO MANAGER
 Route::get('/infoUser', [
     'as' => 'home.infoManager',
     'uses' => 'App\Http\Controllers\user\homeController@infoManager'
@@ -54,20 +58,24 @@ Route::get('/listCourse/{courseCate}', [
     'as' => 'home.listCourse',
     'uses' => 'App\Http\Controllers\user\productController@listCourse'
 ]);
-Route::get('/updateProfile', [
+Route::get('/infoUser/updateProfile', [
     'as' => 'update.profile',
     'uses' => 'App\Http\Controllers\user\userController@showFormUpdateProfile'
 ]);
-Route::post('/updateProfile/{id}', [
+Route::post('/infoUser/updateProfile/{id}', [
     'as' => 'post.update.profile',
     'uses' => 'App\Http\Controllers\user\userController@updateProfile'
 ]);
-Route::get('/showMyCourse', [
+Route::get('/infoUser/showMyCourse', [
     'as' => 'show.my.course',
     'uses' => 'App\Http\Controllers\user\userController@showMyCourse'
 ]);
+Route::get('/learn/{id}', [
+    'as' => 'learn.course',
+    'uses' => 'App\Http\Controllers\user\userController@learnCourse'
+]);
 
-//XAC NHAN EMAIL
+//CONFIRM EMAIL TO LOGIN
 Route::get('/confirmEmail', [
     'as' => 'mail.confirmEmail',
     'uses' => 'App\Http\Controllers\user\mailController@confirmEmail'
@@ -77,7 +85,7 @@ Route::get('/actived/{taikhoan}/{token}', [
     'uses' => 'App\Http\Controllers\user\loginController@actived'
 ]);
 
-//QUEN MAT KHAU
+//FORGOT PASSWORD AND GET PASSWORD
 Route::get('/forgotPassword', [
     'as' => 'login.forgotPass',
     'uses' => 'App\Http\Controllers\user\loginController@forgotPass'
@@ -94,6 +102,7 @@ Route::post('/getPassword/{taikhoan}/{token}', [
     'as' => 'taikhoan.postGetPass',
     'uses' => 'App\Http\Controllers\user\loginController@postGetPass'
 ]);
+
 //SEARCH AJAX
 Route::get('/searchCourse', [
     'as' =>  'home.ajaxSearch',
@@ -103,6 +112,8 @@ Route::post('/search', [
     'as' =>  'home.search',
     'uses' => 'App\Http\Controllers\user\homeController@search'
 ]);
+
+//CART
 Route::get('/add-to-cart', [
     'as' =>  'add.to.cart',
     'uses' => 'App\Http\Controllers\user\productController@addToCart'
@@ -131,6 +142,7 @@ Route::post('/checkout', [
     'as' =>  'handle.checkout',
     'uses' => 'App\Http\Controllers\user\orderController@handleCheckout'
 ]);
+
 //XAC NHAN EMAIL
 Route::get('/confirmEmail', [
     'as' => 'mail.confirmEmail',
@@ -141,8 +153,7 @@ Route::get('/actived/{taikhoan}/{token}', [
     'uses' => 'App\Http\Controllers\user\loginController@actived'
 ]);
 
-
-//THI
+//TEST
 Route::get('/exam', [
     'as' =>  'productController.exam',
     'uses' => 'App\Http\Controllers\user\productController@exam'
@@ -152,8 +163,7 @@ Route::post('/exam', [
     'uses' => 'App\Http\Controllers\user\orderController@handleExam'
 ]);
 
-
-//LOGIN FACEBOOK
+//LOGIN WITH SOCIAL
 Route::get('/login-facebook', [
     'as' =>  'login.loginFacebook',
     'uses' => 'App\Http\Controllers\user\loginController@loginFacebook'
@@ -169,4 +179,15 @@ Route::get('/login-google', [
 Route::get('/lg/google/callback', [
     'as' =>  'login.callbackGoogle',
     'uses' => 'App\Http\Controllers\user\loginController@callbackGoogle'
+]);
+
+
+//LEARNING ONLINE
+Route::get('/contentClass/{id}', [
+    'as' =>  'product.contentClass',
+    'uses' => 'App\Http\Controllers\user\productController@contentClass'
+]);
+Route::post('/contentClass/{id}', [
+    'as' =>  'post.buyClass',
+    'uses' => 'App\Http\Controllers\user\orderController@handleBuyClass'
 ]);

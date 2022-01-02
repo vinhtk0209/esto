@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\HoaDon;
 use App\Models\CTHoaDon;
 use App\Models\Cart;
+use App\Models\CTLopHoc;
+use App\Models\KhoaHoc;
 use Illuminate\Support\Facades\Session;
 
 class orderController extends Controller
@@ -18,7 +20,7 @@ class orderController extends Controller
 
     public function handleCheckout(Request $request)
     {
-        if(!Session::has('cart')){
+        if (!Session::has('cart')) {
             return view('user.cart.index');
         }
 
@@ -28,7 +30,7 @@ class orderController extends Controller
             'MAHV'   => Session::get('customer')->ID
         ]);
 
-        foreach($cart->items as $row){
+        foreach ($cart->items as $row) {
             CTHoaDon::create([
                 'MAHD' => $bill->MAHD,
                 'MAKH' => $row['item']['MAKH']
@@ -37,5 +39,25 @@ class orderController extends Controller
 
         Session::forget('cart');
         return redirect()->route('home.index');
+    }
+
+    public function handleBuyClass(Request $request, $id)
+    {
+
+        $data = $request->all();
+        $bill = HoaDon::create([
+            'MAHV'   => Session::get('customer')->ID
+        ]);
+        CTHoaDon::create([
+            'MAHD' => $bill->MAHD,
+            'MAKH' => $id,
+        ]);
+        CTLopHoc::create([
+            'MALH' => $data['listClass'],
+            'MAHV'   => Session::get('customer')->ID,
+        ]);
+        // return redirect()->back()->with('buyClassSuccess', 'Mua thành công');
+        return redirect()->route('home.detailProduct')
+                ->with('buyClassSuccess', " Mua thành công");
     }
 }

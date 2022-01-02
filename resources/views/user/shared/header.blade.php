@@ -64,11 +64,6 @@
                                     <a href="{{route('login.login')}}" class="login-btn">Đăng
                                         nhập</a>
                                 @else
-                                    {{-- <a href="javascript:void(0)" class="register-btn">{{ Session::get('customer')->HOTEN }}</a>
-                                    <img width="15%" src="{{ Session::get('customer')->ANHDAIDIEN }}" alt="">
-                                    <a href="{{route('logout')}}" class="login-btn">Đăng xuất</a> --}}
-                                    {{-- <img src="{{ Session::get('customer')->ANHDAIDIEN }}" class="img-responsive" alt="{{ Session::get('customer')->HOTEN }}"> --}}
-                                    {{-- <a href="javascript:void(0)" class="drop-info-user-ava " data-toggle="dropdown" role="button" data-target="#"> </a> --}}
                                     <div class="drop-info-user-container">
                                         <div class="user-info-header dropdown ">
                                             <a href="#" class="drop-info-user " data-bs-toggle="dropdown" role="button" >
@@ -103,12 +98,28 @@
                                             </ul>
                                         </div>
                                         <div class="drop-info-user-ava">
-                                            <img src="{{ Session::get('customer')->ANHDAIDIEN }}" class="img-responsive" alt="{{ Session::get('customer')->HOTEN }}">
+                                            {{-- @php
+                                            function checkForImage($url){
+                                                $subject = $url;
+                                                $pattern = "/(http[s]?:)/i";
+                                                if (preg_match($pattern, $subject, $matches)) {
+                                                    return true;
+                                                }
+                                                return false;
+                                             }
+                                             $imgUrl = $user->ANHDAIDIEN;
+                                             $nameUser=$user->HOTEN;
+                                                if (checkForImage($imgUrl)){
+                                                  echo "<img src='$imgUrl' class='showAva img-responsive' alt=' $nameUser}}''>";
+                                                }
+                                                else{
+                                                    echo "<img src='./user/assets/imgAva/$imgUrl' class='showAva img-responsive' alt='$nameUser '>";
+                                                }
+                                            @endphp --}}
+
+                                        <img src='{{Session::get('customer')->ANHDAIDIEN}}' class='showAva img-responsive' alt='{{Session::get('customer')->HOTEN}} '>
                                         </div>
-
-
                                     </div>
-
                                 @endif
                             </div>
                         </div>

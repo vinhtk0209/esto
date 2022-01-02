@@ -2,3 +2,4 @@
 @section('content')
     @include('user.courseDetail.content');
 @endsection
+    

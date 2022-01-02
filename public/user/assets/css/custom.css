@@ -428,10 +428,6 @@ section.courses {
     display: block;
 }
 
-.dropdown-menu.open {
-    display: block;
-}
-
 .header .drop-info-user-container .drop-info-user {
     font-size: 14px;
     font-weight: 500;

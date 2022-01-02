@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
+use App\Models\LopHoc;
+use App\Models\LopHoc_BaiHoc;
 
 class productController extends Controller
 {
@@ -25,18 +27,6 @@ class productController extends Controller
         $sectionCourse  = DB::table('chuonghoc')
             ->where('chuonghoc.MAKH', '=', $productId)->get();
         $lessonCourse = DB::table('baihoc')->get();
-        // $sectionCourse  = DB::table('chuonghoc')
-        //     ->where('chuonghoc.MAKH', '=', $productId)->get();
-
-        // if (count($sectionCourse) > 0) {
-        //     foreach ($sectionCourse as $sec) {
-        //         $sections = $sec->MACHUONG;
-        //     }
-        //     $lessonCourse = DB::table('baihoc')
-        //         ->where('baihoc.MACHUONG',  $sections)->get();
-        // } else {
-        //     $lessonCourse = "";
-        // }
 
         $sectionCourse  = DB::table('chuonghoc')->where('chuonghoc.MAKH', '=', $productId)->get();
         $lessonCourse = DB::table('baihoc')->get();
@@ -46,14 +36,21 @@ class productController extends Controller
 
         foreach ($productDetail as $value) {
             $courseCate = $value->MADM;
+            $courseOnline = $value->TRUCTUYEN;
         }
+        if ($courseOnline != 0) {
+            $classRoom = DB::table('lophoc')->where('lophoc.MAKH', '=', $productId)->get();
+        } else {
+            $classRoom = "";
+        }
+
         $relatedCourse  = DB::table('khoahoc')
             ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
             ->join('danhmuc', 'danhmuc.MADM', '=', 'khoahoc.MADM')
             ->where('danhmuc.MADM', $courseCate)
             ->whereNotIn('khoahoc.MAKH', [$productId])->get();
 
-        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate);
+        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate)->with('courseOnline', $courseOnline)->with('classRoom', $classRoom);
     }
 
     public function listCourse($courseCate)
@@ -171,5 +168,57 @@ class productController extends Controller
         $data = $request->all();
         // $data['code-to-test'];
 
+    }
+
+    public function contentClass($id)
+    {
+        // $classId = DB::tablekey('lophoc')->where('MALH', $id)->get();
+        $classId = LopHoc::find($id);
+        $course= KhoaHoc::where('MAKH',$classId->MAKH)->first();
+        $productId=$course->MAKH;
+        // dd($productId);
+        $countStudent = DB::table('cthoadon')->where('cthoadon.MAKH', $productId)->count();
+        $countRate = DB::table('danhgia')->where('danhgia.MAKH', $productId)->count();
+
+        $cateCourse = DB::table('danhmuc')
+            ->where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
+        $productDetail  = DB::table('khoahoc')
+            ->join('danhmuc', 'danhmuc.MADM', '=', 'khoahoc.MADM')
+            ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
+
+        $sectionCourse  = DB::table('chuonghoc')
+            ->where('chuonghoc.MAKH', '=', $productId)->get();
+        $lessonCourse = DB::table('baihoc')
+            ->join('lophoc_baihoc', 'lophoc_baihoc.MABH', '=', 'baihoc.MABH')
+            ->join('lophoc', 'lophoc.MALH', '=', 'lophoc_baihoc.MALH')
+            ->where('lophoc.MALH', $id)
+            ->get();
+
+        foreach ($productDetail as $value) {
+            $courseCate = $value->MADM;
+            $courseOnline = $value->TRUCTUYEN;
+        }
+        if ($courseOnline != 0) {
+            $classRoom = DB::table('lophoc')->where('lophoc.MAKH', '=', $productId)->get();
+        } else {
+            $classRoom = "";
+        }
+
+        $relatedCourse  = DB::table('khoahoc')
+            ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+            ->join('danhmuc', 'danhmuc.MADM', '=', 'khoahoc.MADM')
+            ->where('danhmuc.MADM', $courseCate)
+            ->whereNotIn('khoahoc.MAKH', [$productId])->get();
+
+        return view('user.courseDetail.contentClass')
+            ->with('category', $cateCourse)
+            ->with('productDetail', $productDetail)
+            ->with('relatedCourse', $relatedCourse)
+            ->with('sectionCourse', $sectionCourse)
+            ->with('lessonCourse', $lessonCourse)
+            ->with('countStudent', $countStudent)
+            ->with('countRate', $countRate)
+            ->with('courseOnline', $courseOnline)
+            ->with('classRoom', $classRoom);
     }
 }

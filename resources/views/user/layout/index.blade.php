@@ -17,6 +17,7 @@
 
     <!-- <link rel="stylesheet" href="./assets/css/main.css"> -->
     <link rel="stylesheet" href="./user/assets/css/main.css">
+    <link rel="stylesheet" href="./user/assets/css/myCourse.css">
     <!-- <link rel="stylesheet" href="./assets/css/app.css"> -->
     <link rel="stylesheet" href="./user/assets/css/app.css">
     <!-- <link rel="stylesheet" href="./assets/sweetalert/alert.min.css"> -->
@@ -27,7 +28,15 @@
 
 
     <!-- CUSTOM CSS -->
-    {{-- RANGE JQUERY CSS --}}
+    <!-- INFO FILE CSS -->
+    <link rel="stylesheet" href="./user/assets/css/infoFile.css" >
+    <!-- LEARN CSS -->
+    <link rel="stylesheet" href="./user/assets/css/learn.css" >
+    <!-- DARKMODE CSS -->
+    <link rel="stylesheet" href="./user/assets/css/darkmode.css" >
+    <!-- SEARCH CSS -->
+    <link rel="stylesheet" href="./user/assets/css/search.css" >
+    <!-- RANGE JQUERY CSS  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <!-- MODAL CSS -->
     <link rel="stylesheet" href="./user/assets/css/modal.css" >
@@ -42,24 +51,18 @@
      <!-- INFO MANAGER CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoManager.css">
      <!-- LIST COURSE CSS -->
-
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
-    <link rel="stylesheet" href="./user/assets/css/custom.css">
-
-    <link rel="stylesheet" href="./user/assets/css/listCourse.css">
+     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="./user/assets/css/custom.css">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-
     <!-- jQuery library -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-
     <!-- Popper JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./user/assets/js/jquery.min.js"></script>
 
-    <!-- CUSTOM CSS -->
     <title>ESTO</title>
 </head>
 
@@ -120,7 +123,7 @@
 
 
     <!-- BACKTOP STARTS -->
-    <p id="button"></p>
+    <div id="btnBackTop"></div>
     <!-- BACKTOP ENDS -->
 
 
@@ -131,8 +134,6 @@
 
     <!-- JS  -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="./user/assets/js/jquery.min.js">
-    </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
@@ -141,6 +142,8 @@
     </script>
     <script src="./user/assets/js/simple.money.format.js">
     </script>
+
+    {{-- FILTER  --}}
     <script>
         $(document).ready(function () {
         $("#slider-range").slider({
@@ -165,8 +168,27 @@
     </script>
 
     <script src="./user/assets/js/main.js"></script>
-    <script src="./user/assets/js/main.js"></script>
-    <script src="./user/assets/js/add-to-cart.js">
+    <script src="./user/assets/js/add-to-cart.js"></script>
+
+    {{-- SEARCH AJAX --}}
+    <script>
+        $(".search-ajax-result").hide();
+        $(".live-search-bar").keyup(function () {
+        var _text = $(this).val();
+        if(_text!='' && _text!=' ') {
+            $.ajax({
+            url:"{{route('home.ajaxSearch')}}?key="+ _text,
+            type:'GET',
+            success:function(res){
+                $(".search-ajax-result").show(200);
+                $(".search-ajax-result").html(res);
+                }
+            });
+        }else{
+            $(".search-ajax-result").html('');
+            $(".search-ajax-result").hide();
+            }
+        });
     </script>
 
     <!-- Messenger Plugin chat Code -->
@@ -199,6 +221,41 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
+
+
+    {{-- LOAD VIDEO --}}
+    <script>
+        let listVideo = document.querySelectorAll('.video-list .vid');
+        let mainVideo = document.querySelector('.main-video iframe');
+        let title = document.querySelector('.main-video .title');
+        listVideo.forEach(video => {
+            video.onclick = () =>{
+                listVideo.forEach(vid => vid.classList.remove('active'));
+                video.classList.add('active');
+                if(video.classList.contains('active')) {
+                    mainVideo.src = video.children[0].src;
+                    title.innerHTML = video.children[1].innerHTML;
+                }
+            }
+        });
+    </script>
+
+    {{-- SWEET ALERT --}}
+    @if (Session::has('updateSuccess'))
+    <script>
+        swal("Thành công","{!!Session::get('updateSuccess')!!}","success",{
+            button:"OK",
+        })
+    </script>
+    @endif
+
+    @if (Session::has('buyClassSuccess'))
+    <script>
+        swal("Thành công","{!!Session::get('buyClassSuccess')!!}","success",{
+            button:"OK",
+        })
+    </script>
+    @endif
      <!-- JS  -->
 </body>
 

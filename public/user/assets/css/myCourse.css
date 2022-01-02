@@ -1,0 +1,44 @@
+.mt-10 {
+    margin-top: 10px !important;
+}
+
+.mr-0 {
+    margin-right: 0 !important;
+}
+
+.mt-0 {
+    margin-top: 0 !important;
+}
+
+.font-weight-bold {
+    font-weight: bold !important;
+}
+
+.flex-end {
+    justify-content: flex-end !important;
+}
+
+.text-brow {
+    color: #353535 !important;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.my-course .list-my-course li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.my-course .list-my-course li .my-course-item .img-course {
+    max-width: 250px;
+}
+
+.my-course-title h4 {
+    transition: all .2s linear;
+}
+
+.my-course-title h4:hover {
+    color: #439141;
+}
