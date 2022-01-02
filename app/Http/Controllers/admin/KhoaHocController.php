@@ -59,10 +59,10 @@ class KhoaHocController extends Controller
             $file = $request->file('ANH');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/user/assets/imgCourse/" . $hinh)) {
+            while (file_exists("./user/assets/imgCourse/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/user/assets/imgCourse/", $hinh);
+            $file->move("./user/assets/imgCourse/", $hinh);
             $khoahoc->ANH = $hinh;
         } else {
             $khoahoc->ANH = "";
@@ -100,10 +100,10 @@ class KhoaHocController extends Controller
             $file = $request->file('VIDEO');
             $name = $file->getClientOriginalName();
             $image = Str::random(4) . "_" . $name;
-            while (file_exists("public/user/assets/imgCourse/" . $image)) {
+            while (file_exists("./user/assets/imgCourse/" . $image)) {
                 $image = Str::random(4) . "_" . $name;
             }
-            $file->move("public/user/assets/imgCourse/", $image);
+            $file->move("./user/assets/imgCourse/", $image);
             $video = $image;
         }
 
@@ -149,10 +149,10 @@ class KhoaHocController extends Controller
             $file = $request->file('ANH');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/user/assets/imgCourse/" . $hinh)) {
+            while (file_exists("./user/assets/imgCourse/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/user/assets/imgCourse/", $hinh);
+            $file->move("./user/assets/imgCourse/", $hinh);
             $khoahoc->ANH = $hinh;
         }
         $khoahoc->save();
@@ -190,7 +190,7 @@ class KhoaHocController extends Controller
             $outputKH .= '<tr>
                                         <th scope="row">
                                             <div class="media align-items-center">
-                                                <img src="public/user/assets/imgCourse/' . $kh->ANH . '" width="90px" height="50px">
+                                                <img src="./user/assets/imgCourse/' . $kh->ANH . '" width="90px" height="50px">
                                             </div>
                                         </th>
                                         <td class="budget">

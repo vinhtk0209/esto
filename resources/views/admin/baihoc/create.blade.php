@@ -124,7 +124,7 @@
             <div class="modal-body">
                 <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="640" height="360" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
                     <source src="./video/" type="video/mp4" />
-                    <source src="public/video/" type="video/webm" />
+                    <source src="./video/" type="video/webm" />
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a
                         web browser that

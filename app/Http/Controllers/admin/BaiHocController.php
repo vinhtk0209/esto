@@ -63,10 +63,10 @@ class BaiHocController extends Controller
                 $file = $request->file('VIDEO');
                 $name = $file->getClientOriginalName();
                 $hinh = Str::random(4) . "_" . $name;
-                while (file_exists("public/video/" . $hinh)) {
+                while (file_exists("./video/" . $hinh)) {
                     $hinh = Str::random(4) . "_" . $name;
                 }
-                $file->move("public/video/", $hinh);
+                $file->move("./video/", $hinh);
                 $baihoc->VIDEO = $hinh;
             } else {
                 $baihoc->VIDEO = "";
@@ -149,10 +149,10 @@ class BaiHocController extends Controller
                 $file = $request->file('VIDEO');
                 $name = $file->getClientOriginalName();
                 $hinh = Str::random(4) . "_" . $name;
-                while (file_exists("public/video/" . $hinh)) {
+                while (file_exists("./video/" . $hinh)) {
                     $hinh = Str::random(4) . "_" . $name;
                 }
-                $file->move("public/video/", $hinh);
+                $file->move("./video/", $hinh);
                 $baihoc->VIDEO = $hinh;
             } else {
                 $baihoc->VIDEO = "";

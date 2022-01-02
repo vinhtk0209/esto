@@ -53,10 +53,10 @@ class TaiKhoanController extends Controller
             $file = $request->file('ANH');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/images/" . $hinh)) {
+            while (file_exists("./images/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/images/", $hinh);
+            $file->move("./images/", $hinh);
             $taikhoan->ANHDAIDIEN = $hinh;
         } else {
             $taikhoan->ANHDAIDIEN = "";
@@ -88,10 +88,10 @@ class TaiKhoanController extends Controller
             $file = $request->file('ANH');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/images/" . $hinh)) {
+            while (file_exists("./images/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/images/", $hinh);
+            $file->move("./images/", $hinh);
             $taikhoan->ANHDAIDIEN = $hinh;
         } else {
             $taikhoan->ANHDAIDIEN = "";
@@ -115,10 +115,10 @@ class TaiKhoanController extends Controller
             $file = $request->file('ANHCC');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/images/" . $hinh)) {
+            while (file_exists("./images/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/images/", $hinh);
+            $file->move("./images/", $hinh);
             $chungchi->ANHCHUNGCHI = $hinh;
         } else {
             $chungchi->ANHCHUNGCHI = "";
@@ -151,10 +151,10 @@ class TaiKhoanController extends Controller
             $file = $request->file('ANHCC');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/images/" . $hinh)) {
+            while (file_exists("./images/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/images/", $hinh);
+            $file->move("./images/", $hinh);
             $chungchi->ANHCHUNGCHI = $hinh;
         } else {
             $chungchi->ANHCHUNGCHI = "";
