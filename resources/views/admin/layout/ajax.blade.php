@@ -1,17 +1,106 @@
 <script type="text/javascript">
     $(document).ready(function() {
-        $(document).on('keyup', '#search', function() {
+        $('#search').on('keyup', function() {
             var value = $(this).val();
 
             $.ajax({
                 type: "GET",
-                url: 'admin/khoahoc/search',
-                data: {
-                    keyword: value
-                },
+                url: 'admin/khoahoc/search?keyword=' + value,
                 dataType: "json",
+                processData: false,
                 success: function(response) {
-                    $('#listKH').html(response);
+                    $('#listKH').html(response[0]);
+                    if (response[1] == 'none')
+                        $('#paginate').hide();
+                    else $('#paginate').show();
+                }
+            });
+        });
+
+        $('#search').on('keyup', function() {
+            var value = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: 'admin/lophoc/search?keyword=' + value,
+                dataType: "json",
+                processData: false,
+                success: function(response) {
+                    $('#listLH').html(response[0]);
+                    if (response[1] == 'none')
+                        $('#paginate').hide();
+                    else $('#paginate').show();
+                }
+            });
+        });
+
+        $('#search').on('keyup', function() {
+            var value = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: 'admin/chuonghoc/search?keyword=' + value,
+                dataType: "json",
+                processData: false,
+                success: function(response) {
+                    $('#listCH').html(response[0]);
+                    if (response[1] == 'none')
+                        $('#paginate').hide();
+                    else $('#paginate').show();
+                }
+            });
+        });
+
+        $('#search').on('keyup', function() {
+            var value = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: 'admin/baihoc/search?keyword=' + value,
+                dataType: "json",
+                processData: false,
+                success: function(response) {
+                    $('#listBH').html(response[0]);
+                    if (response[1] == 'none')
+                        $('#paginate').hide();
+                    else $('#paginate').show();
+                }
+            });
+        });
+
+        $('#search').on('keyup', function() {
+            var value = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: 'admin/baithi/search?keyword=' + value,
+                dataType: "json",
+                processData: false,
+                success: function(response) {
+                    $('#listBT').html(response[0]);
+                    if (response[1] == 'none')
+                        $('#paginate').hide();
+                    else $('#paginate').show();
+                }
+            });
+        });
+
+        $('#search').on('keyup', function() {
+            var value = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: 'admin/baithi/them/{id}/nganhangcauhoi/search?keyword=' + value,
+                dataType: "json",
+                processData: false,
+                success: function(response) {
+                    $('#listnganhangcauhoi').html(response[0]);
+                    if (response[1] == 'none')
+                        $('#paginate').hide();
+                    else $('#paginate').show();
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText)
                 }
             });
         });
@@ -61,6 +150,21 @@
                     console.log(xhr.responseText)
                 }
             });
+        });
+
+        $('#formthembaihoc').submit(function(e) {
+            $(this).ajaxSubmit({
+                beforeSubmit: function() {
+                    $('.progress-bar').width('0%')
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    $(".progress-bar").width(percentComplete + '%')
+                    $(".progress-bar").html('<div id="progress-status">' + percentComplete + '%</div>')
+                },
+                success: function(){
+
+                }
+            })
         });
 
         $(document).on('click', '.edit', function() {
@@ -131,6 +235,22 @@
             });
         });
 
+        $(document).on('change', '#MADMcauhoi', function() {
+            var value = document.getElementById('MADMcauhoi').selectedOptions[0].value;
+            $.ajax({
+                type: "POST",
+                url: "admin/baithi/them/-1/nganhangcauhoi/monhoc?key=" + value,
+                enctype: 'multipart/form-data',
+                dataType: "json",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(res) {
+                    $('#listnganhangcauhoi').html(res);
+                }
+            });
+        });
+
         $(document).on('change', '#MAKHbaithi', function() {
             var value = document.getElementById('MAKHbaithi').selectedOptions[0].value;
             $.ajax({
@@ -146,14 +266,12 @@
                         $('#dbaihoc').html('');
                         $("#dtenbaithi").show();
                         $("#dtructuyen").show();
-                    } 
-                    else if (res == "video"){
+                    } else if (res == "video") {
                         $('#dbaihoc').html('');
                         $("#dtenbaithi").hide();
                         $("#dtructuyen").hide();
                         alert("Đây là khóa học video.\nBạn cần tạo bài học trước để gán bài thi vào!")
-                    }
-                    else {
+                    } else {
                         $('#dbaihoc').html(res);
                         $("#dtenbaithi").show();
                         $("#dtructuyen").hide();

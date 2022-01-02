@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-xl-4 order-xl-2">
                 <div class="card card-profile">
-                    <img src="./images/image.png" id="anhkh" class="card-img-top" width="250px" height="160px">
+                    <img src="./images/image.png" id="anh" class="card-img-top" width="250px" height="160px">
                     <div class="course-des">
                         <div class="name-course">
                             <h4 id="tenkhoahoc"></h4>
@@ -73,6 +73,13 @@
                     <div class="card-body">
                         <h6 class="heading-small text-muted mb-4">Thông tin khóa học</h6>
                         <!-- <span id="thongbao"></span> -->
+                        @if (count($errors))
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $err)
+                            {{$err}}</br>
+                            @endforeach
+                        </div>
+                        @endif
                         @if (session('thongbao'))
                         <div class="alert alert-success">
                             {{session('thongbao')}}
@@ -97,13 +104,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Tên khóa học</label>
-                                        <input type="text" id="TENKH" name="TENKH" class="form-control" onkeyup="textChange()">
+                                        <input type="text" id="TENKH" name="TENKH" class="form-control" onkeyup="textChange()" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên khóa học')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Giá khóa học</label>
-                                        <input type="text" id="DONGIA" name="DONGIA" class="form-control" onkeyup="textChange()">
+                                        <input type="number" id="DONGIA" name="DONGIA" class="form-control" min="0" onkeyup="textChange()" required oninvalid="this.setCustomValidity('Bạn chưa nhập giá khóa học')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>
@@ -138,13 +145,13 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Giới thiệu khóa học</label>
-                                <textarea rows="4" id="GIOITHIEUKH" name="GIOITHIEUKH" class="ckeditor form-control"></textarea>
+                                <textarea rows="4" id="GIOITHIEUKH" name="GIOITHIEUKH" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập mục giới thiệu')" oninput="this.setCustomValidity('')"></textarea>
                             </div>
                         </div>
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Chi tiết khóa học</label>
-                                <textarea rows="6" id="CHITIETKH" name="CHITIETKH" class="ckeditor form-control"></textarea>
+                                <textarea rows="6" id="CHITIETKH" name="CHITIETKH" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập mục chi tiết')" oninput="this.setCustomValidity('')"></textarea>
                             </div>
                         </div>
                     </div>
@@ -153,74 +160,4 @@
         </div>
     </form>
 </div>
-<!-- Danh sach bai hoc -->
-<div class="container-fluid">
-    <div class="card">
-        <div class="card-header">
-            <!-- Card header -->
-            <div class="row align-items-center">
-                <div class="col-8">
-                    <h3 class="mb-0">Bài học</h3>
-                </div>
-                <div class="col-4 text-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formbaihoc" data-whatever="@mdo">Thêm bài học</button>
-                </div>
-            </div>
-        </div>
-        <!-- Light table -->
-        <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col" class="sort" data-sort="tenbaihoc">Tên bài học</th>
-                        <th scope="col" class="sort" data-sort="video">Video</th>
-                        <th scope="col" class="sort" data-sort="hocthu">Học thử</th>
-                        <th scope="col" class="sort" data-sort="options"></th>
-                    </tr>
-                </thead>
-                <tbody class="list" id="listbaihoc">
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<!-- Form Them bai hoc -->
-<form method="POST" action="admin/khoahoc/them/baihoc/" id="sample_form" class="form-horizontal" enctype="multipart/form-data">
-    @csrf
-    <div class="modal fade" id="formbaihoc" tabindex="-1" role="dialog" aria-labelledby="formbaihocLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="formbaihocLabel">Thêm bài học</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <span id="form_result"></span>
-                    <div class="form-group">
-                        <label class="form-control-label">Tên bài học</label>
-                        <input type="text" id="TENBH" name="TENBH" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-control-label">Video</label>
-                        <input type="file" id="VIDEO" name="VIDEO" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-control-label">Học thử</label></br>
-                        <input id="HOCTHU" name="HOCTHU" type="radio" id="co" value="1" style="vertical-align:middle; cursor: pointer;">
-                        <label>Có</label><br>
-                        <input id="HOCTHU" name="HOCTHU" type="radio" id="khong" value="0" style="vertical-align:middle; cursor: pointer;" checked>
-                        <label>Không</label>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="submit" id="luu" class="btn btn-primary">Lưu</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
 @endsection

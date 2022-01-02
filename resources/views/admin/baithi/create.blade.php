@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="admin/baithi/them" method="POST" enctype="multipart/form-data">
+                    <form action="admin/baithi/them/{{$id}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <h6 class="heading-small text-muted mb-4">Thông tin bài thi</h6>
                         @if (session('thongbao'))
@@ -40,7 +40,7 @@
                             {{session('thongbao')}}
                         </div>
                         @endif
-                        @if ($id == 1)
+                        @if ($id == -1)
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Khóa học</label></br>
@@ -61,7 +61,7 @@
                                 <input type="text" name="TENBT" class="form-control">
                             </div>
                         </div>
-                        @if ($id == 2)
+                        @if ($id == -2)
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài thi</label>
@@ -101,7 +101,10 @@
                     <h3 class="mb-0">Câu hỏi</h3>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="admin/baithi/them/{{$id}}/cauhoi" class="btn btn-sm btn-neutral">Thêm câu hỏi</a>
+                    <div class="row">
+                        <a href="admin/baithi/them/{{$id}}/nganhangcauhoi" class="btn btn-sm btn-neutral">Lấy từ ngân hàng câu hỏi</a>
+                        <a href="admin/baithi/them/{{$id}}/cauhoi" class="btn btn-sm btn-neutral">Thêm câu hỏi</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -141,8 +144,8 @@
                             {{$ch->CAUDUNG}}
                         </td>
                         <td class="budget">
-                            <a href="admin/baithi/sua/{{$ch->MACH}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="admin/baithi/xoa/{{$ch->MACH}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                            <a href="admin/baithi/them/{{$id}}/cauhoi/sua/{{$ch->MACH}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a href="admin/baithi/them/{{$id}}/cauhoi/xoa/{{$ch->MACH}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
                     @endforeach

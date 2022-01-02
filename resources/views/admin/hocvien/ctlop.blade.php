@@ -14,20 +14,17 @@
                     </nav>
                 </div>
             </div>
-            <div>
-          
-            </div>
         </div>
     </div>
 </div>
 <div class="container-fluid mt--6">
     <div class="row">
         <div class="col">
-        <div class="card-header">
+            <div class="card">
+                <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-0">Chi tiết lớp học {{$lophoc->TENLOP}}</h3>
-                            
                         </div>
                         <div class="col-4 text-right">
                             <a href="admin/hocvien/" class="btn btn-sm btn-primary">Quay lại</a>
@@ -52,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody class="list">
-                        @foreach($ctlophoc as $ctlh)
+                            @foreach($ctlophoc as $ctlh)
                             <tr>
                                 <td class="budget">
                                     {{$ctlh->rTaiKhoan->HOTEN}}
@@ -69,9 +66,8 @@
                                 <td class="budget">
                                     {{$ctlh->rTaiKhoan->EMAIL}}
                                 </td>
-                                
                             </tr>
-                        @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -107,9 +103,10 @@
                         </li>
                     </ul>
                     </nav>
-                </div>   
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

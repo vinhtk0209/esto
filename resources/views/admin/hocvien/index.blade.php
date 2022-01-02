@@ -12,10 +12,6 @@
                         </ol>
                     </nav>
                 </div>
-                
-            </div>
-            <div>
-          
             </div>
         </div>
     </div>
@@ -41,11 +37,11 @@
                                 <th scope="col" class="sort" data-sort="hoten">Lớp Học</th>
                                 <th scope="col" class="sort" data-sort="ngaysinh">Khóa Học</th>
                                 <th scope="col" class="sort" data-sort="gioitinh">Giảng Viên</th>
-                                <th scope="col" class="sort" data-sort="options">###</th>
+                                <th scope="col" class="sort" data-sort="options"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                        @foreach($lophoc as $lh)
+                            @foreach($lophoc as $lh)
                             <tr>
                                 <td class="budget">
                                     {{$lh->TENLOP}}
@@ -57,12 +53,12 @@
                                     {{$lh->rKhoaHoc->rTaikhoan->HOTEN}}
                                 </td>
                                 <td class="budget">
-                                <div class="col-lg-6 col-5 text-right">
-                                    <a href="admin/hocvien/ctlop/{{$lh->MALH}}" class="btn btn-sm btn-neutral">Xem chi tiết</a>
-                                </div>
+                                    <div class="col-lg-6 col-5 text-right">
+                                        <a href="admin/hocvien/ctlop/{{$lh->MALH}}" class="btn btn-sm btn-neutral">Xem chi tiết</a>
+                                    </div>
                                 </td>
                             </tr>
-                        @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -98,7 +94,7 @@
                         </li>
                     </ul>
                     </nav>
-                </div>   
+                </div>
             </div>
         </div>
     </div>
