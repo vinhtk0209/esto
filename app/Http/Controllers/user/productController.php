@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
-use App\Models\LopHoc;
 use App\Models\LopHoc_BaiHoc;
 
 class productController extends Controller
@@ -172,11 +171,8 @@ class productController extends Controller
 
     public function contentClass($id)
     {
-        // $classId = DB::tablekey('lophoc')->where('MALH', $id)->get();
-        $classId = LopHoc::find($id);
-        $course= KhoaHoc::where('MAKH',$classId->MAKH)->first();
-        $productId=$course->MAKH;
-        // dd($productId);
+        $classId = DB::table('lophoc')->where('MALH', $id)->get();
+        $productId = $classId[0]->MAKH;
         $countStudent = DB::table('cthoadon')->where('cthoadon.MAKH', $productId)->count();
         $countRate = DB::table('danhgia')->where('danhgia.MAKH', $productId)->count();
 

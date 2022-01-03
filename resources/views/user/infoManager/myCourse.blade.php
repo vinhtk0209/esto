@@ -14,7 +14,7 @@
                             alt="{{$course->TENKH}}">
                         </a>
                     </div>
-                    <div class="course-des ml-10">
+                    <div class="course-des ml-10 flex-grow-1">
                         <div class="name-course d-flex flex-space mt-0 ">
                             <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="text-brow  text-decoration-none my-course-title">
                                 <h4>{{$course->TENKH}}</h4>

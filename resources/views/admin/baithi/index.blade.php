@@ -187,8 +187,8 @@
                 <div class="row ">
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Chọn hình thức thi:</label>
-                        <a href="admin/baithi/them/1" class="btn btn-primary">Video</a>
-                        <a href="admin/baithi/them/2" class="btn btn-primary">Trực tuyến</a>
+                        <a href="admin/baithi/them/-1" class="btn btn-primary">Video</a>
+                        <a href="admin/baithi/them/-2" class="btn btn-primary">Trực tuyến</a>
                     </div>
                 </div>
             </div>

@@ -245,7 +245,7 @@
     <script>
         swal("Thành công","{!!Session::get('updateSuccess')!!}","success",{
             button:"OK",
-        })
+        });
     </script>
     @endif
 
@@ -253,10 +253,32 @@
     <script>
         swal("Thành công","{!!Session::get('buyClassSuccess')!!}","success",{
             button:"OK",
-        })
+        });
     </script>
     @endif
+
+    @if (Session::has('buyClassFailed'))
+        <script>
+            swal("Thất bại","{!!Session::get('buyClassFailed')!!}","error",{
+            button:"OK",
+        });
+    </script>
+    @endif
+
+    @if (Session::has('noLogin'))
+        <script>
+          Swal.fire({
+            type: 'error',
+            title: '<strong>Vui lòng đăng nhập</strong>',
+            html:
+            'nhấn vào <strong><a href="{{route("login.login")}}">đây</a></strong> để đăng nhập',
+            button:"OK",
+        });
+        </script>
+    @endif
+
      <!-- JS  -->
+
 </body>
 
 </html>

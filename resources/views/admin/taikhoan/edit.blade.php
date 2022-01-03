@@ -102,7 +102,11 @@
                         </div>
 
                         <div class="pl-lg-4">
-
+                            <div class="form-group">
+                                <label class="form-control-label">Hình ảnh</label>
+                                <input type="file" id="ANH" name="ANH" class="form-control" img src="./images/{{$taikhoan->ANHDAIDIEN}}"></br>                                
+                                
+                            </div>
                             @if($taikhoan->LOAITK==2)
                             <div class="form-group">
                                 <label class="form-control-label">Chi tiết cá nhân</label>

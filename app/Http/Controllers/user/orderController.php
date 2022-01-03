@@ -9,6 +9,7 @@ use App\Models\CTHoaDon;
 use App\Models\Cart;
 use App\Models\CTLopHoc;
 use App\Models\KhoaHoc;
+use App\Models\LopHoc;
 use Illuminate\Support\Facades\Session;
 
 class orderController extends Controller
@@ -41,23 +42,33 @@ class orderController extends Controller
         return redirect()->route('home.index');
     }
 
-    public function handleBuyClass(Request $request, $id)
+    public function handleBuyClass(Request $request, $id,)
     {
+        if (Session::has('customer')) {
+            $data = $request->all();
+            $classId =  LopHoc::find($data['listClass']);
+            $numStudent = $classId->SLGIOIHAN;
+            if ($numStudent > 0) {
+                $classId->SLGIOIHAN = $numStudent - 1;
+                $classId->save();
+                $bill = HoaDon::create([
+                    'MAHV'   => Session::get('customer')->ID
+                ]);
+                CTHoaDon::create([
+                    'MAHD' => $bill->MAHD,
+                    'MAKH' => $id,
+                ]);
+                CTLopHoc::create([
+                    'MALH' => $data['listClass'],
+                    'MAHV'   => Session::get('customer')->ID,
+                ]);
+            } else {
+                return redirect()->back()->with('buyClassFailed', 'Lớp này đã hết chỗ');
+            }
 
-        $data = $request->all();
-        $bill = HoaDon::create([
-            'MAHV'   => Session::get('customer')->ID
-        ]);
-        CTHoaDon::create([
-            'MAHD' => $bill->MAHD,
-            'MAKH' => $id,
-        ]);
-        CTLopHoc::create([
-            'MALH' => $data['listClass'],
-            'MAHV'   => Session::get('customer')->ID,
-        ]);
-        // return redirect()->back()->with('buyClassSuccess', 'Mua thành công');
-        return redirect()->route('home.detailProduct')
-                ->with('buyClassSuccess', " Mua thành công");
+            return redirect()->back()->with('buyClassSuccess', 'Mua thành công');
+        } else {
+            return redirect()->back()->with('noLogin', 'Vui lòng đăng nhập để tiếp tục  ');
+        }
     }
 }

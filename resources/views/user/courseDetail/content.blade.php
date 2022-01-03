@@ -21,7 +21,7 @@
         @else
         <a href="javascript:void(0)" onclick="" class="btn-course btn-buy-class" id="btn-buy-class">
             <i class="fa fa-cart-plus" aria-hidden="true"></i>
-            Thêm vào giỏ hàng
+            Mua lớp học
         </a>
         @endif
     </div>
@@ -41,7 +41,6 @@
                 @csrf
                 <label for="code-to-test" class="label-custom">Danh sách lớp học:</label>
                 <select class="form-select" aria-label="Default select example" name="listClass" id="listClass">
-                    <option value="0" >Danh sách lớp</option>
                     @if (!empty($classRoom))
                         @foreach ($classRoom as $class)
                             <option value="{{$class->MALH}}">{{$class->TENLOP}}</option>
