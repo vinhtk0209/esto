@@ -11,7 +11,7 @@
                     @if ($cate->childCategory->count() && $valueCheck->ACTIVE == 1)
                     <ul class="sub-menu-category">
                         @foreach ($cate->childCategory as $value)
-                            @if ($value->ACTIVE == 1)   
+                            @if ($value->ACTIVE == 1)
                                 <li class="sub-menu-item active">
                                     <a href="{{URL::to('/listCourse/' . $value->MADM)}}">{{$value->TENDM}}</a>
                                 </li>
@@ -47,11 +47,11 @@
             </ul>
             <div class="swiper slide-category">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="{{asset('user/assets/img/slide-3.png')}}">
+                    <div class="swiper-slide"><img src="{{('./user/assets/img/slide-3.png')}}">
                     </div>
-                    <div class="swiper-slide"><img src="{{asset('user/assets/img/slide-4.png')}}">
+                    <div class="swiper-slide"><img src="{{('./user/assets/img/slide-4.png')}}">
                     </div>
-                    <div class="swiper-slide"><img src="{{asset('user/assets/img/slide-5.png')}}"></div>
+                    <div class="swiper-slide"><img src="{{('./user/assets/img/slide-5.png')}}"></div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>

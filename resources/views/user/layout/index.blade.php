@@ -29,6 +29,7 @@
     {{-- RANGE JQUERY CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <!-- MODAL CSS -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="./user/assets/css/modal.css">
     <!-- PAGINATION CSS -->
     <link rel="stylesheet" href="./user/assets/css/pagination.css">
@@ -41,6 +42,20 @@
     <!-- INFO MANAGER CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoManager.css">
     <!-- LIST COURSE CSS -->
+=======
+    <link rel="stylesheet" href="./user/assets/css/modal.css" >
+    <!-- PAGINATION CSS -->
+    <link rel="stylesheet" href="./user/assets/css/pagination.css" >
+    <!-- LOADING CSS -->
+    <link rel="stylesheet" href="./user/assets/css/loading.css">
+     <!-- BACKTOP CSS -->
+    <link rel="stylesheet" href="./user/assets/css/backTop.css">
+     <!-- COURSE DETAIL CSS -->
+    <link rel="stylesheet" href="./user/assets/css/courseDetail.css">
+     <!-- INFO MANAGER CSS -->
+    <link rel="stylesheet" href="./user/assets/css/infoManager.css">
+     <!-- LIST COURSE CSS -->
+>>>>>>> 8bf6200bf2bd923db698770c514009b9be9d0cc8
 
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
     <link rel="stylesheet" href="./user/assets/css/custom.css">
@@ -48,6 +63,15 @@
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
     <link rel="stylesheet" href="./user/assets/css/custom.css">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- CUSTOM CSS -->
     <title>ESTO</title>
@@ -139,46 +163,6 @@
 
     @include('user.layout.ajax')
     <script>
-        // $(document).ready(function() {
-        //     $("#slider-range").slider({
-        //         orientation: "vertical",
-        //         range: true,
-        //         min: {
-        //             {
-        //                 $minPrice
-        //             }
-        //         },
-        //         max: {
-        //             {
-        //                 $maxPrice
-        //             }
-        //         },
-        //         step: 50000,
-        //         values: [{
-        //             {
-        //                 $minPrice
-        //             }
-        //         }, {
-        //             {
-        //                 $maxPrice
-        //             }
-        //         }],
-        //         slide: function(event, ui) {
-        //             $("#amountStart").val(ui.values[1] + 'vnd').simpleMoneyFormat();
-        //             $("#amountEnd").val(ui.values[0] + 'vnd').simpleMoneyFormat();
-
-        //             $("#startPrice").val(ui.values[0]);
-        //             $("#endPrice").val(ui.values[1]);
-        //         },
-        //     });
-        //     $("#amountStart").val(
-        //         $("#slider-range").slider("values", 1) + 'vnd').simpleMoneyFormat();
-
-        //     $("#amountEnd").val(
-        //         $("#slider-range").slider("values", 0) + 'vnd').simpleMoneyFormat();
-
-        // });
-
         var yourDateToGo3 = new Date();
         var timecurrent = new Date();
         var tg = document.getElementById("TGKT").value.split(' ')[1];
@@ -207,11 +191,62 @@
 
                 }
             }, 1000);
+        $(document).ready(function () {
+        $("#slider-range").slider({
+            orientation: "vertical",
+            range: true,
+            min: {{$minPrice}},
+            max: {{$maxPrice}},
+            step: 50000,
+            values:[{{$minPrice}},{{$maxPrice}}],
+            slide: function (event, ui) {
+                $("#amountStart").val( ui.values[1]+'vnd').simpleMoneyFormat();
+                $("#amountEnd").val(ui.values[0]+'vnd').simpleMoneyFormat();
+                    $("#startPrice").val(ui.values[0]);
+                $("#endPrice").val(ui.values[1]);
+            },
+        });
+        $("#amountStart").val(
+                $("#slider-range").slider("values", 1)+'vnd').simpleMoneyFormat();
+        $("#amountEnd").val(
+                $("#slider-range").slider("values", 0)+'vnd').simpleMoneyFormat();
+         });
     </script>
 
     <script src="./user/assets/js/main.js"></script>
     <script src="./user/assets/js/main.js"></script>
     <script src="./user/assets/js/add-to-cart.js">
+    </script>
+
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "104918645402384");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v12.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
     </script>
     <!-- JS  -->
 </body>

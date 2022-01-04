@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ChungChi extends Model
 {
     protected $table = "chungchi";
+    protected $primaryKey = 'MACHUNGCHI';
+
+    public $timestamps = false;
 }

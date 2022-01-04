@@ -3,7 +3,7 @@
     <div class="img-course">
         <img class="img-responsive "
         @foreach ($productDetail as $product)
-            src="{{asset('user/assets/imgCourse')}}/{{$product->ANH}}"
+            src="{{('./user/assets/imgCourse')}}/{{$product->ANH}}"
             alt="{{$product->TENKH}}">
         </div>
     <div class="price-container">
@@ -34,7 +34,7 @@
                         <h1>{{$product->TENKH}}</h1>
                     </div>
                     <div class="des-course-short">
-                        <p>{{$product->GIOITHIEUKH}}</p>
+                        {!!$product->GIOITHIEUKH!!}
                     </div>
                 </div>
                 <div class="teacher-course">
@@ -50,13 +50,13 @@
                                     <i class="fas fa-star star-color"></i>
                                     <i class="fas fa-star star-color"></i>
                                 </span>
-                                <span class="num-rate">25 đánh giá</span>
+                                <span class="num-rate">{{$countRate}} đánh giá</span>
                             </p>
                     </div>
                     <div class="nums-student">
                         <span class="icon-student">
                             <i class="fa fa-users" aria-hidden="true"></i>
-                            2 Học viên
+                            {{$countStudent}} Học viên
                         </span>
                     </div>
                 </div>
@@ -101,9 +101,9 @@
                     <p class="intro-body-header"><strong>
                         Giới thiệu khóa học “{{$product->TENKH}}”:</strong>
                     </p>
-                    <p class="intro-body-content">
-                        {{$product->CHITIETKH}}
-                    </p>
+                    <div class="intro-body-content">
+                        {!!$product->CHITIETKH!!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -204,7 +204,7 @@
                                     <a href="{{URL::to('/courseDetail/'.$relaCourse->MAKH)}}" class="course-box">
                                         <div class="img-course">
                                             <img class="img-responsive "
-                                                src="{{asset('user/assets/imgCourse')}}/{{$relaCourse->ANH}}"
+                                                src="{{('./user/assets/imgCourse')}}/{{$relaCourse->ANH}}"
                                                 alt="{{$relaCourse->TENKH}}">
                                         </div>
                                         <div class="course-des">

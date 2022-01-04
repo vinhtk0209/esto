@@ -11,6 +11,8 @@ class KhoaHoc extends Model
     protected $primaryKey = 'MAKH';
     public $timestamps = false;
     protected $casts = ['TRUCTUYEN' => 'boolean'];
+    protected $fillable = ['TENKH', 'ANH', 'DONGIA', 'GIOITHIEUKH', 'CHITIETKH', 'MAGV', 'MADM'];
+
 
     public function rDanhMuc()
     {
@@ -32,9 +34,21 @@ class KhoaHoc extends Model
         return $this->belongsTo('App\Models\TaiKhoan', 'MAGV');
     }
 
-  
+
     public function rLop($id)
     {
         return $this->hasMany('App\Models\LopHoc', 'MAKH')->where('MAKH', '=', $id);
+    }
+
+    public function scopeSearch($query)
+    {
+        if(request('key')){
+            $key = request('key');
+            $query=$query->where('TENKH','like','%'.$key.'%');
+        }
+        if(request('catID')){
+            $query=$query->where('MADM',request('catID'));
+        }
+      return $query;
     }
 }

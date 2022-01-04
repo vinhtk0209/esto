@@ -15,6 +15,9 @@ class productController extends Controller
 {
     public function detailProduct($productId)
     {
+        $countStudent = DB::table('cthoadon')->where('cthoadon.MAKH', $productId)->count();
+        $countRate = DB::table('danhgia')->where('danhgia.MAKH', $productId)->count();
+
         $cateCourse = DB::table('danhmuc')
             ->where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
         $productDetail  = DB::table('khoahoc')
@@ -24,6 +27,24 @@ class productController extends Controller
         $sectionCourse  = DB::table('chuonghoc')
             ->where('chuonghoc.MAKH', '=', $productId)->get();
         $lessonCourse = DB::table('baihoc')->get();
+        // $sectionCourse  = DB::table('chuonghoc')
+        //     ->where('chuonghoc.MAKH', '=', $productId)->get();
+
+        // if (count($sectionCourse) > 0) {
+        //     foreach ($sectionCourse as $sec) {
+        //         $sections = $sec->MACHUONG;
+        //     }
+        //     $lessonCourse = DB::table('baihoc')
+        //         ->where('baihoc.MACHUONG',  $sections)->get();
+        // } else {
+        //     $lessonCourse = "";
+        // }
+
+        $sectionCourse  = DB::table('chuonghoc')->where('chuonghoc.MAKH', '=', $productId)->get();
+        $lessonCourse = DB::table('baihoc')->get();
+
+
+
 
         foreach ($productDetail as $value) {
             $courseCate = $value->MADM;
@@ -34,7 +55,7 @@ class productController extends Controller
             ->where('danhmuc.MADM', $courseCate)
             ->whereNotIn('khoahoc.MAKH', [$productId])->get();
 
-        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse);
+        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate);
     }
 
     public function listCourse($courseCate)
@@ -111,6 +132,14 @@ class productController extends Controller
     {
         $product = KhoaHoc::find($request->id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        if (!is_null($oldCart)) {
+            $ids = array_keys($oldCart->items);
+            if (in_array($request->id, $ids)) {
+                return response()->json([
+                    'status' => 403
+                ]);
+            }
+        }
         $cart = new Cart($oldCart);
         $cart->add($product, $product->MAKH);
         $request->session()->put('cart', $cart);
@@ -131,28 +160,6 @@ class productController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->deleteItem($id);
-        if (count($cart->items) > 0) {
-            Session::put('cart', $cart);
-        } else {
-            Session::forget('cart');
-        }
-        return redirect()->back();
-    }
-
-    public function increaseItem($id)
-    {
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->increaseItemByOne($id);
-        Session::put('cart', $cart);
-        return redirect()->back();
-    }
-
-    public function decreaseItem($id)
-    {
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->decreaseItemByOne($id);
         if (count($cart->items) > 0) {
             Session::put('cart', $cart);
         } else {

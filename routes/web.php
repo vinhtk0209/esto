@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user;
+// use Illuminate\Support\Facades\Auth;
+
+// Auth::routes();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +54,18 @@ Route::get('/listCourse/{courseCate}', [
     'as' => 'home.listCourse',
     'uses' => 'App\Http\Controllers\user\productController@listCourse'
 ]);
+Route::get('/updateProfile', [
+    'as' => 'update.profile',
+    'uses' => 'App\Http\Controllers\user\userController@showFormUpdateProfile'
+]);
+Route::post('/updateProfile/{id}', [
+    'as' => 'post.update.profile',
+    'uses' => 'App\Http\Controllers\user\userController@updateProfile'
+]);
+Route::get('/showMyCourse', [
+    'as' => 'show.my.course',
+    'uses' => 'App\Http\Controllers\user\userController@showMyCourse'
+]);
 
 //XAC NHAN EMAIL
 Route::get('/confirmEmail', [
@@ -78,6 +93,11 @@ Route::get('/getPassword/{taikhoan}/{token}', [
 Route::post('/getPassword/{taikhoan}/{token}', [
     'as' => 'taikhoan.postGetPass',
     'uses' => 'App\Http\Controllers\user\loginController@postGetPass'
+]);
+//SEARCH AJAX
+Route::get('/searchCourse', [
+    'as' =>  'home.ajaxSearch',
+    'uses' => 'App\Http\Controllers\user\homeController@ajaxSearch'
 ]);
 Route::post('/search', [
     'as' =>  'home.search',
@@ -140,4 +160,23 @@ Route::post('/exam/{id}/saveAnswer', [
 Route::post('/exam', [
     'as' =>  'productController.handleExam',
     'uses' => 'App\Http\Controllers\user\productController@handleExam'
+]);
+
+
+//LOGIN FACEBOOK
+Route::get('/login-facebook', [
+    'as' =>  'login.loginFacebook',
+    'uses' => 'App\Http\Controllers\user\loginController@loginFacebook'
+]);
+Route::get('/lg/facebook/callback', [
+    'as' =>  'login.callbackFacebook',
+    'uses' => 'App\Http\Controllers\user\loginController@callbackFacebook'
+]);
+Route::get('/login-google', [
+    'as' =>  'login.loginGoogle',
+    'uses' => 'App\Http\Controllers\user\loginController@loginGoogle'
+]);
+Route::get('/lg/google/callback', [
+    'as' =>  'login.callbackGoogle',
+    'uses' => 'App\Http\Controllers\user\loginController@callbackGoogle'
 ]);
