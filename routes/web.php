@@ -154,13 +154,24 @@ Route::get('/actived/{taikhoan}/{token}', [
 ]);
 
 //TEST
-Route::get('/exam', [
+Route::get('/exam/{id}', [
     'as' =>  'productController.exam',
     'uses' => 'App\Http\Controllers\user\productController@exam'
 ]);
+
+Route::get('/exam/{id}/fetch_data', [
+    'as' =>  'productController.fetch_data',
+    'uses' => 'App\Http\Controllers\user\productController@fetch_data'
+]);
+
+Route::post('/exam/{id}/saveAnswer', [
+    'as' =>  'productController.saveAnswer',
+    'uses' => 'App\Http\Controllers\user\productController@saveAnswer'
+]);
+
 Route::post('/exam', [
     'as' =>  'productController.handleExam',
-    'uses' => 'App\Http\Controllers\user\orderController@handleExam'
+    'uses' => 'App\Http\Controllers\user\productController@handleExam'
 ]);
 
 //LOGIN WITH SOCIAL
