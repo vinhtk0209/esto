@@ -1,30 +1,6 @@
 @extends('user.layout.index')
 @section('content')
 
-{{-- BUY COURSE STARTS --}}
-<div class="buy-course">
-    <div class="img-course">
-        <img class="img-responsive "
-        @foreach ($productDetail as $product)
-        src="{{('./user/assets/imgCourse')}}/{{$product->ANH}}"
-        alt="{{$product->TENKH}}">
-        </div>
-    <div class="price-container">
-        <p class="main-price">{{number_format($product->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
-        {{-- <div class="price price-discount">
-            <p><del>600,000</del><span class="price-unit"><sup>vnd</sup></span></p>
-        </div> --}}
-    </div>
-    <div class="cart-now btn-to-do-course mt-10">
-        <a href="javascript:void(0)" onclick="addToCart({{ $product->MAKH }})" class="btn-course">
-           <i class="fa fa-cart-plus" aria-hidden="true"></i>
-            Thêm vào giỏ hàng
-        </a>
-    </div>
- </div>
-{{-- BUY COURSE ENDS --}}
-
-
 {{-- COURSE DETAIL STARTS --}}
 <section id="course-detail">
     {{-- COURSE DETAIL HEADER STARTS --}}
@@ -32,6 +8,7 @@
             <div class="container">
                 <div class="title-des">
                     <div class="name-course-detail">
+             @foreach ($productDetail as $product)
                         <h1>{{$product->TENKH}}</h1>
                         <h3 class="text-danger">({{$product->TRUCTUYEN == 1?'Trực tuyến':'Video'}})</h3>
                     </div>

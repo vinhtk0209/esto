@@ -15,34 +15,7 @@ ul {
     margin: 0;
 }
 
-.mr-5 {
-    margin-right: 5px !important;
-}
 
-.mw-70p {
-    max-width: 70%;
-}
-
-a {
-    text-decoration: none;
-}
-
-.mt--20 {
-    margin-top: -20px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-    text-transform: capitalize;
-    margin: 0;
-}
-
-p {
-    margin: 0;
-}
 
 /* ======= HEADER =====*/
 .course-detail-header {
@@ -51,17 +24,6 @@ p {
     padding: 10px 0;
 }
 
-.postion-relative {
-    position: relative !important;
-}
-
-.postion-right-310 {
-    right: 310px !important;
-}
-
-.postion-left-45 {
-    left: -45px !important;
-}
 
 .title-des {
     max-width: 70%;

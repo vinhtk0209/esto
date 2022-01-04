@@ -189,13 +189,10 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-<<<<<<< HEAD
                     {{-- <img alt="Image placeholder" src="{{session('login')==null?'{{asset('images/avatar.png':session('login')->ANHDAIDIEN==''?'{{asset('images/avatar.png':'{{asset('images/'session('login')->ANHDAIDIEN}}">
                   </span> --}}
-=======
-                    <img alt="Image placeholder" src="{{session('login')==null?'./images/avatar.png':session('login')->ANHDAIDIEN==''?'./images/avatar.png':'./images/'.session('login')->ANHDAIDIEN}}">
+                    {{-- <img alt="Image placeholder" src="{{session('login')==null?'./images/avatar.png':session('login')->ANHDAIDIEN==''?'./images/avatar.png':'./images/'.session('login')->ANHDAIDIEN}}"> --}}
                   </span>
->>>>>>> 5b88763f143bab858306a05bc9bb7f86f3037453
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{session('login')==null?'':session('login')->HOTEN}}</span>
                   </div>

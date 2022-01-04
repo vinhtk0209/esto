@@ -5,58 +5,6 @@
     --lesson-active: #F8EBEB;
 }
 
-.fs-100 {
-    font-size: 100px !important;
-}
-
-.color-cart {
-    color: #ccc !important;
-}
-
-.py-30 {
-    padding-top: 30px !important;
-    padding-bottom: 30px !important;
-}
-
-.pt-30 {
-    padding-top: 30px !important;
-}
-
-.mt-5 {
-    margin-top: 5px !important;
-}
-
-.mb-5 {
-    margin-bottom: 5px !important;
-}
-
-.pl-20 {
-    padding-left: 20px !important;
-}
-
-.mt-10 {
-    margin-top: 20px !important;
-}
-
-.ml-5 {
-    margin-left: 5px !important;
-}
-
-.ml-10 {
-    margin-left: 10px !important;
-}
-
-.ml-20 {
-    margin-left: 20px !important;
-}
-
-.mb-20 {
-    margin-bottom: 20px !important;
-}
-
-.mt-30 {
-    margin-top: 30px !important;
-}
 
 /*
 .userManager h1 {

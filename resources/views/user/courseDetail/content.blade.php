@@ -190,7 +190,9 @@
                     @foreach ($classRoom as $class)
                         <div class="intro-class">
                             <div class="intro-class-item d-flex">
-                                <span class="font-weight-bold mr-5">Tên lớp : </span>  <a href="{{URL::to('/contentClass/'.$class->MALH)}}">{{$class->TENLOP}}</a>
+                                <span class="font-weight-bold mr-5">Tên lớp : </span> 
+                                <span class="mr-5">{{$class->TENLOP}}</span>
+                                 <a href="{{URL::to('/contentClass/'.$class->MALH)}}">(Xem chi tiết)</a>
                             </div>
                            <div class="intro-class-item d-flex ">
                               <span class="font-weight-bold mr-5">Số lượng học viên :</span> <p> {{$class->SLGIOIHAN}}</p>

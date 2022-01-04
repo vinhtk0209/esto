@@ -66,7 +66,12 @@ class userController extends Controller
                 $user->ANHDAIDIEN = "";
             }
             $user->save();
-
+            if (Session::has('customer')) {
+                Session::forget('customer');
+                Session::put('customer', $user);
+            } else {
+                Session::put('customer', $user);
+            }
             return redirect()->route('update.profile')
                 ->with('updateSuccess', "Cập nhật thành công");
         } catch (Exception $err) {

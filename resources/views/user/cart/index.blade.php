@@ -1,6 +1,6 @@
 @extends('user.layout.index')
 @section('content')
-<section class="best-seller mb-16">
+<section class="best-seller mb-16 min-height-330 ">
     <div class="best-seller-head">
         <div class="container">
             <div class="row">

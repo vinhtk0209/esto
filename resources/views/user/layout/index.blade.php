@@ -28,6 +28,8 @@
 
 
     <!-- CUSTOM CSS -->
+    <!-- GLOBAL CSS -->
+    <link rel="stylesheet" href="./user/assets/css/global.css" >
     <!-- INFO FILE CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoFile.css" >
     <!-- LEARN CSS -->
