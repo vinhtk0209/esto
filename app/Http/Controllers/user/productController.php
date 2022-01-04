@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\BaiLam;
 use App\Models\KhoaHoc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
+use App\Models\CTBaiLam;
 
 class productController extends Controller
 {
@@ -161,8 +163,57 @@ class productController extends Controller
 
     public function handleExam(Request $request)
     {
-        $data = $request->all();
-        // $data['code-to-test'];
+        return redirect('exam/' . $request->code);
+    }
 
+    public function exam($id)
+    {
+        $ctbailam = new CTBaiLam();
+        $bailam = new BaiLam();
+        $bailam->MAHV = Session::has('customer') ? Session::get('customer')->ID : null;
+        $bailam->MABT = $id;
+        $bailam->save();
+        Session::put('takeExam', $bailam->MABL);
+        $baithi = DB::table('CTBaithi')
+            ->join('BaiThi', 'CTBaithi.MABT', '=', 'BaiThi.MABT')
+            ->join('CauHoi', 'CauHoi.MACH', '=', 'CTBaiThi.MACH')
+            ->where('CTBaithi.MABT', $id)->paginate(1);
+        return view('user.exam.take', compact('baithi', 'ctbailam'));
+    }
+
+    function fetch_data(Request $request, $id)
+    {
+        $ctbailam = new CTBaiLam();
+        if ($request->ajax()) {
+            $baithi = DB::table('CTBaithi')
+                ->join('BaiThi', 'CTBaithi.MABT', '=', 'BaiThi.MABT')
+                ->join('CauHoi', 'CauHoi.MACH', '=', 'CTBaiThi.MACH')
+                ->where('CTBaithi.MABT', $id)->paginate(1);
+            return view('user.exam.question', compact('baithi', 'ctbailam'))->render();
+        }
+    }
+
+    function saveAnswer(Request $request)
+    {
+        if (Session::has('takeExam')) {
+            $ctbailam = CTBaiLam::where('MABL', Session::get('takeExam'))
+                ->where('MACH', $request->mach)
+                ->update(['DAPAN' => $request->dapan]);
+            if ($ctbailam == 0) {
+                $ctbailam = new CTBaiLam();
+                $ctbailam->MABL = Session::has('takeExam') ? Session::get('takeExam') : null;
+                $ctbailam->MACH = $request->mach;
+                $ctbailam->DAPAN = $request->dapan;
+                $ctbailam->save();
+            }
+        }
+
+        if ($request->ajax()) {
+            $baithi = DB::table('CTBaithi')
+                ->join('BaiThi', 'CTBaithi.MABT', '=', 'BaiThi.MABT')
+                ->join('CauHoi', 'CauHoi.MACH', '=', 'CTBaiThi.MACH')
+                ->where('CTBaithi.MABT', $request->id)->paginate(1);
+            return "success";
+        }
     }
 }

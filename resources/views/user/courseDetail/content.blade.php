@@ -13,7 +13,7 @@
         </div> --}}
     </div>
      <div class="cart-now btn-to-do-course mt-10">
-         <a href="javascript:void(0)" onclick="addToCart({{ $product->MAKH }})" class="btn-course">
+         <a href="javascript:void(0)" onclick="addToCart('{{$product->MAKH }}')" class="btn-course">
             <i class="fa fa-cart-plus" aria-hidden="true"></i>
              Thêm vào giỏ hàng
          </a>
