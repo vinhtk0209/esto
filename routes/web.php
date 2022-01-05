@@ -202,3 +202,8 @@ Route::post('/contentClass/{id}', [
     'as' =>  'post.buyClass',
     'uses' => 'App\Http\Controllers\user\orderController@handleBuyClass'
 ]);
+
+// LOAD VIDEO
+Route::get('/ajax-load-video', [
+    'uses' => 'App\Http\Controllers\user\userController@ajaxLoadVideo'
+]);

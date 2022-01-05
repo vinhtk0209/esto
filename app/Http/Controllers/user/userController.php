@@ -4,7 +4,6 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\BaiHoc;
-use App\Models\ChuongHoc;
 use Illuminate\Http\Request;
 use App\Models\TaiKhoan;
 use Illuminate\Support\Str;
@@ -108,10 +107,22 @@ class userController extends Controller
 
     public function learnCourse($id)
     {
-        $sectionCourse  = ChuongHoc::where('chuonghoc.MAKH', '=', $id)->get();
-        $lessonCourse = BaiHoc::get();
+        $data = [];
         $course_lessons = KhoaHoc_BaiHoc::where('MAKH', $id)->get();
+        foreach ($course_lessons as $course_lesson) {
+            $lesson = BaiHoc::find($course_lesson->MABH);
+            $data[$lesson->MACHUONG][] = $lesson;
+        }
         $course_lesson_first  = KhoaHoc_BaiHoc::where('MAKH', $id)->first();
-        return view('user.lesson.index', compact('course_lesson_first', 'course_lessons', 'sectionCourse'));
+        return view('user.lesson.index', compact('course_lesson_first', 'course_lessons', 'data'));
+    }
+
+    public function ajaxLoadVideo(Request $request)
+    {
+        $lesson_first = BaiHoc::find($request->lesson_id);
+        return response()->json([
+            'status' => 200,
+            'data' => view('user.lesson.video', compact('lesson_first'))->render()
+        ]);
     }
 }
