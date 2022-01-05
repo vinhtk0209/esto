@@ -20,10 +20,10 @@ class Helper
                 <tr>
                 <td scope="col" class="sort">' . $char . $menu->TENDM . '</td>
                 <td scope="col" class="sort">' . self::active($menu->ACTIVE) . '</td>
-                <td scope="col" class="sort">' . $menu->UPDATE_AT . '</td>
-                <td class="center">
-                <a href="admin/danhmuc/sua/' . $menu->MADM . '" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                <a href="admin/danhmuc/xoa/' . $menu->MADM . '" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm(\'Bạn có muốn xóa không\')"><i class="material-icons">&#xE872;</i></a>
+                <td scope="col" class="sort text-center">' . $menu->UPDATE_AT . '</td>
+                <td >
+                <a href="admin/danhmuc/sua/' . $menu->MADM . '" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                <a href="admin/danhmuc/xoa/' . $menu->MADM . '" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm(\'Bạn có muốn xóa không\')"><i class="material-icons">&#xE872;</i></a>
                 </a>
                 </td>
                 </tr>

@@ -82,10 +82,7 @@
                         </div>
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <button type="submit" class="btn btn-default">Sửa</button>
-                            </div>
-                            <div class="col-4 text-right">
-                                <a href="admin/lophoc/" id="lophoc" class="btn btn-primary">Thêm bài học</a>
+                                <button type="submit" class="btn btn-default">Sửa lớp học</button>
                             </div>
                         </div>
                     </form>

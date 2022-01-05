@@ -51,7 +51,7 @@
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
-                                        <img src="public/user/assets/imgCourse/{{$kh->ANH}}" width="90px" height="50px">
+                                        <img src="./user/assets/imgCourse/{{$kh->ANH}}" width="90px" height="50px">
                                     </div>
                                 </th>
                                 <td class="budget">
@@ -80,7 +80,7 @@
                 </div>
                 <!-- Card footer -->
                 <div class="card-footer py-4">
-                    <ul class="pagination justify-content-end mb-0">
+                    <ul class="pagination justify-content-end mb-0" id="paginate">
                         <li class="page-item">
                             <a class="page-link" href="admin/khoahoc?page=1">
                                 <i class="fas fa-angle-double-left"></i>
@@ -115,4 +115,5 @@
         </div>
     </div>
 </div>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection

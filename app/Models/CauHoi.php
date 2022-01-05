@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CauHoi extends Model
 {
     protected $table = "cauhoi";
+    protected $primaryKey = "MACH";
     public $timestamps = false;
 
     public function rCTBaiThi()

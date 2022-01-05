@@ -16,15 +16,15 @@ use Illuminate\Contracts\Container;
 |
 */
 
-Route::get('/admin', [
-    'as' =>  'dangnhap.login',
-    'uses' => 'App\Http\Controllers\admin\LoginController@getLogin'
-]);
+// Route::get('/admin', [
+//     'as' =>  'dangnhap.login',
+//     'uses' => 'App\Http\Controllers\admin\LoginController@getLogin'
+// ]);
 
-Route::post('/admin', [
-    'as' =>  'dangnhap.login',
-    'uses' => 'App\Http\Controllers\admin\LoginController@postLogin'
-]);
+// Route::post('/admin', [
+//     'as' =>  'dangnhap.login',
+//     'uses' => 'App\Http\Controllers\admin\LoginController@postLogin'
+// ]);
 
 // Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -51,8 +51,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::prefix('baihoc')->name('baihoc.')->group(function () {
-        Route::get('/', 'App\Http\Controllers\admin\BaiHocController@index');
-
+        Route::get('/', 'App\Http\Controllers\admin\BaiHocController@index');        
+        Route::get('/search', 'App\Http\Controllers\admin\BaiHocController@search');
         Route::get('/search={id}', 'App\Http\Controllers\admin\BaiHocController@index');
         Route::get('/them', 'App\Http\Controllers\admin\BaiHocController@create');
         Route::post('/them', 'App\Http\Controllers\admin\BaiHocController@store');
@@ -63,7 +63,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::prefix('chuonghoc')->name('chuonghoc.')->group(function () {
-        Route::get('/', 'App\Http\Controllers\admin\ChuongHocController@index');
+        Route::get('/', 'App\Http\Controllers\admin\ChuongHocController@index');        
+        Route::get('/search', 'App\Http\Controllers\admin\ChuongHocController@search');
         Route::post('/them', 'App\Http\Controllers\admin\ChuongHocController@store');
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\ChuongHocController@edit');
         Route::post('/sua/{id}', 'App\Http\Controllers\admin\ChuongHocController@update');
@@ -72,23 +73,28 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('baithi')->name('baithi.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\BaiThiController@index');
-
+        Route::get('/search', 'App\Http\Controllers\admin\BaiThiController@search');
         Route::get('/search={id}', 'App\Http\Controllers\admin\BaiThiController@index');
         Route::get('/them/{id}', 'App\Http\Controllers\admin\BaiThiController@create');
         Route::post('/them/{id}', 'App\Http\Controllers\admin\BaiThiController@store');
         Route::post('/them/1/hinhthuc', 'App\Http\Controllers\admin\BaiThiController@hinhthuc');
-
-        Route::post('/them', 'App\Http\Controllers\admin\BaiThiController@store');
-
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\BaiThiController@edit');
         Route::post('/sua/{id}', 'App\Http\Controllers\admin\BaiThiController@update');
         Route::get('/xoa/{id}', 'App\Http\Controllers\admin\BaiThiController@delete');
         Route::get('/them/{id}/cauhoi', 'App\Http\Controllers\admin\BaiThiController@createCauHoi');
         Route::post('/them/{id}/cauhoi', 'App\Http\Controllers\admin\BaiThiController@storeCauHoi');
+        Route::get('/them/{id}/nganhangcauhoi', 'App\Http\Controllers\admin\BaiThiController@indexCauHoi');        
+        Route::get('/them/{id}/nganhangcauhoi/search', 'App\Http\Controllers\admin\BaiThiController@search');        
+        Route::post('/them/{id}/nganhangcauhoi/monhoc', 'App\Http\Controllers\admin\BaiThiController@monhoc');
+        Route::post('/them/{id}/nganhangcauhoi', 'App\Http\Controllers\admin\BaiThiController@indexPostCauHoi');
+        Route::get('/them/{id}/cauhoi/sua/{mach}', 'App\Http\Controllers\admin\BaiThiController@editCauHoi');
+        Route::post('/them/{id}/cauhoi/sua/{mach}', 'App\Http\Controllers\admin\BaiThiController@updateCauHoi');
+        Route::get('/them/{id}/cauhoi/xoa/{mach}', 'App\Http\Controllers\admin\BaiThiController@deleteCauHoi');
     });
 
     Route::prefix('lophoc')->name('lophoc.')->group(function () {
-        Route::get('/', 'App\Http\Controllers\admin\LopHocController@index');
+        Route::get('/', 'App\Http\Controllers\admin\LopHocController@index');        
+        Route::get('/search', 'App\Http\Controllers\admin\LopHocController@search');
         Route::get('/them', 'App\Http\Controllers\admin\LopHocController@create');
         Route::post('/them', 'App\Http\Controllers\admin\LopHocController@store');
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\LopHocController@edit');
@@ -98,6 +104,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('hocvien')->name('hocvien.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\HocVienController@index');
+        Route::get('/ctlop/{id}', 'App\Http\Controllers\admin\HocVienController@viewlop');
         Route::get('/them', 'App\Http\Controllers\admin\HocVienController@create');
         Route::post('/them', 'App\Http\Controllers\admin\HocVienController@store');
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\HocVienController@edit');
@@ -127,9 +134,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\TaiKhoanController@index');
         Route::get('/them', 'App\Http\Controllers\admin\TaiKhoanController@create');
         Route::post('/them', 'App\Http\Controllers\admin\TaiKhoanController@store');
+        Route::get('/sua/chungchi/{id}', 'App\Http\Controllers\admin\TaiKhoanController@createChungChi');
+        Route::post('/sua/chungchi/{id}', 'App\Http\Controllers\admin\TaiKhoanController@storeChungChi');
         Route::get('/sua/{id}', 'App\Http\Controllers\admin\TaiKhoanController@edit');
         Route::post('/sua/{id}', 'App\Http\Controllers\admin\TaiKhoanController@update');
         Route::get('/xoa/{id}', 'App\Http\Controllers\admin\TaiKhoanController@delete');
+        Route::get('/sua/chungchi/sua/{id}&macc={macc}', 'App\Http\Controllers\admin\TaiKhoanController@editChungChi');
+        Route::post('/sua/chungchi/sua/{id}&macc={macc}', 'App\Http\Controllers\admin\TaiKhoanController@updateChungChi');
+        Route::get('/sua/chungchi/xoa/{id}&macc={macc}', 'App\Http\Controllers\admin\TaiKhoanController@deleteChungChi');
+        Route::get('/search={id}', 'App\Http\Controllers\admin\TaiKhoanController@search');
     });
 
     Route::prefix('thongtincanhan')->name('thongtincanhan.')->group(function () {

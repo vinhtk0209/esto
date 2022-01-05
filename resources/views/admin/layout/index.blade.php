@@ -9,25 +9,27 @@
   <title>TRANG QUAN TRI</title>
   <!-- Favicon -->
   <base href="{{asset('')}}">
-  <link rel="icon" href="public/admin_assets/img/brand/favicon.png" type="image/png">
+  <link rel="icon" href="./admin_assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Icons -->
-  <link rel="stylesheet" href="public/admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="public/admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="./admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="./admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="public/admin_assets/css/argon.css?v=1.2.0" type="text/css">
-  <link rel="stylesheet" href="public/user/assets/css/main.css">
-  <link rel="stylesheet" href="public/user/assets/css/custom.css">
+  <link rel="stylesheet" href="./admin_assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="./user/assets/css/main.css">
+  <link rel="stylesheet" href="./user/assets/css/custom.css">
+
   {{-- CKEDITOR --}}
   <!-- <script src="ckeditor/ckeditor.js"></script> -->
-  <script type="text/javascript" language="javascript" src="public/ckeditor/ckeditor.js" ></script>
-
-
+  <script type="text/javascript" language="javascript" src="./ckeditor/ckeditor.js" ></script>
+  <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+  {{-- CKEDITOR --}}
+  <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
 </head>
 
 <body>
@@ -85,7 +87,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="admin_assets/img/theme/team-1.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="./admin_assets/img/theme/team-1.jpg" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -104,7 +106,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="admin_assets/img/theme/team-2.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="./admin_assets/img/theme/team-2.jpg" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -123,7 +125,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="admin_assets/img/theme/team-3.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="./admin_assets/img/theme/team-3.jpg" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -142,7 +144,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="admin_assets/img/theme/team-4.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="./admin_assets/img/theme/team-4.jpg" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -161,7 +163,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="admin_assets/img/theme/team-5.jpg" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="./admin_assets/img/theme/team-5.jpg" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -187,7 +189,13 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
+<<<<<<< HEAD
                     <img alt="Image placeholder" src="{{(session('login')==null?'public/images/avatar.png':session('login')->ANHDAIDIEN=='')?'public/images/avatar.png':'public/images/'.session('login')->ANHDAIDIEN}}">
+=======
+                    {{-- <img alt="Image placeholder" src="{{session('login')==null?'{{asset('images/avatar.png':session('login')->ANHDAIDIEN==''?'{{asset('images/avatar.png':'{{asset('images/'session('login')->ANHDAIDIEN}}">
+                  </span> --}}
+                    {{-- <img alt="Image placeholder" src="{{session('login')==null?'./images/avatar.png':session('login')->ANHDAIDIEN==''?'./images/avatar.png':'./images/'.session('login')->ANHDAIDIEN}}"> --}}
+>>>>>>> 07e2c95a88d4d5d96ca88065e10a356810be8867
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{session('login')==null?'':session('login')->HOTEN}}</span>
@@ -219,16 +227,16 @@
 
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="public/admin_assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="public/admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="public/admin_assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="public/admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="public/admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <script src="./admin_assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="./admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./admin_assets/vendor/js-cookie/js.cookie.js"></script>
+  <script src="./admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="./admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Optional JS -->
-  <script src="public/admin_assets/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="public/admin_assets/vendor/chart.js/dist/Chart.extension.js"></script>
+  <script src="./admin_assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="./admin_assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
-  <script src="public/admin_assets/js/argon.js?v=1.2.0"></script>
+  <script src="./admin_assets/js/argon.js?v=1.2.0"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -271,8 +279,21 @@
     }
 
     function imgchange(event) {
-      $("#anhkh").attr('src', URL.createObjectURL(event.target.files[0]));
+      $("#anh").attr('src', URL.createObjectURL(event.target.files[0]));
     }
+
+    CKEDITOR.replace('CHITIETKH');
+    CKEDITOR.replace('GIOITHIEUKH');
+    CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
+    CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
+    CKEDITOR.config.autoParagraph = false;
+    $("form").submit(function(e) {
+      var messageLength = CKEDITOR.instances['CHITIETKH'].getData().replace(/<[^>]*>/gi, '').length;
+      if (!messageLength) {
+        var input = document.getElementById('CHITIETKH').setCustomValidity('You gotta fill this out, yo!');
+        e.preventDefault();
+      }
+    });
   </script>
   <script>
     function toggle(oInput) {

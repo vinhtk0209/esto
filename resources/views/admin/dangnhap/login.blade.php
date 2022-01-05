@@ -9,14 +9,14 @@
     <title>TRANG QUAN TRI</title>
     <!-- Favicon -->
     <base href="{{asset('')}}">
-    <link rel="icon" href="public/admin_assets/img/brand/favicon.png" type="image/png">
+    <link rel="icon" href="./admin_assets/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
-    <link rel="stylesheet" href="public/admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
-    <link rel="stylesheet" href="public/admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="./admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="./admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Argon CSS -->
-    <link rel="stylesheet" href="public/admin_assets/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="./admin_assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body class="bg-default">
@@ -24,7 +24,7 @@
     <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="dashboard.html">
-                <img src="public/admin_assets/img/brand/white.png">
+                <img src="./admin_assets/img/brand/white.png">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,7 +34,7 @@
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <a href="dashboard.html">
-                                <img src="public/admin_assets/img/brand/blue.png">
+                                <img src="./admin_assets/img/brand/blue.png">
                             </a>
                         </div>
                         <div class="col-6 collapse-close">
@@ -103,13 +103,13 @@
     </div>
     <!-- Argon Scripts -->
     <!-- Core -->
-    <script src="public/admin_assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="public/admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="public/admin_assets/vendor/js-cookie/js.cookie.js"></script>
-    <script src="public/admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-    <script src="public/admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <script src="./admin_assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="./admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./admin_assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="./admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="./admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
     <!-- Argon JS -->
-    <script src="public/admin_assets/js/argon.js?v=1.2.0"></script>
+    <script src="./admin_assets/js/argon.js?v=1.2.0"></script>
 </body>
 
 </html>

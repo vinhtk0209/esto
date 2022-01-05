@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Mail;
 use Illuminate\Support\Str;
+use App\Models\Social;
+use Socialite;
+use Illuminate\Support\Facades\DB;
 
 class loginController extends Controller
 {
@@ -147,7 +150,7 @@ class loginController extends Controller
         return abort(404);
     }
 
-    public function postGetPass(Taikhoan $taikhoan, $token,Request $request)
+    public function postGetPass(Taikhoan $taikhoan, $token, Request $request)
     {
         $request->validate(
             [
@@ -159,9 +162,74 @@ class loginController extends Controller
                 're_password.same' => "Hai mật khẩu không giống nhau",
             ]
         );
-        $newPass =bcrypt($request->password) ;
-        $taikhoan->update(['MATKHAU' => $newPass,'TOKEN' => null]);
+        $newPass = bcrypt($request->password);
+        $taikhoan->update(['MATKHAU' => $newPass, 'TOKEN' => null]);
         echo $newPass;
         return redirect()->route('login.login')->with('haveActived', 'Đổi mật khẩu thành công, bạn có thể đăng nhập');
+    }
+
+    public function findOrCreate($provider, $nameProvider)
+    {
+        $customer_new = Social::create([
+            'PROVIDER-USER-ID' => $provider->id,
+            'PROVIDER-USER-EMAIL' => $provider->email,
+            'PROVIDER' => $nameProvider,
+        ]);
+        $authUser = Taikhoan::create([
+            'HOTEN' => $provider->name,
+            'EMAIL' => $provider->email,
+            'ANHDAIDIEN' => $provider->avatar,
+            'MATKHAU' => '',
+            'SODIENTHOAI' => '',
+            'LOAITK' => 1,
+            'TRANGTHAI' =>  1
+        ]);
+        $customer_new->customer()->associate($authUser);
+        $customer_new->save();
+        Session::put('customer', $authUser);
+    }
+
+    public function loginFacebook()
+    {
+        config(['services.facebook.redirect' => 'https://esto.com/lg/facebook/callback']);
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function callbackFacebook()
+    {
+        config(['services.facebook.redirect' => 'https://esto.com/lg/facebook/callback']);
+        $provider = Socialite::driver('facebook')->stateless()->user();
+        $authUser = Taikhoan::join('social', 'social.USER', '=', 'taikhoan.ID')
+            ->where('social.PROVIDER', '=', 'FACEBOOK')
+            ->where('social.PROVIDER-USER-ID', '=', $provider->id)->first();
+        if ($authUser) {
+            Session::put('customer', $authUser);
+        } else {
+            $this->findOrCreate($provider, 'FACEBOOK');
+        }
+
+        return redirect()->route('home.index');
+    }
+
+    public function loginGoogle()
+    {
+        config(['services.google.redirect' => 'https://esto.com/lg/google/callback']);
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function callbackGoogle()
+    {
+        config(['services.google.redirect' => 'https://esto.com/lg/google/callback']);
+        $provider = Socialite::driver('google')->stateless()->user();
+        $authUser = Taikhoan::join('social', 'social.USER', '=', 'taikhoan.ID')
+            ->where('social.PROVIDER', '=', 'GOOGLE')
+            ->where('social.PROVIDER-USER-ID', '=', $provider->id)->first();
+        if ($authUser) {
+            Session::put('customer', $authUser);
+        } else {
+            $this->findOrCreate($provider, 'GOOGLE');
+        }
+
+        return redirect()->route('home.index');
     }
 }

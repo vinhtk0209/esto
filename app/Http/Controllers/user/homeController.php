@@ -73,4 +73,10 @@ class homeController extends Controller
         $courses = KhoaHoc::join("taikhoan", 'khoahoc.MAGV', '=', 'ID')->where('TENKH', 'like', '%' . $q . '%')->orWhere('HOTEN', 'like', '%' . $q . '%')->get();
         return view('user.search.index', compact('courses', 'q'));
     }
+
+    public function ajaxSearch()
+    {
+        $data = KhoaHoc::search()->limit(5)->get();
+        return view('user.search.ajaxSearch', compact('data'));
+    }
 }

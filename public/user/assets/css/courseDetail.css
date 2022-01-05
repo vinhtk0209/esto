@@ -15,30 +15,7 @@ ul {
     margin: 0;
 }
 
-.mw-70p {
-    max-width: 70%;
-}
 
-a {
-    text-decoration: none;
-}
-
-.mt--20 {
-    margin-top: -20px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-    text-transform: capitalize;
-    margin: 0;
-}
-
-p {
-    margin: 0;
-}
 
 /* ======= HEADER =====*/
 .course-detail-header {
@@ -47,17 +24,6 @@ p {
     padding: 10px 0;
 }
 
-.postion-relative {
-    position: relative !important;
-}
-
-.postion-right-310 {
-    right: 310px !important;
-}
-
-.postion-left-45 {
-    left: -45px !important;
-}
 
 .title-des {
     max-width: 70%;
@@ -205,9 +171,8 @@ a.name-teacher:hover {
 
 .buy-course {
     position: fixed;
-    top: 90px;
+    top: 100px;
     right: 110px;
-    z-index: 999;
     color: var(--text-body);
     display: flex;
     background: #fff;
@@ -278,3 +243,9 @@ a.name-teacher:hover {
     font-weight: 500;
     text-align: center;
 }
+
+.intro-class {
+    padding: 10px;
+}
+
+

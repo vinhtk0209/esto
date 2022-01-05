@@ -27,7 +27,7 @@
                             <h3 class="mb-0">Thêm lớp học</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="admin/cauhoi/" class="btn btn-sm btn-primary">Quay lại</a>
+                            <a href="{{$id > 0 ? 'admin/baithi/sua/'.$id : 'admin/baithi/them/'.$id}}" class="btn btn-sm btn-primary">Quay lại</a>
                         </div>
                     </div>
                 </div>
@@ -50,8 +50,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="form-control-label">Tên bài học</label>
-                                <textarea type="text" id="NOIDUNG" name="NOIDUNG" class="form-control"></textarea>
+                                <label class="form-control-label">Nội dung</label>
+                                <textarea type="text" id="NOIDUNG" name="NOIDUNG" class="ckeditor form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Câu A</label>

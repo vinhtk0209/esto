@@ -306,7 +306,7 @@
                     </ul>
                     <div class="list-order d-flex align-item-center">
                         <h4 class="title-course-filter">
-                            <img src="{{asset('user/assets/img/icon-filter.svg')}}" alt="">
+                            <img src="{{('./user/assets/img/icon-filter.svg')}}" alt="">
                             Bộ lọc:
                         </h4>
                         <form action="">
@@ -352,7 +352,7 @@
                     <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                         <div class="img-course">
                             <img class="img-responsive "
-                                src="{{asset('user/assets/imgCourse')}}/{{$course->ANH}}"
+                                src="{{('./user/assets/imgCourse')}}/{{$course->ANH}}"
                                 alt="{{$course->TENKH}}">
                         </div>
                         <div class="course-des">

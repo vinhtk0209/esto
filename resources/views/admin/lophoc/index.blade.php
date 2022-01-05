@@ -44,7 +44,7 @@
                                 <th scope="col" class="sort" data-sort="options"></th>
                             </tr>
                         </thead>
-                        <tbody class="list">
+                        <tbody class="list" id="listLH">
                             @foreach($lophoc as $lh)
                             <tr>
                                 <td class="budget">
@@ -57,7 +57,7 @@
                                     {{$lh->NGAYMOLOP}}
                                 </td>
                                 <td class="budget">
-                                    {{$lh->rKhoaHoc->TENKH}}
+                                    {{$lh->TENKH}}
                                 </td>
                                 <td class="left">
                                     <a href="admin/lophoc/sua/{{$lh->MALH}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -70,7 +70,7 @@
                 </div>
                 <!-- Card footer -->
                 <div class="card-footer py-4">
-                    <ul class="pagination justify-content-end mb-0">
+                    <ul class="pagination justify-content-end mb-0"  id="paginate">
                         <li class="page-item">
                             <a class="page-link" href="admin/lophoc?page=1">
                                 <i class="fas fa-angle-double-left"></i>

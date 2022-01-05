@@ -6,29 +6,30 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap">
+    <base href="{{asset('')}}">
 	<!--===============================================================================================-->
 	<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico" /> -->
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/fonts/iconic/css/material-design-iconic-font.min.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/fonts/iconic/css/material-design-iconic-font.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/vendor/animate/animate.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/vendor/animate/animate.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/vendor/css-hamburgers/hamburgers.min.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/vendor/css-hamburgers/hamburgers.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/vendor/vendor/animsition/css/animsition.min.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/vendor/vendor/animsition/css/animsition.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/vendor/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/vendor/select2/select2.min.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/vendor/daterangepicker/daterangepicker.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/vendor/daterangepicker/daterangepicker.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/css/loading.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/css/loading.css')}}">
 	<!--===============================================================================================-->
-    <link rel="stylesheet" href="{{asset('login/assets/css/util.css')}}">
-    <link rel="stylesheet" href="{{asset('login/assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/css/util.css')}}">
+    <link rel="stylesheet" href="{{('./login/assets/css/main.css')}}">
 	<!--===============================================================================================-->
 </head>
 
@@ -60,8 +61,8 @@
 
 
 
-	<div class="limiter" style="background-image: url('{{asset('login/assets/images/bg-01.jpg')}}');">
-		<div class="container-login100" style="background-image: url('{{asset('login/assets/images/bg-01.jpg')}}');">
+	<div class="limiter" style="background-image: url('{{('./login/assets/images/bg-01.jpg')}}');">
+		<div class="container-login100" style="background-image: url({{('./login/assets/images/bg-01.jpg')}} );">
 			<div class="wrap-login100 ">
 				<form class="login100-form validate-form" method="POST" action="{{ route('post.login') }}">
 					@csrf
@@ -102,33 +103,30 @@
 						</div>
 					</div>
 
-					<!-- <div class="txt1 text-center p-t-54 p-b-20">
+					  <div class="txt1 text-center p-t-20 p-b-20">
 						<span>
-							Hoặc đăng ký với
+							Hoặc đăng nhập với
 						</span>
 					</div>
-
-					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="#" class="login100-social-item bg2">
-							<i class="fa fa-twitter"></i>
-						</a>
-
-						<a href="#" class="login100-social-item bg3">
-							<i class="fa fa-google"></i>
-						</a>
-					</div> -->
-
-					<div class="flex-col-c p-t-10">
-						Chưa có tài khoản?
-						<a href="{{route('login.register')}}" class="txt2">
-							Đăng ký
-						</a>
-					</div>
 				</form>
+
+                    <div class="flex-c-m">
+                        <a href="{{url('/login-facebook')}}" class="login100-social-item bg1">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="{{url('/login-google')}}" class="login100-social-item bg3">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </div>
+
+                    <div class="flex-col-c p-t-10">
+                        Chưa có tài khoản?
+                        <a href="{{route('login.register')}}" class="txt2">
+                            Đăng ký
+                        </a>
+                    </div>
+
 			</div>
 		</div>
 	</div>
@@ -137,21 +135,21 @@
 	<div id="dropDownSelect1"></div>
 
 	<!--===============================================================================================-->
-    <script src="{{asset('login/assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{('./login/assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="{{asset('login/assets/vendor/animsition/js/animsition.min.js')}}"></script>
+    <script src="{{('./login/assets/vendor/animsition/js/animsition.min.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="{{asset('login/assets/vendor/bootstrap/js/popper.js')}}"></script>
-    <script src="{{asset('login/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{('./login/assets/vendor/bootstrap/js/popper.js')}}"></script>
+    <script src="{{('./login/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="{{asset('login/assets/vendor/select2/select2.min.js')}}"></script>
+    <script src="{{('./login/assets/vendor/select2/select2.min.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="{{asset('login/assets/vendor/daterangepicker/moment.min.js')}}"></script>
-    <script src="{{asset('login/assets/vendor/daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{('./login/assets/vendor/daterangepicker/moment.min.js')}}"></script>
+    <script src="{{('./login/assets/vendor/daterangepicker/daterangepicker.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="{{asset('login/assets/vendor/countdowntime/countdowntime.js')}}"></script>
+    <script src="{{('./login/assets/vendor/countdowntime/countdowntime.js')}}"></script>
 	<!--===============================================================================================-->
-    <script src="{{asset('login/assets/js/main.js')}}"></script>
+    <script src="{{('./login/assets/js/main.js')}}"></script>
 </body>
 
 </html>

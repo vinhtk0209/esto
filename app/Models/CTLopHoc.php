@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class CTLopHoc extends Model
 {
     protected $table = "ctlophoc";
+    protected $primaryKey = ['MAHV', 'MALH'];
+    public $timestamps = false;
+    public $incrementing = false;
+    protected $fillable = ['MAHV', 'MALH'];
+    
+    public function rTaiKhoan()
+    {
+        return $this->belongsTo('App\Models\TaiKhoan', 'MAHV');
+    }
+    public function rLopHoc()
+    {
+        return $this->belongsTo('App\Models\LopHoc', 'MALH');
+    }
 }

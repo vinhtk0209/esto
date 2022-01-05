@@ -47,7 +47,7 @@
                             <tr>
                                 <th scope="col" class="sort">Tên Danh Mục</th>
                                 <th scope="col" class="sort">Trạng Thái</th>
-                                <th scope="col" class="sort">Update</th>
+                                <th scope="col" class="sort text-center">Update</th>
                                 <th scope="col" class="sort"></th>
                             </tr>
                         </thead>

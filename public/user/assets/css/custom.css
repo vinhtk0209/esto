@@ -1,89 +1,14 @@
-:root {
-
-    /* ========== HEADER ========= */
-    --logo-color-start: #00d2ff;
-    --logo-color-end: #f44336;
-    /* MAU CHU VA BORDER KHI HOVER NUT DANG KY */
-    --register-text-color: rgba(244, 67, 54, 0.507);
-    --register-border-hover: rgba(244, 67, 54, 0.945);
-    /* MAU NEN VA KHI HOVER NUT DANG NHAP */
-    --login-bg-color: #f44336;
-    --login-bg-color-hover: #d34238;
-    /* MAU NEN VA KHI HOVER NUT KICH HOAT KHOA HOC */
-    --active-course-bg-color: #50ad4e;
-    --active-course-bg-color-hover: #439141;
-
-    /* ========== BANNER ========= */
-    /* BOX SHADOW CUA DANH MUC  */
-    --box-shadow-category: 0 0 5px 0 rgb(0 0 0 / 16%);
-    /* MAU NEN CUA DANH MUC */
-    --category-bg-color: #fff;
-    --category-text-color: #000;
-    --category-text-hover: rgba(80, 173, 78, .2);
-
-    --bg-body: #F5F5F5;
-
-
-    /* ========== KHOA HOC ========= */
-    /* MAU NEN KHOA HOC */
-    --course-bg-color: #fff;
-    /* MÀU TÊN KHÓA HỌC */
-    --title-course-color: #000
-        /* MÀU TÊN GIẢNG VIÊN VÀ KHUYẾN MÃI  */
-        --span-color: #888;
-    /* MÀU DANH GIA  */
-    --star-color: #FFED00;
-    /* KHI HOVER VAO TUNG KHOA HOC */
-    --box-shadow-name-course: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
-    ---box-shadow-hover: 0 4px 8px #62b0fd, 0 4px 12px rgb(0 0 0 / 8%);
-
-
-    /* ===== FOOTER ===== */
-    --footer-bg-color: #2C3238;
-    --footer-text-color: #fff;
-
-
-    /* ===== SWIPER  ===== */
-    --swiper-btn-color: #f44336;
-}
-
 .navbar-top {
     margin: 0;
 }
 
-.w-100 {
-    width: 100%;
-}
-
-.fl-basics-30 {
-    flex-basis: 30%;
-}
-
-.d-inline-block {
-    display: inline-block;
-}
 
 ul {
     padding: 0;
     list-style: none;
 }
 
-.d-flex {
-    display: flex;
 
-}
-
-.mb-16 {
-    margin-bottom: 16px;
-}
-
-.flex-wrap {
-    flex-wrap: wrap;
-}
-
-.flex-space {
-    justify-content: space-between;
-}
 
 body {
     background: var(--bg-body);
@@ -92,6 +17,17 @@ body {
 
 .header-wrap {
     padding: 20px 0;
+}
+
+.carpet {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 5px dashed;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
 }
 
 .nav-link a,
@@ -178,7 +114,7 @@ section.category .list-category {
 section.category .list-category .list-item .sub-menu-category {
     position: absolute;
     left: 290px;
-    z-index: 9000;
+    z-index: 8;
     height: 100%;
     width: 100%;
     top: 0;
@@ -391,4 +327,103 @@ section.courses {
 
 .btn-prev-courses {
     left: 150px;
+}
+
+
+/* HEADER */
+.header .drop-info-user-container {
+    display: flex;
+    align-items: center;
+}
+
+.header .user-info-header {
+    position: relative;
+}
+
+.drop-info-user-container::before {
+    content: '';
+    position: absolute;
+    width: 160px;
+    top: 55px;
+    height: 20px;
+
+}
+
+.drop-info-user-container:hover .dropdown-menu {
+    display: block;
+}
+
+.header .drop-info-user-container .drop-info-user {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: right;
+    color: #353535;
+    transition: all .4s ease;
+}
+
+.header .drop-info-user-container .drop-info-user:hover {
+    color: var(--active-course-bg-color);
+}
+
+.header .drop-info-user-container .drop-info-user .user {
+    text-align: right;
+    margin-bottom: 0;
+    display: block;
+    color: #353535;
+    transition: all .4s ease;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.header .drop-info-user-container .drop-info-user .carpet {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translate(50%, -50%);
+}
+
+.header .drop-info-user-container .drop-info-user-ava {
+    margin-left: 10px;
+}
+
+.header .drop-info-user-container .drop-info-user-ava img {
+    max-width: 40px;
+    border-radius: 50%;
+    min-height: 40px;
+}
+
+.dropdown-menu {
+    padding: 10px 5px;
+    top: 75px;
+    right: 190px;
+    min-width: 150px;
+}
+
+
+.dropdown-item {
+    padding: 10px;
+}
+
+.dropdown-item:active {
+    background: transparent;
+
+}
+
+.header .dropdown-menu-list .dropdown-item a {
+    display: block;
+    height: 100%;
+    color: #000;
+    transition: all .3s ease;
+}
+
+.header .dropdown-menu-list .dropdown-item a i {
+    margin-right: 5px;
+}
+
+.header .dropdown-menu-list .dropdown-item a:focus {
+    outline: none;
+}
+
+.header .dropdown-menu-list .dropdown-item a:hover {
+    color: var(--active-course-bg-color);
 }
