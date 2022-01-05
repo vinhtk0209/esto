@@ -98,6 +98,8 @@
                                 <div class="col-lg-3 center">
                                     <div class="form-group">
                                     <label class="form-control-label" for="input-username">Danh sách áp dụng</label></br>
+                                        <input name="hinhthuc" type="checkbox" id="all" value="1" style="vertical-align:middle; cursor: pointer;" onClick='toggle(this)' >
+                                        <label>Tất cả khóa học</label><br>    
                                         <!-- <input name="hinhthuc" type="radio" id="all" value="1" style="vertical-align:middle; cursor: pointer;" checked onclick="text(0)">
                                         <label>Tất cả khóa học</label><br>
                                         <input name="hinhthuc" type="radio" id="list" value="0" style="vertical-align:middle; cursor: pointer;" onclick="text(1)"> 
