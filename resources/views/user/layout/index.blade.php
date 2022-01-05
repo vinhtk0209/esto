@@ -111,6 +111,14 @@
                 <h2 class="modal-custom-title"> Vào phòng thi</h2>
             </header>
             <div class="modal-custom-body">
+<<<<<<< HEAD
+                <form  method="POST" action="{{ route('productController.handleExam') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="code-to-test" class="label-custom">Mã phòng thi:</label>
+                        <div class="form-row">
+                            <input type="text" name="code-to-test" id="code-to-test" class="code-to-test" placeholder="Nhập mã phòng thi..." required>
+=======
                 <form method="POST" action="{{ route('productController.handleExam') }}">
                     @csrf
                     @if (count($errors))
@@ -124,6 +132,7 @@
                         <label for="code-to-test" class="label-custom">Mã phòng thi:</label>
                         <div class="form-row">
                             <input type="text" name="code" id="code" class="code-to-test" placeholder="Nhập mã phòng thi..." required>
+>>>>>>> 07e2c95a88d4d5d96ca88065e10a356810be8867
                         </div>
                     </div>
                     <div class="form-group ">
@@ -168,34 +177,34 @@
     {{-- FILTER  --}}
     @include('user.layout.ajax')
     <script>
-        var yourDateToGo3 = new Date();
-        var timecurrent = new Date();
-        var tg = document.getElementById("TGKT").value.split(' ')[1];
-        yourDateToGo3.setHours(yourDateToGo3.getHours() + parseInt(tg.split(':')[0]) - timecurrent.getHours());
-        yourDateToGo3.setMinutes(yourDateToGo3.getMinutes() + parseInt(tg.split(':')[1]) - timecurrent.getMinutes());
-        yourDateToGo3.setSeconds(yourDateToGo3.getSeconds() + parseInt(tg.split(':')[2]) - timecurrent.getSeconds());
+        // var yourDateToGo3 = new Date();
+        // var timecurrent = new Date();
+        // var tg = document.getElementById("TGKT").value.split(' ')[1];
+        // yourDateToGo3.setHours(yourDateToGo3.getHours() + parseInt(tg.split(':')[0]) - timecurrent.getHours());
+        // yourDateToGo3.setMinutes(yourDateToGo3.getMinutes() + parseInt(tg.split(':')[1]) - timecurrent.getMinutes());
+        // yourDateToGo3.setSeconds(yourDateToGo3.getSeconds() + parseInt(tg.split(':')[2]) - timecurrent.getSeconds());
 
-        var timing3 = setInterval(
-            function() {
-                var currentDate3 = new Date().getTime();
-                var timeLeft3 = yourDateToGo3 - currentDate3;
+        // var timing3 = setInterval(
+        //     function() {
+        //         var currentDate3 = new Date().getTime();
+        //         var timeLeft3 = yourDateToGo3 - currentDate3;
 
-                var hours3 = Math.floor((timeLeft3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                if (hours3 < 10) hours3 = "0" + hours3;
-                var minutes3 = Math.floor((timeLeft3 % (1000 * 60 * 60)) / (1000 * 60));
-                if (minutes3 < 10) minutes3 = "0" + minutes3;
-                var seconds3 = Math.floor((timeLeft3 % (1000 * 60)) / 1000);
-                if (seconds3 < 10) seconds3 = "0" + seconds3;
+        //         var hours3 = Math.floor((timeLeft3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //         if (hours3 < 10) hours3 = "0" + hours3;
+        //         var minutes3 = Math.floor((timeLeft3 % (1000 * 60 * 60)) / (1000 * 60));
+        //         if (minutes3 < 10) minutes3 = "0" + minutes3;
+        //         var seconds3 = Math.floor((timeLeft3 % (1000 * 60)) / 1000);
+        //         if (seconds3 < 10) seconds3 = "0" + seconds3;
 
-                document.getElementById("countdown").innerHTML = hours3 + "h " + minutes3 + "m " + seconds3 + "s";
+        //         document.getElementById("countdown").innerHTML = hours3 + "h " + minutes3 + "m " + seconds3 + "s";
 
 
-                if (timeLeft3 <= 0) {
-                    clearInterval(timing3);
-                    document.getElementById("countdown").innerHTML = "It's over";
+        //         if (timeLeft3 <= 0) {
+        //             clearInterval(timing3);
+        //             document.getElementById("countdown").innerHTML = "It's over";
 
-                }
-            }, 1000);
+        //         }
+        //     }, 1000);
         $(document).ready(function () {
         $("#slider-range").slider({
             orientation: "vertical",
@@ -215,10 +224,11 @@
                 $("#slider-range").slider("values", 1)+'vnd').simpleMoneyFormat();
         $("#amountEnd").val(
                 $("#slider-range").slider("values", 0)+'vnd').simpleMoneyFormat();
-         });
+        });
     </script>
+    
 
-    <script src="./user/assets/js/main.js"></script>
+   
     <script src="./user/assets/js/add-to-cart.js"></script>
 
     {{-- SEARCH AJAX --}}
@@ -336,7 +346,7 @@
         });
     </script>
     @endif
-    
+    <script src="./user/assets/js/main.js"></script>
      <!-- JS  -->
 
 </body>

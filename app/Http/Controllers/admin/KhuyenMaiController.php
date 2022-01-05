@@ -25,38 +25,55 @@ class KhuyenMaiController extends Controller
 
     public function store(Request $request)
     {        
-        $khuyenmai = new KhuyenMai();              
-        $khuyenmai->NGAYBD = Carbon::createFromTimestamp(strtotime($request->NGAYBD . $request->TDBD . ":00"));      
-        $khuyenmai->NGAYKT = Carbon::createFromTimestamp(strtotime($request->NGAYKT . $request->TDKT . ":00"));
-        $date1 = $khuyenmai->NGAYBD;
-        $date2 =  $khuyenmai->NGAYKT;   
-        $result = $date1->lt($date2);
-        if($result)
-        {
-            $khuyenmai->TENKM = $request->TENKM;  
-            $today = date("Y-m-d h:i:sa");
-            if(strtotime($khuyenmai->NGAYBD) <=  strtotime($today) && strtotime($today) < strtotime($khuyenmai->NGAYKT))
+        $data = $request->all();   
+        $dateBD = Carbon::createFromTimestamp(strtotime($data['NGAYBD'] . $data['TDBD'] . ":00"));      
+        $dateKT = Carbon::createFromTimestamp(strtotime($data['NGAYKT'] . $data['TDKT'] . ":00"));   
+        $today = date("Y-m-d h:i:sa");
+            if(strtotime($dateBD) <=  strtotime($today) && strtotime($today) <= strtotime($dateKT))
             {
-                $khuyenmai->MATT = 1;
+                $MATT = 1;
             }
             else
-                $khuyenmai->MATT = 2;
-            $khuyenmai->TYLEKM = $request->TYLEKM;
-            //$danhsach = $request->danhsach;
-            $khuyenmai->save();
-
-            $dskh = $request->get('danhsach');
-            foreach ($dskh as $ds)
+                $MATT = 2; 
+        $result = $dateBD->lt($dateKT);
+        $exits1 = KhuyenMai::Where('NGAYKT','>',$dateBD)->where('NGAYBD','<', $dateBD)->count();
+        $exits2 = KhuyenMai::Where('NGAYBD','<',$dateKT)->where('NGAYKT','>', $dateKT)->count();
+        
+        if(KhuyenMai::where('TENKM', '=',$data['TENKM'])->count() < 1)
+        {
+            if ($result) 
             {
-                $ctkm = new CTKhuyenMai();
-                $ctkm ->MAKM = $khuyenmai->MAKM;
-                $ctkm ->MAKH = $ds; 
-                $ctkm->save();
+                if ($exits1 > 0 || $exits2 > 0) {
+                        return redirect('admin/khuyenmai/them')->with('thatbai', 'Đã tồn tại khuyến mãi khác trong thời gian này.!');
+                }
+                else {
+                    try {
+                        $khuyenmai = KhuyenMai::create([
+                            'TENKM' => $data['TENKM'],
+                            'TYLEKM' => $data['TYLEKM'],
+                            'NGAYBD' => $dateBD,
+                            'NGAYKT' => $dateKT,
+                            'MATT' => $MATT
+                        ]);
+                        $dskh = $data['danhsach'];
+                        foreach ($dskh as $ds) {
+                            CTKhuyenMai::create([
+                            'MAKM' => $khuyenmai->MAKM,
+                            'MAKH' => $ds
+                            ]);                
+                        }
+                        return redirect('admin/khuyenmai/them')->with('thongbao', 'Thêm thành công!');
+                    } catch (Exception $error) {
+                        return redirect('admin/khuyenmai/them')->with('thongbao', 'Thêm thất bại.!');
+                    }
+                }
             }
-            return redirect('admin/khuyenmai/them')->with('thongbao', 'Thêm thành công!');
-        }        
-        return redirect('admin/khuyenmai/them')->with('thatbai', 'Thời kết phúc phải lớn hơn thời gian bắt đầu');
-
+            else
+                return redirect('admin/khuyenmai/them')->with('thatbai', 'Thời gian kết phúc phải lớn hơn thời gian bắt đầu');
+            
+        }
+        else    
+            return redirect('admin/khuyenmai/them')->with('exits', 'Khuyến mãi này đã tồn tại');
     }
 
     public function edit($id)
@@ -69,39 +86,51 @@ class KhuyenMaiController extends Controller
 
     public function update(Request $request, $id)
     {
-        
-        $khuyenmai = KhuyenMai::find($id);
-        $khuyenmai->NGAYBD = Carbon::createFromTimestamp(strtotime($request->NGAYBD . $request->TDBD . ":00"));      
-        $khuyenmai->NGAYKT = Carbon::createFromTimestamp(strtotime($request->NGAYKT . $request->TDKT . ":00"));
-        $date1 = $khuyenmai->NGAYBD;
-        $date2 =  $khuyenmai->NGAYKT;   
-        $result = $date1->lt($date2);
-        if($result)
-        {
-            $khuyenmai->TENKM = $request->TENKM;  
-            $today = date("Y-m-d h:i:sa");
-            if(strtotime($khuyenmai->NGAYBD) <=  strtotime($today) && strtotime($today) < strtotime($khuyenmai->NGAYKT))
+        $data = $request->all();   
+        $dateBD = Carbon::createFromTimestamp(strtotime($data['NGAYBD'] . $data['TDBD'] . ":00"));      
+        $dateKT = Carbon::createFromTimestamp(strtotime($data['NGAYKT'] . $data['TDKT'] . ":00"));   
+        $today = date("Y-m-d h:i:sa");
+            if(strtotime($dateBD) <=  strtotime($today) && strtotime($today) <= strtotime($dateKT))
             {
-                $khuyenmai->MATT = 1;
+                $MATT = 1;
             }
             else
-                $khuyenmai->MATT = 2;
-            $khuyenmai->TYLEKM = $request->TYLEKM;
-            //$danhsach = $request->danhsach;
-            $khuyenmai->save();
-
-            $dskh = $request->get('danhsach');
-            $ctkm = CTKhuyenMai::find($id);
-            foreach ($dskh as $ds)
-            { 
-                $ctkm ->MAKH = $ds; 
-                $ctkm->save();
+                $MATT = 2; 
+        $result = $dateBD->lt($dateKT);
+        // if (KhuyenMai::where('TENKM', '=',$data['TENKM'])->count() < 1) 
+        // {
+            if($result)
+            {
+                try {
+                    $khuyenmai = KhuyenMai::find($id);
+                    $khuyenmai->update(
+                        [
+                            'TENKM' => $data['TENKM'],
+                            'TYLEKM' => $data['TYLEKM'],
+                            'NGAYBD' => $dateBD,
+                            'NGAYKT' => $dateKT,
+                            'MATT' => $MATT
+                        ]
+                    );
+                    $dskh = $data['danhsach'];
+                    CTKhuyenMai::where('MAKM', $id)->delete();
+                    foreach ($dskh as $ds)
+                    {
+                        CTKhuyenMai::create([
+                            'MAKM' => $khuyenmai->MAKM,
+                            'MAKH' => $ds
+                        ]);                
+                    }
+                    return redirect('admin/khuyenmai/sua/' . $id)->with('thongbao', 'Sửa thành công!');
+                } catch (Exception $error) {
+                    return redirect('admin/khuyenmai/sua/' . $id)->with('thongbao', 'Sửa thất bại.!');
+                }        
             }
-            return redirect('admin/khuyenmai/sua/' . $id)->with('thongbao', 'Sửa thành công!');
-        }
-        return redirect('admin/khuyenmai/sua/'. $id)->with('thatbai', 'Thời kết phúc phải lớn hơn thời gian bắt đầu');
-
-        
+            else
+                return redirect('admin/khuyenmai/sua/' . $id)->with('thatbai', 'Thời gian kết phúc phải lớn hơn thời gian bắt đầu'); 
+        // }
+        // else
+        //     return redirect('admin/khuyenmai/sua/' . $id)->with('exits', 'Khuyến mãi này đã tồn tại'); 
     }
 
     public function delete($id)
