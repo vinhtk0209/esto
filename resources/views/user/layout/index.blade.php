@@ -287,19 +287,20 @@
 
     {{-- LOAD VIDEO STARTS--}}
     <script>
-        let listVideo = document.querySelectorAll('.video-list .vid');
-        let mainVideo = document.querySelector('.main-video iframe');
-        let title = document.querySelector('.main-video .title');
-        listVideo.forEach(video => {
-            video.onclick = () =>{
-                listVideo.forEach(vid => vid.classList.remove('active'));
-                video.classList.add('active');
-                if(video.classList.contains('active')) {
-                    mainVideo.src = video.children[0].src;
-                    title.innerHTML = video.children[1].innerHTML;
+        function playLesson(lesson_id) {
+            $.ajax({
+                url: '/ajax-load-video',
+                type: 'GET',
+                data: {
+                    'lesson_id': lesson_id
+                },
+                success: function(response) {
+                    if(response.status == 200) {
+                        $("#video_lesson").html(response.data);
+                    }
                 }
-            }
-        });
+            });
+        }
     </script>
     {{-- LOAD VIDEO ENDS--}}
 
