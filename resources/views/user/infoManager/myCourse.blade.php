@@ -62,31 +62,31 @@
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                  {{-- COURSE CONTENT STARTS--}}
                  <ul class="list-my-course">
-                    @foreach ($listMyCourse as $courses)
-                    @if ($courses->TRUCTUYEN == 1)
-                        @foreach ($classMyCourse[0] as $course)
+                    @foreach ($bills as $bill)
+                    @if ($bill->MALH != 0)
+                        @foreach (\App\Models\LopHoc::where('MALH', $bill->MALH)->get() as $course)
                         <li class="list-item mb-16">
                             <div class="my-course-item d-flex">
                                 <div class="img-course">
                                     <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}">
                                         <img class="img-responsive d-block "
-                                        src="{{asset('user/assets/imgCourse')}}/{{$course->ANH}}"
-                                        alt="{{$course->TENKH}}">
+                                        src="{{asset('user/assets/imgCourse')}}/{{\App\Models\KhoaHoc::find($bill->MAKH)->ANH}}"
+                                        alt="{{\App\Models\KhoaHoc::find($bill->MAKH)->TENKH}}">
                                     </a>
                                 </div>
                                 <div class="course-des ml-10 flex-grow-1">
                                     <div class="name-course d-flex flex-space mt-0 ">
                                         <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="text-brow  text-decoration-none my-course-title">
-                                            <h4>{{$course->TENKH}}({{$course->TENLOP}})</h4>
-                                            <h4 class="text-danger">({{$course->TRUCTUYEN == 1?'Trực tuyến':'Video'}})</h3>
+                                            <h4>{{\App\Models\KhoaHoc::find($bill->MAKH)->TENKH}}({{$course->TENLOP}})</h4>
+                                            <h4 class="text-danger">({{\App\Models\KhoaHoc::find($bill->MAKH)->TRUCTUYEN == 1?'Trực tuyến':'Video'}})</h3>
                                         </a>
                                         <span class="num-rate text-danger">{{DB::table('danhgia')->where('danhgia.MAKH', $course->MAKH)->count();}} đánh giá</span>
                                     </div>
                                     <div class="des-course-short">
-                                        {!!$course->GIOITHIEUKH!!}
+                                        {!!\App\Models\KhoaHoc::find($bill->MAKH)->GIOITHIEUKH!!}
                                     </div>
                                     <div class="name-teacher d-flex flex-space">
-                                        <p class="font-weight-bold">{{$course->HOTEN}}</p>
+                                        {{-- <p class="font-weight-bold">{{$course->HOTEN}}</p> --}}
                                         <div class="nums-student">
                                             <span class="icon-student">
                                                 <i class="fa fa-users" aria-hidden="true"></i>

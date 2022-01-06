@@ -28,9 +28,9 @@
                             <div class="accordion-body">
                                 <ul class="list-lesson">
                                     @foreach ($v as $item)
-                                        <li>
+                                        <li onclick="playLesson({{ $item->MABH }})">
                                             <span class="lesson-icon-play">
-                                                <img src="{{asset('user/assets/img/play.svg')}}" alt="ESTO" width="20px" height="20px" onclick="playLesson({{ $item->MABH }})" style="cursor: pointer;">
+                                                <img src="{{asset('user/assets/img/play.svg')}}" alt="ESTO" width="20px" height="20px"  style="cursor: pointer;">
                                             </span>
                                             <span class="lesson-title">
                                                 {{ $item->TENBH }}

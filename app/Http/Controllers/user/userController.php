@@ -82,9 +82,10 @@ class userController extends Controller
             ->select('*')->get();
         foreach ($bills as $bill) {
             $listMyCourse[] = KhoaHoc::join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->find($bill->MAKH);
-            $classMyCourse[] = Lophoc::join('khoahoc', 'khoahoc.MAKH', '=', 'lophoc.MAKH')->where('lophoc.MALH', '=', $bill->MALH)->get();
+            $classMyCourse[] = Lophoc::all();
+            //->where('lophoc.MALH', '=', $bill->MALH)
         }
-        return view('user.infoManager.myCourse', compact('listMyCourse', 'classMyCourse'));
+        return view('user.infoManager.myCourse', compact('listMyCourse', 'classMyCourse', 'bills'));
     }
 
     public function learnCourse($id)
