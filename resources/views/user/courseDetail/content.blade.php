@@ -167,13 +167,13 @@
                                             <div  id="collapse{{$section->MACHUONG}}" class="accordion-collapse collapse show" aria-labelledby="heading{{$section->MACHUONG}}" >
                                                 <div class="accordion-body">
                                                     <ul class="list-lesson">
-                                                            <li>
-                                                                <span class="lesson-icon-play">
-                                                                    <img src="{{asset('user/assets/img/play.svg')}}" alt="ESTO" width="20px" height="20px">
-                                                                </span>
-                                                                <span class="lesson-title">
-                                                                    {{$lesson->TENBH}}
-                                                                </span>
+                                                        <li>
+                                                            <span class="lesson-icon-play">
+                                                                <img src="{{asset('user/assets/img/play.svg')}}" alt="ESTO" width="20px" height="20px">
+                                                            </span>
+                                                            <span class="lesson-title">
+                                                                {{$lesson->TENBH}}
+                                                            </span>
                                                          </li>
                                                     </ul>
                                                 </div>
@@ -190,7 +190,7 @@
                     @foreach ($classRoom as $class)
                         <div class="intro-class">
                             <div class="intro-class-item d-flex">
-                                <span class="font-weight-bold mr-5">Tên lớp : </span> 
+                                <span class="font-weight-bold mr-5">Tên lớp : </span>
                                 <span class="mr-5">{{$class->TENLOP}}</span>
                                  <a href="{{URL::to('/contentClass/'.$class->MALH)}}">(Xem chi tiết)</a>
                             </div>

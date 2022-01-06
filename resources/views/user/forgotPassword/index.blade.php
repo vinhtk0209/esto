@@ -5,6 +5,7 @@
 	<title>Quên mật khẩu</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="{{asset('')}}">
 	<link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap">
 	<!--===============================================================================================-->
 	<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico" /> -->

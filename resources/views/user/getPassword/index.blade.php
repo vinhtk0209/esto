@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <base href="{{asset('')}}">
     <title>Đăng ký</title>
     <link rel="stylesheet" href="{{('./register/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap">

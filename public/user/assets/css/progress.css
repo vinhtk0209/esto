@@ -1,0 +1,25 @@
+#progressBar {
+    width: 90%;
+    margin: 10px auto;
+    height: 22px;
+    background-image: linear-gradient(to left, #e1eec3, #f05053);
+    position: absolute;
+}
+
+#progressBar .timerProgress {
+    position: relative;
+    top: 0;
+    font-size: 16px;
+    color: #fff;
+    line-height: 22px;
+
+}
+
+#progressBar .bar {
+    height: 100%;
+    text-align: center;
+    width: 0;
+    background-image: linear-gradient(to right, #355C7D, #6C5B7B, #C06C84);
+    box-sizing: border-box;
+    position: absolute;
+}

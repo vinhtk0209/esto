@@ -13,14 +13,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link type="text/css" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
 
-
     <!-- <link rel="stylesheet" href="./assets/css/main.css"> -->
     <link rel="stylesheet" href="./user/assets/css/main.css">
     <link rel="stylesheet" href="./user/assets/css/myCourse.css">
     <!-- <link rel="stylesheet" href="./assets/css/app.css"> -->
     <link rel="stylesheet" href="./user/assets/css/app.css">
     <!-- <link rel="stylesheet" href="./assets/sweetalert/alert.min.css"> -->
-
     <!-- SWIPER -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <!-- SWIPER -->
@@ -29,6 +27,8 @@
     <!-- CUSTOM CSS -->
     <!-- GLOBAL CSS -->
     <link rel="stylesheet" href="./user/assets/css/global.css" >
+    <!-- PROGRESS CSS -->
+    <link rel="stylesheet" href="./user/assets/css/progress.css" >
     <!-- INFO FILE CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoFile.css" >
     <!-- LEARN CSS -->
@@ -64,10 +64,8 @@
      <!-- INFO MANAGER CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoManager.css">
      <!-- LIST COURSE CSS -->
-
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
     <link rel="stylesheet" href="./user/assets/css/custom.css">
-
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
      <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="./user/assets/css/custom.css">
@@ -155,17 +153,24 @@
     @include('user.shared.footer')
     <!-- FOOTER ENDS -->
 
-    <!-- JS  -->
+
+
+
+
+
+
+    <!-- JS STARTS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="./user/assets/js/filter.js">
-    </script>
-    <script src="./user/assets/js/simple.money.format.js">
-    </script>
+    <script src="./user/assets/js/filter.js"></script>
+    <script src="./user/assets/js/simple.money.format.js"></script>
+    <script src="./user/assets/js/progress.js"></script>
+    <script src="./user/assets/js/main.js"></script>
+    <script src="./user/assets/js/add-to-cart.js"></script>
 
-    {{-- FILTER  --}}
+    {{-- TAKE THE EXAM STARTS --}}
     @include('user.layout.ajax')
     <script>
         var yourDateToGo3 = new Date();
@@ -174,28 +179,34 @@
         yourDateToGo3.setHours(yourDateToGo3.getHours() + parseInt(tg.split(':')[0]) - timecurrent.getHours());
         yourDateToGo3.setMinutes(yourDateToGo3.getMinutes() + parseInt(tg.split(':')[1]) - timecurrent.getMinutes());
         yourDateToGo3.setSeconds(yourDateToGo3.getSeconds() + parseInt(tg.split(':')[2]) - timecurrent.getSeconds());
-
+        let currentDateProgress = new Date().getTime();
+        let timeLeftProgress = yourDateToGo3 - currentDateProgress;
+        let secondProgress = timeLeftProgress/1000;
         var timing3 = setInterval(
             function() {
                 var currentDate3 = new Date().getTime();
-                var timeLeft3 = yourDateToGo3 - currentDate3;
-
+                 var timeLeft3 = yourDateToGo3 - currentDate3;
                 var hours3 = Math.floor((timeLeft3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 if (hours3 < 10) hours3 = "0" + hours3;
                 var minutes3 = Math.floor((timeLeft3 % (1000 * 60 * 60)) / (1000 * 60));
                 if (minutes3 < 10) minutes3 = "0" + minutes3;
                 var seconds3 = Math.floor((timeLeft3 % (1000 * 60)) / 1000);
                 if (seconds3 < 10) seconds3 = "0" + seconds3;
-
                 document.getElementById("countdown").innerHTML = hours3 + "h " + minutes3 + "m " + seconds3 + "s";
-
-
                 if (timeLeft3 <= 0) {
                     clearInterval(timing3);
-                    document.getElementById("countdown").innerHTML = "It's over";
-
+                    document.getElementById("countdown").innerHTML = "Đã hết thời gian làm bài";
                 }
             }, 1000);
+        progress(secondProgress, secondProgress, $('#progressBar'));
+        if (timeLeft3 <= 0) {
+         clearInterval(timing3);
+        }
+    </script>
+     // {{-- TAKE THE EXAM ENDS --}}
+
+     <script>
+     // {{-- FILTER  STARTS--}}
         $(document).ready(function () {
         $("#slider-range").slider({
             orientation: "vertical",
@@ -217,11 +228,9 @@
                 $("#slider-range").slider("values", 0)+'vnd').simpleMoneyFormat();
          });
     </script>
+     {{-- FILTER  ENDS--}}
 
-    <script src="./user/assets/js/main.js"></script>
-    <script src="./user/assets/js/add-to-cart.js"></script>
-
-    {{-- SEARCH AJAX --}}
+    {{-- SEARCH AJAX STARTS --}}
     <script>
         $(".search-ajax-result").hide();
         $(".live-search-bar").keyup(function () {
@@ -241,7 +250,9 @@
             }
         });
     </script>
+    {{-- SEARCH AJAX ENDS --}}
 
+    {{-- CHAT BOX STARTS --}}
     <!-- Messenger Plugin chat Code -->
     <div id="fb-root"></div>
 
@@ -272,9 +283,9 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
+    {{-- CHAT BOX ENDS --}}
 
-
-    {{-- LOAD VIDEO --}}
+    {{-- LOAD VIDEO STARTS--}}
     <script>
         let listVideo = document.querySelectorAll('.video-list .vid');
         let mainVideo = document.querySelector('.main-video iframe');
@@ -290,6 +301,7 @@
             }
         });
     </script>
+    {{-- LOAD VIDEO ENDS--}}
 
     {{-- SWEET ALERT --}}
     @if (Session::has('updateSuccess'))
@@ -336,9 +348,11 @@
         });
     </script>
     @endif
-    
-     <!-- JS  -->
+
+  
+     <!-- JS ENDS  -->
 
 </body>
 
 </html>
+

@@ -9,7 +9,10 @@
             <h4 class="card-title">{{$baithi[0]->TENBT}}</h4>
             <input type="text" id="TGBD" value="{{$baithi[0]->TGBD}}" disabled>->
             <input type="text" id="TGKT" value="{{$baithi[0]->TGKT}}" disabled>
-            <div class="row justify-content-center border rounded-pill" id="countdown">
+            <div id="progressBar">
+                <div class="bar"></div>
+                <div class=" timerProgress" id="countdown">
+            </div>
             </div>
           </div>
           <div class="card-body">

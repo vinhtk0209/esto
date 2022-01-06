@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Session;
 use App\Models\HoaDon;
 use App\Models\KhoaHoc;
 use App\Models\KhoaHoc_BaiHoc;
+use App\Http\Controllers\user\DB;
+use App\Models\LopHoc;
 use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -20,26 +22,17 @@ class userController extends Controller
     public function showFormUpdateProfile()
     {
         $user = TaiKhoan::find(Session::get('customer')->ID);
-        // LIST COURSE
-        $listMyCourse = [];
-        $bills = HoaDon::join('cthoadon', 'hoadon.MAHD', '=', 'cthoadon.MAHD')
-            ->where('hoadon.MAHV', Session::get('customer')->ID)
-            ->select('cthoadon.MAKH')->get();
-        foreach ($bills as $bill) {
-            $listMyCourse[] = KhoaHoc::join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->find($bill->MAKH);
-        }
-        return view('user.infoManager.infoFile', compact('user', 'listMyCourse'));
+        return view('user.infoManager.infoFile', compact('user'));
     }
 
     public function updateProfile($id, Request $request)
     {
         $request->validate(
             [
-                'avaUser' => 'required|image|max:5120',
+                'avaUser' => 'image|max:5120',
                 'phonenumber' => "regex:/^0[0-9]{9,10}$/",
             ],
             [
-                'avaUser.require' => "Không được để trống",
                 'avaUser.image' => "Phải là ảnh",
                 'avaUser.max' => "Kích thước ảnh nhỏ hơn 5MB",
                 'phonenumber.regex' => 'Không tồn tại số điện thoại này',
@@ -77,33 +70,22 @@ class userController extends Controller
         } catch (Exception $err) {
         }
 
-        // LIST COURSE
-        $bills = HoaDon::join('cthoadon', 'hoadon.MAHD', '=', 'cthoadon.MAHD')
-            ->where('hoadon.MAHV', Session::get('customer')->ID)
-            ->select('cthoadon.MAKH')->get();
-        foreach ($bills as $bill) {
-            $listMyCourse[] = KhoaHoc::join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->find($bill->MAKH);
-        }
-        if (Session::has('customer')) {
-            Session::forget('customer');
-            Session::put('customer', $user);
-        } else {
-            Session::put('customer', $user);
-        }
+
         return redirect()->route('update.profile');
     }
 
     public function showMyCourse()
     {
-        $user = TaiKhoan::find(Session::get('customer')->ID);
         $listMyCourse = [];
+        $classMyCourse = [];
         $bills = HoaDon::join('cthoadon', 'hoadon.MAHD', '=', 'cthoadon.MAHD')
             ->where('hoadon.MAHV', Session::get('customer')->ID)
-            ->select('cthoadon.MAKH')->get();
+            ->select('*')->get();
         foreach ($bills as $bill) {
             $listMyCourse[] = KhoaHoc::join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->find($bill->MAKH);
+            $classMyCourse[] = Lophoc::join('khoahoc', 'khoahoc.MAKH', '=', 'lophoc.MAKH')->where('lophoc.MALH', '=', $bill->MALH)->get();
         }
-        return view('user.infoManager.myCourse', compact('listMyCourse'));
+        return view('user.infoManager.myCourse', compact('listMyCourse', 'classMyCourse'));
     }
 
     public function learnCourse($id)
