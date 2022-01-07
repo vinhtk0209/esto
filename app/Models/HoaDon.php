@@ -11,4 +11,6 @@ class HoaDon extends Model
     public $timestamps = false;
     protected $table = "hoadon";
     protected $fillable = ['MAHD', 'MAHV'];
+
+    
 }

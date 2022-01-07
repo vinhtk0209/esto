@@ -37,6 +37,13 @@
                 <form action="admin/khuyenmai/them" method="POST" enctype="multipart/form-data">
                     @csrf
                     <h6 class="heading-small text-muted mb-4">Thông tin khuyến mãi</h6>
+                    @if (count($errors))
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $err)
+                            {{$err}}</br>
+                            @endforeach
+                        </div>
+                        @endif
                     @if (session('thongbao'))
                     <div class="alert alert-success">
                         {{session('thongbao')}}
