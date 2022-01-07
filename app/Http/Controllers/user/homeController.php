@@ -20,48 +20,53 @@ class homeController extends Controller
 
         //1
         $listCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
-        ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
-        ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
-        ->where('khuyenmai.NGAYBD','<=',$today)
-        ->where('khuyenmai.NGAYKT','>=',$today)
+        // ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        // ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        // ->where('khuyenmai.NGAYBD','<=',$today)
+        // ->where('khuyenmai.NGAYKT','>=',$today)
         ->orderby('khoahoc.MAKH', 'desc')->limit(8)
         ->get();
         //2
         $listEnglishCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
-        ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
-        ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
-        ->where('khuyenmai.NGAYBD','>=',$today)
-        ->where('khuyenmai.NGAYKT','<=',$today)
+        // ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        // ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        // ->where('khuyenmai.NGAYBD','>=',$today)
+        // ->where('khuyenmai.NGAYKT','<=',$today)
         ->where("khoahoc.MADM", 9)
         ->orderby('khoahoc.MAKH', 'desc')
         ->limit(8)
         ->get();
         //3
         $listBusinessCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
-        ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
-        ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
-        ->where('khuyenmai.NGAYBD','<=',$today)
-        ->where('khuyenmai.NGAYKT','>=',$today)
+        // ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        // ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        // ->where('khuyenmai.NGAYBD','<=',$today)
+        // ->where('khuyenmai.NGAYKT','>=',$today)
         ->where("khoahoc.MADM", 18)
         ->orderby('khoahoc.MAKH', 'desc')
         ->get();
 
         //4
         $listHealthyCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
-        ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
-        ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
-        ->where('khuyenmai.NGAYBD','<=',$today)
-        ->where('khuyenmai.NGAYKT','>=',$today)
+        // ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        // ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        // ->where('khuyenmai.NGAYBD','<=',$today)
+        // ->where('khuyenmai.NGAYKT','>=',$today)
         ->where("khoahoc.MADM", 15)
         ->orderby('khoahoc.MAKH', 'desc')
         ->limit(8)
         ->get();
 
         //5
-        
+        $listKM = DB::table('khoahoc')
+        ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        ->where('khuyenmai.NGAYBD','<=',$today)
+        ->where('khuyenmai.NGAYKT','>=',$today)
+        ->get();
         
 
-        return view('user.homepage.index', compact('cateCourse', 'listCourse', 'listEnglishCourse', 'listBusinessCourse', 'listHealthyCourse'));
+        return view('user.homepage.index', compact('cateCourse', 'listCourse', 'listEnglishCourse', 'listBusinessCourse', 'listHealthyCourse','listKM'));
     }
     public function infoManager()
     {

@@ -114,7 +114,7 @@
                                 </div>
                             </div>   
                         </div> 
-                        <div class="col-md-6 center">
+                        <div class="pl-lg-4">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
@@ -141,39 +141,7 @@
                                 </tbody>
                             </table>                    
                         </div>  
-                        <div class="card-footer py-4">
-                            <ul class="pagination justify-content-end mb-0">    
-                                <li class="page-item">
-                                    <a class="page-link" href="admin/khuyenmai/sua/{{$khuyenmai->MAKM}}?page=1">
-                                        <i class="fas fa-angle-double-left"></i>
-                                    </a>
-                                </li>                    
-                                @if ($khoahoc->currentPage() == 1)
-                                <li class="page-item disabled">
-                                    @else
-                                <li class="page-item">
-                                    @endif
-                                    <a class="page-link" href="{{$khoahoc->previousPageUrl()}}">
-                                        <i class="fas fa-angle-left"></i>
-                                    </a>
-                                </li>
-                                @if ($khoahoc->currentPage() == $khoahoc->lastPage())
-                                <li class="page-item disabled">
-                                    @else
-                                <li class="page-item">
-                                    @endif
-                                    <a class="page-link" href="{{$khoahoc->nextPageUrl()}}">
-                                        <i class="fas fa-angle-right"></i>
-                                    </a>
-                                </li> 
-                                <li class="page-item">
-                                    <a class="page-link" href="admin/khuyenmai/sua/{{$khuyenmai->MAKM}}?page={{$khoahoc->lastPage()}}">
-                                        <i class="fas fa-angle-double-right"></i>
-                                    </a>
-                                </li>                       
-                            </ul>
-                        </div> 
-                        <div class="text-center">
+                        <div class="text-center">                            
                             <button type="submit" class="btn btn-default">Lưu</button>   
                         </div>                     
                     </form>

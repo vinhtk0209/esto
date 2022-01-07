@@ -7,10 +7,15 @@
         alt="{{$product->TENKH}}">
     </div>
     <div class="price-container">
-        <p class="main-price">{{number_format($product->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
-        {{-- <div class="price price-discount">
-            <p><del>600,000</del><span class="price-unit"><sup>vnd</sup></span></p>
-        </div> --}}
+        <!-- <p class="main-price">{{number_format($product->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p> -->
+        @foreach($listKM as $km)
+            @if($km->MAKH == $product->MAKH)
+            <p class="main-price">{{number_format($product->DONGIA-($product->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+            @endif   
+        @endforeach
+        <div class="price price-discount">
+            <p><del>{{number_format($product->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+        </div> 
     </div>
     <div class="cart-now btn-to-do-course mt-10">
         @if ($product->TRUCTUYEN == 0)

@@ -142,38 +142,6 @@
                                 </tbody>
                             </table>                    
                         </div>
-                        <div class="card-footer py-4">
-                            <ul class="pagination justify-content-end mb-0">    
-                                <li class="page-item">
-                                    <a class="page-link" href="admin/khuyenmai/them?page=1">
-                                        <i class="fas fa-angle-double-left"></i>
-                                    </a>
-                                </li>                    
-                                @if ($khoahoc->currentPage() == 1)
-                                <li class="page-item disabled">
-                                    @else
-                                <li class="page-item">
-                                    @endif
-                                    <a class="page-link" href="{{$khoahoc->previousPageUrl()}}">
-                                        <i class="fas fa-angle-left"></i>
-                                    </a>
-                                </li>
-                                @if ($khoahoc->currentPage() == $khoahoc->lastPage())
-                                <li class="page-item disabled">
-                                    @else
-                                <li class="page-item">
-                                    @endif
-                                    <a class="page-link" href="{{$khoahoc->nextPageUrl()}}">
-                                        <i class="fas fa-angle-right"></i>
-                                    </a>
-                                </li> 
-                                <li class="page-item">
-                                    <a class="page-link" href="admin/khuyenmai/them?page={{$khoahoc->lastPage()}}">
-                                        <i class="fas fa-angle-double-right"></i>
-                                    </a>
-                                </li>                       
-                            </ul>
-                        </div> 
                         <div class="text-center">                            
                             <button type="submit" class="btn btn-default">Thêm</button>   
                         </div>                    

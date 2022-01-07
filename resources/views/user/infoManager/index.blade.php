@@ -13,8 +13,8 @@
                     {{-- {{URL::to('/infoUser/updateProfile')}} --}}
                     <a href="{{URL::to('/infoUser/updateProfile')}}"  class="nav-link tabInfo" >Hồ sơ cá nhân</a>
                 </li>
-              </ul>
-              {{-- COTENT TAB --}}
+            </ul>
+            {{-- COTENT TAB --}}
                 <div class="tab-content-info tab-content-1 active">
                     @yield('myCourse')
                 </div>
