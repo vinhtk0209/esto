@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
 use App\Models\LopHoc_BaiHoc;
 use App\Models\CTBaiLam;
+use Carbon\Carbon;
 
 class productController extends Controller
 {
@@ -52,7 +53,15 @@ class productController extends Controller
             ->where('danhmuc.MADM', $courseCate)
             ->whereNotIn('khoahoc.MAKH', [$productId])->get();
 
-        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate)->with('courseOnline', $courseOnline)->with('classRoom', $classRoom);
+        $today = Carbon::createFromTimestamp(strtotime(date("Y-m-d h:i:sa")));
+        $listKM = DB::table('khoahoc')
+        ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        ->where('khuyenmai.NGAYBD','<=',$today)
+        ->where('khuyenmai.NGAYKT','>=',$today)
+        ->get();
+        
+        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate)->with('courseOnline', $courseOnline)->with('classRoom', $classRoom)->with('listKM', $listKM);
     }
 
     public function listCourse($courseCate)

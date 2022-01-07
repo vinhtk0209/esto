@@ -33,7 +33,7 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="">Học Viên</th>
                                 <th scope="col" class="sort" data-sort="">Ngày Lập</th>
-                                <th scope="col" class="sort" data-sort="">Tổng Tiền</th>
+                                <!-- <th scope="col" class="sort" data-sort="">Tổng Tiền</th> -->
                                 <th scope="col" class="sort" data-sort="">Tùy chọn</th>
                             </tr>
                         </thead>
@@ -46,9 +46,9 @@
                                 <td class="budget">
                                     {{$hd->NGAYHD}}
                                 </td>
-                                <td class="budget">
-                                    1.000.000
-                                </td>
+                                <!-- <td class="budget">
+                                    
+                                </td> -->
                                 <td class="">
                                     <a href="admin/hoadon/chitiet/{{$hd->MAHD}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                 </td>
