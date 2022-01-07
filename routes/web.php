@@ -194,6 +194,10 @@ Route::get('/lg/google/callback', [
 
 
 //LEARNING ONLINE
+Route::get('/contentClassBought/{id}', [
+    'as' =>  'product.contentClassBought',
+    'uses' => 'App\Http\Controllers\user\productController@contentClassBought'
+]);
 Route::get('/contentClass/{id}', [
     'as' =>  'product.contentClass',
     'uses' => 'App\Http\Controllers\user\productController@contentClass'

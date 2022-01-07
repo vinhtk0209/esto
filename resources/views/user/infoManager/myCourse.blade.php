@@ -98,7 +98,7 @@
                                     <div class="d-flex flex-end">
                                         <p><span class="price-unit">
                                             {{-- href="{{ route('learn.course',['id' => $course->MAKH]) }}" --}}
-                                            <a class="register-btn text-decoration-none mr-0 " href="{{URL::to('/contentClass/'.$course->MALH)}}">Vào Học</a></span></p>
+                                            <a class="register-btn text-decoration-none mr-0 " href="{{URL::to('/contentClassBought/'.$course->MALH)}}">Vào Học</a></span></p>
                                     </div>
                                 </div>
                             </div>

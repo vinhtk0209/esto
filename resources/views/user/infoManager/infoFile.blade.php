@@ -12,12 +12,12 @@
                     <i class="fa fa-user" aria-hidden="true"></i>
                     Cập nhật thông tin cá nhân
                 </span>
-                <div class="info-heading-change-password">
+                {{-- <div class="info-heading-change-password">
                     <a href="" class="register-btn text-decoration-none ">
                         <i class="fa fa-refresh mr-5    "></i>
                         Thay đổi mật khẩu
                     </a>
-                </div>
+                </div> --}}
             </div>
           <div class="infoBody">
             <div class="row">
@@ -35,7 +35,7 @@
                                 if (preg_match($pattern, $subject, $matches)) {
                                     return true;
                                 }
-                                return false;   
+                                return false;
                              }
                                 if (checkForImage($user->ANHDAIDIEN)){
                                   echo "<img src='$user->ANHDAIDIEN' class='showAva img-responsive' alt=' $user->HOTEN}}''>";
@@ -51,8 +51,13 @@
 
                         <div class="form-group d-flex ">
                             <label for="fullname" class="label-input  min-width-100">Họ tên</label>
-                            <input type="text" class="form-input flex-grow-1" name="fullname" id="fullname"
-                                placeholder="Họ tên..." value="{{ $user->HOTEN }}" required/>
+                            <div class="form-group-input position-relative flex-grow-1">
+                                <input class="effect-8 form-input w-100 " type="text" placeholder="Placeholder Text" name="fullname" id="fullname"
+                                placeholder="Họ tên..." value="{{ $user->HOTEN }}" required>
+                                <span class="focus-border">
+                                  <i></i>
+                                </span>
+                            </div>
                         </div>
                         <div class="form-group d-flex">
                             <label for="male" class="label-input  min-width-100 ">Giới tính</label>
@@ -75,17 +80,27 @@
                     <div class="info-body p-20">
                         <div class="form-group d-flex">
                             <label for="fullname" class="label-input  min-width-100 ">Email</label>
-                            <input type="email" class="form-input flex-grow-1 input-not-allowed" name="fullname" id="fullname" readonly disabled="disabled"
-                                placeholder="Họ tên..." value="{{ $user->EMAIL }}" />
+                            <div class="form-group-input position-relative flex-grow-1">
+                                <input class="effect-8 form-input w-100 input-not-allowed" type="email" name="email" id="email" readonly
+                                value="{{ $user->EMAIL }}" disabled="disabled">
+                                <span class="focus-border">
+                                  <i></i>
+                                </span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="birthday" class="label-input min-width-100">Ngày sinh</label>
-                            <input type="date" class="form-input" name="birthday" id="birthday" value="{{ $user->NGAYSINH }}" required/>
+                            <input type="date" class="form-input" name="birthday" id="birthday" value="{{ $user->NGAYSINH }}" />
                         </div>
                         <div class="form-group d-flex">
                             <label for="phonenumber" class="label-input  min-width-100 ">Số điện thoại</label>
-                            <input type="text" class="form-input flex-grow-1" name="phonenumber" id="phonenumber"
-                                placeholder="Số điện thoại..." value="{{ $user->SODIENTHOAI }}" required/>
+                            <div class="form-group-input position-relative flex-grow-1">
+                                <input class="effect-8 form-input w-100 " type="text" name="phonenumber" id="phonenumber"
+                                placeholder="Số điện thoại..."  value="{{ $user->SODIENTHOAI }}" required>
+                                <span class="focus-border">
+                                  <i></i>
+                                </span>
+                            </div>
                         </div>
                         <div class="message float-end">
                             <span class="error-message ml-10">@error('phonenumber'){{$message}}@enderror</span>

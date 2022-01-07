@@ -1,0 +1,18 @@
+.exam-time {
+    outline: none;
+    border: none;
+}
+
+.time-container {
+    position: relative;
+}
+
+.time-container:after {
+    position: absolute;
+    content: '->';
+    top: 0;
+    right: 50%;
+    transform: translateX(-50%);
+    color: #3B3554;
+    font-size: 16px;
+}

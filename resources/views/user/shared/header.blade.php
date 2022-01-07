@@ -116,7 +116,9 @@
                                                 echo "<img src='./user/assets/imgAva/$imgUrl' class='showAva img-responsive' alt='$nameUser '>";
                                             // }
                                         @endphp --}}
-                                    <img src='{{Session::get('customer')->ANHDAIDIEN}}' class='showAva img-responsive' alt='{{Session::get('customer')->HOTEN}} '>
+                                        @if(Session::get('customer')->ANHDAIDIEN!='')
+                                          <img src='{{Session::get('customer')->ANHDAIDIEN}}' class='showAva img-responsive' alt='{{Session::get('customer')->HOTEN}} '>
+                                        @endif
                                     </div>
                                 </div>
                             @endif

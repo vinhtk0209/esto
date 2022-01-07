@@ -10,9 +10,9 @@
                     <div class="name-course-detail">
              @foreach ($productDetail as $product)
                         <h1>{{$product->TENKH}}</h1>
-                        <h3 class="text-danger">({{$product->TRUCTUYEN == 1?'Trực tuyến':'Video'}})</h3>
+                        <h3 class="text-danger mt-5">({{$product->TRUCTUYEN == 1?'Trực tuyến':'Video'}})</h3>
                     </div>
-                    <div class="des-course-short">
+                    <div class="des-course-short mt-5">
                         {!!$product->GIOITHIEUKH!!}
                     </div>
                 </div>
@@ -151,6 +151,7 @@
                                                                     </span>
                                                                     <span class="lesson-title-item">
                                                                         {{$lesson->TENBH}}
+
                                                                     </span>
                                                                 </div>
                                                                 <div class="lesson-title ">

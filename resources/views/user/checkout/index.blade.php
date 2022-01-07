@@ -15,8 +15,8 @@
             <div class="col-lg-12">
                 <form action="{{ route('handle.checkout') }}" method="POST">
 
-                    @csrf 
-                    
+                    @csrf
+
                     <div class="form-group">
                         <label>Họ tên</label>
                         <input type="text" name="name" value="{{ Session::get('customer')->HOTEN }}" class="form-control" style="width:30%" readonly />
@@ -24,6 +24,14 @@
                     <div class="form-group">
                         <label>Số điện thoại</label>
                         <input type="text" name="phone" value="{{ Session::get('customer')->SODIENTHOAI }}" class="form-control" style="width:30%" readonly />
+                    </div>
+                    <div class="form-group">
+                        @php
+                        $priceTotal =Session::get('cart')->totalPrice ;
+                        $vndToUsd =$priceTotal/23000;
+                        @endphp
+                        <div id="paypal-button"></div>
+                        <input type="hidden"  value="{{ round($vndToUsd,2) }}" id="paypalPrice"   />
                     </div>
                     <div class="form-group">
                         <button type="submit" name="submit" class="btn btn-success">Thanh toán</button>

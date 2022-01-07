@@ -27,8 +27,14 @@
     <!-- CUSTOM CSS -->
     <!-- GLOBAL CSS -->
     <link rel="stylesheet" href="./user/assets/css/global.css" >
+    <!-- CHECKOUT CSS -->
+    <link rel="stylesheet" href="./user/assets/css/checkout.css" >
+    <!-- INPUT CSS -->
+    <link rel="stylesheet" href="./user/assets/css/input-effect.css" >
     <!-- PROGRESS CSS -->
     <link rel="stylesheet" href="./user/assets/css/progress.css" >
+    <!-- EXAM CSS -->
+    <link rel="stylesheet" href="./user/assets/css/exam.css" >
     <!-- INFO FILE CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoFile.css" >
     <!-- LEARN CSS -->
@@ -181,21 +187,23 @@
         yourDateToGo3.setSeconds(yourDateToGo3.getSeconds() + parseInt(tg.split(':')[2]) - timecurrent.getSeconds());
         let currentDateProgress = new Date().getTime();
         let timeLeftProgress = yourDateToGo3 - currentDateProgress;
-        let secondProgress = timeLeftProgress/1000;
+        let secondProgress = (timeLeftProgress/1000)-2;
         var timing3 = setInterval(
             function() {
                 var currentDate3 = new Date().getTime();
-                 var timeLeft3 = yourDateToGo3 - currentDate3;
+                var timeLeft3 = yourDateToGo3 - currentDate3;
                 var hours3 = Math.floor((timeLeft3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 if (hours3 < 10) hours3 = "0" + hours3;
                 var minutes3 = Math.floor((timeLeft3 % (1000 * 60 * 60)) / (1000 * 60));
                 if (minutes3 < 10) minutes3 = "0" + minutes3;
                 var seconds3 = Math.floor((timeLeft3 % (1000 * 60)) / 1000);
                 if (seconds3 < 10) seconds3 = "0" + seconds3;
-                document.getElementById("countdown").innerHTML = hours3 + "h " + minutes3 + "m " + seconds3 + "s";
+                document.getElementById("countdown").innerHTML = hours3 + "giờ " + minutes3 + "phút " + seconds3 + "giây";
                 if (timeLeft3 <= 0) {
                     clearInterval(timing3);
                     document.getElementById("countdown").innerHTML = "Đã hết thời gian làm bài";
+                    alert('Bài của bạn đã được nộp');
+                    document.location.href = 'https://esto.com/';
                 }
             }, 1000);
         progress(secondProgress, secondProgress, $('#progressBar'));
@@ -203,7 +211,7 @@
          clearInterval(timing3);
         }
     </script>
-     // {{-- TAKE THE EXAM ENDS --}}
+      {{-- TAKE THE EXAM ENDS --}}
 
      <script>
      // {{-- FILTER  STARTS--}}
@@ -350,7 +358,50 @@
     </script>
     @endif
 
-  
+    {{-- PAYPALL STARTS --}}
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+    var usd =  document.getElementById("paypalPrice").value;
+    paypal.Button.render({
+        // Configure environment
+        env: 'sandbox',
+        client: {
+        sandbox: 'AdJLSkkxq2nVHPZ3xtgwV00d53ROKQft5DCLNoxTc3jAlUBhK4nAzqDDEAMrvDx7tSEc_Jhrgfd-j9en',
+        production: 'demo_production_client_id'
+        },
+        // Customize button (optional)
+        locale: 'en_US',
+        style: {
+        size: 'small',
+        color: 'gold',
+        shape: 'pill',
+        },
+
+        // Enable Pay Now checkout flow (optional)
+        commit: true,
+
+        // Set up a payment
+        payment: function(data, actions) {
+        return actions.payment.create({
+            transactions: [{
+            amount: {
+                total: `${usd}`,
+                currency: 'USD'
+            }
+            }]
+        });
+        },
+        // Execute the payment
+        onAuthorize: function(data, actions) {
+        return actions.payment.execute().then(function() {
+            // Show a confirmation message to the buyer
+            window.alert('Cảm ơn bạn đã mua khóa học!!');
+        });
+        }
+    }, '#paypal-button');
+    </script>
+    {{-- PAYPALL ENDS --}}
+
      <!-- JS ENDS  -->
 
 </body>

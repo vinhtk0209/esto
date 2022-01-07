@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\user;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\BaiHoc;
 use Illuminate\Http\Request;
@@ -9,19 +10,23 @@ use App\Models\TaiKhoan;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use App\Models\HoaDon;
+use App\Models\BaiThi;
 use App\Models\KhoaHoc;
 use App\Models\KhoaHoc_BaiHoc;
-use App\Http\Controllers\user\DB;
+// use App\Http\Controllers\user\DB;
 use App\Models\LopHoc;
 use Exception;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class userController extends Controller
 {
     public function showFormUpdateProfile()
     {
-        $user = TaiKhoan::find(Session::get('customer')->ID);
-        return view('user.infoManager.infoFile', compact('user'));
+        if (Session::has('customer')) {
+            $user = TaiKhoan::find(Session::get('customer')->ID);
+            return view('user.infoManager.infoFile', compact('user'));
+        } else {
+            return redirect()->route('home.index');
+        }
     }
 
     public function updateProfile($id, Request $request)
@@ -77,27 +82,69 @@ class userController extends Controller
     {
         $listMyCourse = [];
         $classMyCourse = [];
-        $bills = HoaDon::join('cthoadon', 'hoadon.MAHD', '=', 'cthoadon.MAHD')
-            ->where('hoadon.MAHV', Session::get('customer')->ID)
-            ->select('*')->get();
-        foreach ($bills as $bill) {
-            $listMyCourse[] = KhoaHoc::join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->find($bill->MAKH);
-            $classMyCourse[] = Lophoc::all();
-            //->where('lophoc.MALH', '=', $bill->MALH)
+        if (Session::has('customer')) {
+            $bills = HoaDon::join('cthoadon', 'hoadon.MAHD', '=', 'cthoadon.MAHD')
+                ->where('hoadon.MAHV', Session::get('customer')->ID)
+                ->select('*')->get();
+            foreach ($bills as $bill) {
+                $listMyCourse[] = KhoaHoc::join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->find($bill->MAKH);
+                $classMyCourse[] = Lophoc::all();
+            }
+            return view('user.infoManager.myCourse', compact('listMyCourse', 'classMyCourse', 'bills'));
+        } else {
+            return redirect()->route('home.index');
         }
-        return view('user.infoManager.myCourse', compact('listMyCourse', 'classMyCourse', 'bills'));
     }
 
     public function learnCourse($id)
     {
-        $data = [];
-        $course_lessons = KhoaHoc_BaiHoc::where('MAKH', $id)->get();
-        foreach ($course_lessons as $course_lesson) {
-            $lesson = BaiHoc::find($course_lesson->MABH);
-            $data[$lesson->MACHUONG][] = $lesson;
+        if (Session::has('customer')) {
+            $user = TaiKhoan::find(Session::get('customer')->ID);
+            $exam = BaiThi::all();
+            $bills = HoaDon::join('cthoadon', 'hoadon.MAHD', '=', 'cthoadon.MAHD')
+                ->where('hoadon.MAHV', Session::get('customer')->ID)
+                ->first();
+            if ($bills) {
+                $data = [];
+                $course_lessons = KhoaHoc_BaiHoc::where('MAKH', $id)->get();
+                foreach ($course_lessons as $course_lesson) {
+                    $lesson = BaiHoc::find($course_lesson->MABH);
+                    $data[$lesson->MACHUONG][] = $lesson;
+                }
+                $course_lesson_first  = KhoaHoc_BaiHoc::where('MAKH', $id)->first();
+                return view('user.lesson.index', compact('course_lesson_first', 'course_lessons', 'data', 'exam'));
+            } else {
+                $countStudent = DB::table('cthoadon')->where('cthoadon.MAKH', $id)->count();
+                $countRate = DB::table('danhgia')->where('danhgia.MAKH', $id)->count();
+                $cateCourse = DB::table('danhmuc')
+                    ->where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
+                $productDetail  = DB::table('khoahoc')
+                    ->join('danhmuc', 'danhmuc.MADM', '=', 'khoahoc.MADM')
+                    ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->where('khoahoc.MAKH',  $id)->get();
+                $sectionCourse  = DB::table('chuonghoc')
+                    ->where('chuonghoc.MAKH', '=', $id)->get();
+                $lessonCourse = DB::table('baihoc')->get();
+                $sectionCourse  = DB::table('chuonghoc')->where('chuonghoc.MAKH', '=', $id)->get();
+                $lessonCourse = DB::table('baihoc')->get();
+                foreach ($productDetail as $value) {
+                    $courseCate = $value->MADM;
+                    $courseOnline = $value->TRUCTUYEN;
+                }
+                if ($courseOnline != 0) {
+                    $classRoom = DB::table('lophoc')->where('lophoc.MAKH', '=', $id)->get();
+                } else {
+                    $classRoom = "";
+                }
+                $relatedCourse  = DB::table('khoahoc')
+                    ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+                    ->join('danhmuc', 'danhmuc.MADM', '=', 'khoahoc.MADM')
+                    ->where('danhmuc.MADM', $courseCate)
+                    ->whereNotIn('khoahoc.MAKH', [$id])->get();
+                return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate)->with('courseOnline', $courseOnline)->with('classRoom', $classRoom);
+            }
+        } else {
+            return redirect()->route('home.index');
         }
-        $course_lesson_first  = KhoaHoc_BaiHoc::where('MAKH', $id)->first();
-        return view('user.lesson.index', compact('course_lesson_first', 'course_lessons', 'data'));
     }
 
     public function ajaxLoadVideo(Request $request)
