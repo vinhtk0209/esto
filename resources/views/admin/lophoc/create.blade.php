@@ -40,6 +40,8 @@
                             {{session('thongbao')}}
                         </div>
                         @endif
+                        @if ($check == 0) <div class="alert alert-danger">Chưa có khóa học trực tuyến nào!</div>
+                        @else
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -63,14 +65,14 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Số học viên tối đa</label>
-                                        <input type="number" name="SLGIOIHAN" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập số lượng học viên')" oninput="this.setCustomValidity('')">
+                                        <input type="number" name="SLGIOIHAN" class="form-control" min="5" max="100" required oninvalid="this.setCustomValidity('5 <= Số lượng học viên <= 100')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-username">Ngày mở lớp</label></br>
+                                        <label class="form-control-label" for="input-username">Thời gian mở lớp</label></br>
                                         <input type="datetime-local" name="NGAYMOLOP" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập ngày mở lớp')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
@@ -81,6 +83,7 @@
                                 <button type="submit" class="btn btn-default">Thêm lớp học</button>
                             </div>
                         </div>
+                        @endif
                     </form>
                 </div>
             </div>

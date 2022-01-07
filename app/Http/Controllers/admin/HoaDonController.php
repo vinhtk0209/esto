@@ -15,17 +15,7 @@ class HoaDonController extends Controller
         $hoadon = DB::table('hoadon')
             ->join('taikhoan', 'hoadon.MAHV', '=', 'taikhoan.ID')
             ->paginate(10);
-
-        $khoahoc = DB::table('khoahoc')
-            ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
-            ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
-            ->get();
-
-        $tien = DB::table('khoahoc')
-            ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
-            ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
-            ->sum('khoahoc.DONGIA');
-        return view('admin.hoadon.index', ['hoadon' => $hoadon], ['khoahoc' => $khoahoc], ['tien' => $tien]);
+        return view('admin.hoadon.index', ['hoadon' => $hoadon]);
     }
 
     public function detail($id)
@@ -36,11 +26,6 @@ class HoaDonController extends Controller
             ->get();
 
         $tien = 0;
-        // $tien = DB::table('khoahoc')
-        // ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
-        // ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')     
-        // ->where('hoadon.MAHD',$id)
-        // ->sum('khoahoc.DONGIA');
 
         $detail = DB::table('khoahoc')
             ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
@@ -48,15 +33,10 @@ class HoaDonController extends Controller
             ->join('taikhoan', 'khoahoc.MAGV', '=', 'taikhoan.ID')
             ->where('hoadon.MAHD', $id)
             ->get();
+
         foreach ($detail as $dt) {
             $tien += $dt->DONGIA;
         }
         return view('admin.hoadon.detail', compact('tien', 'detail', 'tenHV'));
-    }
-
-    public function delete($id)
-    {
-        $cat = HoaDon::find($id)->delete();
-        return redirect()->back()->with('success', 'Xóa thành công!');
     }
 }

@@ -29,29 +29,37 @@
                         <div class="name-course">
                             <h4 id="tenkhoahoc"></h4>
                         </div>
-                        <div class="name-teacher d-flex flex-space">
-                            @if (session('login') != null && session('login')->LOAITK == 3)
-                            <p id="giangvien">{{$taikhoan[0]->HOTEN}}</p>
-                            @else
-                            <p>{{session('login')->HOTEN}}</p>
-                            @endif
-                            <div class="price price-discount">
-                                <p><del id="dongia"></del><span class="price-unit"><sup>vnd</sup></span></p>
+                        <div class="row name-teacher d-flex flex-space">
+                            <div class="col-8">
+                                @if (session('login') != null && session('login')->LOAITK == 3)
+                                <p id="giangvien">{{$taikhoan[0]->HOTEN}}</p>
+                                @else
+                                <p>{{session('login')->HOTEN}}</p>
+                                @endif
+                            </div>
+                            <div class="col-4 text-right">
+                                <div class="price price-discount">
+                                    <p><del id="dongia"></del><span class="price-unit"><sup>vnd</sup></span></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="price-course d-flex flex-space">
-                            <div class="rate">
-                                <p>
-                                    <span class="star-rate">
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                    </span>
-                                </p>
+                        <div class="row price-course d-flex flex-space">
+                            <div class="col-8">
+                                <div class="rate">
+                                    <p>
+                                        <span class="star-rate">
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
-                            <p id="giamgia"><span class="price-unit"><sup>vnd</sup></span></p>
+                            <div class="col-4 text-right">
+                                <p id="giamgia"><span class="price-unit"><sup>vnd</sup></span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,7 +123,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Giá khóa học</label>
+                                        <label class="form-control-label" for="input-email">Giá khóa học (VNĐ)</label>
                                         <input type="number" id="DONGIA" name="DONGIA" class="form-control" min="50000" onkeyup="textChange()" required oninvalid="this.setCustomValidity('Giá khóa học >= 50.000')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>

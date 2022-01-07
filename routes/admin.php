@@ -164,6 +164,5 @@ Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function ()
     Route::prefix('hoadon')->name('hoadon.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\hoadonController@index');
         Route::get('/chitiet/{id}', 'App\Http\Controllers\admin\hoadonController@detail');
-        Route::get('/xoa/{id}', 'App\Http\Controllers\admin\hoadonController@delete');
     });
 });

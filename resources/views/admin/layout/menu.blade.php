@@ -44,7 +44,7 @@
                 <i class="ni ni-hat-3 text-blue"></i>
                 <span class="nav-link-text">Học Viên</span>
             </a>
-        </li>
+        </li>      
         @if (session('login') != null && session('login')->LOAITK == 3)
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'danhmuc') ? 'active' : '' }}" href="admin/danhmuc/">
@@ -63,7 +63,7 @@
                 <i class="ni ni-chat-round text-gray"></i>
                 <span class="nav-link-text">Đánh Giá</span>
             </a>
-        </li>
+        </li>          
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'hoadon') ? 'active' : '' }}" href="admin/hoadon/">
                 <i class="ni ni-money-coins text-green"></i>
@@ -77,11 +77,5 @@
             </a>
         </li>
         @endif
-        <li class="nav-item">
-            <a class="nav-link {{ (request()->segment(2) == 'thongtincanhan') ? 'active' : '' }}" href="admin/thongtincanhan/">
-                <i class="ni ni-single-02 text-red"></i>
-                <span class="nav-link-text">Thông Tin Cá Nhân</span>
-            </a>
-        </li>
     </ul>
 </div>

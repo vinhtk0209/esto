@@ -110,27 +110,39 @@
                             @endif>
                             <div class="pl-lg-4">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label">Video</label>
-                                            <input type="file" id="VIDEO" name="VIDEO" class="form-control">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="pl-lg-4">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Video</label>
+                                                    <input type="text" name="title" class="form-control" placeholder="Tên video" />
+                                                </div>
                                             </div>
-                                            <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#formvideo" data-whatever="@mdo">Xem video</button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="pl-lg-4">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-username">Học thử</label></br>
-                                            <input name="HOCTHU" type="radio" id="co" value="1" style="vertical-align:middle; cursor: pointer;" @if($baihoc[0]->HOCTHU == true)
-                                            {{"checked"}}
-                                            @endif>
-                                            <label>Có</label><br>
-                                            <input name="HOCTHU" type="radio" id="khong" value="0" style="vertical-align:middle; cursor: pointer;" @if($baihoc[0]->HOCTHU == false)
-                                            {{"checked"}}
-                                            @endif>
-                                            <label>Không</label>
+                                            <div class="form-group">
+                                                <label class="form-control-label">Mô tả</label>
+                                                <textarea id="description" name="description" cols="30" rows="10" placeholder="Mô tả"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="file" id="VIDEO" name="VIDEO" class="form-control" onchange="videochange(event)" required oninvalid="this.setCustomValidity('Bạn chưa nhập video')" oninput="this.setCustomValidity('')">
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-username">Học thử</label></br>
+                                                <input name="HOCTHU" type="radio" id="co" value="1" style="vertical-align:middle; cursor: pointer;">
+                                                <label>Có</label><br>
+                                                <input name="HOCTHU" type="radio" id="khong" value="0" style="vertical-align:middle; cursor: pointer;" checked>
+                                                <label>Không</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +154,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Link lớp học</label>
-                                    <input type="text" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" value="{{$baihoc[0]->LINK}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập link bài học')" oninput="this.setCustomValidity('')">
+                                    <input type="url" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" value="{{$baihoc[0]->LINK}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập link bài học')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="col-lg-6">

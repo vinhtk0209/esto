@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="admin/baihoc/them" id="formthembaihoc" method="POST" enctype="multipart/form-data" novalidate>
+                    <form action="admin/baihoc/them" id="formthembaihoc" method="POST" enctype="multipart/form-data">
                         @csrf
                         <h6 class="heading-small text-muted mb-4">Thông tin bài học</h6>
                         @if (session('thongbao'))
@@ -100,48 +100,32 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="dtructuyen" style="display:none">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Link lớp học</label>
-                                        <input type="text" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập link bài học')" oninput="this.setCustomValidity('')">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
-                                        <input type="datetime-local" name="TGBD" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
-                                        <input type="datetime-local" name="TGKT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')">
-                                    </div>
+                        </div>
+                        <div id="dtructuyen" style="display:none">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Link lớp học</label>
+                                    <input type="url" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập link bài học')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
-                            <div class="row align-items-center">
-                                <button type="submit" class="btn btn-default">Thêm</button>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
+                                    <input type="datetime-local" id="TGBD" name="TGBD" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')">
+                                </div>
                             </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
+                                    <input type="datetime-local" id="TGKT" name="TGKT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <button type="submit" class="btn btn-default">Thêm</button>
+                        </div>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="formvideo" tabindex="-1" role="dialog" aria-labelledby="formvideoLabel" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 50%;" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="640" height="360" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-                    <source src="./video/" type="video/mp4" />
-                    <source src="./video/" type="video/webm" />
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a
-                        web browser that
-                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                    </p>
-                </video>
             </div>
         </div>
     </div>

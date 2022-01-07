@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BaiHoc;
+use App\Models\CTHoaDon;
 use App\Models\DanhMuc;
 use App\Models\KhoaHoc;
 use App\Models\DanhMucCon;
@@ -173,12 +174,12 @@ class KhoaHocController extends Controller
     public function delete($id)
     {
         $khoahoc = KhoaHoc::find($id);
-        $hoadon = HoaDon::where('MAKH', $id)->get();
-        if (!$hoadon) {
+        $hoadon = CTHoaDon::where('MAKH', $id)->get();
+        if (count($hoadon) == 0) {
             $khoahoc->delete();
             return redirect('admin/khoahoc/')->with('thongbao', 'Xóa thành công!');
         } else
-            return redirect('admin/khoahoc/')->with('thongbao', 'Khóa học đã có người mua.\n Không thể xóa khóa học này!');
+            return redirect('admin/khoahoc/')->with('thongbao', 'Khóa học đã có người mua. Không thể xóa khóa học này!');
     }
 
     public function search(Request $request)

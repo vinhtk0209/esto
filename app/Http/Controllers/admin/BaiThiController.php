@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BaiHoc;
+use App\Models\BaiLam;
 use App\Models\BaiThi;
 use App\Models\CauHoi;
 use App\Models\CTBaiThi;
@@ -112,16 +113,17 @@ class BaiThiController extends Controller
 
     public function store(Request $request, $id)
     {
-        $MAKH = $request->MAKHbaithi;
-        $khoahoc = KhoaHoc::find($MAKH);
         $baithi = new BaiThi();
         $baithi->TENBT = $request->TENBT;
-        $baithi->MAGV = $khoahoc->MAGV;
-        if ($khoahoc->TRUCTUYEN == true) {
+        if ($id == -2) {
+            $baithi->MAGV = session('login')->ID;
             $baithi->TGBD = $request->TGBD;
             $baithi->TGKT = $request->TGKT;
             $baithi->save();
         } else {
+            $MAKH = $request->MAKHbaithi;
+            $khoahoc = KhoaHoc::find($MAKH);
+            $baithi->MAGV = $khoahoc->MAGV;
             $baithi->save();
             DB::table('BaiHoc')
                 ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
@@ -180,9 +182,12 @@ class BaiThiController extends Controller
     public function delete($id)
     {
         $baithi = BaiThi::find($id);
-        $baithi->delete();
-
-        return redirect('admin/baithi/')->with('thongbao', 'Xóa thành công!');
+        $bailam = BaiLam::where('MABT', $id)->get();
+        if (count($bailam) == 0) {
+            $baithi->delete();
+            return redirect('admin/baithi/')->with('thongbao', 'Xóa thành công!');
+        } else
+            return redirect('admin/baithi/')->with('thongbao', 'Đã có học viên làm bài thi này. Không thể xóa bài thi này!');
     }
 
     public function indexCauHoi($id)

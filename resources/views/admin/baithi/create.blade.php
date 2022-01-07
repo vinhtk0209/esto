@@ -58,26 +58,34 @@
                         <div id="dtenbaithi" class="pl-lg-4" style="display:none">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài thi</label>
-                                <input type="text" name="TENBT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài thi')" oninput="this.setCustomValidity('')">
+                                <input type="text" id="TENBT" name="TENBT" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài thi')" oninput="this.setCustomValidity('')" @if($id == -1)
+                                        {{"required"}}
+                                        @endif>
                             </div>
                         </div>
                         @if ($id == -2)
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài thi</label>
-                                <input type="text" name="TENBT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài thi')" oninput="this.setCustomValidity('')">
+                                <input type="text" name="TENBT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài thi')" oninput="this.setCustomValidity('')" @if($id == -2)
+                                        {{"required"}}
+                                        @endif>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
-                                <input type="datetime-local" name="TGBD" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')">
+                                <input type="datetime-local" name="TGBD" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')" @if($id == -2)
+                                        {{"required"}}
+                                        @endif>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
-                                <input type="datetime-local" name="TGKT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')">
+                                <input type="datetime-local" name="TGKT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')" @if($id == -2)
+                                        {{"required"}}
+                                        @endif>
                             </div>
                         </div>
                         @endif

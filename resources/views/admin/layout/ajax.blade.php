@@ -209,11 +209,19 @@
                                 $('#dchuonghoc').html(res[1]);
                                 $("#dvideo").show();
                                 $("#dtructuyen").hide();
+                                document.getElementById('VIDEO').setAttribute('required');
+                                document.getElementById('LINK').removeAttribute('required');
+                                document.getElementById('TGBD').removeAttribute('required');
+                                document.getElementById('TGKT').removeAttribute('required');
                             } else {
                                 $('#dlophoc').html(res[0]);
                                 $('#dchuonghoc').html(res[1]);
                                 $("#dvideo").hide();
                                 $("#dtructuyen").show();
+                                document.getElementById('VIDEO').removeAttribute('required');
+                                document.getElementById('LINK').setAttribute('required');
+                                document.getElementById('TGBD').setAttribute('required');
+                                document.getElementById('TGKT').setAttribute('required');
                             }
                         }
                     }
@@ -251,16 +259,18 @@
                     if (res == 'tructuyen') {
                         $('#dbaihoc').html('');
                         $("#dtenbaithi").show();
-                        $("#dtructuyen").show();
+                        $("#dtructuyen").show();                        
+                        document.getElementById('TENBT').setAttribute('required');
                     } else if (res == "video") {
                         $('#dbaihoc').html('');
                         $("#dtenbaithi").hide();
-                        $("#dtructuyen").hide();
+                        $("#dtructuyen").hide();                        
+                        document.getElementById('TENBT').removeAttribute('required');
                         alert("Đây là khóa học video.\nBạn cần tạo bài học trước để gán bài thi vào!")
                     } else {
                         $('#dbaihoc').html(res);
                         $("#dtenbaithi").show();
-                        $("#dtructuyen").hide();
+                        $("#dtructuyen").hide();                        
                     }
                 }
             });
