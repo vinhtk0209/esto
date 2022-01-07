@@ -71,39 +71,6 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer py-4">
-                    <ul class="pagination justify-content-end mb-0">
-                        <li class="page-item">
-                            <a class="page-link" href="admin/hocvien/ctlop/{{$id}}?page=1">
-                                <i class="fas fa-angle-double-left"></i>
-                            </a>
-                        </li>
-                        @if ($ctlophoc->currentPage() == 1)
-                        <li class="page-item disabled">
-                            @else
-                        <li class="page-item">
-                            @endif
-                            <a class="page-link" href="{{$ctlophoc->previousPageUrl()}}">
-                                <i class="fas fa-angle-left"></i>
-                            </a>
-                        </li>
-                        @if ($ctlophoc->currentPage() == $ctlophoc->lastPage())
-                        <li class="page-item disabled">
-                            @else
-                        <li class="page-item">
-                            @endif
-                            <a class="page-link" href="{{$ctlophoc->nextPageUrl()}}">
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="admin/hocvien/ctlop/{{$id}}?page={{$ctlophoc->lastPage()}}">
-                                <i class="fas fa-angle-double-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    </nav>
-                </div>
             </div>
         </div>
     </div>

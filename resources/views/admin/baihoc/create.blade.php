@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="admin/baihoc/them" id="formthembaihoc" method="POST" enctype="multipart/form-data">
+                    <form action="admin/baihoc/them" id="formthembaihoc" method="POST" enctype="multipart/form-data" novalidate>
                         @csrf
                         <h6 class="heading-small text-muted mb-4">Thông tin bài học</h6>
                         @if (session('thongbao'))
@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Khóa học</label></br>
                                 <select id="MAKH" name="MAKH">
-                                    <option value="">--------------------Khóa học--------------------</option>
+                                    <option value="0">--------------------Khóa học--------------------</option>
                                     @foreach($khoahoc as $kh)
                                     <option value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>
                                     @endforeach
@@ -61,7 +61,7 @@
                         <div id="dtenbai" class="pl-lg-4" style="display:none">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài học</label>
-                                <input type="text" name="TENBH" class="form-control">
+                                <input type="text" name="TENBH" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài học')" oninput="this.setCustomValidity('')">
                             </div>
                         </div>
                         <div id="dvideo" style="display:none">
@@ -70,7 +70,9 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Video</label>
-                                            <input type="file" id="VIDEO" name="VIDEO" class="form-control" onchange="videochange(event)">
+                                            <input type="text" name="title" placeholder="Enter Video Title" />
+                                            <textarea name="description" cols="30" rows="10" placeholder="Video description"></textarea>
+                                            <input type="file" id="VIDEO" name="VIDEO" class="form-control" onchange="videochange(event)" required oninvalid="this.setCustomValidity('Bạn chưa nhập video')" oninput="this.setCustomValidity('')">
                                             <div class="progress">
                                                 <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
@@ -93,19 +95,19 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Link lớp học</label>
-                                    <input type="text" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control">
+                                    <input type="text" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập link bài học')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
-                                    <input type="datetime-local" name="TGBD" class="form-control">
+                                    <input type="datetime-local" name="TGBD" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
-                                    <input type="datetime-local" name="TGKT" class="form-control">
+                                    <input type="datetime-local" name="TGKT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                         </div>
@@ -119,7 +121,7 @@
     </div>
 </div>
 <div class="modal fade" id="formvideo" tabindex="-1" role="dialog" aria-labelledby="formvideoLabel" aria-hidden="true">
-    <div class="modal-dialog"  style="max-width: 50%;" role="document">
+    <div class="modal-dialog" style="max-width: 50%;" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="640" height="360" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">

@@ -200,7 +200,7 @@
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
-                <a href="#!" class="dropdown-item">
+                <a href="admin/thongtincanhan" class="dropdown-item">
                   <i class="ni ni-single-02"></i>
                   <span>Thông tin cá nhân</span>
                 </a>
@@ -263,6 +263,16 @@
         var e = document.getElementById("MATK");
         document.getElementById("giangvien").innerHTML = e.options[e.selectedIndex].text;
       });
+
+
+      $('#main_form').on('submit', function(event) {
+        var input = document.getElementById('TENKH');
+
+        if (input.value == '') {
+          input.setCustomValidity('You gotta fill this out, yo!');
+          event.preventDefault();
+        }
+      });
     });
   </script>
   <script>
@@ -281,13 +291,6 @@
     CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
     CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
     CKEDITOR.config.autoParagraph = false;
-    $("form").submit(function(e) {
-      var messageLength = CKEDITOR.instances['CHITIETKH'].getData().replace(/<[^>]*>/gi, '').length;
-      if (!messageLength) {
-        var input = document.getElementById('CHITIETKH').setCustomValidity('You gotta fill this out, yo!');
-        e.preventDefault();
-      }
-    });
   </script>
 
   {{-- CKEDITOR --}}

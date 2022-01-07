@@ -45,6 +45,7 @@
                 <span class="nav-link-text">Học Viên</span>
             </a>
         </li>
+        @if (session('login') != null && session('login')->LOAITK == 3)
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'danhmuc') ? 'active' : '' }}" href="admin/danhmuc/">
                 <i class="ni ni-bullet-list-67 text-brown"></i>
@@ -75,6 +76,7 @@
                 <span class="nav-link-text">Khuyến Mãi</span>
             </a>
         </li>
+        @endif
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'thongtincanhan') ? 'active' : '' }}" href="admin/thongtincanhan/">
                 <i class="ni ni-single-02 text-red"></i>

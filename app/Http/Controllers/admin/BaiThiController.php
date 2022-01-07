@@ -18,17 +18,33 @@ class BaiThiController extends Controller
     {
         DB::table('CTBaiThi')->whereNull('MABT')->delete();
         if ($id == 0) {
-            $baithi = BaiThi::whereNull('TGBD')->orderBy('MABT', 'desc')->paginate(10);
-            return view('admin.baithi.index', ['baithi' => $baithi], ['id' => $id]);
+            if (session('login')->LOAITK == 2)
+                $baithi = BaiThi::whereNull('TGBD')
+                    ->join('TaiKhoan', 'TaiKhoan.ID', 'BaiThi.MAGV')
+                    ->where('BaiThi.MAGV', session('login')->ID)
+                    ->orderBy('MABT', 'desc')->paginate(10);
+            else
+                $baithi = BaiThi::whereNull('TGBD')
+                    ->orderBy('MABT', 'desc')->paginate(10);
         } else {
-            $baithi = BaiThi::whereNotNull('TGBD')->orderBy('MABT', 'desc')->paginate(10);
-            return view('admin.baithi.index', ['baithi' => $baithi], ['id' => $id]);
+            if (session('login')->LOAITK == 2)
+                $baithi = BaiThi::whereNotNull('TGBD')
+                    ->join('TaiKhoan', 'TaiKhoan.ID', 'BaiThi.MAGV')
+                    ->where('BaiThi.MAGV', session('login')->ID)
+                    ->orderBy('MABT', 'desc')->paginate(10);
+            else
+                $baithi = BaiThi::whereNotNull('TGBD')->orderBy('MABT', 'desc')->paginate(10);
         }
+        return view('admin.baithi.index', ['baithi' => $baithi], ['id' => $id]);
     }
 
     public function create($id)
     {
-        $khoahoc = KhoaHoc::where('TRUCTUYEN', '0')->get();
+        if (session('login')->LOAITK == 2)
+            $khoahoc = KhoaHoc::where('TRUCTUYEN', '0')
+                ->where('MAGV', session('login')->ID)->get();
+        else
+            $khoahoc = KhoaHoc::where('TRUCTUYEN', '0')->get();
         $cauhoi = DB::table('CTBaiThi')
             ->join('CauHoi', 'CTBaiThi.MACH', '=', 'CauHoi.MACH')
             ->whereNull('MABT')->get();
@@ -121,7 +137,10 @@ class BaiThiController extends Controller
 
     public function edit($id)
     {
-        $khoahoc = KhoaHoc::all();
+        if (session('login')->LOAITK == 2)
+            $khoahoc = KhoaHoc::where('MAGV', session('login')->ID)->get();
+        else
+            $khoahoc = KhoaHoc::all();
         $baithi = BaiThi::find($id);
         $baihoc = DB::table('BaiHoc')
             ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
@@ -206,6 +225,7 @@ class BaiThiController extends Controller
 
         $ctbaithi = new CTBaiThi();
         $ctbaithi->MACH = $cauhoi->MACH;
+        $ctbaithi->DIEM = $request->DIEM;
         $ctbaithi->save();
 
         if ($id < 0) return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
@@ -230,6 +250,8 @@ class BaiThiController extends Controller
         $cauhoi->CAUDUNG = $request->CAUDUNG;
         $cauhoi->MADM = $request->MADM;
         $cauhoi->save();
+
+        DB::table('CTBaiThi')->whereNull('MABT')->where('MACH', $mach)->update(['DIEM' => $request->DIEM]);
 
         return redirect('admin/baithi/them/' . $id . '/cauhoi/sua/' . $mach)->with('thongbao', 'Sửa câu hỏi thành công!');
     }
@@ -259,28 +281,28 @@ class BaiThiController extends Controller
         foreach ($cauhoi as $ch) {
             $outputCH .= '<tr>
             <td class="budget">
-                <input type="checkbox" name="ids[]" value="'.$ch->MACH.'">
+                <input type="checkbox" name="ids[]" value="' . $ch->MACH . '">
             </td>
             <td class="budget">
-                '.$ch->NOIDUNG.'
+                ' . $ch->NOIDUNG . '
             </td>
             <td class="budget">
-                '.$ch->A.'
+                ' . $ch->A . '
             </td>
             <td class="budget">
-                '.$ch->B.'
+                ' . $ch->B . '
             </td>
             <td class="budget">
-                '.$ch->C.'
+                ' . $ch->C . '
             </td>
             <td class="budget">
-                '.$ch->D.'
+                ' . $ch->D . '
             </td>
             <td class="budget">
-                '.$ch->CAUDUNG.'
+                ' . $ch->CAUDUNG . '
             </td>
             <td class="budget">
-                '.$ch->TENDM.'
+                ' . $ch->TENDM . '
             </td>
         </tr>';
         }

@@ -29,7 +29,6 @@
     {{-- RANGE JQUERY CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <!-- MODAL CSS -->
-<<<<<<< HEAD
     <link rel="stylesheet" href="./user/assets/css/modal.css">
     <!-- PAGINATION CSS -->
     <link rel="stylesheet" href="./user/assets/css/pagination.css">
@@ -42,20 +41,6 @@
     <!-- INFO MANAGER CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoManager.css">
     <!-- LIST COURSE CSS -->
-=======
-    <link rel="stylesheet" href="./user/assets/css/modal.css" >
-    <!-- PAGINATION CSS -->
-    <link rel="stylesheet" href="./user/assets/css/pagination.css" >
-    <!-- LOADING CSS -->
-    <link rel="stylesheet" href="./user/assets/css/loading.css">
-     <!-- BACKTOP CSS -->
-    <link rel="stylesheet" href="./user/assets/css/backTop.css">
-     <!-- COURSE DETAIL CSS -->
-    <link rel="stylesheet" href="./user/assets/css/courseDetail.css">
-     <!-- INFO MANAGER CSS -->
-    <link rel="stylesheet" href="./user/assets/css/infoManager.css">
-     <!-- LIST COURSE CSS -->
->>>>>>> 8bf6200bf2bd923db698770c514009b9be9d0cc8
 
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
     <link rel="stylesheet" href="./user/assets/css/custom.css">
@@ -191,26 +176,26 @@
 
                 }
             }, 1000);
-        $(document).ready(function () {
-        $("#slider-range").slider({
-            orientation: "vertical",
-            range: true,
-            min: {{$minPrice}},
-            max: {{$maxPrice}},
-            step: 50000,
-            values:[{{$minPrice}},{{$maxPrice}}],
-            slide: function (event, ui) {
-                $("#amountStart").val( ui.values[1]+'vnd').simpleMoneyFormat();
-                $("#amountEnd").val(ui.values[0]+'vnd').simpleMoneyFormat();
-                    $("#startPrice").val(ui.values[0]);
-                $("#endPrice").val(ui.values[1]);
-            },
-        });
-        $("#amountStart").val(
-                $("#slider-range").slider("values", 1)+'vnd').simpleMoneyFormat();
-        $("#amountEnd").val(
-                $("#slider-range").slider("values", 0)+'vnd').simpleMoneyFormat();
-         });
+        // $(document).ready(function () {
+        // $("#slider-range").slider({
+        //     orientation: "vertical",
+        //     range: true,
+        //     min: {{$minPrice}},
+        //     max: {{$maxPrice}},
+        //     step: 50000,
+        //     values:[{{$minPrice}},{{$maxPrice}}],
+        //     slide: function (event, ui) {
+        //         $("#amountStart").val( ui.values[1]+'vnd').simpleMoneyFormat();
+        //         $("#amountEnd").val(ui.values[0]+'vnd').simpleMoneyFormat();
+        //             $("#startPrice").val(ui.values[0]);
+        //         $("#endPrice").val(ui.values[1]);
+        //     },
+        // });
+        // $("#amountStart").val(
+        //         $("#slider-range").slider("values", 1)+'vnd').simpleMoneyFormat();
+        // $("#amountEnd").val(
+        //         $("#slider-range").slider("values", 0)+'vnd').simpleMoneyFormat();
+        //  });
     </script>
 
     <script src="./user/assets/js/main.js"></script>

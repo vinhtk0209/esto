@@ -61,13 +61,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Tên lớp học</label>
-                                        <input type="text" name="TENLOP" class="form-control" value="{{$lophoc->TENLOP}}">
+                                        <input type="text" name="TENLOP" class="form-control" value="{{$lophoc->TENLOP}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên lớp học')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Số học viên tối đa</label>
-                                        <input type="text" name="SLGIOIHAN" class="form-control" value="{{$lophoc->SLGIOIHAN}}">
+                                        <input type="text" name="SLGIOIHAN" class="form-control" value="{{$lophoc->SLGIOIHAN}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập số lượng học viên')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>

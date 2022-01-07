@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Dawson\Youtube\YoutubeServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -231,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Youtube' => Dawson\Youtube\Facades\Youtube::class,
     ],
 
 ];

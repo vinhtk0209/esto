@@ -69,6 +69,7 @@
                     </table>
                 </div>
                 <!-- Card footer -->
+                @if ($lophoc->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0"  id="paginate">
                         <li class="page-item">
@@ -100,8 +101,8 @@
                             </a>
                         </li>
                     </ul>
-                    </nav>
                 </div>
+                @endif
             </div>
         </div>
     </div>

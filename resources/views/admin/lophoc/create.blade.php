@@ -57,13 +57,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Tên lớp học</label>
-                                        <input type="text" name="TENLOP" class="form-control">
+                                        <input type="text" name="TENLOP" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên lớp học')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Số học viên tối đa</label>
-                                        <input type="text" name="SLGIOIHAN" class="form-control">
+                                        <input type="number" name="SLGIOIHAN" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập số lượng học viên')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Ngày mở lớp</label></br>
-                                        <input type="datetime-local" name="NGAYMOLOP" class="form-control">
+                                        <input type="datetime-local" name="NGAYMOLOP" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập ngày mở lớp')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>

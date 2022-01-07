@@ -58,26 +58,26 @@
                         <div id="dtenbaithi" class="pl-lg-4" style="display:none">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài thi</label>
-                                <input type="text" name="TENBT" class="form-control">
+                                <input type="text" name="TENBT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài thi')" oninput="this.setCustomValidity('')">
                             </div>
                         </div>
                         @if ($id == -2)
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài thi</label>
-                                <input type="text" name="TENBT" class="form-control">
+                                <input type="text" name="TENBT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài thi')" oninput="this.setCustomValidity('')">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
-                                <input type="datetime-local" name="TGBD" class="form-control">
+                                <input type="datetime-local" name="TGBD" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
-                                <input type="datetime-local" name="TGKT" class="form-control">
+                                <input type="datetime-local" name="TGKT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')">
                             </div>
                         </div>
                         @endif
@@ -119,6 +119,7 @@
                         <th scope="col" class="sort" data-sort="video">Câu C</th>
                         <th scope="col" class="sort" data-sort="hocthu">Câu D</th>
                         <th scope="col" class="sort" data-sort="hocthu">Đáp án</th>
+                        <th scope="col" class="sort" data-sort="hocthu">Điểm</th>
                         <th scope="col" class="sort" data-sort="options"></th>
                     </tr>
                 </thead>
@@ -142,6 +143,9 @@
                         </td>
                         <td class="budget">
                             {{$ch->CAUDUNG}}
+                        </td>
+                        <td class="budget">
+                            {{$ch->DIEM}}
                         </td>
                         <td class="budget">
                             <a href="admin/baithi/them/{{$id}}/cauhoi/sua/{{$ch->MACH}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>

@@ -152,20 +152,6 @@
             });
         });
 
-        $('#formthembaihoc').submit(function(e) {
-            $(this).ajaxSubmit({
-                beforeSubmit: function() {
-                    $('.progress-bar').width('0%')
-                },
-                uploadProgress: function(event, position, total, percentComplete) {
-                    $(".progress-bar").width(percentComplete + '%')
-                    $(".progress-bar").html('<div id="progress-status">' + percentComplete + '%</div>')
-                },
-                success: function(){
-
-                }
-            })
-        });
 
         $(document).on('click', '.edit', function() {
             var id = $(this).attr('id');

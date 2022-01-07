@@ -61,7 +61,8 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Card footer -->
+                <!-- Card footer -->                
+                @if ($chuonghoc->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0" id="paginate">
                         <li class="page-item">
@@ -94,6 +95,7 @@
                         </li>
                     </ul>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -115,7 +117,6 @@
                     <div class="form-group">
                         <label class="form-control-label">Khóa học</label>
                         <select id="MAKHchuong" name="MAKH">
-                            <option value="">--------------------Khóa học--------------------</option>
                             @foreach($khoahoc as $kh)
                             <option value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>
                             @endforeach
@@ -123,7 +124,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-control-label">Tên chương</label>
-                        <input type="text" id="TENCHUONG" name="TENCHUONG" class="form-control">
+                        <input type="text" id="TENCHUONG" name="TENCHUONG" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên chương')" oninput="this.setCustomValidity('')">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>

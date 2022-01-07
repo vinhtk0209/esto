@@ -29,7 +29,11 @@
                             <h4 id="tenkhoahoc">{{$khoahoc->TENKH}}</h4>
                         </div>
                         <div class="name-teacher d-flex flex-space">
+                            @if (session('login') != null && session('login')->LOAITK == 3)
                             <p class="" id="giangvien">{{$khoahoc->rTaiKhoan->HOTEN}}</p>
+                            @else
+                            <p>{{session('login')->HOTEN}}</p>
+                            @endif
                             <div class="price price-discount">
                                 <p><del id="dongia">{{$khoahoc->DONGIA}}</del><span class="price-unit"><sup>vnd</sup></span></p>
                             </div>
@@ -76,6 +80,7 @@
                             {{session('thongbao')}}
                         </div>
                         @endif
+                        @if (session('login') != null && session('login')->LOAITK == 3)
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -94,6 +99,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">

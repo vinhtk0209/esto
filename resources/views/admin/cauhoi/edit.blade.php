@@ -60,19 +60,23 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Câu A</label>
-                                <input type="text" id="A" name="A" class="form-control" value="{{$cauhoi->A}}">
+                                <input type="text" id="A" name="A" class="form-control" value="{{$cauhoi->A}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập nội dung câu A')" oninput="this.setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Câu B</label>
-                                <input type="text" id="B" name="B" class="form-control" value="{{$cauhoi->B}}">
+                                <input type="text" id="B" name="B" class="form-control" value="{{$cauhoi->B}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập nội dung câu B')" oninput="this.setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Câu C</label>
-                                <input type="text" id="C" name="C" class="form-control" value="{{$cauhoi->C}}">
+                                <input type="text" id="C" name="C" class="form-control" value="{{$cauhoi->C}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập nội dung câu C')" oninput="this.setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Câu D</label>
-                                <input type="text" id="D" name="D" class="form-control" value="{{$cauhoi->D}}">
+                                <input type="text" id="D" name="D" class="form-control" value="{{$cauhoi->D}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập nội dung câu D')" oninput="this.setCustomValidity('')">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">Điểm</label>
+                                <input type="number" id="DIEM" name="DIEM" sclass="form-control" onkeyup="textChange()" required oninvalid="this.setCustomValidity('Bạn chưa nhập điểm')" oninput="this.setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Đáp án</label>
