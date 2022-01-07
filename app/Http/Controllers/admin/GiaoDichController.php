@@ -16,16 +16,22 @@ class GiaoDichController extends Controller
         ->join('taikhoan','hoadon.MAHV', '=', 'taikhoan.ID')
         ->paginate(10);
 
-        $khoahoc = DB::table('khoahoc')
-        ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
-        ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
-        ->get();
+        // $tien = 0;
 
-        $tien = DB::table('khoahoc')
-        ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
-        ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
-        ->sum('khoahoc.DONGIA');
-        return view('admin.giaodich.index',['hoadon'=> $hoadon], ['khoahoc'=> $khoahoc], ['tien'=> $tien]);
+        // $khoahoc = DB::table('khoahoc')
+        // ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
+        // ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
+        // ->get();
+
+        // foreach ($khoahoc as $kh)
+        // {
+        //     $tien += $kh->DONGIA;
+        // }
+        // $tien = DB::table('khoahoc')
+        // ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
+        // ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
+        // ->sum('khoahoc.DONGIA');
+        return view('admin.giaodich.index',compact('hoadon'));
     } 
 
     public function detail($id)

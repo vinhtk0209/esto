@@ -39,6 +39,7 @@
                                     </td>
                                     <td>
                                         {{ number_format($row['item']['DONGIA'],-3,',',',') }} vnd
+                                       
                                     </td>
                                     <td>
                                         <a href="{{ route('delete.item', ['id' => $row['item']['MAKH']]) }}">

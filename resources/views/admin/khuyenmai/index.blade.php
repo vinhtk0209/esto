@@ -58,7 +58,15 @@
                                     {{$km->NGAYKT}}
                                 </td>
                                 <td class="budget">
-                                    {{$km->MATT==1?'Đang áp dụng':'Ngưng áp dụng'}}
+                                    @if($km->MATT==1)
+                                        Chưa áp dụng
+                                    @endif
+                                    @if($km->MATT==2)
+                                        Đang áp dụng
+                                    @endif
+                                    @if($km->MATT==3)
+                                        Ngưng áp dụng
+                                    @endif
                                 </td>
                                 <td class="">
                                     <a href="admin/khuyenmai/sua/{{$km->MAKM}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>

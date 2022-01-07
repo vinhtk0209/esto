@@ -27,9 +27,10 @@
 
                                <div class="name-teacher d-flex flex-space">
                                    <p class="">{{$course->HOTEN}}</p>
-                                   {{-- <div class="price price-discount">
-                                       <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                   </div> --}}
+
+                                   <div class="price price-discount">
+                                       <p><del>{{number_format($course->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                   </div>
                                 </div>
                                <div class="price-course d-flex flex-space">
                                    <div class="rate">
@@ -42,8 +43,11 @@
                                            </span>
                                        </p>
                                    </div>
-                                   <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
-                                   <p>{{number_format($course->DONGIA - ($course->DONGIA * $course->TYLEKM / 100))}}</p>
+                                   @foreach($listKM as $km)
+                                        @if($km->MAKH == $course->MAKH)
+                                            <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                        @endif   
+                                   @endforeach
                                 </div>
                            </div>
                        </a>
@@ -78,6 +82,7 @@
                                        </p>
                                    </div>
                                    <p>700.000 <span class="price-unit"><sup>vnd</sup></span></p>
+                                   
                                </div>
                            </div>
                        </a>
@@ -118,9 +123,9 @@
 
                             <div class="name-teacher d-flex flex-space">
                                 <p class="">{{$course->HOTEN}}</p>
-                                {{-- <div class="price price-discount">
-                                    <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                </div> --}}
+                                <div class="price price-discount">
+                                    <p><del>{{number_format($course->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                </div>
                             </div>
                             <div class="price-course d-flex flex-space">
                                 <div class="rate">
@@ -133,8 +138,11 @@
                                         </span>
                                     </p>
                                 </div>
-                                <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
-                                
+                                @foreach($listKM as $km)
+                                        @if($km->MAKH == $course->MAKH)
+                                            <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                        @endif   
+                                @endforeach
                             </div>
                         </div>
                     </a>
@@ -211,9 +219,9 @@
                                             </div>
                                             <div class="name-teacher d-flex flex-space">
                                                 <p class="">{{$businessCourse->HOTEN}}</p>
-                                                {{-- <div class="price price-discount">
-                                                    <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                                </div> --}}
+                                                <div class="price price-discount">
+                                                    <p><del>{{number_format($businessCourse->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                                </div>
                                             </div>
                                             <div class="price-course d-flex flex-space">
                                                 <div class="rate">
@@ -226,7 +234,11 @@
                                                         </span>
                                                     </p>
                                                 </div>
-                                                <p>{{number_format($businessCourse->DONGIA)}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                                @foreach($listKM as $km)
+                                                    @if($km->MAKH == $course->MAKH)
+                                                    <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                                    @endif   
+                                                @endforeach
                                             </div>
                                         </div>
                                     </a>
@@ -271,9 +283,9 @@
 
                             <div class="name-teacher d-flex flex-space">
                                 <p class="">{{$course->HOTEN}}</p>
-                                {{-- <div class="price price-discount">
-                                    <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                </div> --}}
+                                <div class="price price-discount">
+                                    <p><del>{{number_format($course->DONGIA)}} </del><span class="price-unit"><sup>vnd</sup></span></p>
+                                </div>
                              </div>
                             <div class="price-course d-flex flex-space">
                                 <div class="rate">
@@ -286,7 +298,11 @@
                                         </span>
                                     </p>
                                 </div>
-                                <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
+                                @foreach($listKM as $km)
+                                    @if($km->MAKH == $course->MAKH)
+                                        <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                    @endif   
+                                @endforeach
                             </div>
                         </div>
                     </a>
