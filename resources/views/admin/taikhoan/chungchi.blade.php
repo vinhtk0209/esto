@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="admin/taikhoan/sua/chungchi/{{$id}}" method="POST" enctype="multipart/form-data">
+                    <form action="admin/chungchi/{{$id}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <h6 class="heading-small text-muted mb-4">Thông tin chứng chỉ</h6>
                         @if (session('thongbao'))

@@ -65,7 +65,8 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Card footer -->
+                <!-- Card footer -->                
+                @if ($baithi->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -99,6 +100,7 @@
                     </ul>
                     </nav>
                 </div>
+                @endif
                 @else
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -135,7 +137,8 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Card footer -->
+                <!-- Card footer -->                
+                @if ($baithi->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -169,6 +172,7 @@
                     </ul>
                     </nav>
                 </div>
+                @endif
                 @endif
             </div>
         </div>

@@ -102,7 +102,7 @@
                         <div id="" class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài học</label>
-                                <input type="text" name="TENBH" class="form-control" value="{{$baihoc[0]->TENBH}}">
+                                <input type="text" name="TENBH" class="form-control" value="{{$baihoc[0]->TENBH}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài học')" oninput="this.setCustomValidity('')">
                             </div>
                         </div>
                         <div id="dvideo" @if($baihoc[0]->TRUCTUYEN == true)
@@ -142,19 +142,19 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Link lớp học</label>
-                                    <input type="text" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" value="{{$baihoc[0]->LINK}}">
+                                    <input type="text" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" value="{{$baihoc[0]->LINK}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập link bài học')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
-                                    <input type="datetime-local" name="TGBD" class="form-control" value="{{ date('Y-m-d\TH:i', strtotime($baihoc[0]->TGBD)) }}">
+                                    <input type="datetime-local" name="TGBD" class="form-control" value="{{ date('Y-m-d\TH:i', strtotime($baihoc[0]->TGBD)) }}" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
-                                    <input type="datetime-local" name="TGKT" class="form-control" value="{{ date('Y-m-d\TH:i', strtotime($baihoc[0]->TGKT)) }}">
+                                    <input type="datetime-local" name="TGKT" class="form-control" value="{{ date('Y-m-d\TH:i', strtotime($baihoc[0]->TGKT)) }}" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                         </div>
@@ -168,18 +168,10 @@
     </div>
 </div>
 <div class="modal fade" id="formvideo" tabindex="-1" role="dialog" aria-labelledby="formvideoLabel" aria-hidden="true">
-    <div class="modal-dialog"  style="max-width: 50%;" role="document">
+    <div class="modal-dialog" style="max-width: 65%;" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="640" height="360" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-                    <source src="./video/{{$baihoc[0]->VIDEO}}" type="video/mp4" />
-                    <source src="./video/{{$baihoc[0]->VIDEO}}" type="video/webm" />
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a
-                        web browser that
-                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                    </p>
-                </video>
+                <iframe width="853" height="480" src="{{$baihoc[0]->VIDEO}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>

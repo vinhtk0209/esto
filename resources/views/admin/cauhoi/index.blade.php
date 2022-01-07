@@ -32,6 +32,7 @@
                         <option value="{{ $dm->MADM }}">{{ $dm->TENDM }}</option>
                         @endforeach
                     </select>
+                    <a href="{{$id > 0 ? 'admin/baithi/sua/'.$id : 'admin/baithi/them/'.$id}}" class="btn btn-sm btn-primary">Quay lại</a>
                 </div>
             </div>
         </div>

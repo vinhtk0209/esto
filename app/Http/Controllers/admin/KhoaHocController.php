@@ -19,7 +19,10 @@ class KhoaHocController extends Controller
 {
     public function index()
     {
-        $khoahoc = KhoaHoc::orderBy('MAKH', 'desc')->paginate(10);
+        if (session('login')->LOAITK == 2)
+            $khoahoc = KhoaHoc::where('MAGV', session('login')->ID)
+                ->orderBy('MAKH', 'desc')->paginate(10);
+        else $khoahoc = KhoaHoc::orderBy('MAKH', 'desc')->paginate(10);
         return view('admin.khoahoc.index', ['khoahoc' => $khoahoc]);
     }
 
@@ -32,21 +35,25 @@ class KhoaHocController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, 
-        [
-            'TENKH' => 'unique:KhoaHoc,TENKH|min:10|max:100'
-        ], 
-        [            
-            'TENKH.unique' => 'Tên khóa học đã tồn tại',
-            'TENKH.min' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự',
-            'TENKH.max' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'TENKH' => 'unique:KhoaHoc,TENKH|min:10|max:100'
+            ],
+            [
+                'TENKH.unique' => 'Tên khóa học đã tồn tại',
+                'TENKH.min' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự',
+                'TENKH.max' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự'
+            ]
+        );
 
         $khoahoc = new KhoaHoc();
         $khoahoc->TENKH = $request->TENKH;
         $khoahoc->DONGIA = $request->DONGIA;
         $khoahoc->MADM = $request->MADM;
-        $khoahoc->MAGV = $request->MATK;
+        if (session('login')->LOAITK == 2)
+            $khoahoc->MAGV = session('login')->ID;
+        else $khoahoc->MAGV = $request->MATK;
         if ($request->hinhthuc == '1') {
 
             $khoahoc->TRUCTUYEN = true;
@@ -135,7 +142,9 @@ class KhoaHocController extends Controller
         $khoahoc = KhoaHoc::find($id);
         $khoahoc->TENKH = $request->TENKH;
         $khoahoc->DONGIA = $request->DONGIA;
-        $khoahoc->MAGV = $request->MATK;
+        if (session('login')->LOAITK == 2)
+            $khoahoc->MAGV = session('login')->ID;
+        else $khoahoc->MAGV = $request->MATK;
         $khoahoc->MADM = $request->MADM;
         if ($request->hinhthuc == '1') {
 

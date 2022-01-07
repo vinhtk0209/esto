@@ -51,19 +51,6 @@
     <link rel="stylesheet" href="./user/assets/css/courseDetail.css">
     <!-- INFO MANAGER CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoManager.css">
-    <!-- LIST COURSE CSS -->
-    <link rel="stylesheet" href="./user/assets/css/modal.css" >
-    <!-- PAGINATION CSS -->
-    <link rel="stylesheet" href="./user/assets/css/pagination.css" >
-    <!-- LOADING CSS -->
-    <link rel="stylesheet" href="./user/assets/css/loading.css">
-     <!-- BACKTOP CSS -->
-    <link rel="stylesheet" href="./user/assets/css/backTop.css">
-     <!-- COURSE DETAIL CSS -->
-    <link rel="stylesheet" href="./user/assets/css/courseDetail.css">
-     <!-- INFO MANAGER CSS -->
-    <link rel="stylesheet" href="./user/assets/css/infoManager.css">
-     <!-- LIST COURSE CSS -->
 
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
     <link rel="stylesheet" href="./user/assets/css/custom.css">
@@ -111,14 +98,6 @@
                 <h2 class="modal-custom-title"> Vào phòng thi</h2>
             </header>
             <div class="modal-custom-body">
-<<<<<<< HEAD
-                <form  method="POST" action="{{ route('productController.handleExam') }}">
-                    @csrf
-                    <div class="form-group">
-                        <label for="code-to-test" class="label-custom">Mã phòng thi:</label>
-                        <div class="form-row">
-                            <input type="text" name="code-to-test" id="code-to-test" class="code-to-test" placeholder="Nhập mã phòng thi..." required>
-=======
                 <form method="POST" action="{{ route('productController.handleExam') }}">
                     @csrf
                     @if (count($errors))
@@ -132,7 +111,6 @@
                         <label for="code-to-test" class="label-custom">Mã phòng thi:</label>
                         <div class="form-row">
                             <input type="text" name="code" id="code" class="code-to-test" placeholder="Nhập mã phòng thi..." required>
->>>>>>> 07e2c95a88d4d5d96ca88065e10a356810be8867
                         </div>
                     </div>
                     <div class="form-group ">

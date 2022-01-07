@@ -79,6 +79,7 @@
                     </table>
                 </div>
                 <!-- Card footer -->
+                @if ($khoahoc->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0" id="paginate">
                         <li class="page-item">
@@ -111,6 +112,7 @@
                         </li>
                     </ul>
                 </div>
+                @endif
             </div>
         </div>
     </div>

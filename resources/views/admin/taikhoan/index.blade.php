@@ -17,14 +17,12 @@
                 </div>
             </div>
             <div>
-            <div class="col-lg-6 col-5 text-right">
-                    
-               
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="admin/taikhoan/search=1" class="btn btn-sm btn-neutral">Học viên</a>
-                    <a href="admin/taikhoan/search=2" class="btn btn-sm btn-neutral">Giảng Viên</a>
+                    <div class="col-lg-6 col-5 text-right">
+                        <a href="admin/taikhoan/search=1" class="btn btn-sm btn-neutral">Học viên</a>
+                        <a href="admin/taikhoan/search=2" class="btn btn-sm btn-neutral">Giảng Viên</a>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
