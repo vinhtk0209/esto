@@ -23,9 +23,7 @@
                 <!-- Card header -->
                 <div class="card-header border-0 text-blue">
                     <h3 class="mb-0">Hóa Đơn</h3>
-                </div>
-                        
-                <br><br><br>            
+                </div>          
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -56,7 +54,8 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Card footer -->
+                <!-- Card footer -->                
+                @if ($hoadon->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -90,6 +89,7 @@
                     </ul>
                     </nav>
                 </div>
+                @endif
             </div>
         </div>
     </div>

@@ -39,8 +39,7 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="anh">Ảnh</th>
                                 <th scope="col" class="sort" data-sort="khoahoc">Khóa học</th>
-                                <th scope="col" class="sort" data-sort="gia">Giá</th>
-                                <th scope="col" class="sort" data-sort="gioithieu">Giới thiệu</th>
+                                <th scope="col" class="sort" data-sort="gia">Giá (VNĐ)</th>
                                 <th scope="col" class="sort" data-sort="loai">Môn học</th>
                                 <th scope="col" class="sort" data-sort="loai">Hình thức</th>
                                 <th scope="col" class="sort" data-sort="options"></th>
@@ -58,10 +57,7 @@
                                     {{substr($kh->TENKH, 0, 30)}}..
                                 </td>
                                 <td class="budget">
-                                    {{$kh->DONGIA}}
-                                </td>
-                                <td class="budget">
-                                    {{substr($kh->GIOITHIEUKH, 0, 50)}}...
+                                    {{number_format($kh->DONGIA)}}
                                 </td>
                                 <td class="budget">
                                     {{$kh->rDanhMuc->TENDM}}

@@ -54,7 +54,7 @@
                                 </td>
                                 <td class="left">
                                     <button type="button" data-toggle="modal" data-target="#formchuonghoc" data-whatever="@mdo" name="edit" id="{{$ch->MACHUONG}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit"><i class="material-icons">&#xE254;</i></button>
-                                    <a href="admin/chuonghoc/xoa/{{$ch->MACHUONG}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                    <a href="admin/chuonghoc/xoa/{{$ch->MACHUONG}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Các bài học thuộc chương này cũng sẽ bị xóa!\nBạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
                                 </td>
                             </tr>
                             @endforeach
