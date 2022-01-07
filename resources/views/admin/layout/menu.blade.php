@@ -65,9 +65,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ (request()->segment(2) == 'giaodich') ? 'active' : '' }}" href="admin/giaodich/">
+            <a class="nav-link {{ (request()->segment(2) == 'hoadon') ? 'active' : '' }}" href="admin/hoadon/">
                 <i class="ni ni-money-coins text-green"></i>
-                <span class="nav-link-text">Giao Dịch</span>
+                <span class="nav-link-text">Hóa đơn</span>
             </a>
         </li>
         <li class="nav-item">

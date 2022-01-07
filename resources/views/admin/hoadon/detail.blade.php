@@ -7,9 +7,9 @@
                 <div class="col-lg-6 col-7">
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="admin/giaodich/"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="admin/giaodich/">Quản Lý Hóa Đơn</a></li>
-                            <li class="breadcrumb-item"><a href="admin/giaodich/chitiet/{{$detail[0]->MAHD}}">Chi tiết hóa đơn</a></li>
+                            <li class="breadcrumb-item"><a href="admin/hoadon/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/hoadon/">Quản Lý Hóa Đơn</a></li>
+                            <li class="breadcrumb-item"><a href="admin/hoadon/chitiet/{{$detail[0]->MAHD}}">Chi tiết hóa đơn</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -27,7 +27,7 @@
                             <h3 class="mb-0">Chi tiết hóa đơn</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="admin/giaodich" class="btn btn-sm btn-primary">Quay lại</a>
+                            <a href="admin/hoadon" class="btn btn-sm btn-primary">Quay lại</a>
                         </div>
                     </div>
                 </div>                
