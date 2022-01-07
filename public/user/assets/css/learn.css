@@ -1,0 +1,59 @@
+:root {
+    --content-color: #434343;
+    --text-color: #FFFFFF;
+    --lesson-color: #94C9F5;
+    --lesson-active: #F8EBEB;
+}
+
+
+/*
+.userManager h1 {
+    font-size: 24px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-bottom: 10px;
+} */
+.learn .main-video .video iframe {
+    width: 1120px;
+    height: 550px;
+}
+
+.userManager .video-list {
+    flex: 1;
+}
+
+.userManager .video-list .tableOfContent {
+    text-align: center;
+    padding: 10px 0;
+    background: var(--content-color);
+    color: var(--text-color);
+}
+
+.userManager .video-list .title-lesson {
+    display: block;
+    color: var(--content-color);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    background: var(--text-color);
+    padding: 10px 0;
+    margin-bottom: 5px;
+}
+
+.vid.active {
+    border-left: 4px solid #FF0000;
+}
+
+.vid.active .title-lesson {
+    background: var(--lesson-active);
+}
+
+.alert-no-video {
+    min-height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -9,6 +9,7 @@ class CTKhuyenMai extends Model
 {
     protected $table = "ctkhuyenmai";
     protected $primaryKey = ['MAKH', 'MAKM'];
+    protected $fillable = ['MAKH', 'MAKM'];
     public $incrementing = false;
     public $timestamps = false;
 

@@ -163,10 +163,7 @@ Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function ()
 
     Route::prefix('giaodich')->name('giaodich.')->group(function () {
         Route::get('/', 'App\Http\Controllers\admin\GiaoDichController@index');
-        Route::get('/them', 'App\Http\Controllers\admin\GiaoDichController@create');
-        Route::post('/them', 'App\Http\Controllers\admin\GiaoDichController@store');
-        Route::get('/sua/{id}', 'App\Http\Controllers\admin\GiaoDichController@edit');
-        Route::post('/sua/{id}', 'App\Http\Controllers\admin\GiaoDichController@update');
+        Route::get('/chitiet/{id}', 'App\Http\Controllers\admin\GiaoDichController@detail');
         Route::get('/xoa/{id}', 'App\Http\Controllers\admin\GiaoDichController@delete');
     });
 });

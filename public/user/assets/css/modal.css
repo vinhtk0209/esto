@@ -3,6 +3,10 @@
     --bg-color: #408A3E;
 }
 
+.mt-20 {
+    margin-top: 20px !important;
+}
+
 .modal-custom {
     position: fixed;
     top: 0;
@@ -13,9 +17,11 @@
     background: rgba(0, 0, 0, 0.2);
     display: none;
 }
-.modal-custom.open{
+
+.modal-custom.open {
     display: flex;
 }
+
 .modal-custom-container {
     position: relative;
     margin: auto;
@@ -24,7 +30,7 @@
     background: #fff;
     min-height: 200px;
     border-radius: 8px;
-    animation:modalFadeIn ease 0.5s;
+    animation: modalFadeIn ease 0.5s;
 }
 
 .modal-custom-close {
@@ -88,14 +94,64 @@
     opacity: 0.9;
 }
 
+
+/* MODAL BUY COURSE */
+.modal-custom-class {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.modal-custom-class.open {
+    display: flex;
+}
+
+.modal-custom-class-container {
+    position: relative;
+    margin: auto;
+    width: 400px;
+    max-width: calc(100% - 20px);
+    background: #fff;
+    min-height: 200px;
+    border-radius: 8px;
+    animation: modalFadeIn ease 0.5s;
+}
+
+.modal-custom-class-close {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+}
+
+.btn-custom-class-close {
+    padding: 12px;
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.btn-custom-class-close:hover {
+    opacity: 0.5;
+}
+
 @keyframes modalFadeIn {
     from {
         opacity: 0;
         transform: translateY(-200px);
-    };
+    }
 
-    to{
+    ;
+
+    to {
         opacity: 1;
         transform: translateY(0);
-    };
+    }
+
+    ;
 }

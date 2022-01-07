@@ -1,16 +1,21 @@
 // BACK TOP
-const btn = $("#button");
+const btnBackTop = $("#btnBackTop");
 $(window).scroll(function () {
     if ($(window).scrollTop() > 300) {
-        btn.addClass("show");
+        btnBackTop.addClass("show");
     } else {
-        btn.removeClass("show");
+        btnBackTop.removeClass("show");
     }
 });
-btn.on("click", function (e) {
-    e.preventDefault();
+btnBackTop.on("click", function () {
     $("html, body").animate({ scrollTop: 0 }, "300");
 });
+// //TABS
+// $(".tabInfo").on("click", function (evt) {
+//     evt.preventDefault();
+//     $(this).toggleClass("activeTab");
+//     $(".tab-content-info").removeClass("activeTab").addClass("activeTab");
+// });
 
 // LOADING EFFECT
 $(window).on("load", function (event) {
@@ -19,6 +24,8 @@ $(window).on("load", function (event) {
 });
 
 // SHOW MODAL
+
+// TEST
 const btnShowTest = document.querySelector(".btn-show-test");
 const modal = document.querySelector(".modal-custom");
 const modalContainer = document.querySelector(".modal-custom-container");
@@ -94,6 +101,33 @@ const swiperRelatedCourse = new Swiper(".list-related-courses", {
         prevEl: ".swiper-button-prev",
     },
 });
+
+//BUY CLASS
+const btnBuyClass = document.querySelector(".btn-buy-class");
+const modalClass = document.querySelector(".modal-custom-class");
+const modalClassContainer = document.querySelector(
+    ".modal-custom-class-container"
+);
+const btnCloseClass = document.querySelector(".btn-custom-class-close");
+function showModalBuy() {
+    modalClass.classList.add("open");
+}
+function hideModalBuy() {
+    modalClass.classList.remove("open");
+}
+btnBuyClass.onclick = function () {
+    showModalBuy();
+};
+btnCloseClass.onclick = function () {
+    hideModalBuy();
+};
+modalClass.onclick = function () {
+    modalClass.classList.remove("open");
+};
+modalClassContainer.onclick = function (event) {
+    event.stopPropagation();
+};
+
 //DARK MODE
 const options = {
     bottom: "64px", // default: '32px'

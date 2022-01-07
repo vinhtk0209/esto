@@ -23,13 +23,13 @@
   <link rel="stylesheet" href="./admin_assets/css/argon.css?v=1.2.0" type="text/css">
   <link rel="stylesheet" href="./user/assets/css/main.css">
   <link rel="stylesheet" href="./user/assets/css/custom.css">
-  <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+
   {{-- CKEDITOR --}}
   <!-- <script src="ckeditor/ckeditor.js"></script> -->
-  <script type="text/javascript" language="javascript" src="./ckeditor/ckeditor.js"></script>
+  <script type="text/javascript" language="javascript" src="./ckeditor/ckeditor.js" ></script>
+  <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+  {{-- CKEDITOR --}}
   <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-
-
 </head>
 
 <body>
@@ -189,7 +189,13 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{{session('login')==null?'./images/avatar.png':session('login')->ANHDAIDIEN==''?'./images/avatar.png':'./images/'.session('login')->ANHDAIDIEN}}">
+<<<<<<< HEAD
+                    <img alt="Image placeholder" src="{{(session('login')==null?'public/images/avatar.png':session('login')->ANHDAIDIEN=='')?'public/images/avatar.png':'public/images/'.session('login')->ANHDAIDIEN}}">
+=======
+                    {{-- <img alt="Image placeholder" src="{{session('login')==null?'{{asset('images/avatar.png':session('login')->ANHDAIDIEN==''?'{{asset('images/avatar.png':'{{asset('images/'session('login')->ANHDAIDIEN}}">
+                  </span> --}}
+                    {{-- <img alt="Image placeholder" src="{{session('login')==null?'./images/avatar.png':session('login')->ANHDAIDIEN==''?'./images/avatar.png':'./images/'.session('login')->ANHDAIDIEN}}"> --}}
+>>>>>>> 07e2c95a88d4d5d96ca88065e10a356810be8867
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{session('login')==null?'':session('login')->HOTEN}}</span>
@@ -291,6 +297,16 @@
     CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
     CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
     CKEDITOR.config.autoParagraph = false;
+  </script>
+  <script>
+    function toggle(oInput) {
+      var aInputs = document.getElementsByTagName('input');
+      for (var i=0;i<aInputs.length;i++) {
+          if (aInputs[i] != oInput) {
+              aInputs[i].checked = oInput.checked;
+          }
+      }
+    }
   </script>
 
   {{-- CKEDITOR --}}

@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CTHoaDon extends Model
+class KhoaHoc_BaiHoc extends Model
 {
+    use HasFactory;
+
+    protected $table = "khoahoc_baihoc";
     public $timestamps = false;
-    protected $table = "cthoadon";
-    protected $fillable = ['MAHD', 'MAKH','MALH'];
+    protected $fillable = ['MAKH','MABH'];
 }

@@ -51,11 +51,16 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
-                                    <label class="form-control-label" name="TYLEKM" for="input-username">Tỷ lệ (%)</label>
-                                    <input type="number" class="form-control" value="{{$khuyenmai->TYLEKM}}" required>
+                                    <label class="form-control-label"  for="input-username">Tỷ lệ (%)</label>
+                                    <input type="number" name="TYLEKM" class="form-control" value="{{$khuyenmai->TYLEKM}}" required>
                                     </div>
                                 </div>
                             </div>
+                            @if (session('exits'))
+                            <div class="">
+                                <span class="error-message">{{session('exits')}}</span>
+                            </div>
+                            @endif
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -80,23 +85,25 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" >Thời điểm</label>
-                                        <input type="time" validate="required" vname="TDKT" class="form-control" value="{{date('h:i',strtotime($khuyenmai->NGAYKT))}}">
+                                        <input type="time" name="TDKT" class="form-control" value="{{date('h:i',strtotime($khuyenmai->NGAYKT))}}" required>
                                     </div>
                                 </div>
                             </div>
                             @if (session('thatbai'))
-                            <div class="alert alert-warning">
-                                {{session('thatbai')}}
+                            <div class="">
+                                <span class="error-message">{{session('thatbai')}}</span>
                             </div>
                             @endif 
                             <div class="row">
                                 <div class="col-lg-3 center">
                                     <div class="form-group">
                                     <label class="form-control-label" for="input-username">Danh sách áp dụng</label></br>
-                                        <input name="hinhthuc" type="radio" id="all" value="1" style="vertical-align:middle; cursor: pointer;" checked onclick="text(0)">
+                                        <input name="hinhthuc" type="checkbox" id="all" value="1" style="vertical-align:middle; cursor: pointer;" onClick='toggle(this)' >
+                                        <label>Tất cả khóa học</label><br>    
+                                        <!-- <input name="hinhthuc" type="radio" id="all" value="1" style="vertical-align:middle; cursor: pointer;" checked onclick="text(0)">
                                         <label>Tất cả khóa học</label><br>
                                         <input name="hinhthuc" type="radio" id="list" value="0" style="vertical-align:middle; cursor: pointer;" onclick="text(1)"> 
-                                        <label>Khóa học tùy chọn</label><br>
+                                        <label>Khóa học tùy chọn</label><br> -->
                                         <!-- <input name="hinhthuc" type="radio" id="course" value="0" style="vertical-align:middle; cursor: pointer;">
                                         <label>Khóa học</label><br>
                                         <input name="hinhthuc" type="radio" id="class" value="0" style="vertical-align:middle; cursor: pointer;">
@@ -135,7 +142,12 @@
                             </table>                    
                         </div>  
                         <div class="card-footer py-4">
-                            <ul class="pagination justify-content-end mb-0">                        
+                            <ul class="pagination justify-content-end mb-0">    
+                                <li class="page-item">
+                                    <a class="page-link" href="admin/khuyenmai/sua/{{$khuyenmai->MAKM}}?page=1">
+                                        <i class="fas fa-angle-double-left"></i>
+                                    </a>
+                                </li>                    
                                 @if ($khoahoc->currentPage() == 1)
                                 <li class="page-item disabled">
                                     @else
@@ -153,7 +165,12 @@
                                     <a class="page-link" href="{{$khoahoc->nextPageUrl()}}">
                                         <i class="fas fa-angle-right"></i>
                                     </a>
-                                </li>                        
+                                </li> 
+                                <li class="page-item">
+                                    <a class="page-link" href="admin/khuyenmai/sua/{{$khuyenmai->MAKM}}?page={{$khoahoc->lastPage()}}">
+                                        <i class="fas fa-angle-double-right"></i>
+                                    </a>
+                                </li>                       
                             </ul>
                         </div> 
                         <div class="text-center">

@@ -4,6 +4,7 @@
         <tr>
             <th>
                 <p>{{$bt->NOIDUNG}}</p>
+                <p>{{$bt->DIEM}}</p>
             </th>
         </tr>
     </thead>

@@ -1,6 +1,6 @@
 @extends('user.layout.index')
 @section('content')
-<section class="best-seller mb-16">
+<section class="best-seller mb-16 min-height-330 ">
     <div class="best-seller-head">
         <div class="container">
             <div class="row">
@@ -49,7 +49,12 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="5" align="center">Chưa có sản phẩm</td>
+                                <td colspan="5" align="center">
+                                 <i class="fa fa-shopping-cart fs-100 color-cart" aria-hidden="true"></i>
+                                <h3 class="py-3 text-danger">
+                                    Chưa có khóa học nào
+                                </h3>
+                            </td>
                             </tr>
                         @endif
                     </tbody>
@@ -58,7 +63,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <a href="{{ route('home.index') }}" class="primary-btn cart-btn">TIẾP TỤC MUA HÀNG</a>
+                <a href="{{ route('home.index') }}" class="register-btn text-decoration-none text-uppercase">Thêm khóa học</a>
             </div>
             @if (!empty($cart->items))
                 <div class="col-lg-6">

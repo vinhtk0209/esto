@@ -16,6 +16,7 @@
 
     <!-- <link rel="stylesheet" href="./assets/css/main.css"> -->
     <link rel="stylesheet" href="./user/assets/css/main.css">
+    <link rel="stylesheet" href="./user/assets/css/myCourse.css">
     <!-- <link rel="stylesheet" href="./assets/css/app.css"> -->
     <link rel="stylesheet" href="./user/assets/css/app.css">
     <!-- <link rel="stylesheet" href="./assets/sweetalert/alert.min.css"> -->
@@ -26,7 +27,17 @@
 
 
     <!-- CUSTOM CSS -->
-    {{-- RANGE JQUERY CSS --}}
+    <!-- GLOBAL CSS -->
+    <link rel="stylesheet" href="./user/assets/css/global.css" >
+    <!-- INFO FILE CSS -->
+    <link rel="stylesheet" href="./user/assets/css/infoFile.css" >
+    <!-- LEARN CSS -->
+    <link rel="stylesheet" href="./user/assets/css/learn.css" >
+    <!-- DARKMODE CSS -->
+    <link rel="stylesheet" href="./user/assets/css/darkmode.css" >
+    <!-- SEARCH CSS -->
+    <link rel="stylesheet" href="./user/assets/css/search.css" >
+    <!-- RANGE JQUERY CSS  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <!-- MODAL CSS -->
     <link rel="stylesheet" href="./user/assets/css/modal.css">
@@ -40,25 +51,22 @@
     <link rel="stylesheet" href="./user/assets/css/courseDetail.css">
     <!-- INFO MANAGER CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoManager.css">
-    <!-- LIST COURSE CSS -->
 
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
     <link rel="stylesheet" href="./user/assets/css/custom.css">
 
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
+     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="./user/assets/css/custom.css">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-
     <!-- jQuery library -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-
     <!-- Popper JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./user/assets/js/jquery.min.js"></script>
 
-    <!-- CUSTOM CSS -->
     <title>ESTO</title>
 </head>
 
@@ -126,7 +134,7 @@
 
 
     <!-- BACKTOP STARTS -->
-    <p id="button"></p>
+    <div id="btnBackTop"></div>
     <!-- BACKTOP ENDS -->
 
 
@@ -136,8 +144,6 @@
 
     <!-- JS  -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="./user/assets/js/jquery.min.js">
-    </script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
@@ -146,61 +152,82 @@
     <script src="./user/assets/js/simple.money.format.js">
     </script>
 
+    {{-- FILTER  --}}
     @include('user.layout.ajax')
     <script>
-        var yourDateToGo3 = new Date();
-        var timecurrent = new Date();
-        var tg = document.getElementById("TGKT").value.split(' ')[1];
-        yourDateToGo3.setHours(yourDateToGo3.getHours() + parseInt(tg.split(':')[0]) - timecurrent.getHours());
-        yourDateToGo3.setMinutes(yourDateToGo3.getMinutes() + parseInt(tg.split(':')[1]) - timecurrent.getMinutes());
-        yourDateToGo3.setSeconds(yourDateToGo3.getSeconds() + parseInt(tg.split(':')[2]) - timecurrent.getSeconds());
+        // var yourDateToGo3 = new Date();
+        // var timecurrent = new Date();
+        // var tg = document.getElementById("TGKT").value.split(' ')[1];
+        // yourDateToGo3.setHours(yourDateToGo3.getHours() + parseInt(tg.split(':')[0]) - timecurrent.getHours());
+        // yourDateToGo3.setMinutes(yourDateToGo3.getMinutes() + parseInt(tg.split(':')[1]) - timecurrent.getMinutes());
+        // yourDateToGo3.setSeconds(yourDateToGo3.getSeconds() + parseInt(tg.split(':')[2]) - timecurrent.getSeconds());
 
-        var timing3 = setInterval(
-            function() {
-                var currentDate3 = new Date().getTime();
-                var timeLeft3 = yourDateToGo3 - currentDate3;
+        // var timing3 = setInterval(
+        //     function() {
+        //         var currentDate3 = new Date().getTime();
+        //         var timeLeft3 = yourDateToGo3 - currentDate3;
 
-                var hours3 = Math.floor((timeLeft3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                if (hours3 < 10) hours3 = "0" + hours3;
-                var minutes3 = Math.floor((timeLeft3 % (1000 * 60 * 60)) / (1000 * 60));
-                if (minutes3 < 10) minutes3 = "0" + minutes3;
-                var seconds3 = Math.floor((timeLeft3 % (1000 * 60)) / 1000);
-                if (seconds3 < 10) seconds3 = "0" + seconds3;
+        //         var hours3 = Math.floor((timeLeft3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //         if (hours3 < 10) hours3 = "0" + hours3;
+        //         var minutes3 = Math.floor((timeLeft3 % (1000 * 60 * 60)) / (1000 * 60));
+        //         if (minutes3 < 10) minutes3 = "0" + minutes3;
+        //         var seconds3 = Math.floor((timeLeft3 % (1000 * 60)) / 1000);
+        //         if (seconds3 < 10) seconds3 = "0" + seconds3;
 
-                document.getElementById("countdown").innerHTML = hours3 + "h " + minutes3 + "m " + seconds3 + "s";
+        //         document.getElementById("countdown").innerHTML = hours3 + "h " + minutes3 + "m " + seconds3 + "s";
 
 
-                if (timeLeft3 <= 0) {
-                    clearInterval(timing3);
-                    document.getElementById("countdown").innerHTML = "It's over";
+        //         if (timeLeft3 <= 0) {
+        //             clearInterval(timing3);
+        //             document.getElementById("countdown").innerHTML = "It's over";
 
-                }
-            }, 1000);
-        // $(document).ready(function () {
-        // $("#slider-range").slider({
-        //     orientation: "vertical",
-        //     range: true,
-        //     min: {{$minPrice}},
-        //     max: {{$maxPrice}},
-        //     step: 50000,
-        //     values:[{{$minPrice}},{{$maxPrice}}],
-        //     slide: function (event, ui) {
-        //         $("#amountStart").val( ui.values[1]+'vnd').simpleMoneyFormat();
-        //         $("#amountEnd").val(ui.values[0]+'vnd').simpleMoneyFormat();
-        //             $("#startPrice").val(ui.values[0]);
-        //         $("#endPrice").val(ui.values[1]);
-        //     },
-        // });
-        // $("#amountStart").val(
-        //         $("#slider-range").slider("values", 1)+'vnd').simpleMoneyFormat();
-        // $("#amountEnd").val(
-        //         $("#slider-range").slider("values", 0)+'vnd').simpleMoneyFormat();
-        //  });
+        //         }
+        //     }, 1000);
+        $(document).ready(function () {
+        $("#slider-range").slider({
+            orientation: "vertical",
+            range: true,
+            min: {{$minPrice}},
+            max: {{$maxPrice}},
+            step: 50000,
+            values:[{{$minPrice}},{{$maxPrice}}],
+            slide: function (event, ui) {
+                $("#amountStart").val( ui.values[1]+'vnd').simpleMoneyFormat();
+                $("#amountEnd").val(ui.values[0]+'vnd').simpleMoneyFormat();
+                    $("#startPrice").val(ui.values[0]);
+                $("#endPrice").val(ui.values[1]);
+            },
+        });
+        $("#amountStart").val(
+                $("#slider-range").slider("values", 1)+'vnd').simpleMoneyFormat();
+        $("#amountEnd").val(
+                $("#slider-range").slider("values", 0)+'vnd').simpleMoneyFormat();
+        });
     </script>
+    
 
-    <script src="./user/assets/js/main.js"></script>
-    <script src="./user/assets/js/main.js"></script>
-    <script src="./user/assets/js/add-to-cart.js">
+   
+    <script src="./user/assets/js/add-to-cart.js"></script>
+
+    {{-- SEARCH AJAX --}}
+    <script>
+        $(".search-ajax-result").hide();
+        $(".live-search-bar").keyup(function () {
+        var _text = $(this).val();
+        if(_text!='' && _text!=' ') {
+            $.ajax({
+            url:"{{route('home.ajaxSearch')}}?key="+ _text,
+            type:'GET',
+            success:function(res){
+                $(".search-ajax-result").show(200);
+                $(".search-ajax-result").html(res);
+                }
+            });
+        }else{
+            $(".search-ajax-result").html('');
+            $(".search-ajax-result").hide();
+            }
+        });
     </script>
 
     <!-- Messenger Plugin chat Code -->
@@ -233,7 +260,73 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
-    <!-- JS  -->
+
+
+    {{-- LOAD VIDEO --}}
+    <script>
+        let listVideo = document.querySelectorAll('.video-list .vid');
+        let mainVideo = document.querySelector('.main-video iframe');
+        let title = document.querySelector('.main-video .title');
+        listVideo.forEach(video => {
+            video.onclick = () =>{
+                listVideo.forEach(vid => vid.classList.remove('active'));
+                video.classList.add('active');
+                if(video.classList.contains('active')) {
+                    mainVideo.src = video.children[0].src;
+                    title.innerHTML = video.children[1].innerHTML;
+                }
+            }
+        });
+    </script>
+
+    {{-- SWEET ALERT --}}
+    @if (Session::has('updateSuccess'))
+    <script>
+        swal("Thành công","{!!Session::get('updateSuccess')!!}","success",{
+            button:"OK",
+        });
+    </script>
+    @endif
+
+    @if (Session::has('buyClassSuccess'))
+    <script>
+        swal("Thành công","{!!Session::get('buyClassSuccess')!!}","success",{
+            button:"OK",
+        });
+    </script>
+    @endif
+
+    @if (Session::has('buyClassFailed'))
+        <script>
+            swal("Thất bại","{!!Session::get('buyClassFailed')!!}","error",{
+            button:"OK",
+        });
+    </script>
+    @endif
+
+    @if (Session::has('noLogin'))
+        <script>
+          Swal.fire({
+            type: 'error',
+            title: '<strong>Vui lòng đăng nhập</strong>',
+            html:
+            'nhấn vào <strong><a href="{{route("login.login")}}">đây</a></strong> để đăng nhập',
+            button:"OK",
+        });
+        </script>
+    @endif
+
+    {{-- TEST --}}
+    @if (Session::has('noTest'))
+    <script>
+          swal("Thất bại","{!!Session::get('noTest')!!}","error",{
+            button:"OK",
+        });
+    </script>
+    @endif
+    <script src="./user/assets/js/main.js"></script>
+     <!-- JS  -->
+
 </body>
 
 </html>
