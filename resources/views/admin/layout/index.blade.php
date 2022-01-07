@@ -288,6 +288,7 @@
 
     CKEDITOR.replace('CHITIETKH');
     CKEDITOR.replace('GIOITHIEUKH');
+    CKEDITOR.replace('description');
     CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
     CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
     CKEDITOR.config.autoParagraph = false;

@@ -7,8 +7,8 @@
                 <div class="col-lg-6 col-7">
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="admin/giaodich/"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="admin/giaodich/">Quản Lý Hóa Đơn</a></li>
+                            <li class="breadcrumb-item"><a href="admin/hoadon/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/hoadon/">Quản Lý Hóa Đơn</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -50,7 +50,7 @@
                                     
                                 </td> -->
                                 <td class="">
-                                    <a href="admin/giaodich/chitiet/{{$hd->MAHD}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/hoadon/chitiet/{{$hd->MAHD}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                 </td>
                                 @endforeach                                
                         </tbody>
@@ -60,7 +60,7 @@
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
-                            <a class="page-link" href="admin/giaodich?page=1">
+                            <a class="page-link" href="admin/hoadon?page=1">
                                 <i class="fas fa-angle-double-left"></i>
                             </a>
                         </li>
@@ -83,7 +83,7 @@
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="admin/giaodich?page={{$hoadon->lastPage()}}">
+                            <a class="page-link" href="admin/hoadon?page={{$hoadon->lastPage()}}">
                                 <i class="fas fa-angle-double-right"></i>
                             </a>
                         </li>
