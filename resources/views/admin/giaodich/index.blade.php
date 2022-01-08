@@ -41,7 +41,7 @@
                             @foreach($hoadon as $hd)
                             <tr>   
                                 <td class="budget">
-                                    {{$hd->MAHD}}
+                                    {{$hd->HOTEN}}
                                 </td>                                
                                 <td class="budget">
                                     {{$hd->NGAYHD}}
@@ -51,7 +51,7 @@
                                 @foreach ($khoahoc->where('MAHD', $hd->MAHD) as $kh)
                                     @php($tien += $kh->rKhoaHoc->DONGIA)
                                 @endforeach
-                                {{$tien}}
+                                {{number_format($tien)}} VNĐ
                                 </td>
                                 <td class="">
                                     <a href="admin/giaodich/chitiet/{{$hd->MAHD}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
