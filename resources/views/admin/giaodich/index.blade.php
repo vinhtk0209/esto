@@ -55,7 +55,7 @@
                                 </td>
                                 <td class="">
                                     <a href="admin/giaodich/chitiet/{{$hd->MAHD}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                </td>
+                                </td> 
                                 @endforeach                                
                         </tbody>
                     </table>
