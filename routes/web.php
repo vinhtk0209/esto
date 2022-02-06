@@ -194,6 +194,10 @@ Route::get('/lg/google/callback', [
 
 
 //LEARNING ONLINE
+Route::get('/contentClassBought/{id}', [
+    'as' =>  'product.contentClassBought',
+    'uses' => 'App\Http\Controllers\user\productController@contentClassBought'
+]);
 Route::get('/contentClass/{id}', [
     'as' =>  'product.contentClass',
     'uses' => 'App\Http\Controllers\user\productController@contentClass'
@@ -201,4 +205,9 @@ Route::get('/contentClass/{id}', [
 Route::post('/contentClass/{id}', [
     'as' =>  'post.buyClass',
     'uses' => 'App\Http\Controllers\user\orderController@handleBuyClass'
+]);
+
+// LOAD VIDEO
+Route::get('/ajax-load-video', [
+    'uses' => 'App\Http\Controllers\user\userController@ajaxLoadVideo'
 ]);

@@ -7,9 +7,16 @@
                 <div class="col-lg-6 col-7">
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="admin/cauhoi/"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="admin/cauhoi/">Quản Lý Lớp Học</a></li>
-                            <li class="breadcrumb-item"><a href="admin/cauhoi/them">Thêm Lớp Học</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/">Quản Lý Bài Thi</a></li>
+                            @if (session('mabt') == null)
+                            <li class="breadcrumb-item"><a href="admin/baithi/them/{{$id}}">Thêm Bài Thi</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/them/{{$id}}/chitiet">Chi tiết</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/{{$id}}/cauhoi">Thêm Câu Hỏi</a></li>
+                            @else
+                            <li class="breadcrumb-item"><a href="admin/baithi/sua/{{$id}}">Sửa Bài Thi</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/{{$id}}/cauhoi">Thêm Câu Hỏi</a></li>
+                            @endif
                         </ol>
                     </nav>
                 </div>
@@ -24,17 +31,17 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Thêm lớp học</h3>
+                            <h3 class="mb-0">Thêm câu hỏi</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{$id > 0 ? 'admin/baithi/sua/'.$id : 'admin/baithi/them/'.$id}}" class="btn btn-sm btn-primary">Quay lại</a>
+                            <a href="{{session('mabt') != null ? 'admin/baithi/them/'.$id.'/chitiet' : ($id > 0 ? 'admin/baithi/sua/'.$id : 'admin/baithi/them/'.$id)}}" class="btn btn-sm btn-primary">Quay lại</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="admin/baithi/them/{{$id}}/cauhoi" method="POST" enctype="multipart/form-data">
+                    <form action="admin/baithi/{{$id}}/cauhoi" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <h6 class="heading-small text-muted mb-4">Thông tin lớp học</h6>
+                        <h6 class="heading-small text-muted mb-4">Thông tin câu hỏi</h6>
                         @if (session('thongbao'))
                         <div class="alert alert-success">
                             {{session('thongbao')}}
@@ -68,10 +75,6 @@
                             <div class="form-group">
                                 <label class="form-control-label">Câu D</label>
                                 <input type="text" id="D" name="D" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập nội dung câu D')" oninput="this.setCustomValidity('')">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">Điểm</label>
-                                <input type="number" id="DIEM" name="DIEM" class="form-control" onkeyup="textChange()" required oninvalid="this.setCustomValidity('Bạn chưa nhập điểm')" oninput="this.setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Đáp án</label>

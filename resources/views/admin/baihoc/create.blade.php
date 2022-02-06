@@ -66,38 +66,32 @@
                         </div>
                         <div id="dvideo" style="display:none">
                             <div class="pl-lg-4">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label">Video</label>
-                                            <input type="text" name="title" class="form-control" placeholder="Tên video" />
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">Video</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Tên video" />
                                 </div>
                             </div>
                             <div class="pl-lg-4">
                                 <div class="form-group">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Mô tả</label>
-                                        <textarea id="description" name="description" cols="30" rows="10" placeholder="Mô tả"></textarea>
+                                    <label class="form-control-label">Mô tả</label>
+                                    <textarea id="description" name="description" rows="4" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <input type="file" id="VIDEO" name="VIDEO" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập video')" oninput="this.setCustomValidity('')">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input type="file" id="VIDEO" name="VIDEO" class="form-control" onchange="videochange(event)" required oninvalid="this.setCustomValidity('Bạn chưa nhập video')" oninput="this.setCustomValidity('')">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-username">Học thử</label></br>
-                                        <input name="HOCTHU" type="radio" id="co" value="1" style="vertical-align:middle; cursor: pointer;">
-                                        <label>Có</label><br>
-                                        <input name="HOCTHU" type="radio" id="khong" value="0" style="vertical-align:middle; cursor: pointer;" checked>
-                                        <label>Không</label>
-                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-username">Học thử</label></br>
+                                    <input name="HOCTHU" type="radio" id="co" value="1" style="vertical-align:middle; cursor: pointer;">
+                                    <label>Có</label><br>
+                                    <input name="HOCTHU" type="radio" id="khong" value="0" style="vertical-align:middle; cursor: pointer;" checked>
+                                    <label>Không</label>
                                 </div>
                             </div>
                         </div>
@@ -105,19 +99,19 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Link lớp học</label>
-                                    <input type="url" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập link bài học')" oninput="this.setCustomValidity('')">
+                                    <input type="url" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập link bài học')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
-                                    <input type="datetime-local" id="TGBD" name="TGBD" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')">
+                                    <input type="datetime-local" id="TGBD" name="TGBD" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
-                                    <input type="datetime-local" id="TGKT" name="TGKT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')">
+                                    <input type="datetime-local" id="TGKT" name="TGKT" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                         </div>

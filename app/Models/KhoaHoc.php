@@ -40,6 +40,11 @@ class KhoaHoc extends Model
         return $this->hasMany('App\Models\LopHoc', 'MAKH')->where('MAKH', '=', $id);
     }
 
+    public function rCTHoaDon()
+    {
+        return $this->hasMany('App\Models\CTHoaDon', 'MAKH');
+    }
+
     public function scopeSearch($query)
     {
         if(request('key')){

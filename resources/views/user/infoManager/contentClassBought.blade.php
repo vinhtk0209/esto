@@ -1,6 +1,5 @@
 @extends('user.layout.index')
 @section('content')
-
 {{-- COURSE DETAIL STARTS --}}
 <section id="course-detail">
     {{-- COURSE DETAIL HEADER STARTS --}}

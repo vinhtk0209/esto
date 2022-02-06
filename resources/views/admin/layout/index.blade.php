@@ -151,7 +151,7 @@
       $("#MATK").bind("change keyup", function(event) {
         var e = document.getElementById("MATK");
         document.getElementById("giangvien").innerHTML = e.options[e.selectedIndex].text;
-      });
+      }); 
 
       $('#main_form').on('submit', function(event) {
         var input = document.getElementById('TENKH');
@@ -176,7 +176,6 @@
 
     CKEDITOR.replace('CHITIETKH');
     CKEDITOR.replace('GIOITHIEUKH');
-    CKEDITOR.replace('description');
   </script>
   <script>
     function toggle(oInput) {

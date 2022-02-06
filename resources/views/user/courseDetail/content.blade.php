@@ -7,19 +7,14 @@
         alt="{{$product->TENKH}}">
     </div>
     <div class="price-container">
-        <!-- <p class="main-price">{{number_format($product->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p> -->
-        @foreach($listKM as $km)
-            @if($km->MAKH == $product->MAKH)
-            <p class="main-price">{{number_format($product->DONGIA-($product->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
-            @endif   
-        @endforeach
-        <div class="price price-discount">
-            <p><del>{{number_format($product->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
-        </div> 
+        <p class="main-price">{{number_format($product->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
+        {{-- <div class="price price-discount">
+            <p><del>600,000</del><span class="price-unit"><sup>vnd</sup></span></p>
+        </div> --}}
     </div>
     <div class="cart-now btn-to-do-course mt-10">
         @if ($product->TRUCTUYEN == 0)
-        <a href="javascript:void(0)" onclick="addToCart({{ $product->MAKH }})" class="btn-course">
+        <a href="javascript:void(0)" onclick="addToCart('{{ $product->MAKH }}')" class="btn-course">
             <i class="fa fa-cart-plus" aria-hidden="true"></i>
             Thêm vào giỏ hàng
         </a>
@@ -71,9 +66,9 @@
                 <div class="title-des">
                     <div class="name-course-detail">
                         <h1>{{$product->TENKH}} </h1>
-                        <h3 class="text-danger">({{$product->TRUCTUYEN == 1?'Trực tuyến':'Video'}})</h3>
+                        <h3 class="text-danger mt-5">({{$product->TRUCTUYEN == 1?'Trực tuyến':'Video'}})</h3>
                     </div>
-                    <div class="des-course-short">
+                    <div class="des-course-short mt-5">
                         {!!$product->GIOITHIEUKH!!}
                     </div>
                 </div>
@@ -172,13 +167,13 @@
                                             <div  id="collapse{{$section->MACHUONG}}" class="accordion-collapse collapse show" aria-labelledby="heading{{$section->MACHUONG}}" >
                                                 <div class="accordion-body">
                                                     <ul class="list-lesson">
-                                                            <li>
-                                                                <span class="lesson-icon-play">
-                                                                    <img src="{{asset('user/assets/img/play.svg')}}" alt="ESTO" width="20px" height="20px">
-                                                                </span>
-                                                                <span class="lesson-title">
-                                                                    {{$lesson->TENBH}}
-                                                                </span>
+                                                        <li>
+                                                            <span class="lesson-icon-play">
+                                                                <img src="{{asset('user/assets/img/play.svg')}}" alt="ESTO" width="20px" height="20px">
+                                                            </span>
+                                                            <span class="lesson-title">
+                                                                {{$lesson->TENBH}}
+                                                            </span>
                                                          </li>
                                                     </ul>
                                                 </div>
@@ -195,7 +190,7 @@
                     @foreach ($classRoom as $class)
                         <div class="intro-class">
                             <div class="intro-class-item d-flex">
-                                <span class="font-weight-bold mr-5">Tên lớp : </span> 
+                                <span class="font-weight-bold mr-5">Tên lớp : </span>
                                 <span class="mr-5">{{$class->TENLOP}}</span>
                                  <a href="{{URL::to('/contentClass/'.$class->MALH)}}">(Xem chi tiết)</a>
                             </div>
@@ -309,4 +304,3 @@
 
 </section>
 {{-- COURSE DETAIL ENDS --}}
-

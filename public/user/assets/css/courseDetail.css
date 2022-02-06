@@ -41,7 +41,7 @@ ul {
     display: flex;
     max-width: 500px;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 5px;
 }
 
 a.name-teacher {
@@ -247,5 +247,3 @@ a.name-teacher:hover {
 .intro-class {
     padding: 10px;
 }
-
-

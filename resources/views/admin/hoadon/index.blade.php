@@ -23,7 +23,7 @@
                 <!-- Card header -->
                 <div class="card-header border-0 text-blue">
                     <h3 class="mb-0">Hóa Đơn</h3>
-                </div>          
+                </div>
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -31,30 +31,34 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="">Học Viên</th>
                                 <th scope="col" class="sort" data-sort="">Ngày Lập</th>
-                                <!-- <th scope="col" class="sort" data-sort="">Tổng Tiền</th> -->
+                                <th scope="col" class="sort" data-sort="">Tổng Tiền</th>
                                 <th scope="col" class="sort" data-sort="">Tùy chọn</th>
                             </tr>
                         </thead>
                         <tbody class="list">
                             @foreach($hoadon as $hd)
-                            <tr>   
+                            <tr>
                                 <td class="budget">
-                                    {{$hd->HOTEN}}
-                                </td>                                
+                                    {{$hd->MAHD}}
+                                </td>
                                 <td class="budget">
                                     {{$hd->NGAYHD}}
                                 </td>
-                                <!-- <td class="budget">
-                                    
-                                </td> -->
+                                <td class="budget">
+                                    @php($tien = 0)
+                                    @foreach ($khoahoc->where('MAHD', $hd->MAHD) as $kh)
+                                    @php($tien += $kh->rKhoaHoc->DONGIA)
+                                    @endforeach
+                                    {{$tien}}
+                                </td>
                                 <td class="">
                                     <a href="admin/hoadon/chitiet/{{$hd->MAHD}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                 </td>
-                                @endforeach                                
+                                @endforeach
                         </tbody>
                     </table>
                 </div>
-                <!-- Card footer -->                
+                <!-- Card footer -->
                 @if ($hoadon->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
@@ -87,11 +91,10 @@
                             </a>
                         </li>
                     </ul>
-                    </nav>
                 </div>
                 @endif
             </div>
         </div>
     </div>
-</div> 
+</div>
 @endsection

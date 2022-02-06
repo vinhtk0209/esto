@@ -51,6 +51,10 @@
 }
 
 /* ============= CUSTOM =============*/
+.p-0 {
+    padding: 0 !important;
+}
+
 .min-height-400 {
     min-height: 400px !important;
 }
@@ -140,6 +144,10 @@ p {
 }
 
 .mb-40 {
+    margin-bottom: 40px !important;
+}
+
+.mb-30 {
     margin-bottom: 30px !important;
 }
 
@@ -252,5 +260,18 @@ p {
 }
 
 .ml-10 {
-    margin-left: 10px;
+    margin-left: 10px !important;
+}
+
+.overflow-scroll {
+    overflow: scroll !important;
+
+}
+
+.overflow-auto {
+    overflow: auto !important;
+}
+
+.height-505 {
+    height: 505px !important;
 }

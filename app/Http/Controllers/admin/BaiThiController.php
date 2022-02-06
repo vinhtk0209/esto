@@ -12,6 +12,7 @@ use App\Models\DanhMuc;
 use App\Models\KhoaHoc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class BaiThiController extends Controller
 {
@@ -36,6 +37,7 @@ class BaiThiController extends Controller
             else
                 $baithi = BaiThi::whereNotNull('TGBD')->orderBy('MABT', 'desc')->paginate(10);
         }
+        session(['mabt' => null]);
         return view('admin.baithi.index', ['baithi' => $baithi], ['id' => $id]);
     }
 
@@ -49,7 +51,89 @@ class BaiThiController extends Controller
         $cauhoi = DB::table('CTBaiThi')
             ->join('CauHoi', 'CTBaiThi.MACH', '=', 'CauHoi.MACH')
             ->whereNull('MABT')->get();
-        return view('admin.baithi.create', compact('khoahoc', 'id', 'cauhoi'));
+
+        $baihoc = $baithi = null;
+        if (session('mabt') != null) {
+            $baihoc = DB::table('BaiHoc')
+                ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
+                ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
+                ->where('MABT', session('mabt'))->get();
+            $baithi = BaiThi::find(session('mabt'));
+            // dd(session('mabt'));
+        }
+        return view('admin.baithi.create', compact('khoahoc', 'id', 'cauhoi', 'baihoc', 'baithi'));
+    }
+
+    public function createChiTiet($id)
+    {
+        if (session('login')->LOAITK == 2)
+            $khoahoc = KhoaHoc::where('TRUCTUYEN', '0')
+                ->where('MAGV', session('login')->ID)->get();
+        else
+            $khoahoc = KhoaHoc::where('TRUCTUYEN', '0')->get();
+        $cauhoi = DB::table('CTBaiThi')
+            ->join('CauHoi', 'CTBaiThi.MACH', '=', 'CauHoi.MACH')
+            ->whereNull('MABT')->get();
+        return view('admin.baithi.detail', compact('khoahoc', 'id', 'cauhoi'));
+    }
+
+    public function storeChiTiet(Request $request, $id)
+    {
+        $cauhoi = DB::table('CTBaiThi')
+            ->join('CauHoi', 'CTBaiThi.MACH', '=', 'CauHoi.MACH')
+            ->whereNull('MABT')->get();
+        foreach ($cauhoi as $ch) {
+            DB::table('CTBaiThi')->whereNull('MABT')->where('MACH', $ch->MACH)->update(['DIEM' => $request->get('Diem' . $ch->MACH)]);
+        }
+
+        DB::table('CTBaiThi')->whereNull('MABT')->update(['MABT' => session('mabt')]);
+        return redirect('admin/baithi')->with('thongbao', 'Thêm thành công!');
+    }
+
+    public function scores($id)
+    {
+        $bailam = DB::table('BaiLam')
+            ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
+            ->where('MABT', $id)->get();
+
+        $ctbailam = DB::table('BaiLam')
+            ->join('CTBaiLam', 'CTBaiLam.MABL', '=', 'BaiLam.MABL')
+            ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
+            ->where('MABT', $id)->get();
+
+        $baithi = DB::table('BaiThi')
+            ->join('CTBaiThi', 'CTBaiThi.MABT', '=', 'BaiThi.MABT')
+            ->join('CauHoi', 'CauHoi.MACH', '=', 'CTBaiThi.MACH')
+            ->where('CTBaiThi.MABT', $id)->get();
+        return view('admin.baithi.scores', compact('bailam', 'id', 'ctbailam', 'baithi'));
+    }
+
+    public function score($id, $mahv)
+    {
+        $bailam = DB::table('BaiLam')
+            ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
+            ->where('MABT', $id)
+            ->where('MAHV', $mahv)->first();
+
+        $ctbailam = DB::table('BaiLam')
+            ->join('CTBaiLam', 'CTBaiLam.MABL', '=', 'BaiLam.MABL')
+            ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
+            ->where('MABT', $id)
+            ->where('MAHV', $mahv)->get();
+
+        $baithi = DB::table('BaiThi')
+            ->join('CTBaiThi', 'CTBaiThi.MABT', '=', 'BaiThi.MABT')
+            ->join('CauHoi', 'CauHoi.MACH', '=', 'CTBaiThi.MACH')
+            ->where('CTBaiThi.MABT', $id)->get();
+
+
+        $diem = 0;
+        foreach ($ctbailam as $ct) {
+            $CAUHOI = $baithi->where('MACH', $ct->MACH)->first();
+            if ($ct->DAPAN == $CAUHOI->CAUDUNG)
+                $diem += $CAUHOI->DIEM;
+        }
+        return view('admin.baithi.score', compact('bailam', 'id', 'mahv', 'ctbailam', 'baithi', 'diem'));
     }
 
     public function hinhthuc(Request $request)
@@ -113,7 +197,17 @@ class BaiThiController extends Controller
 
     public function store(Request $request, $id)
     {
-        $baithi = new BaiThi();
+        if (session('mabt') != null) {
+            $baithi = BaiThi::find(session('mabt'));
+        } else {
+            do {
+                $ma = random_int(10000, 99999);
+                $baithi = BaiThi::find($ma);
+            } while ($baithi);
+            $baithi = new BaiThi();
+            $baithi->MABT = $ma;
+        }
+
         $baithi->TENBT = $request->TENBT;
         if ($id == -2) {
             $baithi->MAGV = session('login')->ID;
@@ -125,16 +219,16 @@ class BaiThiController extends Controller
             $khoahoc = KhoaHoc::find($MAKH);
             $baithi->MAGV = $khoahoc->MAGV;
             $baithi->save();
-            DB::table('BaiHoc')
-                ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
-                ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
-                ->where('KhoaHoc.MAKH', $khoahoc->MAKH)
-                ->update(['MABT' => $baithi->MABT]);
+            if (session('mabt') == null)
+                DB::table('BaiHoc')
+                    ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
+                    ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
+                    ->where('KhoaHoc.MAKH', $khoahoc->MAKH)
+                    ->update(['MABT' => $ma]);
         }
 
-        DB::table('CTBaiThi')->whereNull('MABT')->update(['MABT' => $baithi->MABT]);
-
-        return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Thêm thành công!');
+        if (session('mabt') == null) session(['mabt' => $ma]);
+        return redirect('admin/baithi/them/' . $id . '/chitiet/');
     }
 
     public function edit($id)
@@ -161,7 +255,7 @@ class BaiThiController extends Controller
         $khoahoc = KhoaHoc::find($MAKH);
         $baithi = BaiThi::find($id);
         $baithi->TENBT = $request->TENBT;
-        if ($id >= 0) {
+        if ($baithi->TGBD != null) {
             $baithi->TGBD = $request->TGBD;
             $baithi->TGKT = $request->TGKT;
             $baithi->save();
@@ -172,6 +266,12 @@ class BaiThiController extends Controller
                 ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
                 ->where('KhoaHoc.MAKH', $khoahoc->MAKH)
                 ->update(['MABT' => $baithi->MABT]);
+        }
+
+        $cauhoi = DB::table('CTBaiThi')
+            ->where('MABT', $id)->get();
+        foreach ($cauhoi as $ch) {
+            DB::table('CTBaiThi')->where('MABT', $id)->where('MACH', $ch->MACH)->update(['DIEM' => $request->get('Diem' . $ch->MACH)]);
         }
 
         DB::table('CTBaiThi')->whereNull('MABT')->update(['MABT' => $baithi->MABT]);
@@ -192,8 +292,16 @@ class BaiThiController extends Controller
 
     public function indexCauHoi($id)
     {
+        $temps = DB::table('CTBaiThi')->select('MACH')->whereNull('MABT')->get()->toArray();
+        $data[] = -1;
+        foreach ($temps as $temp) {
+            $data[] = $temp->MACH;
+        }
+        $cauhoi = DB::table('CauHoi')
+            ->join('DanhMuc', 'DanhMuc.MADM', 'CauHoi.MADM')
+            ->whereNotIn('MACH', $data)
+            ->get();
         $danhmuc = DanhMuc::where('MADMCHA', '>', '0')->get();
-        $cauhoi = CauHoi::all();
         return view('admin.cauhoi.index', compact('danhmuc', 'cauhoi', 'id'));
     }
 
@@ -206,8 +314,8 @@ class BaiThiController extends Controller
             $ctbaithi->save();
         }
 
-        if ($id < 0) return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
-        return redirect('admin/baithi/sua/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
+        if ($id < 0) return redirect('admin/baithi/them/' . $id . '/chitiet')->with('thongbao', 'Thêm câu hỏi thành công!');
+        return redirect('admin/baithi/sua/' . $id . '/chitiet')->with('thongbao', 'Thêm câu hỏi thành công!');
     }
 
     public function createCauHoi($id)
@@ -230,10 +338,9 @@ class BaiThiController extends Controller
 
         $ctbaithi = new CTBaiThi();
         $ctbaithi->MACH = $cauhoi->MACH;
-        $ctbaithi->DIEM = $request->DIEM;
         $ctbaithi->save();
 
-        if ($id < 0) return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
+        if ($id < 0) return redirect('admin/baithi/them/' . $id . '/chitiet')->with('thongbao', 'Thêm câu hỏi thành công!');
         return redirect('admin/baithi/sua/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
     }
 
@@ -256,9 +363,7 @@ class BaiThiController extends Controller
         $cauhoi->MADM = $request->MADM;
         $cauhoi->save();
 
-        DB::table('CTBaiThi')->whereNull('MABT')->where('MACH', $mach)->update(['DIEM' => $request->DIEM]);
-
-        return redirect('admin/baithi/them/' . $id . '/cauhoi/sua/' . $mach)->with('thongbao', 'Sửa câu hỏi thành công!');
+        return redirect('admin/baithi/' . $id . '/cauhoi/sua/' . $mach)->with('thongbao', 'Sửa câu hỏi thành công!');
     }
 
     public function deleteCauHoi($id, $mach)
@@ -267,7 +372,7 @@ class BaiThiController extends Controller
             DB::table('CTBaiThi')->whereNull('MABT')->where('MACH', $mach)->delete();
         else DB::table('CTBaiThi')->where('MABT', $id)->where('MACH', $mach)->delete();
 
-        if ($id < 0) return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Xóa câu hỏi thành công!');
+        if ($id < 0) return redirect('admin/baithi/them/' . $id . '/chitiet')->with('thongbao', 'Xóa câu hỏi thành công!');
         return redirect('admin/baithi/sua/' . $id)->with('thongbao', 'Xóa câu hỏi thành công!');
     }
 
