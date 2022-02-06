@@ -20,7 +20,7 @@ class KhuyenMaiController extends Controller
         ->update(['MATT' => '1']);
 
         KhuyenMai::where('NGAYBD', '<=',  $today)
-        // ->where('NGAYKT', '=>', $today)
+        ->where('NGAYKT', '=>', $today)
         ->update(['MATT' => '2']);
 
         KhuyenMai::where('NGAYKT', '<', $today)
@@ -38,6 +38,18 @@ class KhuyenMaiController extends Controller
 
     public function store(Request $request)
     {        
+        $this->validate(
+            $request,
+            [
+                'TENKM' => 'unique:KhuyenMai,TENKM|min:10|max:100'
+            ],
+            [
+                'TENKM.unique' => 'Tên khuyến mãi đã tồn tại',
+                'TENKM.min' => 'Tên khuyến mãi phải có độ dài từ 10 đến 100 ký tự',
+                'TENKM.max' => 'Tên khuyến mãi phải có độ dài từ 10 đến 100 ký tự'
+            ]
+        );
+
         $data = $request->all();   
         $dateBD = Carbon::createFromTimestamp(strtotime($data['NGAYBD'] . $data['TDBD']));      
         $dateKT = Carbon::createFromTimestamp(strtotime($data['NGAYKT'] . $data['TDKT']));   
@@ -55,9 +67,7 @@ class KhuyenMaiController extends Controller
         $exits1 = KhuyenMai::Where('NGAYKT','>',$dateBD)->where('NGAYBD','<', $dateBD)->count();
         $exits2 = KhuyenMai::Where('NGAYBD','<',$dateKT)->where('NGAYKT','>', $dateKT)->count();
         
-        if(KhuyenMai::where('TENKM', '=',$data['TENKM'])->count() < 1)
-        {
-            if ($result) 
+        if ($result) 
             {
                 if ($exits1 > 0 || $exits2 > 0) {
                         return redirect('admin/khuyenmai/them')->with('thatbai', 'Đã tồn tại khuyến mãi khác trong thời gian này.!');
@@ -72,7 +82,7 @@ class KhuyenMaiController extends Controller
                             'MATT' => $MATT
                         ]);
 
-                        if( isset($data['danhsach']) != null){
+                        if(isset($data['danhsach']) != null){
                             $dskh = $data['danhsach'];
                             foreach ($dskh as $ds) {
                                 CTKhuyenMai::create([
@@ -89,10 +99,6 @@ class KhuyenMaiController extends Controller
             }
             else
                 return redirect('admin/khuyenmai/them')->with('thatbai', 'Thời gian kết phúc phải lớn hơn thời gian bắt đầu');
-            
-        }
-        else    
-            return redirect('admin/khuyenmai/them')->with('exits', 'Khuyến mãi này đã tồn tại');
     }
 
     public function edit($id)
@@ -105,18 +111,31 @@ class KhuyenMaiController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate(
+            $request,
+            [
+                'TENKM' => 'unique:KhuyenMai,TENKM|min:10|max:100'
+            ],
+            [
+                'TENKM.unique' => 'Tên khuyến mãi đã tồn tại',
+                'TENKM.min' => 'Tên khuyến mãi phải có độ dài từ 10 đến 100 ký tự',
+                'TENKM.max' => 'Tên khuyến mãi phải có độ dài từ 10 đến 100 ký tự'
+            ]
+        );
+
         $data = $request->all();   
         $dateBD = Carbon::createFromTimestamp(strtotime($data['NGAYBD'] . $data['TDBD']));      
         $dateKT = Carbon::createFromTimestamp(strtotime($data['NGAYKT'] . $data['TDKT']));   
         $today = date("Y-m-d h:i:sa");
-        if(strtotime($dateBD) >  strtotime($today))
-        {
-            $MATT = 1;
-        }    
-        else if(strtotime($dateBD) <=  strtotime($today) && strtotime($today) <= strtotime($dateKT))
-        {
-            $MATT = 2;
-        }
+        $MATT = 3;
+            if(strtotime($dateBD) >  strtotime($today))
+            {
+                $MATT = 1;
+            }    
+            else if(strtotime($dateBD) <=  strtotime($today) && strtotime($today) <= strtotime($dateKT))
+            {
+                $MATT = 2;
+            }
         $result = $dateBD->lt($dateKT);
         // if (KhuyenMai::where('TENKM', '=',$data['TENKM'])->count() < 1) 
         // {

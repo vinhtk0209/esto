@@ -25,6 +25,10 @@
     flex: 1;
 }
 
+.video-list .list-lesson li {
+    cursor: pointer;
+}
+
 .userManager .video-list .tableOfContent {
     text-align: center;
     padding: 10px 0;
@@ -32,24 +36,17 @@
     color: var(--text-color);
 }
 
-.userManager .video-list .title-lesson {
-    display: block;
-    color: var(--content-color);
-    text-decoration: none;
-    cursor: pointer;
+.userManager .video-list .list-lesson li span {
+    display: inline-block;
     font-size: 16px;
-    background: var(--text-color);
-    padding: 10px 0;
-    margin-bottom: 5px;
+    padding: 5px 0;
 }
 
-.vid.active {
+.video-list .vid.active {
     border-left: 4px solid #FF0000;
-}
-
-.vid.active .title-lesson {
     background: var(--lesson-active);
 }
+
 
 .alert-no-video {
     min-height: 380px;

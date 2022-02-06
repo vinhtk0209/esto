@@ -3,8 +3,7 @@
     <thead>
         <tr>
             <th>
-                <p>{{$bt->NOIDUNG}}</p>
-                <p>{{$bt->DIEM}}</p>
+                <h3 class="font-weight-500">Câu hỏi:<span>{{$bt->NOIDUNG}}</span></h3>
             </th>
         </tr>
     </thead>
@@ -47,7 +46,7 @@
 <div class="pagination">
     <ul class="pagination justify-content-end mb-0" id="paginate">
         <li class="page-item">
-            <a class="page-link" href="exam/{{$baithi[0]->MABT}}/fetch_page?page=1">
+            <a class="page-link text-decoration-none" href="exam/{{$baithi[0]->MABT}}/fetch_page?page=1">
                 <i class="fas fa-angle-double-left"></i>
             </a>
         </li>
@@ -56,7 +55,7 @@
             @else
         <li class="page-item">
             @endif
-            <a class="page-link" href="{{$baithi->previousPageUrl()}}">
+            <a class="page-link text-decoration-none" href="{{$baithi->previousPageUrl()}}">
                 <i class="fas fa-angle-left"></i>
             </a>
         </li>
@@ -65,12 +64,12 @@
             @else
         <li class="page-item">
             @endif
-            <a class="page-link" href="{{$baithi->nextPageUrl()}}">
+            <a class="page-link text-decoration-none" href="{{$baithi->nextPageUrl()}}">
                 <i class="fas fa-angle-right"></i>
             </a>
         </li>
         <li class="page-item">
-            <a class="page-link" href="exam/{{$baithi[0]->MABT}}/fetch_page?page={{$baithi->lastPage()}}">
+            <a class="page-link text-decoration-none" href="exam/{{$baithi[0]->MABT}}/fetch_page?page={{$baithi->lastPage()}}">
                 <i class="fas fa-angle-double-right"></i>
             </a>
         </li>

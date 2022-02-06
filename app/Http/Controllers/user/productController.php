@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
 use App\Models\LopHoc_BaiHoc;
 use App\Models\CTBaiLam;
-use Carbon\Carbon;
+use App\Models\HoaDon;
+use App\Models\LopHoc;
 
 class productController extends Controller
 {
@@ -53,15 +54,7 @@ class productController extends Controller
             ->where('danhmuc.MADM', $courseCate)
             ->whereNotIn('khoahoc.MAKH', [$productId])->get();
 
-        $today = Carbon::createFromTimestamp(strtotime(date("Y-m-d h:i:sa")));
-        $listKM = DB::table('khoahoc')
-        ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
-        ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
-        ->where('khuyenmai.NGAYBD','<=',$today)
-        ->where('khuyenmai.NGAYKT','>=',$today)
-        ->get();
-        
-        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate)->with('courseOnline', $courseOnline)->with('classRoom', $classRoom)->with('listKM', $listKM);
+        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate)->with('courseOnline', $courseOnline)->with('classRoom', $classRoom);
     }
 
     public function listCourse($courseCate)
@@ -177,28 +170,41 @@ class productController extends Controller
     public function handleExam(Request $request)
     {
         $exam = BaiThi::find($request->code);
-        $today = date("Y-m-d h:i:sa");
-        $timeStart = $exam->TGBD;
-        $timeFinish = $exam->TGKT;
         if (!Session::has('customer')) {
             return redirect()->back()->with('noLogin', 'Vui lòng đăng nhập để tiếp tục  ');
         }
+        if (!$exam) {
+            return redirect()->route('home.index')->with('noTest', 'Không tồn tại bài thi này');
+        }
+        $today = date("Y-m-d h:i:sa");
+        $timeStart = $exam->TGBD;
+        $timeFinish = $exam->TGKT;
         if (strtotime($today) <  strtotime($timeStart)) {
             return redirect()->route('home.index')->with('noTest', 'Chưa tới giờ làm bài');
         }
         if (strtotime($today) >  strtotime($timeFinish))
             return redirect()->route('home.index')->with('noTest', 'Đã hết giờ làm bài');
+        $bailam = BaiLam::where('MAHV', Session::get('customer')->ID)
+            ->where('MABT', $request->code)->get();
+        if (count($bailam) != 0)
+            return redirect()->route('home.index')->with('noTest', 'Bạn đã làm bài thi này');
         return redirect('exam/' . $request->code);
     }
 
     public function exam($id)
     {
         $ctbailam = new CTBaiLam();
-        $bailam = new BaiLam();
-        $bailam->MAHV = Session::has('customer') ? Session::get('customer')->ID : null;
-        $bailam->MABT = $id;
-        $bailam->save();
-        Session::put('takeExam', $bailam->MABL);
+        $bailam = BaiLam::where('MAHV', Session::get('customer')->ID)
+            ->where('MABT', $id)->get();
+        if (count($bailam) == 0) {
+            $bailam = new BaiLam();
+            $bailam->MAHV = Session::has('customer') ? Session::get('customer')->ID : null;
+            $bailam->MABT = $id;
+            $bailam->ACTIVE = false;
+            $bailam->save();
+            Session::put('takeExam', $bailam->MABL);
+        }
+        else Session::put('takeExam', $bailam[0]->MABL);
         $baithi = DB::table('CTBaithi')
             ->join('BaiThi', 'CTBaithi.MABT', '=', 'BaiThi.MABT')
             ->join('CauHoi', 'CauHoi.MACH', '=', 'CTBaiThi.MACH')
@@ -289,5 +295,66 @@ class productController extends Controller
             ->with('countRate', $countRate)
             ->with('courseOnline', $courseOnline)
             ->with('classRoom', $classRoom);
+    }
+
+    public function contentClassBought($id)
+    {
+        $classMyCourse = [];
+        $classId = DB::table('lophoc')->where('MALH', $id)->get();
+        $productId = $classId[0]->MAKH;
+        $countStudent = DB::table('cthoadon')->where('cthoadon.MAKH', $productId)->count();
+        $countRate = DB::table('danhgia')->where('danhgia.MAKH', $productId)->count();
+
+        $cateCourse = DB::table('danhmuc')
+            ->where('MADMCHA', 0)->orderby('MADM', 'desc')->get();
+        $productDetail  = DB::table('khoahoc')
+            ->join('danhmuc', 'danhmuc.MADM', '=', 'khoahoc.MADM')
+            ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
+
+        $sectionCourse  = DB::table('chuonghoc')
+            ->where('chuonghoc.MAKH', '=', $productId)->get();
+        $lessonCourse = DB::table('baihoc')
+            ->join('lophoc_baihoc', 'lophoc_baihoc.MABH', '=', 'baihoc.MABH')
+            ->join('lophoc', 'lophoc.MALH', '=', 'lophoc_baihoc.MALH')
+            ->where('lophoc.MALH', $id)
+            ->get();
+
+        foreach ($productDetail as $value) {
+            $courseCate = $value->MADM;
+            $courseOnline = $value->TRUCTUYEN;
+        }
+        if ($courseOnline != 0) {
+            $classRoom = DB::table('lophoc')->where('lophoc.MAKH', '=', $productId)->get();
+        } else {
+            $classRoom = "";
+        }
+
+        $relatedCourse  = DB::table('khoahoc')
+            ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+            ->join('danhmuc', 'danhmuc.MADM', '=', 'khoahoc.MADM')
+            ->where('danhmuc.MADM', $courseCate)
+            ->whereNotIn('khoahoc.MAKH', [$productId])->get();
+
+        //CLASS BOUGHT
+        $bills = HoaDon::join('cthoadon', 'hoadon.MAHD', '=', 'cthoadon.MAHD')
+            ->where('hoadon.MAHV', Session::get('customer')->ID)
+            ->select('*')->get();
+        foreach ($bills as $bill) {
+            $classMyCourse[] = LopHoc::all();
+        }
+
+
+
+        return view('user.infoManager.contentClassBought')
+            ->with('category', $cateCourse)
+            ->with('productDetail', $productDetail)
+            ->with('relatedCourse', $relatedCourse)
+            ->with('sectionCourse', $sectionCourse)
+            ->with('lessonCourse', $lessonCourse)
+            ->with('countStudent', $countStudent)
+            ->with('countRate', $countRate)
+            ->with('courseOnline', $courseOnline)
+            ->with('classRoom', $classRoom)
+            ->with('bill', $bills);
     }
 }

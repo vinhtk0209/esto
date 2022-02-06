@@ -37,7 +37,7 @@
                             <h5 class="mb-0">Học viên: {{$tenHV[0]->HOTEN}}</h5>
                         </div>
                         <div class="col-4 text-right">
-                            <h5>Tổng tiền: {{$tien}}</h5>
+                            <h5>Tổng tiền: {{number_format($tien)}} VNĐ</h5>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                                     {{$dt->NGAYHD}}
                                 </td>
                                 <td class="budget">
-                                    {{$dt->DONGIA}}
+                                    {{number_format($dt->DONGIA)}} VNĐ
                                 </td>
                             </tr>
                             @endforeach                                

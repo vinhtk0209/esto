@@ -193,6 +193,10 @@
                         $("#dtructuyen").hide();
                         $("#dqlchuonghoc").hide();
                         alert('Đây là khóa học trực tuyến.\nVui lòng tạo lớp học trước khi tạo bài học!');
+                        document.getElementById('VIDEO').removeAttribute('required');
+                        document.getElementById('LINK').removeAttribute('required');
+                        document.getElementById('TGBD').removeAttribute('required');
+                        document.getElementById('TGKT').removeAttribute('required');
                     } else {
                         $("#dqlchuonghoc").show();
                         if (res[1] == 'chuonghoc') {
@@ -202,6 +206,10 @@
                             $("#dtenbai").hide();
                             $("#dvideo").hide();
                             $("#dtructuyen").hide();
+                            document.getElementById('VIDEO').removeAttribute('required');
+                            document.getElementById('LINK').removeAttribute('required');
+                            document.getElementById('TGBD').removeAttribute('required');
+                            document.getElementById('TGKT').removeAttribute('required');
                         } else {
                             $("#dtenbai").show();
                             if (res[0] == 'video') {
@@ -259,18 +267,18 @@
                     if (res == 'tructuyen') {
                         $('#dbaihoc').html('');
                         $("#dtenbaithi").show();
-                        $("#dtructuyen").show();                        
+                        $("#dtructuyen").show();
                         document.getElementById('TENBT').setAttribute('required');
                     } else if (res == "video") {
                         $('#dbaihoc').html('');
                         $("#dtenbaithi").hide();
-                        $("#dtructuyen").hide();                        
+                        $("#dtructuyen").hide();
                         document.getElementById('TENBT').removeAttribute('required');
                         alert("Đây là khóa học video.\nBạn cần tạo bài học trước để gán bài thi vào!")
                     } else {
                         $('#dbaihoc').html(res);
                         $("#dtenbaithi").show();
-                        $("#dtructuyen").hide();                        
+                        $("#dtructuyen").hide();
                     }
                 }
             });
