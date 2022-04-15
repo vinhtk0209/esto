@@ -8,18 +8,21 @@
   <meta name="author" content="Creative Tim">
   <title>TRANG QUAN TRI</title>
   <!-- Favicon -->
-  <link rel="iconasset" href="{{('admin_assets/img/brand/favicon.png')}}" type="image/png">
+ 
+  <base href="{{asset('')}}">
+  <link rel="icon" href="public/admin_assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Icons -->
-  <link rel="stylesheet" href="{{asset('admin_assets/vendor/nucleo/css/nucleo.css')}}" type="text/css">
-  <link rel="stylesheet" href="{{asset('admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
+  <link rel="stylesheet" href="public/admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="public/admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Page plugins -->
   <!-- Argon CSS -->
-
-  <link rel="stylesheet" href="{{asset('admin_assets/css/argon.css?v=1.2.0')}}" type="text/css">
+  <link rel="stylesheet" href="public/admin_assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="public/user/assets/css/main.css">
+  <link rel="stylesheet" href="public/user/assets/css/custom.css">
 </head>
 
 <body>
@@ -277,6 +280,7 @@
     <script src="public/admin_assets/vendor/chart.js/dist/Chart.extension.js"></script>
     <!-- Argon JS -->
     <script src="public/admin_assets/js/argon.js?v=1.2.0"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
       $(document).ready(function() {
         $("input[name=type]").change(function() {
@@ -302,7 +306,7 @@
         document.getElementById("anhkh").src = "public/images/" + document.getElementById("ANH").files[0].name;;
         }
         function xemAnh() {
-        document.getElementById("anhtk").src = "public/images/" + document.getElementById("ANH").files[0].name;;
+        document.getElementById("anh123").innerHTML  = document.getElementById("ANH").src;
         }
     </script>
 </body>

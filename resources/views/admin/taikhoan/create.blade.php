@@ -8,8 +8,8 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="admin/taikhoan/"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="admin/taikhoan/">Quản Lý Khóa Học</a></li>
-                            <li class="breadcrumb-item"><a href="admin/taikhoan/them">Thêm Khóa Học</a></li>
+                            <li class="breadcrumb-item"><a href="admin/taikhoan/">Quản Lý tài khoản</a></li>
+                            <li class="breadcrumb-item"><a href="admin/taikhoan/them">Thêm tài khoản</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -39,13 +39,14 @@
                 <div class="card-body">
                     <form action="admin/taikhoan/them" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <h6 class="heading-small text-muted mb-4">Thông tin khóa học</h6>
+                        <h6 class="heading-small text-muted mb-4">Thông tin tài khoản</h6>
                         @if (session('thongbao'))
                         <div class="alert alert-success">
                             {{session('thongbao')}}
                         </div>
                         @endif
                         <div class="pl-lg-4">
+                            <p id ="anh123" > </p>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -64,7 +65,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Ngày sinh</label></br>
-                                        <input type="datetime-local" id="NGAYSINH" name="NGAYSINH" class="form-control">
+                                        <input type="date" id="NGAYSINH" name="NGAYSINH" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -83,20 +84,41 @@
                                 <label class="form-control-label">Email</label>
                                 <input type="email" id="EMAIL" name="EMAIL" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label class="form-control-label">Loại tài khoản</label>
+                                <select name="LOAITK" id="LOAITK">
+                                            <option value="2">Giảng Viên</option>
+                                        </select>
+                            </div>
                         </div>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-username">Mật khẩu</label>
+                                        <input type="password" id="MATKHAU" name="MATKHAU" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">Nhập lại mật khẩu</label>
+                                        <input type="password" id="MATKHAU1" name="MATKHAU1" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Hình ảnh</label>
                                 <input type="file" id="ANH" name="ANH" class="form-control"></br>                                
-                                <button type="button" onclick="xemAnh()" class="btn btn-default">Xem ảnh</button>
+                                
                             </div>
-                        </div>
-                        <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Chi tiết cá nhân</label>
                                 <textarea rows="4" name="CTCANHAN" class="form-control"></textarea>
                             </div>
                         </div>
+                        
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Trạng thái</label>
@@ -111,8 +133,7 @@
                                 <label id="lbl"></label>
                                 <button type="submit" class="btn btn-default">Thêm</button>
                             </div>
-                        </div>
-                    </form>
+                        </div> 
                 </div>
             </div>
         </div>

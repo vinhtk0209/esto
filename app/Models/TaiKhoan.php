@@ -9,12 +9,19 @@ class TaiKhoan extends Model
 {
     protected $table = "taikhoan";
     protected $primaryKey = "ID";
-    public $timestamps = false;
     protected $casts = ['TRANGTHAI' => 'boolean', 'GIOITINH' => 'boolean'];
-    protected $fillable = ['EMAIL', 'MATKHAU'];
+    
 
-    public function rKhoaHoc()
+    public function rLoaiTK()
     {
-        return $this->hasMany('App\Models\KhoaHoc', 'ID');
+        return $this->hasMany('App\Models\LoaiTK', 'MALOAI');
+    }
+    public function rChungChi()
+    {
+        return $this->hasMany('App\Models\ChungChi', 'MACHUNGCHI');
+    }
+    public function rCTLopHoc()
+    {
+        return $this->hasMany('App\Models\CTLopHoc', 'ID');
     }
 }
