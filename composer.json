@@ -10,7 +10,6 @@
     "require": {
         "php": "^7.3|^8.0",
         "consoletvs/charts": "6.*",
-        "dawson/youtube": "^6.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
         "james-heinrich/getid3": "^1.9",
