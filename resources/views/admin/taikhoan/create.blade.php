@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xl-4 order-xl-2">
             <div class="card card-profile">
-                <img src="public/images/image.png" id="anhtk" class="card-img-top" width="200px" height="250px">
+                <img src="./images/image.png" id="anh" class="card-img-top" width="200px" height="250px">
             </div>
         </div>
         <div class="col-xl-8 order-xl-1">
@@ -51,13 +51,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Họ và tên</label>
-                                        <input type="text" id="HOTEN" name="HOTEN" class="form-control">
+                                        <input type="text" id="HOTEN" name="HOTEN" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Số điện thoại</label>
-                                        <input type="text" id="SODIENTHOAI" name="SODIENTHOAI" class="form-control">
+                                        <input type="text" id="SODIENTHOAI" name="SODIENTHOAI" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Ngày sinh</label></br>
-                                        <input type="date" id="NGAYSINH" name="NGAYSINH" class="form-control">
+                                        <input type="date" id="NGAYSINH" name="NGAYSINH" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -82,7 +82,19 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Email</label>
-                                <input type="email" id="EMAIL" name="EMAIL" class="form-control">
+                                <input type="email" id="EMAIL" name="EMAIL" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">Loại tài khoản</label>
+                                <select name="LOAITK" id="LOAITK">
+                                            <option value="2">Giảng Viên</option>
+                                        </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">Loại tài khoản</label>
+                                <select name="LOAITK" id="LOAITK">
+                                            <option value="2">Giảng Viên</option>
+                                        </select>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Loại tài khoản</label>
@@ -96,26 +108,24 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Mật khẩu</label>
-                                        <input type="password" id="MATKHAU" name="MATKHAU" class="form-control">
+                                        <input type="password" id="MATKHAU" name="MATKHAU" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Nhập lại mật khẩu</label>
-                                        <input type="password" id="MATKHAU1" name="MATKHAU1" class="form-control">
+                                        <input type="password" id="MATKHAU1" name="MATKHAU1" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
-                        </div>    
-                        <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Hình ảnh</label>
-                                <input type="file" id="ANH" name="ANH" class="form-control"></br>                                
-                                
+                                <input type="file" id="ANH" name="ANH" class="form-control" onchange="imgchange(event)"></br>
+
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Chi tiết cá nhân</label>
-                                <textarea rows="4" name="CTCANHAN" class="form-control"></textarea>
+                                <textarea rows="4" name="CTCANHAN" class="ckeditor form-control"></textarea>
                             </div>
                         </div>
                         
@@ -133,7 +143,7 @@
                                 <label id="lbl"></label>
                                 <button type="submit" class="btn btn-default">Thêm</button>
                             </div>
-                        </div> 
+                        </div>
                 </div>
             </div>
         </div>

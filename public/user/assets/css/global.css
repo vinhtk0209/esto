@@ -1,0 +1,277 @@
+:root {
+    /* ========== HEADER ========= */
+    --logo-color-start: #00d2ff;
+    --logo-color-end: #f44336;
+    /* MAU CHU VA BORDER KHI HOVER NUT DANG KY */
+    --register-text-color: rgba(244, 67, 54, 0.507);
+    --register-border-hover: rgba(244, 67, 54, 0.945);
+    /* MAU NEN VA KHI HOVER NUT DANG NHAP */
+    --login-bg-color: #f44336;
+    --login-bg-color-hover: #d34238;
+    /* MAU NEN VA KHI HOVER NUT KICH HOAT KHOA HOC */
+    --active-course-bg-color: #50ad4e;
+    --active-course-bg-color-hover: #439141;
+
+    /* ========== BANNER ========= */
+    /* BOX SHADOW CUA DANH MUC  */
+    --box-shadow-category: 0 0 5px 0 rgb(0 0 0 / 16%);
+    /* MAU NEN CUA DANH MUC */
+    --category-bg-color: #fff;
+    --category-text-color: #000;
+    --category-text-hover: rgba(80, 173, 78, .2);
+
+    --bg-body: #F5F5F5;
+
+
+    /* ========== KHOA HOC ========= */
+    /* MAU NEN KHOA HOC */
+    --course-bg-color: #fff;
+    /* MÀU TÊN KHÓA HỌC */
+    --title-course-color: #000
+        /* MÀU TÊN GIẢNG VIÊN VÀ KHUYẾN MÃI  */
+        --span-color: #888;
+    /* MÀU DANH GIA  */
+    --star-color: #FFED00;
+    /* KHI HOVER VAO TUNG KHOA HOC */
+    --box-shadow-name-course: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+    ---box-shadow-hover: 0 4px 8px #62b0fd, 0 4px 12px rgb(0 0 0 / 8%);
+
+
+    /* ===== FOOTER ===== */
+    --footer-bg-color: #2C3238;
+    --footer-text-color: #fff;
+
+
+    /* ===== SWIPER  ===== */
+    --swiper-btn-color: #f44336;
+
+
+
+
+}
+
+/* ============= CUSTOM =============*/
+.p-0 {
+    padding: 0 !important;
+}
+
+.min-height-400 {
+    min-height: 400px !important;
+}
+
+.min-height-330 {
+    min-height: 330px !important;
+}
+
+.d-flex {
+    display: flex;
+
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-space {
+    justify-content: space-between;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.fl-basics-30 {
+    flex-basis: 30%;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+
+
+/* ============= COURSE DETAIL ============= */
+.postion-relative {
+    position: relative !important;
+}
+
+.postion-right-310 {
+    right: 310px !important;
+}
+
+.postion-left-45 {
+    left: -45px !important;
+}
+
+.mr-5 {
+    margin-right: 5px !important;
+}
+
+.mw-70p {
+    max-width: 70%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.mt--20 {
+    margin-top: -20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    text-transform: capitalize;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+
+
+/* ============= INFOFILE  =============*/
+.mb-10 {
+    margin-bottom: 10px !important;
+}
+
+.mb-40 {
+    margin-bottom: 40px !important;
+}
+
+.mb-30 {
+    margin-bottom: 30px !important;
+}
+
+.error-message {
+    color: red;
+    font-style: italic;
+}
+
+.min-width-100 {
+    min-width: 100px !important;
+}
+
+.mr-5 {
+    margin-right: 5px !important;
+}
+
+.mr-20 {
+    margin-right: 20px !important;
+}
+
+.p-20 {
+    padding: 20px !important;
+}
+
+.border-default {
+    border-color: #dddddd !important;
+}
+
+
+
+/* ============= LEARN =============*/
+.fs-100 {
+    font-size: 100px !important;
+}
+
+.color-cart {
+    color: #ccc !important;
+}
+
+.py-30 {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+
+.pt-30 {
+    padding-top: 30px !important;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
+}
+
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+
+.pl-20 {
+    padding-left: 20px !important;
+}
+
+.mt-10 {
+    margin-top: 20px !important;
+}
+
+.ml-5 {
+    margin-left: 5px !important;
+}
+
+.ml-10 {
+    margin-left: 10px !important;
+}
+
+.ml-20 {
+    margin-left: 20px !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px !important;
+}
+
+.mt-30 {
+    margin-top: 30px !important;
+}
+
+
+
+/*============= MY COURSE =============*/
+.mt-10 {
+    margin-top: 10px !important;
+}
+
+.mr-0 {
+    margin-right: 0 !important;
+}
+
+.mt-0 {
+    margin-top: 0 !important;
+}
+
+.font-weight-bold {
+    font-weight: bold !important;
+}
+
+.flex-end {
+    justify-content: flex-end !important;
+}
+
+.text-brow {
+    color: #353535 !important;
+}
+
+.ml-10 {
+    margin-left: 10px !important;
+}
+
+.overflow-scroll {
+    overflow: scroll !important;
+
+}
+
+.overflow-auto {
+    overflow: auto !important;
+}
+
+.height-505 {
+    height: 505px !important;
+}

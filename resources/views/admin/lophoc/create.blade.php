@@ -17,7 +17,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid mt--6">
+<div class="container-fluid mt--6 ">
     <div class="row">
         <div class="col-xl-8 order-xl-1">
             <div class="card">
@@ -40,21 +40,9 @@
                             {{session('thongbao')}}
                         </div>
                         @endif
+                        @if ($check == 0) <div class="alert alert-danger">Chưa có khóa học trực tuyến nào!</div>
+                        @else
                         <div class="pl-lg-4">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-username">Tên lớp học</label>
-                                        <input type="text" name="TENLOP" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Số học viên tối đa</label>
-                                        <input type="text" name="SLGIOIHAN" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -70,20 +58,32 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-username">Ngày mở lớp</label></br>
-                                        <input type="datetime-local" name="NGAYMOLOP" class="form-control">
+                                        <label class="form-control-label" for="input-username">Tên lớp học</label>
+                                        <input type="text" name="TENLOP" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên lớp học')" oninput="this.setCustomValidity('')">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">Số học viên tối đa</label>
+                                        <input type="number" name="SLGIOIHAN" class="form-control" min="5" max="100" required oninvalid="this.setCustomValidity('5 <= Số lượng học viên <= 100')" oninput="this.setCustomValidity('')">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-username">Thời gian mở lớp</label></br>
+                                        <input type="datetime-local" name="NGAYMOLOP" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập ngày mở lớp')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <button type="submit" class="btn btn-default">Thêm</button>
-                            </div>
-                            <div class="col-4 text-right">
-                                <a href="admin/baihoc/" id="baihoc" class="btn btn-primary">Thêm bài học</a>
+                                <button type="submit" class="btn btn-default">Thêm lớp học</button>
                             </div>
                         </div>
+                        @endif
                     </form>
                 </div>
             </div>

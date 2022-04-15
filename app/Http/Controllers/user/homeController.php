@@ -8,27 +8,80 @@ use App\Models\DanhMucCon;
 use App\Models\KhoaHoc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use Carbon\Carbon;
 
 class homeController extends Controller
 {
     public function index()
     {
-        $data = DanhMuc::where('MADMCHA', 0)->get();
-        // $courses = DB::table('khoahoc')
-        //     ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
-        //     ->select('*')
-        //     ->get();
-        $courses = DB::table('khoahoc')
-            ->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
-            ->where('MADM', '=', 1)->select('*')->get();
-        return view('user.homepage.index', compact('data', 'courses'));
+        $cateCourse = DanhMuc::where('MADMCHA', 0)->where('ACTIVE', 1)->orderby('MADM', 'desc')->get();
+        $today = Carbon::createFromTimestamp(strtotime(date("Y-m-d h:i:sa")));
+
+        //1
+        $listCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+        // ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        // ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        // ->where('khuyenmai.NGAYBD','<=',$today)
+        // ->where('khuyenmai.NGAYKT','>=',$today)
+        ->orderby('khoahoc.MAKH', 'desc')->limit(8)
+        ->get();
+        //2
+        $listEnglishCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+        // ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        // ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        // ->where('khuyenmai.NGAYBD','>=',$today)
+        // ->where('khuyenmai.NGAYKT','<=',$today)
+        ->where("khoahoc.MADM", 9)
+        ->orderby('khoahoc.MAKH', 'desc')
+        ->limit(8)
+        ->get();
+        //3
+        $listBusinessCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+        // ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        // ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        // ->where('khuyenmai.NGAYBD','<=',$today)
+        // ->where('khuyenmai.NGAYKT','>=',$today)
+        ->where("khoahoc.MADM", 18)
+        ->orderby('khoahoc.MAKH', 'desc')
+        ->get();
+
+        //4
+        $listHealthyCourse = DB::table('khoahoc')->join('taikhoan', 'khoahoc.MAGV', '=', 'ID')
+        // ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        // ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        // ->where('khuyenmai.NGAYBD','<=',$today)
+        // ->where('khuyenmai.NGAYKT','>=',$today)
+        ->where("khoahoc.MADM", 15)
+        ->orderby('khoahoc.MAKH', 'desc')
+        ->limit(8)
+        ->get();
+
+        //5
+        $listKM = DB::table('khoahoc')
+        ->join('ctkhuyenmai','khoahoc.MAKH','=','ctkhuyenmai.MAKH')
+        ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+        ->where('khuyenmai.NGAYBD','<=',$today)
+        ->where('khuyenmai.NGAYKT','>=',$today)
+        ->get();
+        
+
+        return view('user.homepage.index', compact('cateCourse', 'listCourse', 'listEnglishCourse', 'listBusinessCourse', 'listHealthyCourse','listKM'));
     }
     public function infoManager()
     {
         return view('user.infoManager.index');
     }
-    public function listCourse()
+    public function search(Request $request)
     {
-        return view('user.listCourse.index');
+        $q = $request->q;
+        $courses = KhoaHoc::join("taikhoan", 'khoahoc.MAGV', '=', 'ID')->where('TENKH', 'like', '%' . $q . '%')->orWhere('HOTEN', 'like', '%' . $q . '%')->get();
+        return view('user.search.index', compact('courses', 'q'));
+    }
+
+    public function ajaxSearch()
+    {
+        $data = KhoaHoc::search()->limit(5)->get();
+        return view('user.search.ajaxSearch', compact('data'));
     }
 }

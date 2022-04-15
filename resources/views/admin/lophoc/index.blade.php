@@ -44,7 +44,7 @@
                                 <th scope="col" class="sort" data-sort="options"></th>
                             </tr>
                         </thead>
-                        <tbody class="list">
+                        <tbody class="list" id="listLH">
                             @foreach($lophoc as $lh)
                             <tr>
                                 <td class="budget">
@@ -57,11 +57,11 @@
                                     {{$lh->NGAYMOLOP}}
                                 </td>
                                 <td class="budget">
-                                    {{$lh->rKhoaHoc->TENKH}}
+                                    {{$lh->TENKH}}
                                 </td>
-                                <td class="center">
-                                    <a href="admin/lophoc/sua/{{$lh->MALH}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="admin/lophoc/xoa/{{$lh->MALH}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                <td class="left">
+                                    <a href="admin/lophoc/sua/{{$lh->MALH}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/lophoc/xoa/{{$lh->MALH}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -69,8 +69,9 @@
                     </table>
                 </div>
                 <!-- Card footer -->
+                @if ($lophoc->lastPage() != 1)
                 <div class="card-footer py-4">
-                    <ul class="pagination justify-content-end mb-0">
+                    <ul class="pagination justify-content-end mb-0"  id="paginate">
                         <li class="page-item">
                             <a class="page-link" href="admin/lophoc?page=1">
                                 <i class="fas fa-angle-double-left"></i>
@@ -100,8 +101,8 @@
                             </a>
                         </li>
                     </ul>
-                    </nav>
                 </div>
+                @endif
             </div>
         </div>
     </div>

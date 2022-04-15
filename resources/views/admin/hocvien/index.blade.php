@@ -12,10 +12,6 @@
                         </ol>
                     </nav>
                 </div>
-                
-            </div>
-            <div>
-          
             </div>
         </div>
     </div>
@@ -41,16 +37,17 @@
                                 <th scope="col" class="sort" data-sort="hoten">Lớp Học</th>
                                 <th scope="col" class="sort" data-sort="ngaysinh">Khóa Học</th>
                                 <th scope="col" class="sort" data-sort="gioitinh">Giảng Viên</th>
-                                <th scope="col" class="sort" data-sort="options">###</th>
+                                <th scope="col" class="sort" data-sort="options"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                        @foreach($lophoc as $lh)
+                            @foreach($lophoc as $lh)
                             <tr>
                                 <td class="budget">
                                     {{$lh->TENLOP}}
                                 </td>
                                 <td class="budget">
+<<<<<<< HEAD
                                     {{$lh->rKhoaHoc->TENKH}}
                                 </td>
                                 <td class="budget">
@@ -58,14 +55,15 @@
                                 </td>
                                 <td class="budget">
                                 <div class="col-lg-6 col-5 text-right">
-                                    <a href="admin/hocvien/ctlop/{{$lh->MALH}}" class="btn btn-sm btn-neutral">Xem chi tiết</a>
-                                </div>
+                                    </div>
                                 </td>
                             </tr>
-                        @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
+                @if ($lophoc->lastPage() != 1)
+>>>>>>> 0674c9facc37fb67b57f1ee78c36aa41f4c5f37f
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -73,7 +71,6 @@
                                 <i class="fas fa-angle-double-left"></i>
                             </a>
                         </li>
-                        @if ($lophoc->currentPage() == 1)
                         <li class="page-item disabled">
                             @else
                         <li class="page-item">
@@ -97,8 +94,8 @@
                             </a>
                         </li>
                     </ul>
-                    </nav>
-                </div>   
+                </div>
+                @endif
             </div>
         </div>
     </div>

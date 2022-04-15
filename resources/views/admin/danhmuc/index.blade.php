@@ -1,104 +1,96 @@
 @extends('admin.layout.index')
 @section('content')
-<table class="table align-items-center table-flush">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col">Referral</th>
-            <th scope="col">Visitors</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">
-                Facebook
-            </th>
-            <td>
-                1,480
-            </td>
-            <td>
-                <div class="d-flex align-items-center">
-                    <span class="mr-2">60%</span>
-                    <div>
-                        <div class="progress">
-                            <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                        </div>
-                    </div>
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="admin/danhmuc/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/danhmuc/">Quản Lý Danh Mục</a></li>
+                        </ol>
+                    </nav>
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
-                Facebook
-            </th>
-            <td>
-                5,480
-            </td>
-            <td>
-                <div class="d-flex align-items-center">
-                    <span class="mr-2">70%</span>
-                    <div>
-                        <div class="progress">
-                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                        </div>
-                    </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <a href="admin/danhmuc/them" class="btn btn-sm btn-neutral">Thêm</a>
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
-                Google
-            </th>
-            <td>
-                4,807
-            </td>
-            <td>
-                <div class="d-flex align-items-center">
-                    <span class="mr-2">80%</span>
-                    <div>
-                        <div class="progress">
-                            <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0 text-blue">
+                    <h3 class="mb-0">Danh Mục</h3>
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
-                Instagram
-            </th>
-            <td>
-                3,678
-            </td>
-            <td>
-                <div class="d-flex align-items-center">
-                    <span class="mr-2">75%</span>
-                    <div>
-                        <div class="progress">
-                            <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-                        </div>
-                    </div>
+                @if (Session::has('success'))
+                <div class="alert alert-success">
+                    {{Session::get('success')}}
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
-                twitter
-            </th>
-            <td>
-                2,645
-            </td>
-            <td>
-                <div class="d-flex align-items-center">
-                    <span class="mr-2">30%</span>
-                    <div>
-                        <div class="progress">
-                            <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
-                        </div>
-                    </div>
+                @endif
+
+                @if (Session::has('failed'))
+                <div class="alert alert-danger">
+                    {{Session::get('failed')}}
                 </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                @endif
+
+
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col" class="sort">Tên Danh Mục</th>
+                                <th scope="col" class="sort">Trạng Thái</th>
+                                <th scope="col" class="sort text-center">Update</th>
+                                <th scope="col" class="sort"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                        {!! \App\Helpers\Helper::cate($cateList) !!}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Card footer -->
+                    {{-- <div class="card-footer py-4">
+                        <ul class="pagination justify-content-end mb-0">
+                            <li class="page-item">
+                                <a class="page-link" href="admin/danhmuc?page=1">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                            @if ($cateList->currentPage() == 1)
+                            <li class="page-item disabled">
+                                @else
+                            <li class="page-item">
+                                @endif
+                                <a class="page-link" href="{{$cateList->previousPageUrl()}}">
+                                    <i class="fas fa-angle-left"></i>
+                                </a>
+                            </li>
+                            @if ($cateList->currentPage() == $cateList->lastPage())
+                            <li class="page-item disabled">
+                                @else
+                            <li class="page-item">
+                                @endif
+                                <a class="page-link" href="{{$cateList->nextPageUrl()}}">
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="admin/danhmuc?page={{$cateList->lastPage()}}">
+                                    <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> --}}
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

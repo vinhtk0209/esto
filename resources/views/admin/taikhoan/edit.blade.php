@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xl-4 order-xl-2">
             <div class="card card-profile">
-                <img src="public/images/image.png" id="anhtk" class="card-img-top" width="200px" height="250px">
+                <img src="./images/{{$taikhoan->ANHDAIDIEN}}" id="anh" class="card-img-top" width="200px" height="250px">
             </div>
         </div>
         <div class="col-xl-8 order-xl-1">
@@ -46,7 +46,7 @@
                         </div>
                         @endif
                         <div class="pl-lg-4">
-                            <p id ="anh123" > </p>
+                            <p id="anh123"> </p>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -57,7 +57,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Số điện thoại</label>
-                                        <input type="text" id="SODIENTHOAI" name="SODIENTHOAI" class="form-control"value="{{$taikhoan->SODIENTHOAI}}">
+                                        <input type="text" id="SODIENTHOAI" name="SODIENTHOAI" class="form-control" value="{{$taikhoan->SODIENTHOAI}}">
                                     </div>
                                 </div>
                             </div>
@@ -91,40 +91,39 @@
                             <div class="form-group">
                                 <label class="form-control-label">Loại tài khoản</label>
                                 <select name="LOAITK" id="LOAITK">
-                                            @if ($taikhoan->LOAITK ==1)
-                                            <option value="1">Học Viên</option>
-                                            @else
-                                            <option value="2">Giảng Viên</option>
-                                            @endif
+                                    @if ($taikhoan->LOAITK ==1)
+                                    <option value="1">Học Viên</option>
+                                    @else
+                                    <option value="2">Giảng Viên</option>
+                                    @endif
 
-                                        </select>
+                                </select>
                             </div>
                         </div>
-                          
+
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Hình ảnh</label>
-                                <input type="file" id="ANH" name="ANH" class="form-control" img src="public/images/{{$taikhoan->ANHDAIDIEN}}"></br>                                
-                                
+                                <input type="file" id="ANH" name="ANH" class="form-control" onchange="imgchange(event)"></br>
                             </div>
                             @if($taikhoan->LOAITK==2)
                             <div class="form-group">
                                 <label class="form-control-label">Chi tiết cá nhân</label>
-                                <textarea rows="4" name="CTCANHAN" class="form-control">{{$taikhoan->CTCANHAN}}</textarea>
+                                <textarea rows="4" name="CTCANHAN" class="ckeditor form-control">{{$taikhoan->CTCANHAN}}</textarea>
                             </div>
                             @endif
                         </div>
-                        
+
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Trạng thái</label>
                                 <input name="TRANGTHAI" type="radio" id="hoatdong" value="1" style="vertical-align:middle; cursor: pointer;" @if($taikhoan->TRANGTHAI == true)
-                                        {{"checked"}}
-                                        @endif>
+                                {{"checked"}}
+                                @endif>
                                 <label>Hoạt động</label>
                                 <input name="TRANGTHAI" type="radio" id="vohieu" value="0" style="vertical-align:middle; cursor: pointer;" @if($taikhoan->TRANGTHAI == false)
-                                        {{"checked"}}
-                                        @endif>
+                                {{"checked"}}
+                                @endif>
                                 <label>Vô hiệu hóa</label>
                             </div>
                         </div>
@@ -133,41 +132,41 @@
                                 <label id="lbl"></label>
                                 <button type="submit" class="btn btn-default">Sửa</button>
                                 @if($taikhoan->LOAITK==2)
-                                <a href="admin/taikhoan/sua/chungchi/{{$taikhoan->ID}}" class="btn btn-primary">Thêm chứng chỉ</a>
+                                <a href="admin/chungchi/{{$taikhoan->ID}}" class="btn btn-primary">Thêm chứng chỉ</a>
                                 @endif
                             </div>
                         </div>
                         @if($taikhoan->LOAITK==2)
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col" class="sort" data-sort="tencc">Học vị</th>
-                                <th scope="col" class="sort" data-sort="anhcc">Ảnh chứng chỉ</th>
-                                <th scope="col" class="sort" data-sort=""></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($chungchi as $cc)
-                                <tr>
-                                    <th scope="row">
-                                        {{$cc->HOCVI}}
-                                    </th>
-                                    <th scope="row">
-                                    <div class="media align-items-center">
-                                        <img src="public/images/{{$cc->ANHCHUNGCHI}}" Width="120px" Height="100px">
-                                    </div>
-                                    </th>
-                                    <th scope="row">
-                                    <a href="admin/taikhoan/sua/chungchi/sua/{{$taikhoan->ID}}&macc={{$cc->MACHUNGCHI}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="admin/taikhoan/sua/chungchi/xoa/{{$taikhoan->ID}}&macc={{$cc->MACHUNGCHI}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa tài khoản này?')"><i class="material-icons">&#xE872;</i></a>
-                                    </th>
-                                </tr>         
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>   
-                @endif 
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="tencc">Học vị</th>
+                                        <th scope="col" class="sort" data-sort="anhcc">Ảnh chứng chỉ</th>
+                                        <th scope="col" class="sort" data-sort=""></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($chungchi as $cc)
+                                    <tr>
+                                        <th scope="row">
+                                            {{$cc->HOCVI}}
+                                        </th>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <img src="./images/{{$cc->ANHCHUNGCHI}}" Width="120px" Height="100px">
+                                            </div>
+                                        </th>
+                                        <th scope="row">
+                                            <a href="admin/chungchi/sua/{{$taikhoan->ID}}&macc={{$cc->MACHUNGCHI}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                            <a href="admin/chungchi/xoa/{{$taikhoan->ID}}&macc={{$cc->MACHUNGCHI}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa tài khoản này?')"><i class="material-icons">&#xE872;</i></a>
+                                        </th>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
                 </div>
             </div>
         </div>

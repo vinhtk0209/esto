@@ -39,29 +39,25 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="anh">Ảnh</th>
                                 <th scope="col" class="sort" data-sort="khoahoc">Khóa học</th>
-                                <th scope="col" class="sort" data-sort="gia">Giá</th>
-                                <th scope="col" class="sort" data-sort="gioithieu">Giới thiệu</th>
+                                <th scope="col" class="sort" data-sort="gia">Giá (VNĐ)</th>
                                 <th scope="col" class="sort" data-sort="loai">Môn học</th>
                                 <th scope="col" class="sort" data-sort="loai">Hình thức</th>
                                 <th scope="col" class="sort" data-sort="options"></th>
                             </tr>
                         </thead>
-                        <tbody class="list">
+                        <tbody class="list" id="listKH">
                             @foreach($khoahoc as $kh)
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
-                                        <img src=" {{asset('user/assets/imgCourse')}}/{{$kh->ANH}}"Width="262.5px" Height="131.25px">
+                                        <img src="./user/assets/imgCourse/{{$kh->ANH}}" width="90px" height="50px">
                                     </div>
                                 </th>
                                 <td class="budget">
                                     {{substr($kh->TENKH, 0, 30)}}..
                                 </td>
                                 <td class="budget">
-                                    {{$kh->DONGIA}}
-                                </td>
-                                <td class="budget">
-                                    {{substr($kh->GIOITHIEUKH, 0, 50)}}...
+                                    {{number_format($kh->DONGIA)}}
                                 </td>
                                 <td class="budget">
                                     {{$kh->rDanhMuc->TENDM}}
@@ -69,9 +65,9 @@
                                 <td class="budget">
                                     {{$kh->TRUCTUYEN==1?'Trực tuyến':'Video'}}
                                 </td>
-                                <td class="center">
-                                    <a href="admin/khoahoc/sua/{{$kh->MAKH}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="admin/khoahoc/xoa/{{$kh->MAKH}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                <td class="budget">
+                                    <a href="admin/khoahoc/sua/{{$kh->MAKH}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/khoahoc/xoa/{{$kh->MAKH}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -79,8 +75,9 @@
                     </table>
                 </div>
                 <!-- Card footer -->
+                @if ($khoahoc->lastPage() != 1)
                 <div class="card-footer py-4">
-                    <ul class="pagination justify-content-end mb-0">
+                    <ul class="pagination justify-content-end mb-0" id="paginate">
                         <li class="page-item">
                             <a class="page-link" href="admin/khoahoc?page=1">
                                 <i class="fas fa-angle-double-left"></i>
@@ -110,10 +107,11 @@
                             </a>
                         </li>
                     </ul>
-                    </nav>
                 </div>
+                @endif
             </div>
         </div>
     </div>
 </div>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection

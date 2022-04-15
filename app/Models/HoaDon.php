@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class HoaDon extends Model
 {
+    protected $primaryKey = 'MAHD';
+    public $timestamps = false;
     protected $table = "hoadon";
+    protected $fillable = ['MAHD', 'MAHV'];
 }

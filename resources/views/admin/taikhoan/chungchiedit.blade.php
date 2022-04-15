@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-xl-4 order-xl-2">
             <div class="card card-profile">
-                <img src="public/images/image.png" id="anhtk" class="card-img-top" width="200px" height="250px">
+                <img src="./images/{{$chungchi->ANHCHUNGCHI}}" id="anh" class="card-img-top" width="200px" height="250px">
             </div>
         </div>
         <div class="col-xl-8 order-xl-1">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="admin/taikhoan/sua/chungchi/sua/{{$id}}&macc={{$chungchi->MACHUNGCHI}}" method="POST" enctype="multipart/form-data">
+                    <form action="admin/chungchi/sua/{{$id}}&macc={{$chungchi->MACHUNGCHI}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <h6 class="heading-small text-muted mb-4">Thông tin chứng chỉ</h6>
                         @if (session('thongbao'))
@@ -52,24 +52,23 @@
                             <div class="form-group">
                                 <label class="form-control-label">Học vị</label>
                                 <input type="text" id="HOCVI" name="HOCVI" class="form-control" value="{{$chungchi->HOCVI}}">
-                             
                             </div>
                         </div>
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Ảnh chứng chỉ</label>
-                                <input type="file" id="ANH13" name="ANHCC" class="form-control"></br>                                
-                                
+                                <input type="file" id="ANH13" name="ANHCC" class="form-control" onchange="imgchange(event)"></br>
+
                             </div>
-                        </div> 
+                        </div>
                         <div class="row align-items-center">
                             <div class="col-8">
                                 <label id="lbl"></label>
                                 <button type="submit" class="btn btn-default">Sửa</button>
-                                
+
                             </div>
                         </div>
-                   
+
                 </div>
             </div>
         </div>

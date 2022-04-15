@@ -9,43 +9,17 @@
     <title>TRANG QUAN TRI</title>
     <!-- Favicon -->
     <base href="{{asset('')}}">
-    <link rel="icon" href="admin_assets/img/brand/favicon.png" type="image/png">
+    <link rel="icon" href="./admin_assets/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
-    <link rel="stylesheet" href="admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
-    <link rel="stylesheet" href="admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="./admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="./admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Argon CSS -->
-    <link rel="stylesheet" href="admin_assets/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="./admin_assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body class="bg-default">
-    <!-- Navbar -->
-    <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="dashboard.html">
-                <img src="admin_assets/img/brand/white.png">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
-                <div class="navbar-collapse-header">
-                    <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <a href="dashboard.html">
-                                <img src="admin_assets/img/brand/blue.png">
-                            </a>
-                        </div>
-                        <div class="col-6 collapse-close">
-                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
     <!-- Main content -->
     <div class="main-content">
         <!-- Header -->
@@ -54,7 +28,7 @@
                 <div class="header-body text-center">
                     <div class="row justify-content-center">
                         <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-                            <h1 class="text-white">Welcome!</h1>
+                            <h1 class="text-white">Welcome to ESTO!</h1>
                         </div>
                     </div>
                 </div>
@@ -85,12 +59,6 @@
                                         <input class="form-control" placeholder="Password" name="MATKHAU" type="password">
                                     </div>
                                 </div>
-                                <div class="custom-control custom-control-alternative custom-checkbox">
-                                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                                    <label class="custom-control-label" for=" customCheckLogin">
-                                        <span class="text-muted">Remember me</span>
-                                    </label>
-                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary my-4">Sign in</button>
                                 </div>
@@ -103,13 +71,13 @@
     </div>
     <!-- Argon Scripts -->
     <!-- Core -->
-    <script src="admin_assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="admin_assets/vendor/js-cookie/js.cookie.js"></script>
-    <script src="admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-    <script src="admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <script src="./admin_assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="./admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./admin_assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="./admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="./admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
     <!-- Argon JS -->
-    <script src="admin_assets/js/argon.js?v=1.2.0"></script>
+    <script src="./admin_assets/js/argon.js?v=1.2.0"></script>
 </body>
 
 </html>
