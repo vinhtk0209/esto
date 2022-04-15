@@ -1,5 +1,5 @@
 /* BACK TOP  */
-#button {
+#btnBackTop {
     display: inline-block;
     background-color: #FF9800;
     width: 50px;
@@ -16,7 +16,7 @@
     z-index: 1000;
 }
 
-#button::after {
+#btnBackTop::after {
     content: "\f077";
     font-family: FontAwesome;
     font-weight: normal;
@@ -26,16 +26,16 @@
     color: #fff;
 }
 
-#button:hover {
+#btnBackTop:hover {
     cursor: pointer;
     background-color: #333;
 }
 
-#button:active {
+#btnBackTop:active {
     background-color: #555;
 }
 
-#button.show {
+#btnBackTop.show {
     opacity: 1;
     visibility: visible;
 }

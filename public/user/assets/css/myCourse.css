@@ -1,0 +1,27 @@
+.my-course .list-my-course li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.my-course .list-my-course li .my-course-item .img-course {
+    max-width: 250px;
+}
+
+.my-course-title h4 {
+    transition: all .2s linear;
+}
+
+.my-course-title h4:hover {
+    color: #439141;
+}
+
+.my-course .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    font-weight: bold;
+    border-color: #439141 #439141 #fff;
+}
+
+.my-course .nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+    color: #439141;
+}

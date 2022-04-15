@@ -14,20 +14,17 @@
                     </nav>
                 </div>
             </div>
-            <div>
-          
-            </div>
         </div>
     </div>
 </div>
 <div class="container-fluid mt--6">
     <div class="row">
         <div class="col">
-        <div class="card-header">
+            <div class="card">
+                <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-0">Chi tiết lớp học {{$lophoc->TENLOP}}</h3>
-                            
                         </div>
                         <div class="col-4 text-right">
                             <a href="admin/hocvien/" class="btn btn-sm btn-primary">Quay lại</a>
@@ -52,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody class="list">
-                        @foreach($ctlophoc as $ctlh)
+                            @foreach($ctlophoc as $ctlh)
                             <tr>
                                 <td class="budget">
                                     {{$ctlh->rTaiKhoan->HOTEN}}
@@ -69,47 +66,14 @@
                                 <td class="budget">
                                     {{$ctlh->rTaiKhoan->EMAIL}}
                                 </td>
-                                
                             </tr>
-                        @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer py-4">
-                    <ul class="pagination justify-content-end mb-0">
-                        <li class="page-item">
-                            <a class="page-link" href="admin/hocvien/ctlop/{{$id}}?page=1">
-                                <i class="fas fa-angle-double-left"></i>
-                            </a>
-                        </li>
-                        @if ($ctlophoc->currentPage() == 1)
-                        <li class="page-item disabled">
-                            @else
-                        <li class="page-item">
-                            @endif
-                            <a class="page-link" href="{{$ctlophoc->previousPageUrl()}}">
-                                <i class="fas fa-angle-left"></i>
-                            </a>
-                        </li>
-                        @if ($ctlophoc->currentPage() == $ctlophoc->lastPage())
-                        <li class="page-item disabled">
-                            @else
-                        <li class="page-item">
-                            @endif
-                            <a class="page-link" href="{{$ctlophoc->nextPageUrl()}}">
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="admin/hocvien/ctlop/{{$id}}?page={{$ctlophoc->lastPage()}}">
-                                <i class="fas fa-angle-double-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    </nav>
-                </div>   
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

@@ -25,5 +25,8 @@ class LopHoc extends Model
     {
         return $this->belongsTo('App\Models\KhoaHoc', 'MAKH');
     }
-    
+    public function rCTLopHoc()
+    {
+        return $this->hasMany('App\Models\CTLopHoc', 'MALH');
+    }
 }

@@ -20,11 +20,21 @@ class LoginController extends Controller
         $taikhoan = TaiKhoan::all();
         foreach ($taikhoan as $tk) {
             if ($tk->EMAIL == $request->EMAIL && $tk->MATKHAU == $request->MATKHAU) {
+                $login = $tk;
                 $check = 1;
                 break;
             }
         }
-        if ($check == 1) return view('admin.dashboard.index');
+        if ($check == 1) {
+            session(['login' => $login]);
+            return redirect('admin/dashboard');
+        }
         return redirect('admin')->with('thongbao', 'Đăng nhập không thành công!');
+    }
+
+    public function getLogout()
+    {
+        session()->forget('login');
+        return redirect('admin/');
     }
 }

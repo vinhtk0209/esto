@@ -7,9 +7,9 @@
                 <div class="col-lg-6 col-7">
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="admin/khoahoc/"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="admin/khoahoc/">Quản Lý Khóa Học</a></li>
-                            <li class="breadcrumb-item"><a href="admin/khoahoc/them">Thêm Bài Học</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baihoc/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/baihoc/">Quản Lý Bài Học</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baihoc/them">Thêm Bài Học</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -19,36 +19,6 @@
 </div>
 <div class="container-fluid mt--6">
     <div class="row">
-    <div class="col-xl-4 order-xl-2">
-            <div class="card card-profile">
-                <img src="public/images/{{$khoahoc->ANH}}" alt="Image placeholder" class="card-img-top">
-                <div class="course-des">
-                    <div class="name-course">
-                        <h4>{{$khoahoc->TENKH}}</h4>
-                    </div>
-                    <div class="name-teacher d-flex flex-space">
-                        <p class="">Giang Vien</p>
-                        <div class="price price-discount">
-                            <p><del>{{$khoahoc->DONGIA}}</del><span class="price-unit"><sup>vnd</sup></span></p>
-                        </div>
-                    </div>
-                    <div class="price-course d-flex flex-space">
-                        <div class="rate">
-                            <p>
-                                <span class="star-rate">
-                                    <i class="fas fa-star star-color"></i>
-                                    <i class="fas fa-star star-color"></i>
-                                    <i class="fas fa-star star-color"></i>
-                                    <i class="fas fa-star star-color"></i>
-                                    <i class="fas fa-star star-color"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <p>{{$khoahoc->DONGIA}}<span class="price-unit"><sup>vnd</sup></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="col-xl-8 order-xl-1">
             <div class="card">
                 <div class="card-header">
@@ -62,74 +32,86 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="admin/baihoc/them?id=$khoahoc->MAKH" method="POST" enctype="multipart/form-data">
+                    <form action="admin/baihoc/them" id="formthembaihoc" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <h6 class="heading-small text-muted mb-4">Thông tin khóa học</h6>
+                        <h6 class="heading-small text-muted mb-4">Thông tin bài học</h6>
                         @if (session('thongbao'))
                         <div class="alert alert-success">
                             {{session('thongbao')}}
                         </div>
                         @endif
-                        <div class="col-lg-6">
+                        <div class="pl-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-first-name">Khóa học</label></br>
+                                <select id="MAKH" name="MAKH">
+                                    <option value="0">--------------------Khóa học--------------------</option>
+                                    @foreach($khoahoc as $kh)
+                                    <option value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="pl-lg-4" id="dlophoc" name="dlophoc">
+                        </div>
+                        <div class="pl-lg-4" id="dchuonghoc" name="dchuonghoc">
+                        </div>
+                        <div class="pl-lg-4" id="dqlchuonghoc" name="dqlchuonghoc" style="display:none">
+                            <a href="admin/chuonghoc/" class="btn btn-sm btn-primary">Chương học</a>
+                        </div>
+                        <div id="dtenbai" class="pl-lg-4" style="display:none">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài học</label>
-                                <input type="text" name="TENBH" class="form-control">
+                                <input type="text" name="TENBH" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài học')" oninput="this.setCustomValidity('')">
                             </div>
                         </div>
-                        <div id="dvideo">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Video</label>
-                                        <input type="file" id="VIDEO" name="VIDEO" class="form-control">
+                        <div id="dvideo" style="display:none">
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label">Video</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Tên video" />
+                                </div>
+                            </div>
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label">Mô tả</label>
+                                    <textarea id="description" name="description" rows="4" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <input type="file" id="VIDEO" name="VIDEO" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập video')" oninput="this.setCustomValidity('')">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-username">Học thử</label></br>
-                                        <input name="type" type="radio" id="internal" value="internal" style="vertical-align:middle; cursor: pointer;">
-                                        <label for="internal">có</label><br>
-                                        <input name="type" type="radio" id="global" value="global" style="vertical-align:middle; cursor: pointer;" checked>
-                                        <label for="global">không</label>
-                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-username">Học thử</label></br>
+                                    <input name="HOCTHU" type="radio" id="co" value="1" style="vertical-align:middle; cursor: pointer;">
+                                    <label>Có</label><br>
+                                    <input name="HOCTHU" type="radio" id="khong" value="0" style="vertical-align:middle; cursor: pointer;" checked>
+                                    <label>Không</label>
                                 </div>
                             </div>
                         </div>
-                        <div id="dtructuyen" style="display: none;">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Tên lớp học</label>
-                                    <input type="text" name="TENLH" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Số lượng học viên</label>
-                                    <input type="text" name="SLGIOIHAN" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Ngày mở lớp</label>
-                                    <input type="date" name="NGAYMOLOP" class="form-control">
-                                </div>
-                            </div>
+                        <div id="dtructuyen" style="display:none">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Link lớp học</label>
-                                    <input type="text" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control">
+                                    <input type="url" placeholder="https://meet.google.com/gwr-fkvv-jjj" id="LINK" name="LINK" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập link bài học')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
-                                    <input type="datetime-local" name="TGBD" class="form-control">
+                                    <input type="datetime-local" id="TGBD" name="TGBD" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
-                                    <input type="datetime-local" name="TGKT" class="form-control">
+                                    <input type="datetime-local" id="TGKT" name="TGKT" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
                         </div>
@@ -142,4 +124,5 @@
         </div>
     </div>
 </div>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection

@@ -15,22 +15,7 @@ ul {
     margin: 0;
 }
 
-a {
-    text-decoration: none;
-}
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-    text-transform: capitalize;
-    margin: 0;
-}
-
-p {
-    margin: 0;
-}
 
 /* ======= HEADER =====*/
 .course-detail-header {
@@ -38,6 +23,7 @@ p {
     color: var(--text-header);
     padding: 10px 0;
 }
+
 
 .title-des {
     max-width: 70%;
@@ -55,7 +41,7 @@ p {
     display: flex;
     max-width: 500px;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 5px;
 }
 
 a.name-teacher {
@@ -185,9 +171,8 @@ a.name-teacher:hover {
 
 .buy-course {
     position: fixed;
-    top: 90px;
-    right: 180px;
-    z-index: 999;
+    top: 100px;
+    right: 110px;
     color: var(--text-body);
     display: flex;
     background: #fff;
@@ -251,4 +236,14 @@ a.name-teacher:hover {
     font-size: 28px;
     margin-right: 10px;
     vertical-align: sub;
+}
+
+.no-section {
+    color: var(--bg-buy-now-btn);
+    font-weight: 500;
+    text-align: center;
+}
+
+.intro-class {
+    padding: 10px;
 }

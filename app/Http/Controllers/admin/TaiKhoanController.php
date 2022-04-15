@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\ChungChi;
-use App\Models\LoaiTK;
 use App\Models\TaiKhoan;
 use Facade\Ignition\Tabs\Tab;
 use Illuminate\Http\Request;
@@ -20,8 +20,6 @@ class TaiKhoanController extends Controller
 
     public function create()
     {
-        $taikhoan = TaiKhoan::paginate(10);
-        $taikhoan = TaiKhoan::where('LOAITK', '=', 2)->get();
         return view('admin.taikhoan.create');
     }
 
@@ -35,6 +33,10 @@ class TaiKhoanController extends Controller
     public function store(Request $request)
     {
         $taikhoan = new taikhoan();
+        $this->validate($request,[
+            'SODIENTHOAI' => 'required|digits:10'
+            ]);
+            
         $taikhoan->HOTEN = $request->HOTEN;
         $taikhoan->NGAYSINH = $request->NGAYSINH;
         $taikhoan->SODIENTHOAI = $request->SODIENTHOAI;
@@ -54,10 +56,10 @@ class TaiKhoanController extends Controller
             $file = $request->file('ANH');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/images/" . $hinh)) {
+            while (file_exists("./images/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/images/", $hinh);
+            $file->move("./images/", $hinh);
             $taikhoan->ANHDAIDIEN = $hinh;
         } else {
             $taikhoan->ANHDAIDIEN = "";
@@ -89,10 +91,10 @@ class TaiKhoanController extends Controller
             $file = $request->file('ANH');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/images/" . $hinh)) {
+            while (file_exists("./images/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/images/", $hinh);
+            $file->move("./images/", $hinh);
             $taikhoan->ANHDAIDIEN = $hinh;
         } else {
             $taikhoan->ANHDAIDIEN = "";
@@ -104,7 +106,6 @@ class TaiKhoanController extends Controller
 
     public function createChungChi($id)
     {
-
         return view('admin.taikhoan.chungchi' , ['id' => $id]);
     } 
 
@@ -116,10 +117,10 @@ class TaiKhoanController extends Controller
             $file = $request->file('ANHCC');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/images/" . $hinh)) {
+            while (file_exists("./images/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/images/", $hinh);
+            $file->move("./images/", $hinh);
             $chungchi->ANHCHUNGCHI = $hinh;
         } else {
             $chungchi->ANHCHUNGCHI = "";
@@ -127,7 +128,7 @@ class TaiKhoanController extends Controller
         $chungchi->MAGV = $id;
         $chungchi->HOCVI = $request->HOCVI;
         $chungchi->save();
-        return redirect('admin/taikhoan/sua/chungchi/'.$id)->with('thongbao', 'thêm chứng chỉ thành công!');
+        return redirect('admin/chungchi/'.$id)->with('thongbao', 'thêm chứng chỉ thành công!');
         
     }
 
@@ -140,8 +141,7 @@ class TaiKhoanController extends Controller
     }
 
     public function editChungChi($id , $macc){
-        $chungchi = ChungChi::find($macc);
-        
+        $chungchi = ChungChi::find($macc);        
         return view('admin.taikhoan.chungchiedit', ['chungchi' => $chungchi] , ['id' => $id]  );
     }
 
@@ -152,17 +152,15 @@ class TaiKhoanController extends Controller
             $file = $request->file('ANHCC');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4) . "_" . $name;
-            while (file_exists("public/images/" . $hinh)) {
+            while (file_exists("./images/" . $hinh)) {
                 $hinh = Str::random(4) . "_" . $name;
             }
-            $file->move("public/images/", $hinh);
+            $file->move("./images/", $hinh);
             $chungchi->ANHCHUNGCHI = $hinh;
-        } else {
-            $chungchi->ANHCHUNGCHI = "";
         }
         $chungchi->HOCVI = $request->HOCVI;
         $chungchi->save();
-        return redirect('admin/taikhoan/sua/chungchi/sua/'.$id.'&macc='.$macc)->with('thongbao', 'Sửa chứng chỉ thành công!');
+        return redirect('admin/chungchi/sua/'.$id.'&macc='.$macc)->with('thongbao', 'Sửa chứng chỉ thành công!');
         
     }
     public function deleteChungChi($id , $macc){
@@ -170,8 +168,4 @@ class TaiKhoanController extends Controller
         $chungchi->delete();
         return redirect('admin/taikhoan/sua/'.$id)->with('thongbao', 'Xóa chứng chỉ thành công!');
     }
-
-  
-    
-
 }

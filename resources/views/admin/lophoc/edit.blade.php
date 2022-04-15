@@ -44,20 +44,6 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-username">Tên lớp học</label>
-                                        <input type="text" name="TENLOP" class="form-control" value="{{$lophoc->TENLOP}}">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Số học viên tối đa</label>
-                                        <input type="text" name="SLGIOIHAN" class="form-control" value="{{$lophoc->SLGIOIHAN}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Khóa học</label></br>
                                         <select name="MAKH">
                                             @foreach($khoahoc as $kh)
@@ -74,7 +60,21 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-username">Ngày mở lớp</label></br>
+                                        <label class="form-control-label" for="input-username">Tên lớp học</label>
+                                        <input type="text" name="TENLOP" class="form-control" value="{{$lophoc->TENLOP}}" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên lớp học')" oninput="this.setCustomValidity('')">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">Số học viên tối đa</label>
+                                        <input type="text" name="SLGIOIHAN" class="form-control" value="{{$lophoc->SLGIOIHAN}}" min="5" max="100" required oninvalid="this.setCustomValidity('5 <= Số lượng học viên <= 100')" oninput="this.setCustomValidity('')">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-username">Thời gian mở lớp</label></br>
                                         <input type="datetime-local" name="NGAYMOLOP" class="form-control" value="{{ date('Y-m-d\TH:i', strtotime($lophoc->NGAYMOLOP)) }}">
                                     </div>
                                 </div>
@@ -82,10 +82,7 @@
                         </div>
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <button type="submit" class="btn btn-default">Sửa</button>
-                            </div>
-                            <div class="col-4 text-right">
-                                <a href="admin/lophoc/" id="lophoc" class="btn btn-primary">Thêm bài học</a>
+                                <button type="submit" class="btn btn-default">Sửa lớp học</button>
                             </div>
                         </div>
                     </form>
