@@ -47,7 +47,6 @@
                                     {{$lh->TENLOP}}
                                 </td>
                                 <td class="budget">
-<<<<<<< HEAD
                                     {{$lh->rKhoaHoc->TENKH}}
                                 </td>
                                 <td class="budget">
@@ -63,7 +62,6 @@
                     </table>
                 </div>
                 @if ($lophoc->lastPage() != 1)
->>>>>>> 0674c9facc37fb67b57f1ee78c36aa41f4c5f37f
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
