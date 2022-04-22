@@ -26,7 +26,7 @@
 
   {{-- CKEDITOR --}}
   <!-- <script src="ckeditor/ckeditor.js"></script> -->
-  <script type="text/javascript" language="javascript" src="./ckeditor/ckeditor.js" ></script>
+  <script type="text/javascript" language="javascript" src="./ckeditor/ckeditor.js"></script>
   <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
   {{-- CKEDITOR --}}
   <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
@@ -151,7 +151,7 @@
       $("#MATK").bind("change keyup", function(event) {
         var e = document.getElementById("MATK");
         document.getElementById("giangvien").innerHTML = e.options[e.selectedIndex].text;
-      }); 
+      });
 
       $('#main_form').on('submit', function(event) {
         var input = document.getElementById('TENKH');
@@ -180,10 +180,10 @@
   <script>
     function toggle(oInput) {
       var aInputs = document.getElementsByTagName('input');
-      for (var i=0;i<aInputs.length;i++) {
-          if (aInputs[i] != oInput) {
-              aInputs[i].checked = oInput.checked;
-          }
+      for (var i = 0; i < aInputs.length; i++) {
+        if (aInputs[i] != oInput) {
+          aInputs[i].checked = oInput.checked;
+        }
       }
     }
   </script>
