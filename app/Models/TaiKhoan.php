@@ -10,7 +10,10 @@ class TaiKhoan extends Model
     protected $table = "taikhoan";
     protected $primaryKey = "ID";
     protected $casts = ['TRANGTHAI' => 'boolean', 'GIOITINH' => 'boolean'];
+<<<<<<< HEAD
 
+=======
+>>>>>>> 86f9c0aedd743e6b29270051f033938d0a7ebc96
     protected $fillable = ['HOTEN', 'NGAYSINH', 'GIOITINH', 'ANHDAIDIEN', 'SODIENTHOAI', 'TRANGTHAI', 'EMAIL', 'TOKEN', 'MATKHAU', 'LOAITK', 'GOOGLE_ID', 'GOOGLE_REFRESH_TOKEN', 'GOOGLE_TOKEN'];
 
     public function rLoaiTK()
@@ -35,6 +38,7 @@ class TaiKhoan extends Model
     {
         return $this->hasMany('App\Models\BaiLam', 'ID');
     }
+<<<<<<< HEAD
 
     // public function rChungChi()
     // {
@@ -45,3 +49,6 @@ class TaiKhoan extends Model
     //     return $this->hasMany('App\Models\CTLopHoc', 'ID');
     // }
 }
+=======
+}
+>>>>>>> 86f9c0aedd743e6b29270051f033938d0a7ebc96
