@@ -90,18 +90,6 @@
                                             <option value="2">Giảng Viên</option>
                                         </select>
                             </div>
-                            <div class="form-group">
-                                <label class="form-control-label">Loại tài khoản</label>
-                                <select name="LOAITK" id="LOAITK">
-                                            <option value="2">Giảng Viên</option>
-                                        </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">Loại tài khoản</label>
-                                <select name="LOAITK" id="LOAITK">
-                                            <option value="2">Giảng Viên</option>
-                                        </select>
-                            </div>
                         </div>
                         <div class="pl-lg-4">
                             <div class="row">
@@ -118,6 +106,8 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Hình ảnh</label>
                                 <input type="file" id="ANH" name="ANH" class="form-control" onchange="imgchange(event)"></br>
@@ -128,7 +118,7 @@
                                 <textarea rows="4" name="CTCANHAN" class="ckeditor form-control"></textarea>
                             </div>
                         </div>
-                        
+
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Trạng thái</label>

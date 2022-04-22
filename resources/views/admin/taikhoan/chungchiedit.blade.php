@@ -52,6 +52,7 @@
                             <div class="form-group">
                                 <label class="form-control-label">Học vị</label>
                                 <input type="text" id="HOCVI" name="HOCVI" class="form-control" value="{{$chungchi->HOCVI}}">
+
                             </div>
                         </div>
                         <div class="pl-lg-4">

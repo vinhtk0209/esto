@@ -47,13 +47,14 @@
                                     {{$lh->TENLOP}}
                                 </td>
                                 <td class="budget">
-                                    {{$lh->rKhoaHoc->TENKH}}
+                                    {{$lh->TENKH}}
                                 </td>
                                 <td class="budget">
-                                    {{$lh->rKhoaHoc->rTaikhoan->HOTEN}}
+                                    {{$lh->HOTEN}}
                                 </td>
                                 <td class="budget">
-                                <div class="col-lg-6 col-5 text-right">
+                                    <div class="col-lg-6 col-5 text-right">
+                                        <a href="admin/hocvien/ctlop/{{$lh->MALH}}" class="btn btn-sm btn-neutral">Xem chi tiết</a>
                                     </div>
                                 </td>
                             </tr>
@@ -69,6 +70,7 @@
                                 <i class="fas fa-angle-double-left"></i>
                             </a>
                         </li>
+                        @if ($lophoc->currentPage() == 1)
                         <li class="page-item disabled">
                             @else
                         <li class="page-item">
