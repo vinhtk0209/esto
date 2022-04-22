@@ -15,12 +15,12 @@
   <link type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Icons -->
-<<<<<<< HEAD
-  <link rel="stylesheet" href="public/admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="public/admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="./admin_assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="./admin_assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Page plugins -->
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="public/admin_assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="./admin_assets/css/argon.css?v=1.2.0" type="text/css">
   <!-- <link rel="stylesheet" href="./user/assets/css/main.css">
   <link rel="stylesheet" href="./user/assets/css/custom.css"> -->
 
@@ -30,12 +30,12 @@
   <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
   {{-- CKEDITOR --}}
   <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
->>>>>>> 0674c9facc37fb67b57f1ee78c36aa41f4c5f37f
 </head>
 
 <body>
   <!-- Sidenav -->
   @include('admin.layout.header')
+  <!-- Main content -->
   <div class="main-content" id="panel">
     <!-- Topnav -->
     <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
@@ -107,22 +107,22 @@
     <!-- Page content -->
     @yield('content')
   </div>
-<<<<<<< HEAD
-    <!-- Argon Scripts -->
-    <!-- Core -->
-    <script src="public/admin_assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="public/admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="public/admin_assets/vendor/js-cookie/js.cookie.js"></script>
-    <script src="public/admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-    <script src="public/admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-    <!-- Optional JS -->
-    <script src="public/admin_assets/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="public/admin_assets/vendor/chart.js/dist/Chart.extension.js"></script>
-    <!-- Argon JS -->
-    <script src="public/admin_assets/js/argon.js?v=1.2.0"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script>
-      $(document).ready(function() {
+
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="./admin_assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="./admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./admin_assets/vendor/js-cookie/js.cookie.js"></script>
+  <script src="./admin_assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="./admin_assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <!-- Optional JS -->
+  <script src="./admin_assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="./admin_assets/vendor/chart.js/dist/Chart.extension.js"></script>
+  <!-- Argon JS -->
+  <script src="./admin_assets/js/argon.js?v=1.2.0"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
   @include('admin.layout.ajax')
 
   <script type="text/javascript">
@@ -151,12 +151,6 @@
       $("#MATK").bind("change keyup", function(event) {
         var e = document.getElementById("MATK");
         document.getElementById("giangvien").innerHTML = e.options[e.selectedIndex].text;
-<<<<<<< HEAD
-        document.getElementById("anhkh").src = "public/images/" + document.getElementById("ANH").files[0].name;;
-        }
-        function xemAnh() {
-        document.getElementById("anh123").innerHTML  = document.getElementById("ANH").src;
-=======
       }); 
 
       $('#main_form').on('submit', function(event) {
@@ -165,7 +159,6 @@
         if (input.value == '') {
           input.setCustomValidity('You gotta fill this out, yo!');
           event.preventDefault();
->>>>>>> 0674c9facc37fb67b57f1ee78c36aa41f4c5f37f
         }
       });
     });
