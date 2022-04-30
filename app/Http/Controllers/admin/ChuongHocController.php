@@ -11,8 +11,15 @@ class ChuongHocController extends Controller
 {
     public function index()
     {
-        $chuonghoc = ChuongHoc::orderBy('MAKH', 'desc')->paginate(10);
-        $khoahoc = KhoaHoc::all();
+        if (session('login')->LOAITK == 2) {
+            $khoahoc = KhoaHoc::where('MAGV', session('login')->ID)->get();
+            $chuonghoc = ChuongHoc::orderBy('KhoaHoc.MAKH', 'desc')
+            ->join('KhoaHoc', 'KhoaHoc.MAKH', 'ChuongHoc.MAKH')
+            ->where('MAGV', session('login')->ID)->paginate(10);
+        } else {
+            $khoahoc = KhoaHoc::all();
+            $chuonghoc = ChuongHoc::orderBy('MAKH', 'desc')->paginate(10);
+        }
         return view('admin.chuonghoc.index', compact('chuonghoc', 'khoahoc'));
     }
 
@@ -28,8 +35,7 @@ class ChuongHocController extends Controller
 
     public function edit($id)
     {
-        if(request()->ajax())
-        {
+        if (request()->ajax()) {
             $chuonghoc = ChuongHoc::find($id);
             return response()->json(['chuonghoc' => $chuonghoc]);
         }

@@ -53,8 +53,7 @@
                                     {{$lh->rKhoaHoc->rTaikhoan->HOTEN}}
                                 </td>
                                 <td class="budget">
-                                    <div class="col-lg-6 col-5 text-right">
-                                        <a href="admin/hocvien/ctlop/{{$lh->MALH}}" class="btn btn-sm btn-neutral">Xem chi tiết</a>
+                                <div class="col-lg-6 col-5 text-right">
                                     </div>
                                 </td>
                             </tr>
@@ -62,6 +61,7 @@
                         </tbody>
                     </table>
                 </div>
+                @if ($lophoc->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -69,7 +69,6 @@
                                 <i class="fas fa-angle-double-left"></i>
                             </a>
                         </li>
-                        @if ($lophoc->currentPage() == 1)
                         <li class="page-item disabled">
                             @else
                         <li class="page-item">
@@ -93,7 +92,6 @@
                             </a>
                         </li>
                     </ul>
-                    </nav>
                 </div>
             </div>
         </div>

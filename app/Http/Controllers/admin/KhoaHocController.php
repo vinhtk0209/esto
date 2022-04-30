@@ -4,9 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BaiHoc;
+use App\Models\CTHoaDon;
 use App\Models\DanhMuc;
 use App\Models\KhoaHoc;
 use App\Models\DanhMucCon;
+use App\Models\HoaDon;
 use App\Models\LopHoc;
 use App\Models\LopHoc_BaiHoc;
 use App\Models\TaiKhoan;
@@ -19,7 +21,10 @@ class KhoaHocController extends Controller
 {
     public function index()
     {
-        $khoahoc = KhoaHoc::orderBy('MAKH', 'desc')->paginate(10);
+        if (session('login')->LOAITK == 2)
+            $khoahoc = KhoaHoc::where('MAGV', session('login')->ID)
+                ->orderBy('MAKH', 'desc')->paginate(10);
+        else $khoahoc = KhoaHoc::orderBy('MAKH', 'desc')->paginate(10);
         return view('admin.khoahoc.index', ['khoahoc' => $khoahoc]);
     }
 
@@ -32,21 +37,25 @@ class KhoaHocController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, 
-        [
-            'TENKH' => 'unique:KhoaHoc,TENKH|min:10|max:100'
-        ], 
-        [            
-            'TENKH.unique' => 'Tên khóa học đã tồn tại',
-            'TENKH.min' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự',
-            'TENKH.max' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'TENKH' => 'unique:KhoaHoc,TENKH|min:10|max:100'
+            ],
+            [
+                'TENKH.unique' => 'Tên khóa học đã tồn tại',
+                'TENKH.min' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự',
+                'TENKH.max' => 'Tên khóa học phải có độ dài từ 10 đến 100 ký tự'
+            ]
+        );
 
         $khoahoc = new KhoaHoc();
         $khoahoc->TENKH = $request->TENKH;
         $khoahoc->DONGIA = $request->DONGIA;
         $khoahoc->MADM = $request->MADM;
-        $khoahoc->MAGV = $request->MATK;
+        if (session('login')->LOAITK == 2)
+            $khoahoc->MAGV = session('login')->ID;
+        else $khoahoc->MAGV = $request->MATK;
         if ($request->hinhthuc == '1') {
 
             $khoahoc->TRUCTUYEN = true;
@@ -135,7 +144,9 @@ class KhoaHocController extends Controller
         $khoahoc = KhoaHoc::find($id);
         $khoahoc->TENKH = $request->TENKH;
         $khoahoc->DONGIA = $request->DONGIA;
-        $khoahoc->MAGV = $request->MATK;
+        if (session('login')->LOAITK == 2)
+            $khoahoc->MAGV = session('login')->ID;
+        else $khoahoc->MAGV = $request->MATK;
         $khoahoc->MADM = $request->MADM;
         if ($request->hinhthuc == '1') {
 
@@ -163,9 +174,12 @@ class KhoaHocController extends Controller
     public function delete($id)
     {
         $khoahoc = KhoaHoc::find($id);
-        $khoahoc->delete();
-
-        return redirect('admin/khoahoc/')->with('thongbao', 'Xóa thành công!');
+        $hoadon = CTHoaDon::where('MAKH', $id)->get();
+        if (count($hoadon) == 0) {
+            $khoahoc->delete();
+            return redirect('admin/khoahoc/')->with('thongbao', 'Xóa thành công!');
+        } else
+            return redirect('admin/khoahoc/')->with('thongbao', 'Khóa học đã có người mua. Không thể xóa khóa học này!');
     }
 
     public function search(Request $request)

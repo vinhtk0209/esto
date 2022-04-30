@@ -152,20 +152,6 @@
             });
         });
 
-        $('#formthembaihoc').submit(function(e) {
-            $(this).ajaxSubmit({
-                beforeSubmit: function() {
-                    $('.progress-bar').width('0%')
-                },
-                uploadProgress: function(event, position, total, percentComplete) {
-                    $(".progress-bar").width(percentComplete + '%')
-                    $(".progress-bar").html('<div id="progress-status">' + percentComplete + '%</div>')
-                },
-                success: function(){
-
-                }
-            })
-        });
 
         $(document).on('click', '.edit', function() {
             var id = $(this).attr('id');
@@ -207,6 +193,10 @@
                         $("#dtructuyen").hide();
                         $("#dqlchuonghoc").hide();
                         alert('Đây là khóa học trực tuyến.\nVui lòng tạo lớp học trước khi tạo bài học!');
+                        document.getElementById('VIDEO').removeAttribute('required');
+                        document.getElementById('LINK').removeAttribute('required');
+                        document.getElementById('TGBD').removeAttribute('required');
+                        document.getElementById('TGKT').removeAttribute('required');
                     } else {
                         $("#dqlchuonghoc").show();
                         if (res[1] == 'chuonghoc') {
@@ -216,6 +206,10 @@
                             $("#dtenbai").hide();
                             $("#dvideo").hide();
                             $("#dtructuyen").hide();
+                            document.getElementById('VIDEO').removeAttribute('required');
+                            document.getElementById('LINK').removeAttribute('required');
+                            document.getElementById('TGBD').removeAttribute('required');
+                            document.getElementById('TGKT').removeAttribute('required');
                         } else {
                             $("#dtenbai").show();
                             if (res[0] == 'video') {
@@ -223,11 +217,19 @@
                                 $('#dchuonghoc').html(res[1]);
                                 $("#dvideo").show();
                                 $("#dtructuyen").hide();
+                                document.getElementById('VIDEO').setAttribute('required');
+                                document.getElementById('LINK').removeAttribute('required');
+                                document.getElementById('TGBD').removeAttribute('required');
+                                document.getElementById('TGKT').removeAttribute('required');
                             } else {
                                 $('#dlophoc').html(res[0]);
                                 $('#dchuonghoc').html(res[1]);
                                 $("#dvideo").hide();
                                 $("#dtructuyen").show();
+                                document.getElementById('VIDEO').removeAttribute('required');
+                                document.getElementById('LINK').setAttribute('required');
+                                document.getElementById('TGBD').setAttribute('required');
+                                document.getElementById('TGKT').setAttribute('required');
                             }
                         }
                     }
@@ -266,10 +268,12 @@
                         $('#dbaihoc').html('');
                         $("#dtenbaithi").show();
                         $("#dtructuyen").show();
+                        document.getElementById('TENBT').setAttribute('required');
                     } else if (res == "video") {
                         $('#dbaihoc').html('');
                         $("#dtenbaithi").hide();
                         $("#dtructuyen").hide();
+                        document.getElementById('TENBT').removeAttribute('required');
                         alert("Đây là khóa học video.\nBạn cần tạo bài học trước để gán bài thi vào!")
                     } else {
                         $('#dbaihoc').html(res);

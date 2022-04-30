@@ -29,24 +29,36 @@
                             <h4 id="tenkhoahoc">{{$khoahoc->TENKH}}</h4>
                         </div>
                         <div class="name-teacher d-flex flex-space">
-                            <p class="" id="giangvien">{{$khoahoc->rTaiKhoan->HOTEN}}</p>
-                            <div class="price price-discount">
-                                <p><del id="dongia">{{$khoahoc->DONGIA}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+                            <div class="col-8">
+                                @if (session('login') != null && session('login')->LOAITK == 3)
+                                <p class="" id="giangvien">{{$khoahoc->rTaiKhoan->HOTEN}}</p>
+                                @else
+                                <p>{{session('login')->HOTEN}}</p>
+                                @endif
+                            </div>
+                            <div class="col-4 text-right">
+                                <div class="price price-discount">
+                                    <p><del id="dongia">{{$khoahoc->DONGIA}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                </div>
                             </div>
                         </div>
                         <div class="price-course d-flex flex-space">
-                            <div class="rate">
-                                <p>
-                                    <span class="star-rate">
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                    </span>
-                                </p>
+                            <div class="col-8">
+                                <div class="rate">
+                                    <p>
+                                        <span class="star-rate">
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
-                            <p id="giamgia">{{$khoahoc->DONGIA}}<span class="price-unit"><sup>vnd</sup></span></p>
+                            <div class="col-4 text-right">
+                                <p id="giamgia">{{$khoahoc->DONGIA}}<span class="price-unit"><sup>vnd</sup></span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,6 +88,7 @@
                             {{session('thongbao')}}
                         </div>
                         @endif
+                        @if (session('login') != null && session('login')->LOAITK == 3)
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -94,6 +107,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -104,8 +118,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Giá khóa học</label>
-                                        <input type="text" id="DONGIA" name="DONGIA" class="form-control" value="{{$khoahoc->DONGIA}}" onkeyup="textChange()">
+                                        <label class="form-control-label" for="input-email">Giá khóa học (VNĐ)</label>
+                                        <input type="number" id="DONGIA" name="DONGIA" class="form-control" value="{{$khoahoc->DONGIA}}" min="50000" onkeyup="textChange()" required oninvalid="this.setCustomValidity('Giá khóa học >= 50.000')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>

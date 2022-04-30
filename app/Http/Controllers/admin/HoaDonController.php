@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\HoaDon;
 use App\Models\CTHoaDon;
 
-class GiaoDichController extends Controller
+class HoaDonController extends Controller
 {
     public function index()
     {
@@ -16,12 +16,9 @@ class GiaoDichController extends Controller
         ->join('taikhoan','hoadon.MAHV', '=', 'taikhoan.ID')
         ->paginate(10);
 
-        // $tien = 0;
+        $tien = 0;
 
-        // $khoahoc = DB::table('khoahoc')
-        // ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
-        // ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
-        // ->get();
+        $khoahoc = CTHoaDon::all();
 
         // foreach ($khoahoc as $kh)
         // {
@@ -31,7 +28,7 @@ class GiaoDichController extends Controller
         // ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
         // ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
         // ->sum('khoahoc.DONGIA');
-        return view('admin.giaodich.index',compact('hoadon'));
+        return view('admin.hoadon.index',compact('hoadon','khoahoc', 'tien'));
     } 
 
     public function detail($id)
@@ -42,11 +39,6 @@ class GiaoDichController extends Controller
         ->get();
         
         $tien = 0;
-        // $tien = DB::table('khoahoc')
-        // ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
-        // ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')     
-        // ->where('hoadon.MAHD',$id)
-        // ->sum('khoahoc.DONGIA');
 
         $detail = DB::table('khoahoc')
         ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
@@ -58,16 +50,6 @@ class GiaoDichController extends Controller
         {
             $tien +=$dt->DONGIA;
         }
-        return view('admin.giaodich.detail', compact('tien', 'detail', 'tenHV'));
-    }
-
-    public function delete($id)
-    {
-        try {
-            $cat = HoaDon::find($id)->delete();
-            return redirect()->back()->with('success', 'Xóa thành công!');
-        } catch (Exception $error) {
-            return redirect()->back()->with('failed', 'Xóa thất bại');
-        }
+        return view('admin.hoadon.detail', compact('tien', 'detail', 'tenHV'));
     }
 }

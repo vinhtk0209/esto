@@ -59,6 +59,7 @@
                                 <td class="budget">
                                     <a href="admin/baithi/sua/{{$bt->MABT}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                     <a href="admin/baithi/xoa/{{$bt->MABT}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                    <a href="admin/baithi/dsdiem/{{$bt->MABT}}" class="btn btn-sm btn-neutral">Xem điểm</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -66,6 +67,7 @@
                     </table>
                 </div>
                 <!-- Card footer -->
+                @if ($baithi->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -99,11 +101,13 @@
                     </ul>
                     </nav>
                 </div>
+                @endif
                 @else
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
+                                <th scope="col" class="sort" data-sort="ngaymolop">Mã bài thi</th>
                                 <th scope="col" class="sort" data-sort="ngaymolop">Tên bài thi</th>
                                 <th scope="col" class="sort" data-sort="tenlop">Thời gian bắt đầu</th>
                                 <th scope="col" class="sort" data-sort="siso">Thời gian kết thúc</th>
@@ -114,6 +118,9 @@
                         <tbody class="list">
                             @foreach($baithi as $bt)
                             <tr>
+                                <td class="budget">
+                                    {{$bt->MABT}}
+                                </td>
                                 <td class="budget">
                                     {{$bt->TENBT}}
                                 </td>
@@ -129,6 +136,7 @@
                                 <td class="budget">
                                     <a href="admin/baithi/sua/{{$bt->MABT}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                     <a href="admin/baithi/xoa/{{$bt->MABT}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                    <a href="admin/baithi/dsdiem/{{$bt->MABT}}" class="btn btn-sm btn-neutral">Xem điểm</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -136,6 +144,7 @@
                     </table>
                 </div>
                 <!-- Card footer -->
+                @if ($baithi->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -169,6 +178,7 @@
                     </ul>
                     </nav>
                 </div>
+                @endif
                 @endif
             </div>
         </div>

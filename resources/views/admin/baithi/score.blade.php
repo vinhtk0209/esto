@@ -7,9 +7,10 @@
                 <div class="col-lg-6 col-7">
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="admin/hocvien/"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="admin/hocvien/">Quản Lý Lớp Học</a></li>
-                            <li class="breadcrumb-item"><a href="admin/hocvien/ctlop/{{$id}}">Chi Tiết Lớp Học</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/">Quản Lý Bài Thi</a></li>                            
+                            <li class="breadcrumb-item"><a href="admin/baithi/dsdiem/{{$id}}">Quản Lý Điểm</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/dsdiem/{{$id}}/{{$mahv}}">Điểm học viên</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -21,15 +22,9 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-0">Chi tiết lớp học {{$lophoc->TENLOP}}</h3>
-                        </div>
-                        <div class="col-4 text-right">
-                            <a href="admin/hocvien/" class="btn btn-sm btn-primary">Quay lại</a>
-                        </div>
-                    </div>
+                <!-- Card header -->
+                <div class="card-header border-0 text-blue">
+                    <h3 class="mb-0">Bài thi của học viên: {{$bailam->HOTEN}} - {{$diem}} Điểm</h3>
                 </div>
                 @if (session('thongbao'))
                 <div class="alert alert-success">
@@ -41,30 +36,32 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="hoten">Họ Tên</th>
-                                <th scope="col" class="sort" data-sort="ngaysinh">Ngày Sinh</th>
-                                <th scope="col" class="sort" data-sort="gioitinh">Giới Tính</th>
-                                <th scope="col" class="sort" data-sort="gioitinh">Sđt</th>
-                                <th scope="col" class="sort" data-sort="gioitinh">Email</th>
+                                <th scope="col" class="sort" data-sort="siso">Câu hỏi</th>
+                                <th scope="col" class="sort" data-sort="tenlop">Đáp án học viên</th>
+                                <th scope="col" class="sort" data-sort="tenlop">Câu đúng</th>                                
+                                <th scope="col" class="sort" data-sort="tenlop">Điểm</th>                                
+                                <th scope="col" class="sort" data-sort="tenlop"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                            @foreach($ctlophoc as $ctlh)
+                            @foreach($baithi as $bt)
                             <tr>
                                 <td class="budget">
-                                    {{$ctlh->rTaiKhoan->HOTEN}}
+                                    {{$bt->NOIDUNG}}
                                 </td>
                                 <td class="budget">
-                                    {{$ctlh->rTaiKhoan->NGAYSINH}}
+                                    @php($cautl = $ctbailam->where('MACH', $bt->MACH)->first())
+                                    {{$cautl->DAPAN}}
                                 </td>
                                 <td class="budget">
-                                    {{$ctlh->rTaiKhoan->GIOITINH==1?'Nam':'Nữ'}}
+                                    {{$bt->CAUDUNG}}
                                 </td>
                                 <td class="budget">
-                                    {{$ctlh->rTaiKhoan->SODIENTHOAI}}
+                                    {{$bt->DIEM}}
                                 </td>
                                 <td class="budget">
-                                    {{$ctlh->rTaiKhoan->EMAIL}}
+                                    @if ($cautl->DAPAN != $bt->CAUDUNG) x
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -74,6 +71,5 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

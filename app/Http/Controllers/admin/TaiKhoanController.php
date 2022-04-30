@@ -19,8 +19,6 @@ class TaiKhoanController extends Controller
 
     public function create()
     {
-        $taikhoan = TaiKhoan::paginate(10);
-        $taikhoan = TaiKhoan::where('LOAITK', '=', 2)->get();
         return view('admin.taikhoan.create');
     }
 
@@ -29,7 +27,6 @@ class TaiKhoanController extends Controller
         $taikhoan = TaiKhoan::where('LOAITK', '=', $id)->paginate(10);
         return view('admin.taikhoan.index', ['taikhoan' => $taikhoan]);
     }
-    
 
     public function store(Request $request)
     {
@@ -107,7 +104,6 @@ class TaiKhoanController extends Controller
 
     public function createChungChi($id)
     {
-
         return view('admin.taikhoan.chungchi' , ['id' => $id]);
     } 
 
@@ -130,7 +126,7 @@ class TaiKhoanController extends Controller
         $chungchi->MAGV = $id;
         $chungchi->HOCVI = $request->HOCVI;
         $chungchi->save();
-        return redirect('admin/taikhoan/sua/chungchi/'.$id)->with('thongbao', 'thêm chứng chỉ thành công!');
+        return redirect('admin/chungchi/'.$id)->with('thongbao', 'thêm chứng chỉ thành công!');
         
     }
 
@@ -143,8 +139,7 @@ class TaiKhoanController extends Controller
     }
 
     public function editChungChi($id , $macc){
-        $chungchi = ChungChi::find($macc);
-        
+        $chungchi = ChungChi::find($macc);        
         return view('admin.taikhoan.chungchiedit', ['chungchi' => $chungchi] , ['id' => $id]  );
     }
 
@@ -160,12 +155,10 @@ class TaiKhoanController extends Controller
             }
             $file->move("./images/", $hinh);
             $chungchi->ANHCHUNGCHI = $hinh;
-        } else {
-            $chungchi->ANHCHUNGCHI = "";
         }
         $chungchi->HOCVI = $request->HOCVI;
         $chungchi->save();
-        return redirect('admin/taikhoan/sua/chungchi/sua/'.$id.'&macc='.$macc)->with('thongbao', 'Sửa chứng chỉ thành công!');
+        return redirect('admin/chungchi/sua/'.$id.'&macc='.$macc)->with('thongbao', 'Sửa chứng chỉ thành công!');
         
     }
     public function deleteChungChi($id , $macc){

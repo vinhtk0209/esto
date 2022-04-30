@@ -70,6 +70,7 @@
                     </table>
                 </div>
                 <!-- Card footer -->
+                @if ($baihoc->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -103,6 +104,7 @@
                     </ul>
                     </nav>
                 </div>
+                @endif
                 @else
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -140,6 +142,7 @@
                     </table>
                 </div>
                 <!-- Card footer -->
+                @if ($lophoc_baihoc->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -174,7 +177,7 @@
                     </nav>
                 </div>
                 @endif
-
+                @endif
             </div>
         </div>
     </div>
