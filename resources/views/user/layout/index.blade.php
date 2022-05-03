@@ -399,6 +399,45 @@
     </script>
     {{-- PAYPALL ENDS --}}
 
+    {{-- COMMENT START --}}    
+    <script>
+        function submitComment () {
+
+            let data = $("#sendCommentForm").serializeArray();
+            let url = $("#sendCommentForm").attr('action');
+            $.ajax({
+                url: url,
+                method:"POST",
+                data: data,
+                dataType: "json",
+                success:function(response){
+                    console.log(response)
+
+                    if(response.status == 1){
+                        let html = `<div class="row style-comment">
+                                        <div class="col-md-2">        
+                                            <img width="40%" src="${response.data.ANHDAIDIEN}" alt="ESTO" class="img img-responsive img-thumbnail">
+                                        </div>
+                                        <div class="col-md-10"> 
+                                            <p style="color:blue;">${response.data.HOTEN}</p>
+                                            <p style="color: #000;">${response.data.NGAYDG}</p>
+                                            <p>${response.data.NOIDUNG}</p>                                     
+                                        </div>
+                                    </div>`;
+                        $("#sendCommentForm")[0].reset();
+                        $("#listComment").append(html);
+                    }else{
+                        alert('Err');
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            })
+        }
+    </script>
+    {{-- COMMENT END --}}
+
      <!-- JS ENDS  -->
 
 </body>

@@ -211,3 +211,8 @@ Route::post('/contentClass/{id}', [
 Route::get('/ajax-load-video', [
     'uses' => 'App\Http\Controllers\user\userController@ajaxLoadVideo'
 ]);
+
+//SEND COMMENTS
+Route::post('send-comment-ajax', [
+    'uses' => 'App\Http\Controllers\user\productController@sendComment'
+])->name('send-comment-ajax');

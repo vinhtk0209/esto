@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Mail;
 use Illuminate\Support\Str;
 use App\Models\Social;
+use Illuminate\Support\Facades\Auth;
 use Socialite;
 use Illuminate\Support\Facades\DB;
 
