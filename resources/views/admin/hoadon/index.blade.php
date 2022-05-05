@@ -45,9 +45,11 @@
                                     {{$hd->NGAYHD}}
                                 </td>
                                 <td class="budget">
-                                    @php($tien = 0)
+                                    @php $tien = 0 @endphp
                                     @foreach ($khoahoc->where('MAHD', $hd->MAHD) as $kh)
-                                    @php($tien += $kh->rKhoaHoc->DONGIA)
+                                    @php
+                                        $tien+= \App\Models\Khoahoc::find($kh->MAKH)->DONGIA
+                                    @endphp
                                     @endforeach
                                     {{$tien}}
                                 </td>

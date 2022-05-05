@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2022 at 10:07 AM
+-- Generation Time: May 05, 2022 at 11:58 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -582,7 +582,8 @@ INSERT INTO `bailam` (`MABL`, `MAHV`, `MABT`, `ACTIVE`) VALUES
 (193, 202, 2, NULL),
 (194, 202, 3, NULL),
 (195, 211, 53498, NULL),
-(196, 211, 53498, NULL);
+(196, 211, 53498, NULL),
+(197, 211, 53498, NULL);
 
 -- --------------------------------------------------------
 
@@ -609,7 +610,7 @@ INSERT INTO `baithi` (`MABT`, `TENBT`, `TGBD`, `TGKT`, `MAGV`, `TRANGTHAI`, `COM
 (2, 'Kiem tra ', '2022-01-20 14:14:00', '2022-01-20 14:40:00', 25, 0, NULL, NULL),
 (3, 'Test1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 9, 2, 'Bài thi chưa đạt chất lượng', 209),
 (14643, 'test video', NULL, NULL, 21, 1, 'Không có ý kiến', 209),
-(53498, 'abc', '2022-05-05 14:15:00', '2022-05-06 14:15:00', 39, 0, NULL, NULL);
+(53498, 'abc', '2022-05-05 14:15:00', '2022-05-06 14:15:00', 39, 1, 'Bài thi đạt yêu cầu', 209);
 
 -- --------------------------------------------------------
 
@@ -771,7 +772,7 @@ INSERT INTO `ctbaithi` (`MABT`, `MACH`, `DIEM`) VALUES
 --
 
 CREATE TABLE `cthoadon` (
-  `MAHD` int(11) NOT NULL,
+  `MAHD` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `MAKH` int(11) NOT NULL,
   `MALH` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -781,14 +782,7 @@ CREATE TABLE `cthoadon` (
 --
 
 INSERT INTO `cthoadon` (`MAHD`, `MAKH`, `MALH`) VALUES
-(25, 16, 2),
-(28, 33, 0),
-(32, 16, 1),
-(33, 33, 0),
-(34, 16, 1),
-(35, 28, 0),
-(36, 16, 1),
-(37, 33, 0);
+('ch_3Kw1PsHEueodV3DA1ia6pF0g', 124, 0);
 
 -- --------------------------------------------------------
 
@@ -890,7 +884,7 @@ INSERT INTO `danhmuc` (`MADM`, `TENDM`, `GIOITHIEUDM`, `CHITIETDM`, `ACTIVE`, `M
 --
 
 CREATE TABLE `hoadon` (
-  `MAHD` int(11) NOT NULL,
+  `MAHD` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `MAHV` int(11) DEFAULT NULL,
   `NGAYHD` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -900,14 +894,7 @@ CREATE TABLE `hoadon` (
 --
 
 INSERT INTO `hoadon` (`MAHD`, `MAHV`, `NGAYHD`) VALUES
-(25, 202, '2022-01-04 08:35:26'),
-(28, 202, '2022-01-04 08:41:55'),
-(32, 206, '2022-01-07 10:48:54'),
-(33, 206, '2022-01-07 10:49:34'),
-(34, 202, '2022-01-07 14:44:14'),
-(35, 201, '2022-01-08 01:40:46'),
-(36, 201, '2022-01-08 01:40:59'),
-(37, 201, '2022-01-08 01:42:08');
+('ch_3Kw1PsHEueodV3DA1ia6pF0g', 211, '2022-05-05 09:56:13');
 
 -- --------------------------------------------------------
 
@@ -1294,7 +1281,7 @@ INSERT INTO `taikhoan` (`ID`, `HOTEN`, `NGAYSINH`, `GIOITINH`, `ANHDAIDIEN`, `SO
 (36, 'Nguyễn Hiếu', '2021-12-03', 0, NULL, '0364050874', 'nguyenhieu123@gmail.com', NULL, 2, b'0', NULL, 'Chuyên gia Yoga Nguyễn Hiếu đã có hơn 12 năm nghiên cứu và dạy học Yoga và học thiền tại các khoá học online trên Unica và các trung tâm và đã huấn luyện cho hàng nghìn học viên khắp Việt Nam và thế giới.', NULL, '2021-12-07 19:51:43', '2021-12-14 13:29:51'),
 (37, 'Milena Nguyễn', '2021-12-03', 0, NULL, '0364050873', 'milenanguyen123@gmail.com', NULL, 2, b'0', NULL, 'Milena Nguyễn người sáng lập ra Soulful Garden - nơi phụ nữ tìm thấy vẻ đẹp và tình yêu qua Yoga, Pilates, Thiền, và Nghệ Thuật.', NULL, '2021-12-07 19:51:43', '2021-12-14 13:29:51'),
 (38, 'Alex Vinh', '2021-12-03', 1, NULL, '0364020341', 'alexvinh123@gmail.com', '', 2, b'0', NULL, 'Alex Vinh Giám đốc trung tâm Mint Centre - Trung tâm ứng dụng và đào tạo Yoga - Trị liệu tự nhiên', NULL, '2021-12-07 19:51:43', '2021-12-14 13:29:09'),
-(39, 'Test', '2021-12-09', 1, NULL, '0123456789', 'test@gmail.com', '$2y$10$GopENx2dYBBKqR8o4iaSc.CSd5Duay9pHnno88A1D25.S9F2BJixG', 1, b'0', NULL, NULL, NULL, '2021-12-07 12:55:35', '2021-12-14 13:29:09'),
+(39, 'Test', '2021-12-09', 1, NULL, '0123456789', 'test@gmail.com', '$2y$10$GopENx2dYBBKqR8o4iaSc.CSd5Duay9pHnno88A1D25.S9F2BJixG', 3, b'0', NULL, NULL, NULL, '2021-12-07 12:55:35', '2022-05-05 15:24:10'),
 (88, 'Nguyễn Văn Khánh', '2021-12-17', 1, NULL, '0364070443', 'nguyenvankhanh123@gmail.com', NULL, 2, b'0', NULL, 'Nguyễn Văn Khánh là cựu sinh viên khoa tiếng Hàn Quốc, Trường đại học Hà Nội. Hiện anh là giáo viên tiếng Hàn và là giám đốc trung tâm “Tiếng Hàn bá đạo thầy Khánh” ở Mỹ Đình, Hà Nội.\r\n', NULL, '2021-12-17 17:20:31', '2021-12-18 00:21:24'),
 (89, 'Nguyễn Vy Thảo Trang', '2021-12-17', 0, NULL, '0364050805', 'nguyenvythaotrang123@gmail.com', NULL, 2, b'0', NULL, 'Thạc sĩ chuyên ngành Giáo dục tiếng Hàn bằng ngôn ngữ nước ngoài, đại học Dongguk (Seoul), có kinh nghiệm giảng dạy phong phú tại các trung tâm tiếng Hàn.', NULL, '2021-12-17 17:24:57', '2021-12-18 00:24:57'),
 (90, ' Châu Thùy Trang', '2021-12-17', 0, NULL, '0364050202', 'chauthuytrang123@gmail.com', NULL, 2, b'0', NULL, 'Hiện đang công tác giảng dạy tiếng Việt và tiếng Hàn cho đối tượng người Hàn và người Việt, kinh nghiệm dạy học đã được 6 năm dạy song ngữ tiếng Hàn và tiếng Việt.', NULL, '2021-12-17 17:27:47', '2021-12-18 00:27:47'),
@@ -1428,8 +1415,8 @@ ALTER TABLE `ctbaithi`
 --
 ALTER TABLE `cthoadon`
   ADD KEY `FK_CTHOADON_KHOAHOC` (`MAKH`),
-  ADD KEY `FK_CTHOADON_HOADON` (`MAHD`),
-  ADD KEY `FK_CTHOADON_LOPHOC` (`MALH`);
+  ADD KEY `FK_CTHOADON_LOPHOC` (`MALH`),
+  ADD KEY `MAHD` (`MAHD`);
 
 --
 -- Indexes for table `ctkhuyenmai`
@@ -1550,7 +1537,7 @@ ALTER TABLE `baihoc`
 -- AUTO_INCREMENT for table `bailam`
 --
 ALTER TABLE `bailam`
-  MODIFY `MABL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
+  MODIFY `MABL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
 
 --
 -- AUTO_INCREMENT for table `cauhoi`
@@ -1581,12 +1568,6 @@ ALTER TABLE `ctbailam`
 --
 ALTER TABLE `danhmuc`
   MODIFY `MADM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT for table `hoadon`
---
-ALTER TABLE `hoadon`
-  MODIFY `MAHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `khoahoc`
@@ -1701,8 +1682,8 @@ ALTER TABLE `ctbaithi`
 -- Constraints for table `cthoadon`
 --
 ALTER TABLE `cthoadon`
-  ADD CONSTRAINT `FK_CTHOADON_HOADON` FOREIGN KEY (`MAHD`) REFERENCES `hoadon` (`MAHD`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_CTHOADON_KHOAHOC` FOREIGN KEY (`MAKH`) REFERENCES `khoahoc` (`MAKH`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_CTHOADON_KHOAHOC` FOREIGN KEY (`MAKH`) REFERENCES `khoahoc` (`MAKH`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cthoadon_ibfk_1` FOREIGN KEY (`MAHD`) REFERENCES `hoadon` (`MAHD`);
 
 --
 -- Constraints for table `ctkhuyenmai`
