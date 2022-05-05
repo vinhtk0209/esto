@@ -29,25 +29,37 @@
                         <div class="name-course">
                             <h4 id="tenkhoahoc"></h4>
                         </div>
-                        <div class="name-teacher d-flex flex-space">
-                            <p class="" id="giangvien">{{$taikhoan[0]->HOTEN}}</p>
-                            <div class="price price-discount">
-                                <p><del id="dongia"></del><span class="price-unit"><sup>vnd</sup></span></p>
+                        <div class="row name-teacher d-flex flex-space">
+                            <div class="col-8">
+                                @if (session('login') != null && session('login')->LOAITK == 3)
+                                <p id="giangvien">{{$taikhoan[0]->HOTEN}}</p>
+                                @else
+                                <p>{{session('login')->HOTEN}}</p>
+                                @endif
+                            </div>
+                            <div class="col-4 text-right">
+                                <div class="price price-discount">
+                                    <p><del id="dongia"></del><span class="price-unit"><sup>vnd</sup></span></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="price-course d-flex flex-space">
-                            <div class="rate">
-                                <p>
-                                    <span class="star-rate">
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                        <i class="fas fa-star star-color"></i>
-                                    </span>
-                                </p>
+                        <div class="row price-course d-flex flex-space">
+                            <div class="col-8">
+                                <div class="rate">
+                                    <p>
+                                        <span class="star-rate">
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
-                            <p id="giamgia"><span class="price-unit"><sup>vnd</sup></span></p>
+                            <div class="col-4 text-right">
+                                <p id="giamgia"><span class="price-unit"><sup>vnd</sup></span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,6 +97,7 @@
                             {{session('thongbao')}}
                         </div>
                         @endif
+                        @if (session('login') != null && session('login')->LOAITK == 3)
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -99,6 +112,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -109,8 +123,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Giá khóa học</label>
-                                        <input type="number" id="DONGIA" name="DONGIA" class="form-control" min="0" onkeyup="textChange()" required oninvalid="this.setCustomValidity('Bạn chưa nhập giá khóa học')" oninput="this.setCustomValidity('')">
+                                        <label class="form-control-label" for="input-email">Giá khóa học (VNĐ)</label>
+                                        <input type="number" id="DONGIA" name="DONGIA" class="form-control" min="50000" onkeyup="textChange()" required oninvalid="this.setCustomValidity('Giá khóa học >= 50.000')" oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>
@@ -139,13 +153,13 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Hình ảnh</label>
-                                <input type="file" id="ANH" name="ANH" class="form-control" onchange="imgchange(event)">
+                                <input type="file" id="ANH" name="ANH" class="form-control" onchange="imgchange(event)" required oninvalid="this.setCustomValidity('Bạn chưa nhập ảnh khóa học')" oninput="this.setCustomValidity('')">
                             </div>
                         </div>
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Giới thiệu khóa học</label>
-                                <textarea rows="4" id="GIOITHIEUKH" name="GIOITHIEUKH" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập mục giới thiệu')" oninput="this.setCustomValidity('')"></textarea>
+                                <textarea rows="4" id="GIOITHIEUKH" name="GIOITHIEUKH" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="pl-lg-4">

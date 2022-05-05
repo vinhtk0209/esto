@@ -12,40 +12,59 @@ use App\Models\LopHoc;
 use App\Models\LopHoc_BaiHoc;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Dawson\Youtube\Facades\Youtube;
 
 class BaiHocController extends Controller
 {
     public function index($id = 0)
     {
         if ($id == 0) {
-            $baihoc = DB::table('BaiHoc')
-                ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
-                ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
-                ->where('TRUCTUYEN', $id)->paginate(10);
+            if (session('login')->LOAITK == 2)
+                $baihoc = DB::table('BaiHoc')
+                    ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
+                    ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
+                    ->where('MAGV', session('login')->ID)
+                    ->where('TRUCTUYEN', $id)->paginate(10);
+            else
+                $baihoc = DB::table('BaiHoc')
+                    ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
+                    ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
+                    ->where('TRUCTUYEN', $id)->paginate(10);
             return view('admin.baihoc.index', ['baihoc' => $baihoc], ['id' => $id]);
         } else {
-            $lophoc_baihoc = DB::table('LopHoc_BaiHoc')
+            if (session('login')->LOAITK == 2) $lophoc_baihoc = DB::table('LopHoc_BaiHoc')
                 ->join('LopHoc', 'LopHoc_BaiHoc.MALH', '=', 'LopHoc.MALH')
                 ->join('BaiHoc', 'LopHoc_BaiHoc.MABH', '=', 'BaiHoc.MABH')
                 ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
                 ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
+                ->where('MAGV', session('login')->ID)
                 ->where('TRUCTUYEN', $id)->paginate(10);
+            else
+                $lophoc_baihoc = DB::table('LopHoc_BaiHoc')
+                    ->join('LopHoc', 'LopHoc_BaiHoc.MALH', '=', 'LopHoc.MALH')
+                    ->join('BaiHoc', 'LopHoc_BaiHoc.MABH', '=', 'BaiHoc.MABH')
+                    ->join('ChuongHoc', 'BaiHoc.MACHUONG', '=', 'ChuongHoc.MACHUONG')
+                    ->join('KhoaHoc', 'ChuongHoc.MAKH', '=', 'KhoaHoc.MAKH')
+                    ->where('TRUCTUYEN', $id)->paginate(10);
             return view('admin.baihoc.index', ['lophoc_baihoc' => $lophoc_baihoc], ['id' => $id]);
         }
     }
 
     public function create()
     {
-        $khoahoc = KhoaHoc::all();
-        $chuonghoc = ChuongHoc::all();
-        return view('admin.baihoc.create', compact('khoahoc', 'chuonghoc'));
+        if (session('login')->LOAITK == 2) {
+            $khoahoc = KhoaHoc::where('MAGV', session('login')->ID)->get();
+        } else {
+            $khoahoc = KhoaHoc::all();
+        }
+        return view('admin.baihoc.create', compact('khoahoc'));
     }
 
     public function store(Request $request)
     {
-        $MAKH = $request->MAKH; 
+        $MAKH = $request->MAKH;
         $khoahoc = KhoaHoc::find($MAKH);
-        $baihoc = new BaiHoc();       
+        $baihoc = new BaiHoc();
         $baihoc->MACHUONG = $request->MACHUONG;
         $baihoc->TENBH = $request->TENBH;
         $baihoc->save();
@@ -59,19 +78,11 @@ class BaiHocController extends Controller
             $lophoc_baihoc->save();
         } else {
             $baihoc = BaiHoc::find($baihoc->MABH);
-            if ($request->hasFile('VIDEO')) {
-                $file = $request->file('VIDEO');
-                $name = $file->getClientOriginalName();
-                $hinh = Str::random(4) . "_" . $name;
-                while (file_exists("./video/" . $hinh)) {
-                    $hinh = Str::random(4) . "_" . $name;
-                }
-                $file->move("./video/", $hinh);
-                $baihoc->VIDEO = $hinh;
-            } else {
-                $baihoc->VIDEO = "";
-            }
-            $baihoc->HOCTHU = $request->HOCTHU;
+            $video = Youtube::upload($request->file('VIDEO')->getPathName(), [
+                'title'       => $request->input('title'),
+                'description' => $request->input('description')
+            ]);
+            $baihoc->VIDEO = 'https://www.youtube.com/embed/' . $video->getVideoId();
             $baihoc->save();
         }
 
@@ -145,18 +156,11 @@ class BaiHocController extends Controller
                 ->where('MALH', $lh)->limit(1)
                 ->update(['TGBD' => $request->TGBD, 'TGBD' => $request->TGKT, 'LINK' => $request->LINK]);
         } else {
-            if ($request->hasFile('VIDEO')) {
-                $file = $request->file('VIDEO');
-                $name = $file->getClientOriginalName();
-                $hinh = Str::random(4) . "_" . $name;
-                while (file_exists("./video/" . $hinh)) {
-                    $hinh = Str::random(4) . "_" . $name;
-                }
-                $file->move("./video/", $hinh);
-                $baihoc->VIDEO = $hinh;
-            } else {
-                $baihoc->VIDEO = "";
-            }
+            $video = Youtube::upload($request->file('VIDEO')->getPathName(), [
+                'title'       => $request->input('title'),
+                'description' => $request->input('description')
+            ]);
+            $baihoc->VIDEO = '<iframe width="853" height="480" src="https://www.youtube.com/embed/' . $video->getVideoId() . '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
             $baihoc->HOCTHU = $request->HOCTHU;
         }
         $baihoc->save();

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class BaiLam extends Model
 {
     protected $table = "bailam";
-    protected $primaryKey = 'MABL';
+    protected $primaryKey = 'MABL';    
+    protected $casts = ['ACTIVE' => 'boolean'];
     public $timestamps = false;
      
     public function rTaiKhoan()

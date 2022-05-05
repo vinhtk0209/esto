@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LopHoc extends Model
 {
-    protected $table = "lophoc";    
+    protected $table = "lophoc";
     public $timestamps = false;
     protected $primaryKey = 'MALH';
     protected $dates = ['NGAYMOLOP'];
@@ -16,13 +16,18 @@ class LopHoc extends Model
     {
         return $this->hasMany('App\Models\LopHoc_BaiHoc', 'MALH');
     }
+    public function rCTLopHoc()
+    {
+        return $this->hasMany('App\Models\CTLopHoc', 'MALH');
+    }
 
     public function rKhoaHoc()
     {
         return $this->belongsTo('App\Models\KhoaHoc', 'MAKH');
     }
-    public function rCTLopHoc()
-    {
-        return $this->hasMany('App\Models\CTLopHoc', 'MALH');
-    }
+
+    // public function rCTLopHoc()
+    // {
+    //     return $this->hasMany('App\Models\CTLopHoc', 'MALH');
+    // }
 }

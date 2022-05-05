@@ -9,7 +9,9 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="admin/baithi/"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="admin/baithi/">Quản Lý Bài Thi</a></li>
-                            <li class="breadcrumb-item"><a href="admin/baithi/them">Thêm Bài Thi</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/them/{{$id}}">Thêm Bài Thi</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/them/{{$id}}/chitiet">Chi tiết</a></li>
+                            <li class="breadcrumb-item"><a href="admin/baithi/them/{{$id}}/nganhangcauhoi">Ngân Hàng Câu Hỏi</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -32,12 +34,13 @@
                         <option value="{{ $dm->MADM }}">{{ $dm->TENDM }}</option>
                         @endforeach
                     </select>
+                    <a href="{{session('mabt') != null ? 'admin/baithi/them/'.$id.'/chitiet' : ($id > 0 ? 'admin/baithi/sua/'.$id : 'admin/baithi/them/'.$id)}}" class="btn btn-sm btn-primary">Quay lại</a>
                 </div>
             </div>
         </div>
         <!-- Light table -->
         <div class="table-responsive">
-            <form action="admin/baithi/them/{{$id}}/nganhangcauhoi" method="POST" enctype="multipart/form-data">
+            <form action="admin/baithi/{{$id}}/nganhangcauhoi" method="POST" enctype="multipart/form-data">
                 @csrf
                 <table class="table align-items-center table-flush">
                     <thead class="thead-light">
@@ -77,7 +80,7 @@
                                 {{$ch->CAUDUNG}}
                             </td>
                             <td class="budget">
-                                {{$ch->rDanhMuc->TENDM}}
+                                {{$ch->TENDM}}
                             </td>
                         </tr>
                         @endforeach

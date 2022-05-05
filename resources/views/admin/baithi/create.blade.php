@@ -40,6 +40,59 @@
                             {{session('thongbao')}}
                         </div>
                         @endif
+                        @if (session('mabt') != null)
+                        @if ($baithi->TGBD == "")
+                        <div class="pl-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-first-name">Khóa học</label></br>
+                                <select id="MAKHbaithi" name="MAKHbaithi">
+                                    <option value="">--------------------Khóa học--------------------</option>
+                                    @foreach($khoahoc as $kh)
+                                    <option @if($baihoc[0]->MAKH == $kh->MAKH)
+                                        {{"selected"}}
+                                        @endif
+                                        value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="pl-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-first-name">Bài học</label></br>
+                                <select id="MABH" name="MABH">
+                                    @foreach($baihoc as $bh)
+                                    <option @if($baihoc[0]->MABH == $bh->MABH)
+                                        {{"selected"}}
+                                        @endif
+                                        value="{{ $bh->MABH }}">{{ $bh->TENBH }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
+                        <div class="pl-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-username">Tên bài thi</label>
+                                <input type="text" name="TENBT" class="form-control" value="{{$baithi->TENBT}}">
+                            </div>
+                        </div>
+                        <div id="dtructuyen" @if($baithi->TGBD == "")
+                            {{"style=display:none"}}
+                            @endif>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
+                                    <input type="datetime-local" name="TGBD" class="form-control" value="{{ date('Y-m-d\TH:i', strtotime($baithi->TGBD)) }}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
+                                    <input type="datetime-local" name="TGKT" class="form-control" value="{{ date('Y-m-d\TH:i', strtotime($baithi->TGKT)) }}">
+                                </div>
+                            </div>
+                        </div>
+                        @else
                         @if ($id == -1)
                         <div class="pl-lg-4">
                             <div class="form-group">
@@ -58,99 +111,36 @@
                         <div id="dtenbaithi" class="pl-lg-4" style="display:none">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài thi</label>
-                                <input type="text" name="TENBT" class="form-control">
+                                <input type="text" id="TENBT" name="TENBT" class="form-control" oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài thi')" oninput="this.setCustomValidity('')" @if($id==-1) {{"required"}} @endif>
                             </div>
                         </div>
                         @if ($id == -2)
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Tên bài thi</label>
-                                <input type="text" name="TENBT" class="form-control">
+                                <input type="text" name="TENBT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập tên bài thi')" oninput="this.setCustomValidity('')" @if($id==-2) {{"required"}} @endif>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Thời gian bắt đầu</label>
-                                <input type="datetime-local" name="TGBD" class="form-control">
+                                <input type="datetime-local" name="TGBD" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian bắt đầu')" oninput="this.setCustomValidity('')" @if($id==-2) {{"required"}} @endif>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Thời gian kết thúc</label>
-                                <input type="datetime-local" name="TGKT" class="form-control">
+                                <input type="datetime-local" name="TGKT" class="form-control" required oninvalid="this.setCustomValidity('Bạn chưa nhập thời gian kết thúc')" oninput="this.setCustomValidity('')" @if($id==-2) {{"required"}} @endif>
                             </div>
                         </div>
                         @endif
-                        <div class="row align-items-center">
-                            <button type="submit" class="btn btn-default">Thêm</button>
+                        @endif
+                        <div class="row align-items-right">
+                            <button type="submit" class="btn btn-default">Tiếp</button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Danh sach bai thi -->
-<div class="container-fluid">
-    <div class="card">
-        <div class="card-header">
-            <!-- Card header -->
-            <div class="row align-items-center">
-                <div class="col-8">
-                    <h3 class="mb-0">Câu hỏi</h3>
-                </div>
-                <div class="col-4 text-right">
-                    <div class="row">
-                        <a href="admin/baithi/them/{{$id}}/nganhangcauhoi" class="btn btn-sm btn-neutral">Lấy từ ngân hàng câu hỏi</a>
-                        <a href="admin/baithi/them/{{$id}}/cauhoi" class="btn btn-sm btn-neutral">Thêm câu hỏi</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Light table -->
-        <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col" class="sort" data-sort="tenbaihoc">Câu hỏi</th>
-                        <th scope="col" class="sort" data-sort="video">Câu A</th>
-                        <th scope="col" class="sort" data-sort="hocthu">Câu B</th>
-                        <th scope="col" class="sort" data-sort="video">Câu C</th>
-                        <th scope="col" class="sort" data-sort="hocthu">Câu D</th>
-                        <th scope="col" class="sort" data-sort="hocthu">Đáp án</th>
-                        <th scope="col" class="sort" data-sort="options"></th>
-                    </tr>
-                </thead>
-                <tbody class="list" id="listcauhoi">
-                    @foreach($cauhoi as $ch)
-                    <tr>
-                        <td class="budget">
-                            {{$ch->NOIDUNG}}
-                        </td>
-                        <td class="budget">
-                            {{$ch->A}}
-                        </td>
-                        <td class="budget">
-                            {{$ch->B}}
-                        </td>
-                        <td class="budget">
-                            {{$ch->C}}
-                        </td>
-                        <td class="budget">
-                            {{$ch->D}}
-                        </td>
-                        <td class="budget">
-                            {{$ch->CAUDUNG}}
-                        </td>
-                        <td class="budget">
-                            <a href="admin/baithi/them/{{$id}}/cauhoi/sua/{{$ch->MACH}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="admin/baithi/them/{{$id}}/cauhoi/xoa/{{$ch->MACH}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

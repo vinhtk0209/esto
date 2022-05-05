@@ -39,13 +39,13 @@
 
                                             </li>
                                             @if($exam->find($item->MABT))
-                                                <a href="exam/{{$item->MABT}}" class="vid d-flex">
-                                                    <span class="lesson-title">
-                                                        {{$item->MABT}}
-                                                    </span>
-                                                </a>
+                                            <a href="exam/{{$item->MABT}}" class="float-end mr-5">
+                                                <span class="lesson-title ">
+                                                 Làm bài kiểm tra
+                                                </span>
+                                            </a>
 
-                                            @endif
+                                        @endif
                                          @endforeach
                                     </ul>
                                 </div>

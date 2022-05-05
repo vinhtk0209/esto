@@ -18,6 +18,11 @@ class DanhMuc extends Model
         return $this->hasMany('App\Models\KhoaHoc', 'MADM');
     }
 
+    public function rCauHoi()
+    {
+        return $this->hasMany('App\Models\CauHoi', 'MADM');
+    }
+
     public function childCategory()
     {
         return $this->hasMany('App\Models\DanhMuc', 'MADMCHA');

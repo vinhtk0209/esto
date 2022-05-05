@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CTHoaDon;
 use App\Models\KhoaHoc;
 use App\Models\LopHoc;
 use Illuminate\Http\Request;
@@ -12,16 +13,30 @@ class LopHocController extends Controller
 {
     public function index()
     {
-        $lophoc = DB::table('LopHoc')
-            ->join('KhoaHoc', 'LopHoc.MAKH', '=', 'KhoaHoc.MAKH')
-            ->orderBy('TENKH', 'desc')->paginate(10);
+        if (session('login')->LOAITK == 2)
+            $lophoc = DB::table('LopHoc')
+                ->join('KhoaHoc', 'LopHoc.MAKH', '=', 'KhoaHoc.MAKH')
+                ->where('MAGV', session('login')->ID)
+                ->orderBy('TENKH', 'desc')->paginate(10);
+        else
+            $lophoc = DB::table('LopHoc')
+                ->join('KhoaHoc', 'LopHoc.MAKH', '=', 'KhoaHoc.MAKH')
+                ->orderBy('TENKH', 'desc')->paginate(10);
         return view('admin.lophoc.index', ['lophoc' => $lophoc]);
     }
 
     public function create()
     {
-        $khoahoc = KhoaHoc::where('TRUCTUYEN', '=', 1)->get();
-        return view('admin.lophoc.create', ['khoahoc' => $khoahoc]);
+        if (session('login')->LOAITK == 2)
+            $khoahoc = KhoaHoc::where('TRUCTUYEN', '=', 1)
+                ->where('MAGV', session('login')->ID)->get();
+        else
+            $khoahoc = KhoaHoc::where('TRUCTUYEN', '=', 1)->get();
+        $check = 1;
+        if (count($khoahoc) > 0)
+            return view('admin.lophoc.create', compact('khoahoc', 'check'));
+        $check = 0;
+        return view('admin.lophoc.create', compact('khoahoc', 'check'));
     }
 
     public function store(Request $request)
@@ -58,9 +73,12 @@ class LopHocController extends Controller
     public function delete($id)
     {
         $lophoc = LopHoc::find($id);
-        $lophoc->delete();
-
-        return redirect('admin/lophoc/')->with('thongbao', 'Xóa thành công!');
+        $hoadon = CTHoaDon::where('MALH', $id)->get();
+        if (count($hoadon) == 0) {
+            $lophoc->delete();
+            return redirect('admin/lophoc/')->with('thongbao', 'Xóa thành công!');
+        } else
+            return redirect('admin/lophoc/')->with('thongbao', 'Lớp học đã có người mua. Không thể xóa lớp học này!');
     }
 
     public function search(Request $request)
@@ -81,20 +99,20 @@ class LopHocController extends Controller
         foreach ($lophoc as $lh) {
             $outputLH .= '<tr>
             <td class="budget">
-                '.$lh->TENLOP.'
+                ' . $lh->TENLOP . '
             </td>
             <td class="budget">
-                '.$lh->SLGIOIHAN.'
+                ' . $lh->SLGIOIHAN . '
             </td>
             <td class="budget">
-                '.$lh->NGAYMOLOP.'
+                ' . $lh->NGAYMOLOP . '
             </td>
             <td class="budget">
-                '.$lh->TENKH.'
+                ' . $lh->TENKH . '
             </td>
             <td class="left">
-                <a href="admin/lophoc/sua/'.$lh->MALH.'" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                <a href="admin/lophoc/xoa/'.$lh->MALH.'" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm(' . "Bạn có muốn xóa mục này?" . ')"><i class="material-icons">&#xE872;</i></a>
+                <a href="admin/lophoc/sua/' . $lh->MALH . '" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                <a href="admin/lophoc/xoa/' . $lh->MALH . '" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm(' . "Bạn có muốn xóa mục này?" . ')"><i class="material-icons">&#xE872;</i></a>
             </td>
         </tr>';
         }

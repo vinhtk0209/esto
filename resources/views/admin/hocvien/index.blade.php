@@ -53,8 +53,7 @@
                                     {{$lh->rKhoaHoc->rTaikhoan->HOTEN}}
                                 </td>
                                 <td class="budget">
-                                    <div class="col-lg-6 col-5 text-right">
-                                        <a href="admin/hocvien/ctlop/{{$lh->MALH}}" class="btn btn-sm btn-neutral">Xem chi tiết</a>
+                                <div class="col-lg-6 col-5 text-right">
                                     </div>
                                 </td>
                             </tr>
@@ -62,39 +61,33 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer py-4">
-                    <ul class="pagination justify-content-end mb-0">
-                        <li class="page-item">
-                            <a class="page-link" href="admin/hocvien?page=1">
-                                <i class="fas fa-angle-double-left"></i>
-                            </a>
-                        </li>
-                        @if ($lophoc->currentPage() == 1)
-                        <li class="page-item disabled">
-                            @else
-                        <li class="page-item">
-                            @endif
-                            <a class="page-link" href="{{$lophoc->previousPageUrl()}}">
-                                <i class="fas fa-angle-left"></i>
-                            </a>
-                        </li>
-                        @if ($lophoc->currentPage() == $lophoc->lastPage())
-                        <li class="page-item disabled">
-                            @else
-                        <li class="page-item">
-                            @endif
-                            <a class="page-link" href="{{$lophoc->nextPageUrl()}}">
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="admin/hocvien?page={{$lophoc->lastPage()}}">
-                                <i class="fas fa-angle-double-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    </nav>
-                </div>
+                <section class="pagination mb-16">
+                    <div class="container">
+                        <ul class="pagination justify-content-end pagintaion-custom">
+
+                            @if ($lophoc->currentPage() == 1)
+                            <li class="page-item disabled">
+                                @else
+                            <li class="page-item">
+                                @endif
+                                <a class="page-link" href="{{$lophoc->previousPageUrl()}}">
+                                    <i class="fas fa-angle-left"></i>
+                                </a>
+                            </li>
+
+                            @if ($lophoc->currentPage() == $lophoc->lastPage())
+                            <li class="page-item disabled">
+                                @else
+                            <li class="page-item">
+                                @endif
+                                <a class="page-link" href="{{$lophoc->nextPageUrl()}}">
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
