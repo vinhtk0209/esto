@@ -357,9 +357,35 @@
         });
     </script>
     @endif
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	<script>
+		Stripe.setPublishableKey('pk_test_51JnN53HEueodV3DAJxPIvHgy2bBdP5BmKIlvaUb1WZ64OSUZ9UcsbP2iKXzHZulqcVWvXigwCF6Wsh5Si1Ral20M00Wvg1qjBH');
 
+		var $form = $('#checkout-form');
+
+
+		$form.submit(function(event) {
+		$form.find('button').prop('disabled', true);
+		Stripe.card.createToken({
+			number: $('#card-number').val(),
+			cvc: $('#card-cvc').val(),
+			exp_month: $('#card-expiry-month').val(),
+			exp_year: $('#card-expiry-year').val(),
+			name: $('#card-name').val()
+		}, stripeResponseHandler);
+		return false;
+		});	
+
+	function stripeResponseHandler(status, response) {
+		var token = response.id;
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+
+        // Submit the form:
+        $form.get(0).submit();
+	}
+	</script>
     {{-- PAYPALL STARTS --}}
-    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    {{-- <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <script>
     var usd =  document.getElementById("paypalPrice").value;
     paypal.Button.render({
@@ -399,9 +425,8 @@
         });
         }
     }, '#paypal-button');
-    </script>
+    </script> --}}
     {{-- PAYPALL ENDS --}}
-
      <!-- JS ENDS  -->
 
 </body>

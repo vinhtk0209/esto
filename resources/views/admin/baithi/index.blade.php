@@ -12,9 +12,11 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-lg-6 col-5 text-right">
-                    <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#formloaibaithi" data-whatever="@mdo">Thêm</button>
-                </div>
+                @if (session('login') != null && session('login')->LOAITK != 4)
+                    <div class="col-lg-6 col-5 text-right">
+                        <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#formloaibaithi" data-whatever="@mdo">Thêm</button>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -44,6 +46,9 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="siso">Tên bài thi</th>
                                 <th scope="col" class="sort" data-sort="tenlop">Giảng viên</th>
+                                <th scope="col" class="sort" data-sort="ykien">Ý kiến</th>
+                                <th scope="col" class="sort" data-sort="trangthai">Trạng thái</th>
+                                <th scope="col" class="sort" data-sort="kiemduyet">Người kiểm duyệt</th>
                                 <th scope="col" class="sort" data-sort="options"></th>
                             </tr>
                         </thead>
@@ -57,9 +62,26 @@
                                     {{$bt->rTaiKhoan->HOTEN}}
                                 </td>
                                 <td class="budget">
+                                    {{$bt->COMMENT ?? 'Chưa có'}}
+                                </td>
+                                <td class="budget">
+                                    {{$bt->TRANGTHAI == 0 ? 'Chờ duyệt' : ($bt->TRANGTHAI == 1 ? 'Duyệt' : 'Từ chối')}}
+                                </td>
+                                <td class="budget">
+                                    {{$bt->rNguoiKD->HOTEN ?? 'Chưa có'}}
+                                </td>
+                                <td class="budget">
+                                    @if (session('login') != null && session('login')->LOAITK != 4)
+                                    @if ($bt->TRANGTHAI == 0)
                                     <a href="admin/baithi/sua/{{$bt->MABT}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                     <a href="admin/baithi/xoa/{{$bt->MABT}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                    @endif
                                     <a href="admin/baithi/dsdiem/{{$bt->MABT}}" class="btn btn-sm btn-neutral">Xem điểm</a>
+                                    @else
+                                    @if ($bt->TRANGTHAI == 0)
+                                    <a href="{{ route('admin.baithi.form.duyet', ['id' => $bt->MABT, 'search' => 0]) }}" class="btn btn-sm btn-neutral">Kiểm duyệt</a>
+                                    @endif
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -112,6 +134,9 @@
                                 <th scope="col" class="sort" data-sort="tenlop">Thời gian bắt đầu</th>
                                 <th scope="col" class="sort" data-sort="siso">Thời gian kết thúc</th>
                                 <th scope="col" class="sort" data-sort="ngaymolop">Giảng viên</th>
+                                <th scope="col" class="sort" data-sort="ykien">Ý kiến</th>
+                                <th scope="col" class="sort" data-sort="trangthai">Trạng thái</th>
+                                <th scope="col" class="sort" data-sort="kiemduyet">Người kiểm duyệt</th>
                                 <th scope="col" class="sort" data-sort="options"></th>
                             </tr>
                         </thead>
@@ -134,9 +159,30 @@
                                     {{$bt->rTaiKhoan->HOTEN}}
                                 </td>
                                 <td class="budget">
+                                    {{$bt->COMMENT ?? 'Chưa có'}}
+                                </td>
+                                <td class="budget">
+                                    {{$bt->TRANGTHAI == 0 ? 'Chờ duyệt' : ($bt->TRANGTHAI == 1 ? 'Duyệt' : 'Từ chối')}}
+                                </td>
+                                <td class="budget">
+                                    {{$bt->rNguoiKD->HOTEN ?? 'Chưa có'}}
+                                </td>
+                                <td class="budget">
+                                    @if (session('login') != null && session('login')->LOAITK != 4)
+                                    @if ($bt->TRANGTHAI == 0)
                                     <a href="admin/baithi/sua/{{$bt->MABT}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                     <a href="admin/baithi/xoa/{{$bt->MABT}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+<<<<<<< HEAD
                                     <a href="admin/baithi/dsdiem/{{$bt->MABT}}" class="btn btn-sm btn-neutral">Xem điểm</a>
+=======
+                                    @endif
+                                    <a href="admin/baithi/dsdiem/{{$bt->MABT}}" class="btn btn-sm btn-neutral">Xem điểm</a>
+                                    @else
+                                    @if ($bt->TRANGTHAI == 0)
+                                    <a href="{{ route('admin.baithi.form.duyet', ['id' => $bt->MABT, 'search' => 1]) }}" class="btn btn-sm btn-neutral">Kiểm duyệt</a>
+                                    @endif
+                                    @endif
+>>>>>>> 577eb96a6b8fad1fb97d3474ca546d67eeba4307
                                 </td>
                             </tr>
                             @endforeach

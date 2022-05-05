@@ -1,6 +1,7 @@
 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
     <!-- Nav items -->
     <ul class="navbar-nav">
+        @if (session('login') != null && in_array(session('login')->LOAITK, [1,2,3]))
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}" href="admin/dashboard/">
                 <i class="ni ni-tv-2 text-primary"></i>
@@ -44,7 +45,15 @@
                 <i class="ni ni-hat-3 text-blue"></i>
                 <span class="nav-link-text">Học Viên</span>
             </a>
-        </li>      
+        </li>
+        @else
+        <li class="nav-item">
+            <a class="nav-link {{ (request()->segment(2) == 'baithi') ? 'active' : '' }}" href="admin/baithi/">
+                <i class="ni ni-ungroup text-green"></i>
+                <span class="nav-link-text">Bài Thi</span>
+            </a>
+        </li>
+        @endif
         @if (session('login') != null && session('login')->LOAITK == 3)
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'danhmuc') ? 'active' : '' }}" href="admin/danhmuc/">
@@ -63,7 +72,7 @@
                 <i class="ni ni-chat-round text-gray"></i>
                 <span class="nav-link-text">Đánh Giá</span>
             </a>
-        </li>          
+        </li>
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'hoadon') ? 'active' : '' }}" href="admin/hoadon/">
                 <i class="ni ni-money-coins text-green"></i>

@@ -77,7 +77,7 @@ Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function ()
         Route::get('/search={id}', 'App\Http\Controllers\admin\BaiThiController@index');
         Route::get('/them/{id}', 'App\Http\Controllers\admin\BaiThiController@create');
         Route::post('/them/{id}', 'App\Http\Controllers\admin\BaiThiController@store');
-        Route::get('/them/{id}/chitiet', 'App\Http\Controllers\admin\BaiThiController@createChiTiet');        
+        Route::get('/them/{id}/chitiet', 'App\Http\Controllers\admin\BaiThiController@createChiTiet');
         Route::post('/them/{id}/chitiet', 'App\Http\Controllers\admin\BaiThiController@storeChiTiet');
         Route::get('/dsdiem/{id}', 'App\Http\Controllers\admin\BaiThiController@scores');
         Route::get('/dsdiem/{id}/{mahv}', 'App\Http\Controllers\admin\BaiThiController@score');
@@ -94,6 +94,8 @@ Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function ()
         Route::get('/{id}/cauhoi/sua/{mach}', 'App\Http\Controllers\admin\BaiThiController@editCauHoi');
         Route::post('/{id}/cauhoi/sua/{mach}', 'App\Http\Controllers\admin\BaiThiController@updateCauHoi');
         Route::get('/{id}/chitiet/xoa/{mach}', 'App\Http\Controllers\admin\BaiThiController@deleteCauHoi');
+        Route::get('/duyet/{id}/{search}', 'App\Http\Controllers\admin\BaiThiController@formDuyet')->name('form.duyet');
+        Route::post('/duyet/{id}/{search}', 'App\Http\Controllers\admin\BaiThiController@duyet')->name('duyet');
     });
 
     Route::prefix('lophoc')->name('lophoc.')->group(function () {

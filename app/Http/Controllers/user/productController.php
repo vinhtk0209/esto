@@ -176,6 +176,10 @@ class productController extends Controller
         if (!$exam) {
             return redirect()->route('home.index')->with('noTest', 'Không tồn tại bài thi này');
         }
+        if ($exam->TRANGTHAI == 0) {
+            return redirect()->route('home.index')->with('noTest', 'Bài thi chưa được kiểm duyệt');
+        }
+        
         $today = date("Y-m-d h:i:sa");
         $timeStart = $exam->TGBD;
         $timeFinish = $exam->TGKT;

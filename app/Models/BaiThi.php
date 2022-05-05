@@ -16,6 +16,11 @@ class BaiThi extends Model
         return $this->belongsTo('App\Models\TaiKhoan', 'MAGV');
     }
 
+    public function rNguoiKD()
+    {
+        return $this->belongsTo('App\Models\TaiKhoan', 'MANKD');
+    }
+
     public function rCTBaiThi()
     {
         return $this->hasMany('App\Models\CTBaiThi', 'MABT');

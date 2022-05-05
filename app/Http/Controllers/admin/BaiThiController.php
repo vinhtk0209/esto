@@ -314,8 +314,8 @@ class BaiThiController extends Controller
             $ctbaithi->save();
         }
 
-        if ($id < 0) return redirect('admin/baithi/them/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
-        return redirect('admin/baithi/sua/' . $id)->with('thongbao', 'Thêm câu hỏi thành công!');
+        if ($id < 0) return redirect('admin/baithi/them/' . $id . '/chitiet')->with('thongbao', 'Thêm câu hỏi thành công!');
+        return redirect('admin/baithi/sua/' . $id . '/chitiet')->with('thongbao', 'Thêm câu hỏi thành công!');
     }
 
     public function createCauHoi($id)
@@ -420,5 +420,20 @@ class BaiThiController extends Controller
         $outputCH = mb_convert_encoding($outputCH, "UTF-8", "auto");
         $output = array($outputCH, $outputPage);
         return response()->json($output);
+    }
+
+    public function formDuyet($id, $search)
+    {
+        return view('admin.baithi.duyet', compact('id', 'search'));
+    }
+
+    public function duyet(Request $request, $id, $search)
+    {
+        $baiThi = BaiThi::find($id);
+        $baiThi->TRANGTHAI = $request->status;
+        $baiThi->COMMENT = $request->comment;
+        $baiThi->MANKD = session('login')->ID;
+        $baiThi->save();
+        return redirect('admin/baithi/search=' . $search)->with('thongbao', 'Duyệt thành công!');
     }
 }
