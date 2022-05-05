@@ -420,4 +420,19 @@ class BaiThiController extends Controller
         $output = array($outputCH, $outputPage);
         return response()->json($output);
     }
+
+    public function formDuyet($id, $search)
+    {
+        return view('admin.baithi.duyet', compact('id', 'search'));
+    }
+
+    public function duyet(Request $request, $id, $search)
+    {
+        $baiThi = BaiThi::find($id);
+        $baiThi->TRANGTHAI = $request->status;
+        $baiThi->COMMENT = $request->comment;
+        $baiThi->MANKD = session('login')->ID;
+        $baiThi->save();
+        return redirect('admin/baithi/search=' . $search)->with('thongbao', 'Duyệt thành công!');
+    }
 }

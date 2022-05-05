@@ -94,6 +94,8 @@ Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function ()
         Route::get('/{id}/cauhoi/sua/{mach}', 'App\Http\Controllers\admin\BaiThiController@editCauHoi');
         Route::post('/{id}/cauhoi/sua/{mach}', 'App\Http\Controllers\admin\BaiThiController@updateCauHoi');
         Route::get('/{id}/chitiet/xoa/{mach}', 'App\Http\Controllers\admin\BaiThiController@deleteCauHoi');
+        Route::get('/duyet/{id}/{search}', 'App\Http\Controllers\admin\BaiThiController@formDuyet')->name('form.duyet');
+        Route::post('/duyet/{id}/{search}', 'App\Http\Controllers\admin\BaiThiController@duyet')->name('duyet');
     });
 
     Route::prefix('lophoc')->name('lophoc.')->group(function () {
