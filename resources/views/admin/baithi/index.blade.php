@@ -172,9 +172,6 @@
                                     @if ($bt->TRANGTHAI == 0)
                                     <a href="admin/baithi/sua/{{$bt->MABT}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                     <a href="admin/baithi/xoa/{{$bt->MABT}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
-<<<<<<< HEAD
-                                    <a href="admin/baithi/dsdiem/{{$bt->MABT}}" class="btn btn-sm btn-neutral">Xem điểm</a>
-=======
                                     @endif
                                     <a href="admin/baithi/dsdiem/{{$bt->MABT}}" class="btn btn-sm btn-neutral">Xem điểm</a>
                                     @else
@@ -182,7 +179,6 @@
                                     <a href="{{ route('admin.baithi.form.duyet', ['id' => $bt->MABT, 'search' => 1]) }}" class="btn btn-sm btn-neutral">Kiểm duyệt</a>
                                     @endif
                                     @endif
->>>>>>> 577eb96a6b8fad1fb97d3474ca546d67eeba4307
                                 </td>
                             </tr>
                             @endforeach
