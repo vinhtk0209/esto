@@ -29,7 +29,7 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="">Mã hóa đơn</th>
+                                <th scope="col" class="sort" data-sort="">Học Viên</th>
                                 <th scope="col" class="sort" data-sort="">Ngày Lập</th>
                                 <th scope="col" class="sort" data-sort="">Tổng Tiền</th>
                                 <th scope="col" class="sort" data-sort="">Tùy chọn</th>
@@ -99,8 +99,4 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> 577eb96a6b8fad1fb97d3474ca546d67eeba4307
