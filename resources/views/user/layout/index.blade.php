@@ -199,12 +199,12 @@
                 var seconds3 = Math.floor((timeLeft3 % (1000 * 60)) / 1000);
                 if (seconds3 < 10) seconds3 = "0" + seconds3;
                 document.getElementById("countdown").innerHTML = hours3 + "giờ " + minutes3 + "phút " + seconds3 + "giây";
-                if (timeLeft3 <= 0) {
-                    clearInterval(timing3);
-                    document.getElementById("countdown").innerHTML = "Đã hết thời gian làm bài";
-                    alert('Bài của bạn đã được nộp');
-                    document.location.href = 'https://esto.com/';
-                }
+                // if (timeLeft3 <= 0) {
+                //     clearInterval(timing3);
+                //     document.getElementById("countdown").innerHTML = "Đã hết thời gian làm bài";
+                //     alert('Bài của bạn đã được nộp');
+                //     document.location.href = 'https://esto.com/';
+                // }
             }, 1000);
         progress(secondProgress, secondProgress, $('#progressBar'));
         if (timeLeft3 <= 0) {
@@ -374,7 +374,7 @@
 			name: $('#card-name').val()
 		}, stripeResponseHandler);
 		return false;
-		});	
+		});
 
 	function stripeResponseHandler(status, response) {
 		var token = response.id;
@@ -427,6 +427,43 @@
     }, '#paypal-button');
     </script> --}}
     {{-- PAYPALL ENDS --}}
+
+     {{-- COMMENT START --}}
+     <script>
+        function submitComment () {
+            let data = $("#sendCommentForm").serializeArray();
+            let url = $("#sendCommentForm").attr('action');
+            $.ajax({
+                url: url,
+                method:"POST",
+                data: data,
+                dataType: "json",
+                success:function(response){
+                    console.log(response)
+                    if(response.status == 1){
+                        let html = `<div class="row style-comment">
+                                        <div class="col-md-2">
+                                            <img width="40%" src="${response.data.ANHDAIDIEN}" alt="ESTO" class="img img-responsive img-thumbnail">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p style="color:blue;">${response.data.HOTEN}</p>
+                                            <p style="color: #000;">${response.data.NGAYDG}</p>
+                                            <p>${response.data.NOIDUNG}</p>
+                                        </div>
+                                    </div>`;
+                        $("#sendCommentForm")[0].reset();
+                        $("#listComment").append(html);
+                    }else{
+                        alert('Err');
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            })
+        }
+    </script>
+    {{-- COMMENT END --}}
      <!-- JS ENDS  -->
 
 </body>

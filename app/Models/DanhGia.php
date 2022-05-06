@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class DanhGia extends Model
 {
+    public $timestamps = false;
     protected $table = "danhgia";
-    protected $primaryKey = "MAHV";
+    protected $fillable = ['MAHV', 'MAKH', 'SOSAO', 'NOIDUNG', 'NGAYDG'];
     public function rTaiKhoan()
     {
         return $this->belongsTo('App\Models\TaiKhoan', 'MAHV');

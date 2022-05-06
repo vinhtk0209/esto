@@ -14,6 +14,10 @@ use App\Models\LopHoc_BaiHoc;
 use App\Models\CTBaiLam;
 use App\Models\HoaDon;
 use App\Models\LopHoc;
+use App\Models\DanhGia;
+use App\Models\TaiKhoan;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class productController extends Controller
 {
@@ -54,7 +58,25 @@ class productController extends Controller
             ->where('danhmuc.MADM', $courseCate)
             ->whereNotIn('khoahoc.MAKH', [$productId])->get();
 
-        return view('/user/courseDetail/index')->with('category', $cateCourse)->with('productDetail', $productDetail)->with('relatedCourse', $relatedCourse)->with('sectionCourse', $sectionCourse)->with('lessonCourse', $lessonCourse)->with('countStudent', $countStudent)->with('countRate', $countRate)->with('courseOnline', $courseOnline)->with('classRoom', $classRoom);
+        $comments = DB::table('danhgia')
+            ->join('khoahoc', 'khoahoc.MAKH', '=', 'danhgia.MAKH')
+            ->join('taikhoan', 'danhgia.MAHV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
+
+        $idHvFirst = TaiKhoan::select('id')->first()->id;
+
+        return view('/user/courseDetail/index')
+            ->with('category', $cateCourse)
+            ->with('productDetail', $productDetail)
+            ->with('relatedCourse', $relatedCourse)
+            ->with('sectionCourse', $sectionCourse)
+            ->with('lessonCourse', $lessonCourse)
+            ->with('countStudent', $countStudent)
+            ->with('countRate', $countRate)
+            ->with('courseOnline', $courseOnline)
+            ->with('classRoom', $classRoom)
+            ->with('productId', $productId)
+            ->with('idHvrandom', $idHvFirst)
+            ->with('comments', $comments);
     }
 
     public function listCourse($courseCate)
@@ -179,7 +201,7 @@ class productController extends Controller
         if ($exam->TRANGTHAI == 0) {
             return redirect()->route('home.index')->with('noTest', 'Bài thi chưa được kiểm duyệt');
         }
-        
+
         $today = date("Y-m-d h:i:sa");
         $timeStart = $exam->TGBD;
         $timeFinish = $exam->TGKT;
@@ -279,6 +301,10 @@ class productController extends Controller
             ->where('danhmuc.MADM', $courseCate)
             ->whereNotIn('khoahoc.MAKH', [$productId])->get();
 
+        $comments = db::table('danhgia')
+            ->join('khoahoc', 'khoahoc.MAKH', '=', 'danhgia.MAKH')
+            ->join('taikhoan', 'danhgia.MAHV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
+
         return view('user.courseDetail.contentClass')
             ->with('category', $cateCourse)
             ->with('productDetail', $productDetail)
@@ -288,7 +314,8 @@ class productController extends Controller
             ->with('countStudent', $countStudent)
             ->with('countRate', $countRate)
             ->with('courseOnline', $courseOnline)
-            ->with('classRoom', $classRoom);
+            ->with('classRoom', $classRoom)
+            ->with('comments', $comments);;
     }
 
     public function contentClassBought($id)
@@ -350,5 +377,38 @@ class productController extends Controller
             ->with('courseOnline', $courseOnline)
             ->with('classRoom', $classRoom)
             ->with('bill', $bills);
+    }
+    public function sendComment(Request $request)
+    {
+
+        $data = $request->only([
+            'MAHV',
+            'MAKH',
+            'NOIDUNG'
+        ]);
+        if ($user = Auth::user()) {
+            $data['MAHV'] = $user->id;
+        }
+        $data['NGAYDG'] = Carbon::now()->toDateTimeString();
+        $comment = DanhGia::create($data);
+        if (!$comment) {
+            return response()->json([
+                'message' => 'Fail',
+                'status' => '-1'
+            ]);
+        }
+
+        $hocVien = $comment->rTaiKhoan;
+        $comment->HOTEN = '';
+        if ($hocVien) {
+            $comment->HOTEN = $hocVien->HOTEN;
+            $comment->ANHDAIDIEN = empty($hocVien->ANHDAIDIEN) ? asset('images/avatar.png') : asset('storage/' . $hocVien->ANHDAIDIEN);
+        }
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'Success',
+            'data' => $comment,
+        ]);
     }
 }

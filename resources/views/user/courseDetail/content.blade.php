@@ -14,7 +14,7 @@
     </div>
     <div class="cart-now btn-to-do-course mt-10">
         @if ($product->TRUCTUYEN == 0)
-        <a href="javascript:void(0)" onclick="addToCart({{ $product->MAKH }})" class="btn-course">
+        <a href="javascript:void(0)" onclick="addToCart('{{ $product->MAKH }}')" class="btn-course">
             <i class="fa fa-cart-plus" aria-hidden="true"></i>
             Thêm vào giỏ hàng
         </a>
@@ -213,29 +213,74 @@
     {{-- CONTENT COURSE ENDS --}}
 
      {{-- RATE COURSE STARTS --}}
-    <div id="rate-course" class="mt-10">
+     <div id="rate-course" class="mt-10">
         <div class="container">
             <div class="intro-course-des">
                 <div class="intro-title intro-header">
                     <h3>Đánh giá khóa học</h3>
                 </div>
-                <div class="intro-body">
-                    <div class="rate-course-summary">
-                        <span class="rate-course-ratingnumber">
-                            0</span>
-                    <div class="rate-course-rating-container">
-                        <p>
-                            <span class="star-rate">
-                                <i class="fas fa-star star-color"></i>
-                                <i class="fas fa-star star-color"></i>
-                                <i class="fas fa-star star-color"></i>
-                                <i class="fas fa-star star-color"></i>
-                            </span>
-                        </p>
-                        <span class="num-rate">0 đánh giá</span>
-                    </div>
+                <div class="intro-body" id="comments">
+                    <div class="col-sm-12">
+                        {{-- <ul>
+                            <li><a href=""><i class="fa fa-user">Người đăng: Admin 1</i></a></li>
+                            <li><a href=""><i class="fa fa-clock-o">Giờ đăng: 10:00 AM</i></a></li>
+                            <li><a href=""><i class="fa fa-calendar-o">Ngày đăng: 01/03/2022</i></a></li>
+                        </ul> --}}
+                        <style type="text/css">
+                            .style-comment{
+                                border: 1px solid #ddd;
+                                border-radius: 10px;
+                                background: #F0F0E9
+                            }
+                        </style>
+                        <div id="listComment">
+                            @foreach ($comments as $comment)
+                                <div class="row style-comment">
+
+                                    <div class="col-md-2">
+                                        <img width="40%" src=" {{ empty($comment->ANHDAIDIEN) ? asset('images/avatar.png') : asset('storage/'. $comment->ANHDAIDIEN)}}" alt="ESTO" class="img img-responsive img-thumbnail">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p style="color:blue;">{{$comment->HOTEN}}</p>
+                                        <p style="color: #000;">{{$comment->NGAYDG}}</p>
+                                        <p>{{$comment->NOIDUNG}}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        @if(session()->has('customer'))
+                            <p><b>Viết đánh giá của bạn</b></p>
+                            <form action="{{route('send-comment-ajax')}}" method="POST" id="sendCommentForm">
+                                @csrf
+                                <input type="hidden" name="MAKH" value="{{$productId}}"/>
+                                <input type="hidden" name="MAHV" value="{{$idHvrandom}}"/>
+                                <textarea name="NOIDUNG" class="comment_content" style="width: 754px; height: 200px; " required></textarea>
+                                <br>
+                                <b>Đánh giá sao: </b>
+                                <button type="button" class="btn btn-primary pull-right" onclick="submitComment()" >Gửi đánh giá</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
+                {{-- <div class="intro-body">
+                    <div class="rate-course-summary">
+                        <span class=""></span>
+                    <div class="rate-course-rating-containerate-course-ratingnumberr">
+                        <b>Đánh giá sao:
+                            <span class="star-rate">
+                            <i class="fas fa-star star-color"></i>
+                            <i class="fas fa-star star-color"></i>
+                            <i class="fas fa-star star-color"></i>
+                            <i class="fas fa-star star-color"></i>
+                        </span>
+                        </b>
+                        <span class="num-rate">
+
+                        </span>
+
+                    </div>
+                    </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -304,4 +349,3 @@
 
 </section>
 {{-- COURSE DETAIL ENDS --}}
-
