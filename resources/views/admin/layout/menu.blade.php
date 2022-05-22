@@ -1,13 +1,15 @@
 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
     <!-- Nav items -->
     <ul class="navbar-nav">
-        @if (session('login') != null && in_array(session('login')->LOAITK, [1,2,3]))
+        @if (session('login') != null && session('login')->LOAITK ==3)
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'dashboard') ? 'active' : '' }}" href="admin/dashboard/">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
             </a>
         </li>
+        @endif
+        @if (session('login') != null && in_array(session('login')->LOAITK, [2,3]))
         <li class="nav-item">
             <a class="nav-link {{ (request()->segment(2) == 'khoahoc') ? 'active' : '' }}" href="admin/khoahoc/">
                 <i class="ni ni-planet text-orange"></i>

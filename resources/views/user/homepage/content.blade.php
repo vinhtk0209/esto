@@ -12,42 +12,54 @@
        <div class="best-seller-body">
            <div class="container">
                <ul class="list-best-seller-courses list-course d-flex flex-wrap">
-                   @foreach ($listCourse as $course)
-                   <li class="list-best-seller list-item">
-                       <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
-                           <div class="img-course">
-                               <img class="img-responsive "
-                                    src="{{('./user/assets/imgCourse')}}/{{$course->ANH}}"
-                                   alt="{{$course->TENKH}}">
-                           </div>
-                           <div class="course-des">
-                               <div class="name-course">
-                                   <h4>{{$course->TENKH}}</h4>
-                               </div>
+                @foreach ($listCourse as $course)
+                @php($tien = 0)
+                @foreach($listKM as $km)
+                    @if($km->MAKH == $course->MAKH)
+                        @php($tien = 1)
+                    @endif
+                @endforeach
+               <li class="list-best-seller list-item">
+                   <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
+                       <div class="img-course">
+                           <img class="img-responsive "
+                                src="{{('./user/assets/imgCourse')}}/{{$course->ANH}}"
+                               alt="{{$course->TENKH}}">
+                        </div>
+                        <div class="course-des">
+                            <div class="name-course">
+                                <h4>{{$course->TENKH}}</h4>
+                            </div>
 
-                               <div class="name-teacher d-flex flex-space">
-                                   <p class="">{{$course->HOTEN}}</p>
-                                   {{-- <div class="price price-discount">
-                                       <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                   </div> --}}
+                            <div class="name-teacher d-flex flex-space">
+                                <p class="">{{$course->HOTEN}}</p>
+                                @if($tien == 1)
+                                <div class="price price-discount">
+                                    <p><del>{{number_format($course->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
                                 </div>
-                               <div class="price-course d-flex flex-space">
-                                   <div class="rate">
-                                       <p>
-                                           <span class="star-rate">
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                               <i class="fas fa-star star-color"></i>
-                                           </span>
-                                       </p>
-                                   </div>
-                                   <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
+                                @endif
+                            </div>
+                           <div class="price-course d-flex flex-space">
+                               <div class="rate">
+                                   <p>
+                                       <span class="star-rate">
+                                           <i class="fas fa-star star-color"></i>
+                                           <i class="fas fa-star star-color"></i>
+                                           <i class="fas fa-star star-color"></i>
+                                           <i class="fas fa-star star-color"></i>
+                                       </span>
+                                   </p>
                                </div>
-                           </div>
-                       </a>
-                   </li>
-                   @endforeach
+                               @if($tien == 1)
+                                <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+                               @else
+                                <p>{{number_format($course->DONGIA)}}<span class="price-unit"><sup>vnd</sup></span></p>
+                               @endif
+                            </div>
+                       </div>
+                   </a>
+               </li>
+               @endforeach
                    {{-- <li class="list-best-seller list-item">
                        <a href="" class="course-box">
                            <div class="img-course">
@@ -103,6 +115,12 @@
         <div class="container">
             <ul class="list-english-course -courses list-course d-flex flex-wrap">
                 @foreach ($listEnglishCourse as $course)
+                @php($tien2 = 0)
+                    @foreach($listKM as $km)
+                        @if($km->MAKH == $course->MAKH)
+                            @php($tien2 = 1)
+                        @endif
+                    @endforeach
                 <li class="list-best-seller list-item">
                     <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                         <div class="img-course">
@@ -117,10 +135,12 @@
 
                             <div class="name-teacher d-flex flex-space">
                                 <p class="">{{$course->HOTEN}}</p>
-                                {{-- <div class="price price-discount">
-                                    <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                </div> --}}
-                             </div>
+                                @if($tien2 == 1)
+                                <div class="price price-discount">
+                                    <p><del>{{number_format($course->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                </div>
+                                @endif
+                            </div>
                             <div class="price-course d-flex flex-space">
                                 <div class="rate">
                                     <p>
@@ -132,12 +152,17 @@
                                         </span>
                                     </p>
                                 </div>
-                                <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
+                                @if($tien2 == 1)
+                                    <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                @else
+                                    <p>{{number_format($course->DONGIA)}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                @endif
                             </div>
                         </div>
                     </a>
                 </li>
                 @endforeach
+
 
                    {{-- <li class="list-special-offer list-item">
                        <a href="" class="course-box">
@@ -196,6 +221,12 @@
                 <ul class="swiper list-business-courses list-course  ">
                     <div class="swiper-wrapper">
                         @foreach ($listBusinessCourse as $businessCourse)
+                        @php($tien3 = 0)
+                        @foreach($listKM as $km)
+                            @if($km->MAKH == $businessCourse->MAKH)
+                                @php($tien3 = 1)
+                            @endif
+                        @endforeach
                             <li class="swiper-slide list-business-course list-item">
                                     <a href="{{URL::to('/courseDetail/'.$businessCourse->MAKH)}}" class="course-box">
                                         <div class="img-course">
@@ -209,9 +240,11 @@
                                             </div>
                                             <div class="name-teacher d-flex flex-space">
                                                 <p class="">{{$businessCourse->HOTEN}}</p>
-                                                {{-- <div class="price price-discount">
-                                                    <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                                </div> --}}
+                                                @if($tien3 == 1)
+                                                <div class="price price-discount">
+                                                    <p><del>{{number_format($businessCourse->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                                </div>
+                                                @endif
                                             </div>
                                             <div class="price-course d-flex flex-space">
                                                 <div class="rate">
@@ -224,8 +257,13 @@
                                                         </span>
                                                     </p>
                                                 </div>
-                                                <p>{{number_format($businessCourse->DONGIA)}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                                @if($tien3 == 1)
+                                                <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                            @else
+                                <p>{{number_format($course->DONGIA)}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                            @endif
                                             </div>
+
                                         </div>
                                     </a>
                             </li>
@@ -255,6 +293,12 @@
            <div class="container">
                <ul class="list-healthy-courses list-course d-flex flex-wrap">
                 @foreach ($listHealthyCourse as $course)
+                @php($tien4 = 0)
+                        @foreach($listKM as $km)
+                            @if($km->MAKH == $course->MAKH)
+                                @php($tien4 = 1)
+                            @endif
+                        @endforeach
                 <li class="list-best-seller list-item">
                     <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                         <div class="img-course">
@@ -269,9 +313,11 @@
 
                             <div class="name-teacher d-flex flex-space">
                                 <p class="">{{$course->HOTEN}}</p>
-                                {{-- <div class="price price-discount">
-                                    <p><del>600.000</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                </div> --}}
+                                @if($tien4 == 1)
+                                <div class="price price-discount">
+                                    <p><del>{{number_format($course->DONGIA)}} </del><span class="price-unit"><sup>vnd</sup></span></p>
+                                </div>
+                                @endif
                              </div>
                             <div class="price-course d-flex flex-space">
                                 <div class="rate">
@@ -284,7 +330,11 @@
                                         </span>
                                     </p>
                                 </div>
-                                <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>
+                                @if($tien4 == 1)
+                                    <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                @else
+                                    <p>{{number_format($course->DONGIA)}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                @endif
                             </div>
                         </div>
                     </a>

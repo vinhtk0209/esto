@@ -19,7 +19,7 @@ use Exception;
 
 class userController extends Controller
 {
-    public function showFormUpdateProfile()
+    public function showFormUpdateProfile(Request $request)
     {
         if (Session::has('customer')) {
             $user = TaiKhoan::find(Session::get('customer')->ID);
@@ -42,6 +42,7 @@ class userController extends Controller
                 'phonenumber.regex' => 'Không tồn tại số điện thoại này',
             ]
         );
+
         try {
             $data = $request->all();
             $user = TaiKhoan::find($id);
@@ -93,6 +94,51 @@ class userController extends Controller
             return view('user.infoManager.myCourse', compact('listMyCourse', 'classMyCourse', 'bills'));
         } else {
             return redirect()->route('home.index');
+        }
+    }
+    public function showMyScore()
+    {
+
+        if (session::has('customer')) {
+            $user = TaiKhoan::find(Session::get('customer')->ID);
+            $mahv = $user->ID;
+            $bailamAll = DB::table('BaiLam')
+                ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
+                ->join('BaiThi', 'BaiThi.MABT', '=', 'BaiLam.MABT')
+                ->orderBy('BaiLam.MABT', 'desc')
+                ->where('MAHV', $mahv)->paginate(5);
+
+            $dsDiem = [];
+            foreach ($bailamAll as $bla) {
+                $bailam = DB::table('BaiLam')
+                    ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
+                    ->where('MABT', $bla->MABT)
+                    ->where('MAHV', $mahv)->first();
+
+                $ctbailam = DB::table('BaiLam')
+                    ->join('CTBaiLam', 'CTBaiLam.MABL', '=', 'BaiLam.MABL')
+                    ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
+                    ->where('MABT', $bla->MABT)
+                    ->where('MAHV', $mahv)->get();
+
+                $baithi = DB::table('BaiThi')
+                    ->join('CTBaiThi', 'CTBaiThi.MABT', '=', 'BaiThi.MABT')
+                    ->join('CauHoi', 'CauHoi.MACH', '=', 'CTBaiThi.MACH')
+                    ->get();
+
+                $diem = 0;
+                foreach ($ctbailam as $ct) {
+                    $CAUHOI = $baithi->where('MACH', $ct->MACH)->where('MABT', $bla->MABT)->first();
+                    if ($ct->DAPAN == $CAUHOI->CAUDUNG)
+                        $diem += $CAUHOI->DIEM;
+                }
+                $dsDiem[$bailam->MABL] = $diem;
+            }
+            if ($bailam) {
+                return view('user.infoManager.myScore', compact('bailamAll', 'mahv', 'user', 'ctbailam', 'baithi', 'dsDiem'));
+            } else {
+                return redirect()->back()->with('noTest', 'Bạn chưa làm bài kiểm tra');
+            }
         }
     }
 

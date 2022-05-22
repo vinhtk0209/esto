@@ -45,7 +45,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Khóa học</label></br>
-                                <select id="MAKHbaithi" name="MAKHbaithi">
+                                <select id="MAKHbaithi" name="MAKHbaithi" class="form-control" style="height:46px">
                                     <option value="">--------------------Khóa học--------------------</option>
                                     @foreach($khoahoc as $kh)
                                     <option @if($baihoc[0]->MAKH == $kh->MAKH)
@@ -59,7 +59,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Bài học</label></br>
-                                <select id="MABH" name="MABH">
+                                <select id="MABH" name="MABH" class="form-control" style="height:46px">
                                     @foreach($baihoc as $bh)
                                     <option @if($baihoc[0]->MABH == $bh->MABH)
                                         {{"selected"}}
@@ -97,7 +97,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Khóa học</label></br>
-                                <select id="MAKHbaithi" name="MAKHbaithi">
+                                <select id="MAKHbaithi" name="MAKHbaithi" class="form-control" style="height:46px">
                                     <option value="">--------------------Khóa học--------------------</option>
                                     @foreach($khoahoc as $kh)
                                     <option value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>

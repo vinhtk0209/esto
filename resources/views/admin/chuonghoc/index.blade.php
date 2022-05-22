@@ -61,7 +61,7 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Card footer -->                
+                <!-- Card footer -->
                 @if ($chuonghoc->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0" id="paginate">
@@ -106,7 +106,7 @@
     @csrf
     <div class="modal fade" id="formchuonghoc" tabindex="-1" role="dialog" aria-labelledby="formchuonghocLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="min-width:625px">
                 <div class="modal-header">
                     <h5 class="modal-title" id="formchuonghocLabel">Thêm chương học</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -116,9 +116,9 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="form-control-label">Khóa học</label>
-                        <select id="MAKHchuong" name="MAKH">
+                        <select id="MAKHchuong" name="MAKH" class="form-control " style="height:46px">
                             @foreach($khoahoc as $kh)
-                            <option value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>
+                            <option value="{{ $kh->MAKH }}" class="w-100">{{ $kh->TENKH }}</option>
                             @endforeach
                         </select>
                     </div>

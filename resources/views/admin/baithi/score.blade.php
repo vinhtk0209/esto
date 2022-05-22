@@ -8,7 +8,7 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="admin/baithi/"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="admin/baithi/">Quản Lý Bài Thi</a></li>                            
+                            <li class="breadcrumb-item"><a href="admin/baithi/">Quản Lý Bài Thi</a></li>
                             <li class="breadcrumb-item"><a href="admin/baithi/dsdiem/{{$id}}">Quản Lý Điểm</a></li>
                             <li class="breadcrumb-item"><a href="admin/baithi/dsdiem/{{$id}}/{{$mahv}}">Điểm học viên</a></li>
                         </ol>
@@ -38,8 +38,8 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="siso">Câu hỏi</th>
                                 <th scope="col" class="sort" data-sort="tenlop">Đáp án học viên</th>
-                                <th scope="col" class="sort" data-sort="tenlop">Câu đúng</th>                                
-                                <th scope="col" class="sort" data-sort="tenlop">Điểm</th>                                
+                                <th scope="col" class="sort" data-sort="tenlop">Câu đúng</th>
+                                <th scope="col" class="sort" data-sort="tenlop">Điểm</th>
                                 <th scope="col" class="sort" data-sort="tenlop"></th>
                             </tr>
                         </thead>
@@ -60,7 +60,7 @@
                                     {{$bt->DIEM}}
                                 </td>
                                 <td class="budget">
-                                    @if ($cautl->DAPAN != $bt->CAUDUNG) x
+                                    @if ($cautl->DAPAN != $bt->CAUDUNG) Sai
                                     @endif
                                 </td>
                             </tr>

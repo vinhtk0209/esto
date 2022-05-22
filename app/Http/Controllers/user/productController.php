@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
-use App\Models\LopHoc_BaiHoc;
 use App\Models\CTBaiLam;
 use App\Models\HoaDon;
 use App\Models\LopHoc;
@@ -41,7 +40,6 @@ class productController extends Controller
 
 
 
-
         foreach ($productDetail as $value) {
             $courseCate = $value->MADM;
             $courseOnline = $value->TRUCTUYEN;
@@ -64,6 +62,14 @@ class productController extends Controller
 
         $idHvFirst = TaiKhoan::select('id')->first()->id;
 
+        $today = Carbon::createFromTimestamp(strtotime(date("Y-m-d h:i:sa")));
+        $listKM = DB::table('khoahoc')
+            ->join('ctkhuyenmai', 'khoahoc.MAKH', '=', 'ctkhuyenmai.MAKH')
+            ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+            ->where('khuyenmai.NGAYBD', '<=', $today)
+            ->where('khuyenmai.NGAYKT', '>=', $today)
+            ->get();
+
         return view('/user/courseDetail/index')
             ->with('category', $cateCourse)
             ->with('productDetail', $productDetail)
@@ -76,7 +82,8 @@ class productController extends Controller
             ->with('classRoom', $classRoom)
             ->with('productId', $productId)
             ->with('idHvrandom', $idHvFirst)
-            ->with('comments', $comments);
+            ->with('comments', $comments)
+            ->with('listKM', $listKM);
     }
 
     public function listCourse($courseCate)
@@ -173,7 +180,14 @@ class productController extends Controller
 
     public function getCart()
     {
-        return view('user.cart.index');
+        $today = Carbon::createFromTimestamp(strtotime(date("Y-m-d h:i:sa")));
+        $listKM = DB::table('khoahoc')
+            ->join('ctkhuyenmai', 'khoahoc.MAKH', '=', 'ctkhuyenmai.MAKH')
+            ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
+            ->where('khuyenmai.NGAYBD', '<=', $today)
+            ->where('khuyenmai.NGAYKT', '>=', $today)
+            ->get();
+        return view('user.cart.index', compact('listKM'));
     }
 
     public function deleteItem($id)
@@ -210,6 +224,11 @@ class productController extends Controller
         }
         if (strtotime($today) >  strtotime($timeFinish))
             return redirect()->route('home.index')->with('noTest', 'Đã hết giờ làm bài');
+
+        $bailam = BaiLam::where('MAHV', Session::get('customer')->ID)
+            ->where('MABT', $request->code)->get();
+        if (count($bailam) != 0)
+            return redirect()->route('home.index')->with('noTest', 'Bạn đã làm bài thi này');
         return redirect('exam/' . $request->code);
     }
 

@@ -12,44 +12,43 @@ class HoaDonController extends Controller
 {
     public function index()
     {
-        $hoadon = DB::table('hoadon') 
-        ->join('taikhoan','hoadon.MAHV', '=', 'taikhoan.ID')
-        ->paginate(10);
+        if (session('login')->LOAITK == 3) {
+            $hoadon = DB::table('hoadon')
+                ->join('taikhoan', 'hoadon.MAHV', '=', 'taikhoan.ID')
+                ->paginate(10);
 
-        $tien = 0;
+            $tien = 0;
 
-        $khoahoc = CTHoaDon::all();
+            $khoahoc = CTHoaDon::all();
 
-        // foreach ($khoahoc as $kh)
-        // {
-        //     $tien += $kh->DONGIA;
-        // }
-        // $tien = DB::table('khoahoc')
-        // ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
-        // ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
-        // ->sum('khoahoc.DONGIA');
-        return view('admin.hoadon.index',compact('hoadon','khoahoc', 'tien'));
-    } 
+            return view('admin.hoadon.index', compact('hoadon', 'khoahoc', 'tien'));
+        } else {
+            return view('admin.thongbao.index');
+        }
+    }
 
     public function detail($id)
     {
-        $tenHV = DB::table('hoadon')
-        ->join('taikhoan', 'hoadon.MAHV', '=', 'taikhoan.ID')
-        ->where('hoadon.MAHD', $id)
-        ->get();
-        
-        $tien = 0;
+        if (session('login')->LOAITK == 3) {
+            $tenHV = DB::table('hoadon')
+                ->join('taikhoan', 'hoadon.MAHV', '=', 'taikhoan.ID')
+                ->where('hoadon.MAHD', $id)
+                ->get();
 
-        $detail = DB::table('khoahoc')
-        ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
-        ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
-        ->join('taikhoan', 'khoahoc.MAGV', '=', 'taikhoan.ID')
-        ->where('hoadon.MAHD',$id)
-        ->get();
-        foreach ($detail as $dt)
-        {
-            $tien +=$dt->DONGIA;
+            $tien = 0;
+
+            $detail = DB::table('khoahoc')
+                ->join('cthoadon', 'khoahoc.MAKH', '=', 'cthoadon.MAKH')
+                ->join('hoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
+                ->join('taikhoan', 'khoahoc.MAGV', '=', 'taikhoan.ID')
+                ->where('hoadon.MAHD', $id)
+                ->get();
+            foreach ($detail as $dt) {
+                $tien += $dt->DONGIA;
+            }
+            return view('admin.hoadon.detail', compact('tien', 'detail', 'tenHV'));
+        } else {
+            return view('admin.thongbao.index');
         }
-        return view('admin.hoadon.detail', compact('tien', 'detail', 'tenHV'));
     }
 }

@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="container-fluid mt--6">
-    <div class="row">        
+    <div class="row">
         <div class="col-xl-8 order-xl-1">
             <div class="card">
                 <div class="card-header">
@@ -45,7 +45,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Khóa học</label></br>
-                                        <select name="MAKH">
+                                        <select name="MAKH" class="form-control" style="height:46px">
                                             @foreach($khoahoc as $kh)
                                             <option @if($lophoc->MAKH == $kh->MAKH)
                                                 {{"selected"}}

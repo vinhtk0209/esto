@@ -199,12 +199,12 @@
                 var seconds3 = Math.floor((timeLeft3 % (1000 * 60)) / 1000);
                 if (seconds3 < 10) seconds3 = "0" + seconds3;
                 document.getElementById("countdown").innerHTML = hours3 + "giờ " + minutes3 + "phút " + seconds3 + "giây";
-                // if (timeLeft3 <= 0) {
-                //     clearInterval(timing3);
-                //     document.getElementById("countdown").innerHTML = "Đã hết thời gian làm bài";
-                //     alert('Bài của bạn đã được nộp');
-                //     document.location.href = 'https://esto.com/';
-                // }
+                if (timeLeft3 <= 0) {
+                    clearInterval(timing3);
+                    document.getElementById("countdown").innerHTML = "Đã hết thời gian làm bài";
+                    alert('Bài của bạn đã được nộp');
+                    document.location.href = 'https://esto.com/';
+                }
             }, 1000);
         progress(secondProgress, secondProgress, $('#progressBar'));
         if (timeLeft3 <= 0) {

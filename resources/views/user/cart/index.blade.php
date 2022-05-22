@@ -24,39 +24,51 @@
                     </thead>
                     <tbody>
                         @php
-                            use App\Models\Cart;
-                            $oldCart = Session::get('cart');
-                            $cart = new Cart($oldCart);
-                        @endphp
-                        @if (!empty($cart->items))
-                            @foreach ($cart->items as $row)
-                                <tr>
-                                    <td>
-                                        <img src="{{('./user/assets/imgCourse')}}/{{$row['item']['ANH']}}" alt="{{ $row['item']['TENKH'] }}" width="100">
-                                    </td>
-                                    <td>
-                                        <h5>{{ $row['item']['TENKH'] }}</h5>
-                                    </td>
-                                    <td>
-                                        {{ number_format($row['item']['DONGIA'],-3,',',',') }} vnd
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('delete.item', ['id' => $row['item']['MAKH']]) }}">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                        use App\Models\Cart;
+                        $oldCart = Session::get('cart');
+                        $cart = new Cart($oldCart);
+                    @endphp
+                    @if (!empty($cart->items))
+                        @foreach ($cart->items as $row)
+                        @php($temp = false)
+                            @foreach($listKM as $km)
+                                @if($km->MAKH == $row['item']['MAKH'])
+                                    @php($temp = true)
+                                @endif
                             @endforeach
-                        @else
                             <tr>
-                                <td colspan="5" align="center">
-                                 <i class="fa fa-shopping-cart fs-100 color-cart" aria-hidden="true"></i>
-                                <h3 class="py-3 text-danger">
-                                    Chưa có khóa học nào
-                                </h3>
-                            </td>
+                                <td>
+                                    <img src="{{('./user/assets/imgCourse')}}/{{$row['item']['ANH']}}" alt="{{ $row['item']['TENKH'] }}" width="100">
+                                </td>
+                                <td>
+                                    <h5>{{ $row['item']['TENKH'] }}</h5>
+                                </td>
+                                <td>
+                                    @if($temp == false)
+                                        {{ number_format($row['item']['DONGIA'],-3,',',',') }} vnd
+                                    @else
+                                        <!-- <del>{{number_format($row['item']['DONGIA'],-3,',',',')}} vnd</del>
+                                        <br> -->
+                                        {{number_format($row['item']['DONGIA']-($row['item']['DONGIA']*$km->TYLEKM/100),-3,',',',')}} vnd
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('delete.item', ['id' => $row['item']['MAKH']]) }}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
-                        @endif
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="5" align="center">
+                            <i class="fa fa-shopping-cart fs-100 color-cart" aria-hidden="true"></i>
+                            <h3 class="py-3 text-danger">
+                                Chưa có khóa học nào
+                            </h3>
+                        </td>
+                        </tr>
+                    @endif
                     </tbody>
                 </table>
             </div>

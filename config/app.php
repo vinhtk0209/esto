@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Dawson\Youtube\YoutubeServiceProvider::class,
         /*
          * Package Service Providers...
          */

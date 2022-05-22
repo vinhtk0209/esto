@@ -103,7 +103,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Giảng viên</label></br>
-                                        <select name="MATK" id="MATK">
+                                        <select name="MATK" id="MATK" class="form-control" style="height:46px">
                                             @foreach($taikhoan as $tk)
                                             <option value="{{ $tk->ID }}" onkeyup="textChange()">{{ $tk->HOTEN }}</option>
                                             @endforeach
@@ -132,7 +132,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Môn học</label></br>
-                                        <select id="MADM" name="MADM">
+                                        <select id="MADM" name="MADM" class="form-control" style="height:46px">
                                             @foreach($danhmuc as $dm)
                                             <option value="{{ $dm->MADM }}">{{ $dm->TENDM }}</option>
                                             @endforeach

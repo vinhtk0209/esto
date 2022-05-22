@@ -32,6 +32,7 @@
                     {{session('thongbao')}}
                 </div>
                 @endif
+                <br><br><br>
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -61,22 +62,21 @@
                                     Chưa áp dụng
                                     @endif
                                     @if($km->MATT==2)
-                                    Đang áp dụng
+                                        Đang áp dụng
                                     @endif
                                     @if($km->MATT==3)
-                                    Ngưng áp dụng
+                                        Ngưng áp dụng
                                     @endif
                                 </td>
                                 <td class="">
-                                    <a href="admin/khuyenmai/sua/{{$km->MAKM}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="admin/khuyenmai/xoa/{{$km->MAKM}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                    <a href="admin/khuyenmai/sua/{{$km->MAKM}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/khuyenmai/xoa/{{$km->MAKM}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
                                 </td>
                                 @endforeach
                         </tbody>
                     </table>
                 </div>
                 <!-- Card footer -->
-                @if ($khuyenmai->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item">
@@ -108,8 +108,8 @@
                             </a>
                         </li>
                     </ul>
+                    </nav>
                 </div>
-                @endif
             </div>
         </div>
     </div>

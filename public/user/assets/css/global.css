@@ -196,6 +196,10 @@ p {
     padding-top: 30px !important;
 }
 
+.box-shadow-my-score-tale {
+    box-shadow: 0 0 2rem 0 rgb(136 152 170 / 15%) !important;
+}
+
 .mt-5 {
     margin-top: 5px !important;
 }
@@ -275,11 +279,3 @@ p {
 .height-505 {
     height: 505px !important;
 }
-
-
-
-
-
-
-
-

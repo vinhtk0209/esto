@@ -94,7 +94,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Giảng viên</label></br>
-                                        <select name="MATK" id="MATK">
+                                        <select name="MATK" id="MATK" class="form-control" style="height:46px">
                                             @foreach($taikhoan as $tk)
                                             <option @if($khoahoc->MAGV == $tk->ID)
                                                 {{"selected"}}
@@ -127,7 +127,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Môn học</label></br>
-                                        <select name="MADM">
+                                        <select name="MADM" class="form-control" style="height:46px">
                                             @foreach($danhmuc as $dm)
                                             <option @if($khoahoc->MADM == $dm->MADM)
                                                 {{"selected"}}

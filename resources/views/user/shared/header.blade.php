@@ -88,6 +88,12 @@
                                                 </a>
                                             </li>
                                             <li class="dropdown-item">
+                                                <a href="{{ route('show.my.score') }}">
+                                                    <i class="fas fa-eye"></i>
+                                                    Bài làm của tôi
+                                                </a>
+                                            </li>
+                                            <li class="dropdown-item">
                                                 <a href="{{route('logout')}}">
                                                     <i class="fas fa-sign-out-alt"></i>
                                                     Đăng xuất

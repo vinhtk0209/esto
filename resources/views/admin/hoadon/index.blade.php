@@ -54,7 +54,9 @@
                                     {{$tien}}
                                 </td>
                                 <td class="">
-                                    <a href="admin/hoadon/chitiet/{{$hd->MAHD}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/hoadon/chitiet/{{$hd->MAHD}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><span class="material-icons">
+                                        visibility
+                                        </span></a>
                                 </td>
                                 @endforeach
                         </tbody>

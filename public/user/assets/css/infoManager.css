@@ -1,5 +1,5 @@
 :root {
-    --color-main: #444;
+    --color-main: #439141;
     --color-disabled: #979797;
     --bg-info: #fff;
 }
@@ -23,12 +23,18 @@
     font-size: 18px;
 }
 
-/* .nav-pills .nav-link.active {
+/* .custom-personal-active {
     color: var(--color-main);
     background: transparent;
-    border-bottom: 4px solid;
+    border-bottom: 2px solid;
 } */
 
+/* link.active-custom-info {
+    font-weight: bold;
+    border-color: #439141 #439141 #fff;
+} */
 
-
-
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: var(--color-main);
+}

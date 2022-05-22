@@ -7,9 +7,9 @@
                 <div class="col-lg-6 col-7">
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="admin/Khuyenmai/"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="admin/Khuyenmai/">Quản Lý Khuyến Mãi</a></li>
-                            <li class="breadcrumb-item"><a href="admin/Khuyenmai/sua/{{$khuyenmai->MAKM}}">Sửa Khuyến Mãi</a></li>
+                            <li class="breadcrumb-item"><a href="admin/khuyenmai/"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/khuyenmai/">Quản Lý Khuyến Mãi</a></li>
+                            <li class="breadcrumb-item"><a href="admin/khuyenmai/sua/{{$khuyenmai->MAKM}}">Sửa Khuyến Mãi</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="container-fluid mt--6">
-    <div class="row">        
+    <div class="row">
         <div class="col">
             <div class="card">
             <div class="card-header">
@@ -57,9 +57,9 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
-                                    <div class="form-group">
+                                <div class="form-group">
                                     <label class="form-control-label"  for="input-username">Tỷ lệ (%)</label>
-                                    <input type="number" name="TYLEKM" class="form-control" value="{{$khuyenmai->TYLEKM}}" required>
+                                    <input type="number" min="0" max="50" name="TYLEKM" class="form-control" value="{{$khuyenmai->TYLEKM}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-email">Thời điểm</label>
-                                        <input type="time" name="TDBD" class="form-control" value="{{date('h:i',strtotime($khuyenmai->NGAYBD))}}" required>
+                                        <input type="time" name="TDBD" class="form-control" value="{{date('H:i',strtotime($khuyenmai->NGAYBD))}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" >Thời điểm</label>
-                                        <input type="time" name="TDKT" class="form-control" value="{{date('h:i',strtotime($khuyenmai->NGAYKT))}}" required>
+                                        <input type="time" name="TDKT" class="form-control" value="{{date('H:i',strtotime($khuyenmai->NGAYKT))}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -100,27 +100,21 @@
                             <div class="">
                                 <span class="error-message">{{session('thatbai')}}</span>
                             </div>
-                            @endif 
+                            @endif
                             <div class="row">
-                                <div class="col-lg-3 center">
+                            <div class="col-lg-3 center">
                                     <div class="form-group">
                                     <label class="form-control-label" for="input-username">Danh sách áp dụng</label></br>
                                         <input name="hinhthuc" type="checkbox" id="all" value="1" style="vertical-align:middle; cursor: pointer;" onClick='toggle(this)' >
-                                        <label>Tất cả khóa học</label><br>    
-                                        <!-- <input name="hinhthuc" type="radio" id="all" value="1" style="vertical-align:middle; cursor: pointer;" checked onclick="text(0)">
                                         <label>Tất cả khóa học</label><br>
-                                        <input name="hinhthuc" type="radio" id="list" value="0" style="vertical-align:middle; cursor: pointer;" onclick="text(1)"> 
-                                        <label>Khóa học tùy chọn</label><br> -->
-                                        <!-- <input name="hinhthuc" type="radio" id="course" value="0" style="vertical-align:middle; cursor: pointer;">
-                                        <label>Khóa học</label><br>
-                                        <input name="hinhthuc" type="radio" id="class" value="0" style="vertical-align:middle; cursor: pointer;">
-                                        <label>Lớp học</label><br>
-                                        <input name="hinhthuc" type="radio" id="teacher" value="0" style="vertical-align:middle; cursor: pointer;">
-                                        <label>Giảng viên</label> -->
                                     </div>
                                 </div>
-                            </div>   
-                        </div> 
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default">Lưu</button>
+                        </div>
+                        <br>
                         <div class="pl-lg-4">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
@@ -129,33 +123,31 @@
                                         <th scope="col" class="sort" data-sort="">Tùy chọn</th>
                                     </tr>
                                 </thead>
-                                <tbody class="list">                                                                          
+                                <tbody class="list">
                                     @foreach($khoahoc as $kh)
-                                        <tr>                                
+                                        <tr>
                                             <td class="budget">
                                                 {{$kh->TENKH}}
                                             </td>
-                                            <td>
-                                                <input type="checkbox" name="danhsach[]" value="{{$kh->MAKH}}" 
+                                             <td>
+                                                <input type="checkbox" name="danhsach[]" value="{{$kh->MAKH}}"
                                                 @foreach($ctkhuyenmai as $ctkm)
                                                     @if($kh->MAKH == $ctkm->MAKH)
                                                         {{'checked'}}
                                                     @endif
-                                                @endforeach >  
-                                            </td>                                    
-                                        </tr>  
-                                    @endforeach 
+                                                @endforeach >
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
-                            </table>                    
-                        </div>  
-                        <div class="text-center">                            
-                            <button type="submit" class="btn btn-default">Lưu</button>   
-                        </div>                     
+                            </table>
+                        </div>
+
                     </form>
-                    <br>                                                                       
+                    <br>
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 </div>
 @endsection

@@ -47,7 +47,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Khóa học</label></br>
-                                        <select name="MAKH">
+                                        <select name="MAKH" class="form-control" style="height:46px">
                                             @foreach($khoahoc as $kh)
                                             <option value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>
                                             @endforeach

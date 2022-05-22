@@ -90,7 +90,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Loại tài khoản</label>
-                                <select name="LOAITK" id="LOAITK">
+                                <select name="LOAITK" id="LOAITK" class="form-control" style="height:46px">
                                     @if ($taikhoan->LOAITK ==1)
                                     <option value="1">Học Viên</option>
                                     @else

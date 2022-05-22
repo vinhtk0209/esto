@@ -21,16 +21,32 @@ class LoginController extends Controller
         $login = "";
         $taikhoan = TaiKhoan::all();
         foreach ($taikhoan as $tk) {
-            if ($tk->EMAIL == $request->EMAIL && Hash::check($request->MATKHAU, $tk->MATKHAU)) {
+            if ($tk->EMAIL == $request->EMAIL && Hash::check($request->MATKHAU, $tk->MATKHAU) && $tk->LOAITK == 3) {
+                // admin
                 $login = $tk;
-                $check = 1;
+                $check = 3;
+                break;
+            } else if ($tk->EMAIL == $request->EMAIL && Hash::check($request->MATKHAU, $tk->MATKHAU) && $tk->LOAITK == 2) {
+                // teacher
+                $login = $tk;
+                $check = 2;
+                break;
+            } else if ($tk->EMAIL == $request->EMAIL && Hash::check($request->MATKHAU, $tk->MATKHAU) && $tk->LOAITK == 4) {
+                //nkd
+                $login = $tk;
+                $check = 4;
                 break;
             }
         }
-        if ($check == 1) {
+        if ($check == 3) {
             session(['login' => $login]);
-            // return redirect('admin/dashboard');
+            return redirect('admin/dashboard');
+        } elseif ($check == 2) {
+            session(['login' => $login]);
             return redirect('admin/khoahoc');
+        } elseif ($check == 4) {
+            session(['login' => $login]);
+            return redirect('admin/baithi');
         }
         return redirect('admin')->with('thongbao', 'Đăng nhập không thành công!');
     }

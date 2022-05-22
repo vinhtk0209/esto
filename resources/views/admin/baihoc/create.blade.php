@@ -43,7 +43,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Khóa học</label></br>
-                                <select id="MAKH" name="MAKH">
+                                <select id="MAKH" name="MAKH" class="form-control" style="height:46px">
                                     <option value="0">--------------------Khóa học--------------------</option>
                                     @foreach($khoahoc as $kh)
                                     <option value="{{ $kh->MAKH }}">{{ $kh->TENKH }}</option>
@@ -125,4 +125,4 @@
     </div>
 </div>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-@endsection 
+@endsection

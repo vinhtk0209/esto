@@ -105,8 +105,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {!! $doanhthuChart->container() !!}
-                    {!! $doanhthuChart->script() !!}
+                    {{-- {!! $doanhthuChart->container() !!}
+                    {!! $doanhthuChart->script() !!} --}}
                 </div>
             </div>
         </div>
@@ -120,9 +120,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body"> 
-                    {!! $doanhsoChart->container() !!}
-                    {!! $doanhsoChart->script() !!}
+                <div class="card-body">
+                    {{-- {!! $doanhsoChart->container() !!}
+                    {!! $doanhsoChart->script() !!} --}}
                 </div>
             </div>
         </div>

@@ -46,7 +46,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Khóa học</label></br>
-                                <select id="MAKH" name="MAKH" disabled>
+                                <select id="MAKH" name="MAKH" disabled class="form-control" style="height:46px">
                                     <option value="">--------------------Khóa học--------------------</option>
                                     @foreach($khoahoc as $kh)
                                     @if ($baihoc[0]->TRUCTUYEN == true)
@@ -85,7 +85,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Chương</label></br>
-                                <select name="MACHUONG">
+                                <select name="MACHUONG" class="form-control" style="height:46px">
                                     @foreach ($chuonghoc as $ch)
                                     <option @if($baihoc[0]->MACHUONG == $ch->MACHUONG)
                                         {{"selected"}}
@@ -180,4 +180,4 @@
     </div>
 </div>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-@endsection 
+@endsection
