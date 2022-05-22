@@ -126,7 +126,6 @@ class BaiThiController extends Controller
             ->join('CauHoi', 'CauHoi.MACH', '=', 'CTBaiThi.MACH')
             ->where('CTBaiThi.MABT', $id)->get();
 
-
         $diem = 0;
         foreach ($ctbailam as $ct) {
             $CAUHOI = $baithi->where('MACH', $ct->MACH)->first();

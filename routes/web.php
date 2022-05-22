@@ -74,6 +74,10 @@ Route::get('/infoUser/showMyScore', [
     'as' => 'show.my.score',
     'uses' => 'App\Http\Controllers\user\userController@showMyScore'
 ]);
+Route::get('/infoUser/showMyScore/{id}/{mahv}', [
+    'as' => 'show.my.score.detail',
+    'uses' => 'App\Http\Controllers\user\userController@showMyScoreDetail'
+]);
 Route::get('/learn/{id}', [
     'as' => 'learn.course',
     'uses' => 'App\Http\Controllers\user\userController@learnCourse'

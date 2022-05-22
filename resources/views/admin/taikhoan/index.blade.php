@@ -73,7 +73,7 @@
                                     {{$tk->EMAIL}}
                                 </td>
                                 <td class="budget">
-                                    {{$tk->TRANGTHAI==1?'Hoạt động':'Vô hiệu hóa'}}
+                                 <span class=" {{$tk->TRANGTHAI==1?'text-success':'text-danger'}}">   {{$tk->TRANGTHAI==1?'Hoạt động':'Vô hiệu hóa'}}</span>
                                 </td>
                                 <td class="budget">
                                     <a href="admin/taikhoan/sua/{{$tk->ID}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -84,7 +84,7 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Card footer -->   
+                <!-- Card footer -->
                 @if ($taikhoan->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0">

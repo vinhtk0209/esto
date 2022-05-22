@@ -17,7 +17,7 @@
                 <!-- Light table -->
                 <div class="score-container px-4 "  >
                     <table class="table table-bordered box-shadow-my-score-tale">
-                        <thead class="thead-light" style="background-color:#f6f9fc;color:#8898aa  ">
+                        <thead class="thead-light" style="background-color:#f6f9fc;color:#8898aa ">
                           <tr>
                             <th scope="col" class="sort" data-sort="siso">Tên bài thi</th>
                             <th scope="col" class="sort" data-sort="tenlop">Điểm</th>
@@ -32,17 +32,9 @@
                                 </td>
                                 <td class="budget" >
                                     {{$dsDiem[$bl->MABL]}}
-                                    {{-- @php($diem = 0)
-                                     @foreach($ctbailam->where('MAHV', $bl->MAHV)->where('MABL', $bl->MABL) as $ct)
-                                    @php($CAUHOI = $baithi->where('MACH', $ct->MACH)->first())
-                                      @if($ct->DAPAN == $CAUHOI->CAUDUNG)
-                                    @php($diem += $CAUHOI->DIEM)
-                                     @endif
-                                    @endforeach
-                                    {{$diem}} --}}
                                 </td>
                                 <td class="budget">
-                                    <a href="admin/baithi/dsdiem/{{$bl->MAHV}}" class="btn btn-success text-decoration-none">Chi tiết bài làm</a>
+                                    <a href="infoUser/showMyScore/{{$bl->MABT}}/{{$bl->MAHV}}" class="btn btn-success text-decoration-none">Chi tiết bài làm</a>
                                 </td>
                             </tr>
                             @endforeach

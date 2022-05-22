@@ -36,7 +36,7 @@ class KhuyenMaiController extends Controller
 
     public function create()
     {
-        if (session('login')->LoaiTK == 3) {
+        if (session('login')->LOAITK == 3) {
             $khoahoc = KhoaHoc::all();
             return view('admin.khuyenmai.create', ['khoahoc' => $khoahoc]);
         } else {
@@ -46,7 +46,7 @@ class KhuyenMaiController extends Controller
 
     public function store(Request $request)
     {
-        if (session('login')->LoaiTK == 3) {
+        if (session('login')->LOAITK == 3) {
             $this->validate(
                 $request,
                 [
@@ -108,7 +108,7 @@ class KhuyenMaiController extends Controller
 
     public function edit($id)
     {
-        if (session('login')->LoaiTK == 3) {
+        if (session('login')->LOAITK == 3) {
             $khoahoc = KhoaHoc::all();
             $khuyenmai = KhuyenMai::find($id);
             $ctkhuyenmai = CTKhuyenMai::where('MAKM', '=', $id)->get();
@@ -120,7 +120,7 @@ class KhuyenMaiController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (session('login')->LoaiTK == 3) {
+        if (session('login')->LOAITK == 3) {
             $data = $request->all();
             $dateBD = Carbon::createFromTimestamp(strtotime($data['NGAYBD'] . $data['TDBD']));
             $dateKT = Carbon::createFromTimestamp(strtotime($data['NGAYKT'] . $data['TDKT']));
@@ -169,7 +169,7 @@ class KhuyenMaiController extends Controller
 
     public function delete($id)
     {
-        if (session('login')->LoaiTK == 3) {
+        if (session('login')->LOAITK == 3) {
             $khuyenmai = KhuyenMai::find($id);
             $khuyenmai->delete();
 

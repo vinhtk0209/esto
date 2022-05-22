@@ -55,8 +55,8 @@
                         </div>
                         <div class="pl-lg-4" id="dchuonghoc" name="dchuonghoc">
                         </div>
-                        <div class="pl-lg-4" id="dqlchuonghoc" name="dqlchuonghoc" style="display:none">
-                            <a href="admin/chuonghoc/" class="btn btn-sm btn-primary">Chương học</a>
+                        <div class="pl-lg-4 mb-2" id="dqlchuonghoc" name="dqlchuonghoc" style="display:none">
+                            <a href="admin/chuonghoc/" class="btn btn-sm btn-primary">Tới trang tạo chương học</a>
                         </div>
                         <div id="dtenbai" class="pl-lg-4" style="display:none">
                             <div class="form-group">

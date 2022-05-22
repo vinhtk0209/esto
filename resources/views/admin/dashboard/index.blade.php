@@ -26,7 +26,8 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                        <i class="ni ni-active-40"></i>
+                                        {{-- <i class="ni ni-active-40"></i> --}}
+                                        <i class="fas fa-book-open"></i>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +45,8 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                                        <i class="ni ni-chart-pie-35"></i>
+                                        {{-- <i class="ni ni-chart-pie-35"></i> --}}
+                                        <i class="fas fa-user-graduate"></i>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +64,8 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                                        <i class="ni ni-chart-bar-32"></i>
+                                        {{-- <i class="ni ni-chart-bar-32"></i> --}}
+                                        <i class="fas fa-chalkboard-teacher"></i>
                                     </div>
                                 </div>
                             </div>

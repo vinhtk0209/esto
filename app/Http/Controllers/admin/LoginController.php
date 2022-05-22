@@ -47,6 +47,8 @@ class LoginController extends Controller
         } elseif ($check == 4) {
             session(['login' => $login]);
             return redirect('admin/baithi');
+        } else {
+            return view('admin.thongbao.index');
         }
         return redirect('admin')->with('thongbao', 'Đăng nhập không thành công!');
     }

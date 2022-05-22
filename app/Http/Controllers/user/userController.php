@@ -141,6 +141,33 @@ class userController extends Controller
             }
         }
     }
+    public function showMyScoreDetail($id, $mahv)
+    {
+        $bailam = DB::table('BaiLam')
+            ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
+            ->where('MABT', $id)
+            ->where('MAHV', $mahv)->first();
+
+        $ctbailam = DB::table('BaiLam')
+            ->join('CTBaiLam', 'CTBaiLam.MABL', '=', 'BaiLam.MABL')
+            ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
+            ->where('MABT', $id)
+            ->where('MAHV', $mahv)->get();
+
+        $baithi = DB::table('BaiThi')
+            ->join('CTBaiThi', 'CTBaiThi.MABT', '=', 'BaiThi.MABT')
+            ->join('CauHoi', 'CauHoi.MACH', '=', 'CTBaiThi.MACH')
+            ->where('CTBaiThi.MABT', $id)->get();
+
+
+        $diem = 0;
+        foreach ($ctbailam as $ct) {
+            $CAUHOI = $baithi->where('MACH', $ct->MACH)->first();
+            if ($ct->DAPAN == $CAUHOI->CAUDUNG)
+                $diem += $CAUHOI->DIEM;
+        }
+        return view('user.infoManager.myScoreDetail', compact('bailam', 'id', 'mahv', 'ctbailam', 'baithi', 'diem'));
+    }
 
     public function learnCourse($id)
     {
