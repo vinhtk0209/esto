@@ -161,12 +161,17 @@ class userController extends Controller
 
 
         $diem = 0;
+        $caudung = 0;
+        $tongsocau = 0;
         foreach ($ctbailam as $ct) {
             $CAUHOI = $baithi->where('MACH', $ct->MACH)->first();
-            if ($ct->DAPAN == $CAUHOI->CAUDUNG)
+            if ($ct->DAPAN == $CAUHOI->CAUDUNG) {
                 $diem += $CAUHOI->DIEM;
+                $caudung++;
+            }
+            $tongsocau++;
         }
-        return view('user.infoManager.myScoreDetail', compact('bailam', 'id', 'mahv', 'ctbailam', 'baithi', 'diem'));
+        return view('user.infoManager.myScoreDetail', compact('bailam', 'id', 'mahv', 'ctbailam', 'baithi', 'diem', 'caudung', 'tongsocau'));
     }
 
     public function learnCourse($id)

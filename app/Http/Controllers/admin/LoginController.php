@@ -43,14 +43,13 @@ class LoginController extends Controller
             return redirect('admin/dashboard');
         } elseif ($check == 2) {
             session(['login' => $login]);
-            return redirect('admin/khoahoc');
+            return redirect('admin/dashboard');
         } elseif ($check == 4) {
             session(['login' => $login]);
             return redirect('admin/baithi');
         } else {
-            return view('admin.thongbao.index');
+            return redirect('admin')->with('thongbao', 'Sai tên đăng nhập hoặc mật khẩu!');
         }
-        return redirect('admin')->with('thongbao', 'Đăng nhập không thành công!');
     }
 
     public function getLogout()

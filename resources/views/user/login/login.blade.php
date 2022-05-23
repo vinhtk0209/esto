@@ -82,9 +82,9 @@
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 
-                    {{-- @if (Session::has('wrongInfo'))
+                    @if (Session::has('wrongInfo'))
                        <span class="error-message">{{Session::get('wrongInfo')}}</span>
-                   @endif --}}
+                   @endif
                    <div class="text-right p-t-8 ">
                         <a href="{{route('login.forgotPass')}}">
                         Quên mật khẩu?

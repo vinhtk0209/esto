@@ -7,7 +7,10 @@
         <div class="info-content p-y-5 border-default ">
           <!-- Card header -->
           <div class="card-header border-0 text-blue">
-            <h3 class="mb-0 text-center">Bài thi của học viên: {{$bailam->HOTEN}} - {{$diem}} Điểm</h3>
+            <div class="d-flex justify-content-between">
+                <h3 class="mb-0 ">Bài thi của học viên: {{$bailam->HOTEN}} - {{$diem}} Điểm</h3>
+            <h3 class="mb-0 text-right">Số câu đúng: {{$caudung}}/{{$tongsocau}}</h3>
+            </div>
         </div>
         <!-- Light table -->
         <div class="score-detail-container px-4 mt-2">
@@ -17,8 +20,7 @@
                         <tr>
                             <th scope="col" class="sort" data-sort="siso">Câu hỏi</th>
                             <th scope="col" class="sort" data-sort="tenlop">Đáp án học viên</th>
-                            <th scope="col" class="sort" data-sort="tenlop">Câu đúng</th>
-                            <th scope="col" class="sort" data-sort="tenlop">Điểm</th>
+                            {{-- <th scope="col" class="sort" data-sort="tenlop">Điểm</th> --}}
                             <th scope="col" class="sort" data-sort="tenlop"></th>
                         </tr>
                     </thead>
@@ -32,15 +34,12 @@
                                 @php($cautl = $ctbailam->where('MACH', $bt->MACH)->first())
                                 {{$cautl->DAPAN}}
                             </td>
-                            <td class="budget">
-                                {{$bt->CAUDUNG}}
-                            </td>
-                            <td class="budget">
+                            {{-- <td class="budget">
                                 {{$bt->DIEM}}
-                            </td>
+                            </td> --}}
                             <td class="budget">
-                                @if ($cautl->DAPAN != $bt->CAUDUNG)
-                                    <strong class="text-danger">Sai</strong>
+                                @if ($cautl->DAPAN == $bt->CAUDUNG)
+                                    <strong class="text-success"><i class="fas fa-check"></i></strong>
                                 @endif
                             </td>
                         </tr>
