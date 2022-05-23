@@ -401,8 +401,26 @@
 
     {{-- COMMENT START --}}    
     <script>
-        function submitComment () {
+        function generateStar(startNumber){
+            let html = "";
+            if (!startNumber){
+                return html;
+            }
+            for (let i = 1; i <= startNumber; i++) {
+               html += `<i class="fas fa-star star-color"></i>`;
+            }
+            return html;
+        }
 
+        function isEmptyContentComment(){
+            if(document.getElementById('commentContent').value.length > 0) {
+                document.getElementById('sendComment').disabled = false;
+            } else {
+                document.getElementById('sendComment').disabled = true;
+            }
+        }    
+
+        function submitComment () {
             let data = $("#sendCommentForm").serializeArray();
             let url = $("#sendCommentForm").attr('action');
             $.ajax({
@@ -412,7 +430,6 @@
                 dataType: "json",
                 success:function(response){
                     console.log(response)
-
                     if(response.status == 1){
                         let html = `<div class="row style-comment">
                                         <div class="col-md-2">        
@@ -421,7 +438,12 @@
                                         <div class="col-md-10"> 
                                             <p style="color:blue;">${response.data.HOTEN}</p>
                                             <p style="color: #000;">${response.data.NGAYDG}</p>
-                                            <p>${response.data.NOIDUNG}</p>                                     
+                                            <div>
+                                                <span class="star-rate">
+                                                  ${generateStar(response.data.SOSAO)}
+                                                </span>
+                                            </div>       
+                                            <p>${response.data.NOIDUNG}</p>                                                                    
                                         </div>
                                     </div>`;
                         $("#sendCommentForm")[0].reset();

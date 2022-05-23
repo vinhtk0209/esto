@@ -1,4 +1,71 @@
 {{-- BUY COURSE STARTS --}}
+<style>
+    .rating {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    font-size: 50px;
+    }
+
+    .rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+    }
+
+    .rating label:last-child {
+    position: static;
+    }
+
+    .rating label:nth-child(1) {
+    z-index: 5;
+    }
+
+    .rating label:nth-child(2) {
+    z-index: 4;
+    }
+
+    .rating label:nth-child(3) {
+    z-index: 3;
+    }
+
+    .rating label:nth-child(4) {
+    z-index: 2;
+    }
+
+    .rating label:nth-child(5) {
+    z-index: 1;
+    }
+
+    .rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    }
+
+    .rating label .icon {
+    float: left;
+    color: transparent;
+    }
+
+    .rating label:last-child .icon {
+    color: #000;
+    }
+
+    .rating:not(:hover) label input:checked ~ .icon,
+    .rating:hover label:hover input ~ .icon {
+    color: yellow;
+    }
+
+    .rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #000;
+    text-shadow: 0 0 5px yellow;
+    }
+</style>
 <div class="buy-course">
     <div class="img-course">
         <img class="img-responsive "
@@ -220,12 +287,7 @@
                     <h3>Đánh giá khóa học</h3>
                 </div>
                 <div class="intro-body" id="comments">
-                    <div class="col-sm-12">
-                        {{-- <ul>
-                            <li><a href=""><i class="fa fa-user">Người đăng: Admin 1</i></a></li>
-                            <li><a href=""><i class="fa fa-clock-o">Giờ đăng: 10:00 AM</i></a></li>
-                            <li><a href=""><i class="fa fa-calendar-o">Ngày đăng: 01/03/2022</i></a></li>
-                        </ul> --}}
+                    <div class="col-sm-12">                       
                         <style type="text/css">
                             .style-comment{
                                 border: 1px solid #ddd;
@@ -235,52 +297,75 @@
                         </style>
                         <div id="listComment">
                             @foreach ($comments as $comment)
-                                <div class="row style-comment">
-                                   
+                                <div class="row style-comment">                                  
                                     <div class="col-md-2">        
                                         <img width="40%" src=" {{ empty($comment->ANHDAIDIEN) ? asset('images/avatar.png') : asset('storage/'. $comment->ANHDAIDIEN)}}" alt="ESTO" class="img img-responsive img-thumbnail">
                                     </div>
                                     <div class="col-md-10"> 
                                         <p style="color:blue;">{{$comment->HOTEN}}</p>
                                         <p style="color: #000;">{{$comment->NGAYDG}}</p>
-                                        <p>{{$comment->NOIDUNG}}</p>                                     
+                                        <div>
+                                            <span class="star-rate">
+                                                @if ($comment->SOSAO)
+                                                    @for( $i = 1 ; $i <= $comment->SOSAO; $i++)
+                                                      <i class="fas fa-star star-color"></i>
+                                                    @endfor
+                                                @endif
+                                            </span>
+                                        </div>     
+                                        <p>{{$comment->NOIDUNG}}</p>                                                
                                     </div>
                                 </div>               
                             @endforeach
                         </div>
-                        @if(session()->has('customer'))
+                        @if(session()->has('customer') && $customerJoinCourse)
                             <p><b>Viết đánh giá của bạn</b></p>
                             <form action="{{route('send-comment-ajax')}}" method="POST" id="sendCommentForm">
                                 @csrf       
                                 <input type="hidden" name="MAKH" value="{{$productId}}"/>
                                 <input type="hidden" name="MAHV" value="{{$idHvrandom}}"/>
-                                <textarea name="NOIDUNG" class="comment_content" style="width: 754px; height: 200px; " required></textarea>
+
+                                <div class="rating">
+                                    <label>
+                                      <input type="radio" name="SOSAO" value="1" />
+                                      <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                      <input type="radio" name="SOSAO" value="2" />
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                      <input type="radio" name="SOSAO" value="3" />
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>   
+                                    </label>
+                                    <label>
+                                      <input type="radio" name="SOSAO" value="4" />
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                      <input type="radio" name="SOSAO" value="5" />
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>
+                                      <span class="icon">★</span>
+                                    </label>
+                                </div>
+
+                                <textarea name="NOIDUNG" id="commentContent" class="comment_content" onkeyup="isEmptyContentComment()" style="width: 754px; height: 200px; " required></textarea>                               
+                                <button type="button" class="btn btn-primary pull-right" id="sendComment" onclick="submitComment()" >Gửi đánh giá</button>
                                 <br>
-                                <b>Đánh giá sao: </b>
-                                <button type="button" class="btn btn-primary pull-right" onclick="submitComment()" >Gửi đánh giá</button>
+                                <br>
                             </form>
                         @endif
                     </div>               
-                </div>
-                {{-- <div class="intro-body">
-                    <div class="rate-course-summary">
-                        <span class=""></span>
-                    <div class="rate-course-rating-containerate-course-ratingnumberr">
-                        <b>Đánh giá sao:  
-                            <span class="star-rate">
-                            <i class="fas fa-star star-color"></i>
-                            <i class="fas fa-star star-color"></i>
-                            <i class="fas fa-star star-color"></i>
-                            <i class="fas fa-star star-color"></i>
-                        </span>
-                        </b>                         
-                        <span class="num-rate">
-                            
-                        </span>
-                        
-                    </div>
-                    </div>
-                </div> --}}
+                </div>               
             </div>
         </div>
     </div>

@@ -44,4 +44,8 @@ class TaiKhoan extends Model
     // {
     //     return $this->hasMany('App\Models\CTLopHoc', 'ID');
     // }
+
+    public function hoadons() {
+        return $this->hasMany(HoaDon::class, 'MAHV', "ID");
+    }
 }
