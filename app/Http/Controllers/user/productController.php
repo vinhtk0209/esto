@@ -60,9 +60,22 @@ class productController extends Controller
 
         $comments = DB::table('danhgia')
             ->join('khoahoc', 'khoahoc.MAKH', '=', 'danhgia.MAKH')
-            ->join('taikhoan', 'danhgia.MAHV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();   
-        
+            ->join('taikhoan', 'danhgia.MAHV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
+       
         $idHvFirst = TaiKhoan::select('id')->first()->id;
+
+        //customer is login
+        $customer = Session::get('customer');
+        $customerJoinCourse = false;
+        if ($customer) {
+            //check customer join course
+            $customerJoinCourse = TaiKhoan::select(['cthoadon.*', 'taikhoan.ID as MaHV', 'taikhoan.HOTEN'])
+                                        ->join('hoadon','hoadon.MaHV', '=', 'taikhoan.ID')
+                                        ->join('cthoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
+                                        ->where('taikhoan.ID', $customer->ID)
+                                        ->where('cthoadon.MaKH', $productId)
+                                        ->first();
+        }
             
         return view('/user/courseDetail/index')
         ->with('category', $cateCourse)
@@ -76,7 +89,8 @@ class productController extends Controller
         ->with('classRoom', $classRoom)
         ->with('productId', $productId)
         ->with('idHvrandom', $idHvFirst)
-        ->with('comments', $comments);
+        ->with('comments', $comments)
+        ->with('customerJoinCourse', $customerJoinCourse);
     }
 
     public function listCourse($courseCate)
@@ -309,8 +323,20 @@ class productController extends Controller
 
         $comments = db::table('danhgia')
             ->join('khoahoc', 'khoahoc.MAKH', '=', 'danhgia.MAKH')
-            ->join('taikhoan', 'danhgia.MAHV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get(); 
+            ->join('taikhoan', 'danhgia.MAHV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
 
+         //customer is login
+         $customer = Session::get('customer');
+         $customerJoinCourse = false;
+         if ($customer) {
+             //check customer join course
+             $customerJoinCourse = TaiKhoan::select(['cthoadon.*', 'taikhoan.ID as MaHV', 'taikhoan.HOTEN'])
+                                         ->join('hoadon','hoadon.MaHV', '=', 'taikhoan.ID')
+                                         ->join('cthoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
+                                         ->where('taikhoan.ID', $customer->ID)
+                                         ->where('cthoadon.MaKH', $productId)
+                                         ->first();    
+         }
         return view('user.courseDetail.contentClass')
             ->with('category', $cateCourse)
             ->with('productDetail', $productDetail)
@@ -321,7 +347,8 @@ class productController extends Controller
             ->with('countRate', $countRate)
             ->with('courseOnline', $courseOnline)
             ->with('classRoom', $classRoom)
-            ->with('comments', $comments);
+            ->with('comments', $comments)
+            ->with('customerJoinCourse', $customerJoinCourse);
     }
 
     public function contentClassBought($id)
@@ -383,19 +410,23 @@ class productController extends Controller
             ->with('courseOnline', $courseOnline)
             ->with('classRoom', $classRoom)
             ->with('bill', $bills);
-    }
+    }   
     public function sendComment(Request $request){
 
         $data = $request->only([
             'MAHV',
             'MAKH',
-            'NOIDUNG'
+            'NOIDUNG',
+            'SOSAO'
         ]);
+
         if ($user = Auth::user()){
             $data['MAHV'] = $user->id;
         }
+        
         $data['NGAYDG'] = Carbon::now()->toDateTimeString();
-        $comment = DanhGia::create($data);
+        $comment = DanhGia::create($data);  
+
         if (!$comment) {
             return response()->json([
                 'message' => 'Fail',
@@ -405,6 +436,7 @@ class productController extends Controller
 
         $hocVien = $comment->rTaiKhoan;
         $comment->HOTEN = '';
+
         if ($hocVien) {
             $comment->HOTEN = $hocVien->HOTEN;
             $comment->ANHDAIDIEN = empty($hocVien->ANHDAIDIEN) ? asset('images/avatar.png') : asset('storage/'. $hocVien->ANHDAIDIEN);
