@@ -70,7 +70,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-first-name">Lớp học</label></br>
-                                <select name="MALH" disabled>
+                                <select name="MALH" disabled class="form-control" style="height:46px">
                                     @foreach ($lophoc as $lh)
                                     <option @if($baihoc[0]->MALH == $lh->MALH)
                                         {{"selected"}}

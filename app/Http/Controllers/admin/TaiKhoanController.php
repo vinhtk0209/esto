@@ -65,7 +65,7 @@ class TaiKhoanController extends Controller
             if ($request->MATKHAU != $request->MATKHAU1) {
                 return redirect('admin/taikhoan/them')->with('thongbao', 'nhập lại mật khẩu!');
             } else {
-                $taikhoan->MATKHAU = $request->MATKHAU;
+                $taikhoan->MATKHAU = bcrypt($request->MATKHAU);
             }
 
             $taikhoan->LOAITK = $request->LOAITK;
@@ -211,6 +211,9 @@ class TaiKhoanController extends Controller
             }
             $chungchi->HOCVI = $request->HOCVI;
             $chungchi->save();
+
+
+
             return redirect('admin/chungchi/sua/' . $id . '&macc=' . $macc)->with('thongbao', 'Sửa chứng chỉ thành công!');
         } else {
             return view('admin.thongbao.index');

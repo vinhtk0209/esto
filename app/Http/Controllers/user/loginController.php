@@ -95,7 +95,7 @@ class loginController extends Controller
     public function logout()
     {
         Session::forget('customer');
-        return redirect()->route('login.login');
+        return redirect()->route('home.index');
     }
 
     //KICH HOAT TAI KHOAN

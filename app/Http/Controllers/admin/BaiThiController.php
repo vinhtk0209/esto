@@ -147,7 +147,7 @@ class BaiThiController extends Controller
             if (count($baihoc) > 0) {
                 $output = '<div class="form-group">
             <label class="form-control-label" for="input-first-name">Bài học</label></br>
-            <select name="MABH">';
+            <select name="MABH" class="form-control" style="height:46px">';
                 foreach ($baihoc as $bh) {
                     $output .= '<option value="' . $bh->MABH . '">' . $bh->TENBH . '</option>';
                 }

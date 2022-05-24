@@ -28,7 +28,7 @@
                     <h3 class="mb-0">Câu hỏi</h3>
                 </div>
                 <div class="col-4 text-right">
-                    <select id="MADMcauhoi" name="MADMcauhoi">
+                    <select id="MADMcauhoi" name="MADMcauhoi" class="form-control" style="height:46px">
                         <option value="-1">-----Môn học-----</option>
                         @foreach($danhmuc as $dm)
                         <option value="{{ $dm->MADM }}">{{ $dm->TENDM }}</option>

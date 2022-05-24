@@ -45,7 +45,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Môn học</label>
-                                <select name="MADM" id="MADM">
+                                <select name="MADM" id="MADM" class="form-control" style="height:46px">
                                     @foreach($danhmuc as $dm)
                                     <option value="{{ $dm->MADM }}">{{ $dm->TENDM }}
                                     <option @if($cauhoi->MADM == $dm->MADM)
@@ -78,7 +78,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Đáp án</label>
-                                <select name="CAUDUNG" id="CAUDUNG">
+                                <select name="CAUDUNG" id="CAUDUNG" class="form-control" style="height:46px">
                                     <option value="A" @if($cauhoi->CAUDUNG == 'A')
                                         {{"selected"}}
                                         @endif>A

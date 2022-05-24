@@ -55,7 +55,7 @@
 
         <div class="form-group">
             <label>Danh Mục</label>
-            <select class="form-control" name="parent_id">
+            <select class="form-control" name="parent_id"  style="height:46px">
                     <option value="0"> Danh Mục Cha </option>
                 @foreach ($cateParent as $cateP)
                     <option value="{{$cateP->MADM}}"> {{$cateP->TENDM}} </option>

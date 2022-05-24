@@ -38,11 +38,11 @@
                     </div>
                 </div>
                 <div class="card-body">
-<<<<<<< HEAD
-                    <form action="admin/taikhoan/sua/chungchi/{{$id}}" method="POST" enctype="multipart/form-data">
-=======
                     <form action="admin/chungchi/{{$id}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <h6 class="heading-small text-muted mb-4">Thông tin chứng chỉ</h6>
                         @if (session('thongbao'))
+                        <div class="alert alert-success">
                             {{session('thongbao')}}
                         </div>
                         @endif
@@ -51,44 +51,25 @@
                             <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Học vị</label>
-<<<<<<< HEAD
-                                <input type="text" id="HOCVI" name="HOCVI" class="form-control">
-                             
-=======
                                 <input type="text" id="HOCVI" name="HOCVI" class="form-control" required>
 
->>>>>>> 0674c9facc37fb67b57f1ee78c36aa41f4c5f37f
                             </div>
                         </div>
                         <div class="pl-lg-4">
                             <div class="form-group">
-                                <label class="form-control-label">Ảnh chứng chỉ</label>
-<<<<<<< HEAD
-                                <input type="file" id="ANH13" name="ANHCC" class="form-control"></br>                                
-                                
-                            </div>
-                        </div> 
-=======
+                            <label class="form-control-label">Ảnh chứng chỉ</label>
                                 <input type="file" id="ANH13" name="ANHCC" class="form-control" onchange="imgchange(event)"></br>
 
                             </div>
                         </div>
->>>>>>> 0674c9facc37fb67b57f1ee78c36aa41f4c5f37f
                         <div class="row align-items-center">
                             <div class="col-8">
                                 <label id="lbl"></label>
                                 <button type="submit" class="btn btn-default">Thêm</button>
-<<<<<<< HEAD
-                                
-                            </div>
-                        </div>
-                   
-=======
 
                             </div>
                         </div>
 
->>>>>>> 0674c9facc37fb67b57f1ee78c36aa41f4c5f37f
                 </div>
             </div>
         </div>

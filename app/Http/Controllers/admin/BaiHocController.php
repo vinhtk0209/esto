@@ -99,7 +99,7 @@ class BaiHocController extends Controller
             if (count($lophoc) > 0) {
                 $dlophoc = '<div class="form-group">
             <label class="form-control-label" for="input-first-name">Lớp học</label></br>
-            <select name="MALH">';
+            <select name="MALH" class="form-control" style="height:46px">';
                 foreach ($lophoc as $lh) {
                     $dlophoc .= '<option value="' . $lh->MALH . '">' . $lh->TENLOP . '</option>';
                 }
@@ -112,7 +112,7 @@ class BaiHocController extends Controller
         if (count($chuonghoc) > 0) {
             $dchuonghoc = '<div class="form-group">
             <label class="form-control-label" for="input-first-name">Chương học</label></br>
-            <select name="MACHUONG">';
+            <select name="MACHUONG" class="form-control" style="height:46px">';
             foreach ($chuonghoc as $ch) {
                 $dchuonghoc .= '<option value="' . $ch->MACHUONG . '">' . $ch->TENCHUONG . '</option>';
             }

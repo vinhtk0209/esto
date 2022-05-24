@@ -55,7 +55,7 @@
         </div>
         <div class="form-group">
             <label>Trạng thái</label>
-            <select class="form-control" name="status" required>
+            <select class="form-control" name="status" required style="height:46px">
                 <option value="1">Duyệt</option>
                 <option value="1">Từ chối</option>
             </select>

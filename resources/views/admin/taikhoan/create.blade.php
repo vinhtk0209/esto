@@ -65,7 +65,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Ngày sinh</label></br>
-                                        <input type="date" id="NGAYSINH" name="NGAYSINH" class="form-control" required>
+                                        <input type="date" max="{{date('Y-m-d')}}" id="NGAYSINH" name="NGAYSINH" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

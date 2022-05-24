@@ -54,7 +54,7 @@
             <form method="POST" action="{{ route('post.buyClass',['id' => $product->MAKH]) }}" >
                 @csrf
                 <label for="code-to-test" class="label-custom">Danh sách lớp học:</label>
-                <select class="form-select" aria-label="Default select example" name="listClass" id="listClass">
+                <select class="form-select"   style="height:46px" aria-label="Default select example" name="listClass" id="listClass">
                     @if (!empty($classRoom))
                         @foreach ($classRoom as $class)
                             <option value="{{$class->MALH}}">{{$class->TENLOP}}</option>

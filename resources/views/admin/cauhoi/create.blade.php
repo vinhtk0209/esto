@@ -50,7 +50,7 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Môn học</label>
-                                <select name="MADM" id="MADM">
+                                <select name="MADM" id="MADM" class="form-control" style="height:46px">
                                     @foreach($danhmuc as $dm)
                                     <option value="{{ $dm->MADM }}">{{ $dm->TENDM }}</option>
                                     @endforeach
@@ -78,7 +78,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Đáp án</label>
-                                <select name="CAUDUNG" id="CAUDUNG">
+                                <select name="CAUDUNG" id="CAUDUNG" class="form-control" style="height:46px">
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>

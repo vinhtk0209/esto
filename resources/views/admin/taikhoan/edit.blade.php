@@ -137,7 +137,7 @@
                             </div>
                         </div>
                         @if($taikhoan->LOAITK==2)
-                        <div class="table-responsive">
+                        <div class="table-responsive mt-4">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
