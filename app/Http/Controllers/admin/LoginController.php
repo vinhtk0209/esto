@@ -43,7 +43,7 @@ class LoginController extends Controller
             return redirect('admin/dashboard');
         } elseif ($check == 2) {
             session(['login' => $login]);
-            return redirect('admin/dashboard');
+            return redirect('admin/khoahoc');
         } elseif ($check == 4) {
             session(['login' => $login]);
             return redirect('admin/baithi');
