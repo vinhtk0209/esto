@@ -412,12 +412,19 @@
             return html;
         }
 
-        function isEmptyContentComment(){
-            if(document.getElementById('commentContent').value.length > 0) {
-                document.getElementById('sendComment').disabled = false;
-            } else {
+        function isEmptyContentComment(){           
+            if(document.getElementById('commentContent').value.length > 0 ) {
+                if(document.getElementById('start_1').checked
+                    || document.getElementById('start_2').checked
+                    || document.getElementById('start_3').checked
+                    || document.getElementById('start_4').checked
+                    || document.getElementById('start_5').checked
+                    )
+                    document.getElementById('sendComment').disabled = false;                               
+            }           
+            else {            
                 document.getElementById('sendComment').disabled = true;
-            }
+            }                          
         }    
 
         function submitComment () {

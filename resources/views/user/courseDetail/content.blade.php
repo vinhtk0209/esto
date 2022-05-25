@@ -327,29 +327,29 @@
 
                                 <div class="rating">
                                     <label>
-                                      <input type="radio" name="SOSAO" value="1" />
+                                      <input type="radio" name="SOSAO" value="1" id="start_1"/>
                                       <span class="icon">★</span>
                                     </label>
                                     <label>
-                                      <input type="radio" name="SOSAO" value="2" />
+                                      <input type="radio" name="SOSAO" value="2" id="start_2"/>
                                       <span class="icon">★</span>
                                       <span class="icon">★</span>
                                     </label>
                                     <label>
-                                      <input type="radio" name="SOSAO" value="3" />
+                                      <input type="radio" name="SOSAO" value="3" id="start_3"/>
                                       <span class="icon">★</span>
                                       <span class="icon">★</span>
                                       <span class="icon">★</span>   
                                     </label>
                                     <label>
-                                      <input type="radio" name="SOSAO" value="4" />
+                                      <input type="radio" name="SOSAO" value="4" id="start_4"/>
                                       <span class="icon">★</span>
                                       <span class="icon">★</span>
                                       <span class="icon">★</span>
                                       <span class="icon">★</span>
                                     </label>
                                     <label>
-                                      <input type="radio" name="SOSAO" value="5" />
+                                      <input type="radio" name="SOSAO" value="5" id="start_5"/>
                                       <span class="icon">★</span>
                                       <span class="icon">★</span>
                                       <span class="icon">★</span>
@@ -359,7 +359,7 @@
                                 </div>
 
                                 <textarea name="NOIDUNG" id="commentContent" class="comment_content" onkeyup="isEmptyContentComment()" style="width: 754px; height: 200px; " required></textarea>                               
-                                <button type="button" class="btn btn-primary pull-right" id="sendComment" onclick="submitComment()" >Gửi đánh giá</button>
+                                <button type="button" class="btn btn-primary pull-right" id="sendComment" onclick="submitComment()" disabled>Gửi đánh giá</button>
                                 <br>
                                 <br>
                             </form>
