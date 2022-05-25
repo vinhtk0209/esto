@@ -9,6 +9,7 @@ use App\Models\CTHoaDon;
 use App\Models\Cart;
 use App\Models\CTLopHoc;
 use App\Models\LopHoc;
+use App\Models\Khoahoc;
 use Illuminate\Support\Facades\Session;
 use Stripe\Charge;
 use Stripe\Stripe;
@@ -70,15 +71,28 @@ class orderController extends Controller
                 return redirect()->back()->with('buyClassFailed', 'Bạn đã mua lớp học này');
             } else {
                 $classId =  LopHoc::find($data['listClass']);
+                Stripe::setApiKey('sk_test_51JnN53HEueodV3DA6Tg8aSXzG889RFopEqtwKsw2bbTLLDC2xzS03LHixGaan93SsqP52J1klY6DtE6Cxk7AicjF00JxnNE8cT');
+                $customer = new Customer();
+                $customerDetailsAry = array(
+                    'email' => $request->email,
+                    'source' => $request->stripeToken
+                );
+                $customerDetails = $customer->create($customerDetailsAry);
+                $charge = Charge::create(array(
+                    "customer" => $customerDetails->id,
+                    "amount" => Khoahoc::find($classId->MAKH)->DONGIA,
+                    "currency" => $request->currency_code,
+                ));
                 $numStudent = $classId->SLGIOIHAN;
                 if ($numStudent > 0) {
                     $classId->SLGIOIHAN = $numStudent - 1;
                     $classId->save();
-                    $bill = HoaDon::create([
+                    HoaDon::create([
+                        'MAHD'   => $charge->id,
                         'MAHV'   => Session::get('customer')->ID
                     ]);
                     CTHoaDon::create([
-                        'MAHD' => $bill->MAHD,
+                        'MAHD' => $charge->id,
                         'MAKH' => $id,
                         'MALH' => $data['listClass'],
                     ]);
