@@ -492,7 +492,9 @@
                     'ngu',
                     'daỵ dở quá',
                     'khóa học tệ',
-                    'chất lượng thấp'
+                    'chất lượng thấp',
+                    'dm',
+                    'đm'
             ]
             for(let i=0; i<badComment.length; i++) {
                 if (comment==badComment[i]) {
