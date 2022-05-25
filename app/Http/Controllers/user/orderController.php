@@ -60,53 +60,49 @@ class orderController extends Controller
 
     public function handleBuyClass(Request $request, $id)
     {
-        if (Session::has('customer')) {
-            $data = $request->all();
-            $billExist = HoaDon::join('cthoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
-                ->where('MALH', $data['listClass'])
-                ->where('MAKH', $id)
-                ->where('MAHV', Session::get('customer')->ID)
-                ->first();
-            if (isset($billExist) && !is_null($billExist)) {
-                return redirect()->back()->with('buyClassFailed', 'Bạn đã mua lớp học này');
-            } else {
-                $classId =  LopHoc::find($data['listClass']);
-                Stripe::setApiKey('sk_test_51JnN53HEueodV3DA6Tg8aSXzG889RFopEqtwKsw2bbTLLDC2xzS03LHixGaan93SsqP52J1klY6DtE6Cxk7AicjF00JxnNE8cT');
-                $customer = new Customer();
-                $customerDetailsAry = array(
-                    'email' => $request->email,
-                    'source' => $request->stripeToken
-                );
-                $customerDetails = $customer->create($customerDetailsAry);
-                $charge = Charge::create(array(
-                    "customer" => $customerDetails->id,
-                    "amount" => Khoahoc::find($classId->MAKH)->DONGIA,
-                    "currency" => $request->currency_code,
-                ));
-                $numStudent = $classId->SLGIOIHAN;
-                if ($numStudent > 0) {
-                    $classId->SLGIOIHAN = $numStudent - 1;
-                    $classId->save();
-                    HoaDon::create([
-                        'MAHD'   => $charge->id,
-                        'MAHV'   => Session::get('customer')->ID
-                    ]);
-                    CTHoaDon::create([
-                        'MAHD' => $charge->id,
-                        'MAKH' => $id,
-                        'MALH' => $data['listClass'],
-                    ]);
-                    CTLopHoc::create([
-                        'MALH' => $data['listClass'],
-                        'MAHV'   => Session::get('customer')->ID,
-                    ]);
-                } else {
-                    return redirect()->back()->with('buyClassFailed', 'Lớp này đã hết chỗ');
-                }
-            }
-            return redirect()->back()->with('buyClassSuccess', 'Mua thành công');
+        $data = $request->all();
+        $billExist = HoaDon::join('cthoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
+            ->where('MALH', $data['listClass'])
+            ->where('MAKH', $id)
+            ->where('MAHV', Session::get('customer')->ID)
+            ->first();
+        if (isset($billExist) && !is_null($billExist)) {
+            return redirect()->back()->with('buyClassFailed', 'Bạn đã mua lớp học này');
         } else {
-            return redirect()->back()->with('noLogin', 'Vui lòng đăng nhập để tiếp tục  ');
+            $classId =  LopHoc::find($data['listClass']);
+            Stripe::setApiKey('sk_test_51JnN53HEueodV3DA6Tg8aSXzG889RFopEqtwKsw2bbTLLDC2xzS03LHixGaan93SsqP52J1klY6DtE6Cxk7AicjF00JxnNE8cT');
+            $customer = new Customer();
+            $customerDetailsAry = array(
+                'email' => $request->email,
+                'source' => $request->stripeToken
+            );
+            $customerDetails = $customer->create($customerDetailsAry);
+            $charge = Charge::create(array(
+                "customer" => $customerDetails->id,
+                "amount" => Khoahoc::find($classId->MAKH)->DONGIA,
+                "currency" => $request->currency_code,
+            ));
+            $numStudent = $classId->SLGIOIHAN;
+            if ($numStudent > 0) {
+                $classId->SLGIOIHAN = $numStudent - 1;
+                $classId->save();
+                HoaDon::create([
+                    'MAHD'   => $charge->id,
+                    'MAHV'   => Session::get('customer')->ID
+                ]);
+                CTHoaDon::create([
+                    'MAHD' => $charge->id,
+                    'MAKH' => $id,
+                    'MALH' => $data['listClass'],
+                ]);
+                CTLopHoc::create([
+                    'MALH' => $data['listClass'],
+                    'MAHV'   => Session::get('customer')->ID,
+                ]);
+            } else {
+                return redirect()->back()->with('buyClassFailed', 'Lớp này đã hết chỗ');
+            }
         }
+        return redirect()->back()->with('buyClassSuccess', 'Mua thành công');
     }
 }

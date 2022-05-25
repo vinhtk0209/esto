@@ -33,10 +33,16 @@
             Thêm vào giỏ hàng
         </a>
         @else
-        <a href="javascript:void(0)" onclick="" class="btn-course btn-buy-class" id="btn-buy-class">
-            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-            Mua lớp học
-        </a>
+            @if (Session::has('customer'))
+                <a href="javascript:void(0)" onclick="" class="btn-course btn-buy-class" id="btn-buy-class">
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    Mua lớp học
+                </a>
+            @else
+                <a href="{{ route('login.login') }}" class="btn-course">
+                    Vui lòng đăng nhập
+                </a>
+            @endif
         @endif
     </div>
  </div>
@@ -54,7 +60,7 @@
             <form method="POST" action="{{ route('post.buyClass',['id' => $product->MAKH]) }}" id="checkout-course-form">
                 @csrf
 
-                <input type="hidden" name="email" value="{{ Session::get('customer')->EMAIL }}" />
+                <input type="hidden" name="email" value="{{ Session::get('customer')->EMAIL ?? '' }}" />
                 <input type='hidden' name='currency_code' value='VND'>
                 <div class="form-group">
                     <label for="code-to-test" class="label-custom">Danh sách lớp học:</label>
