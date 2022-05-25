@@ -79,7 +79,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Tổng DT</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{$tongdoanhthu}}</span>
+                                    <span id="revenue" class="h2 font-weight-bold mb-0">{{$tongdoanhthu}}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -97,7 +97,7 @@
 <!-- Page content -->
 <div class="container-fluid mt--6">
     <div class="row">
-        <div class="col-xl-8">
+        <div class="col-xl-6">
             <div class="card bg-default">
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
@@ -108,12 +108,23 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- {!! $doanhthuChart->container() !!}
-                    {!! $doanhthuChart->script() !!} --}}
+                    <div id="piechart" style="width:100%;height:400px;" class="mb-4"></div>
+                    <form action="{{ route('admin.dashboard.report.revenue') }}" method="GET">
+        
+                        <div class="form-group">
+                            <label class="text-white" for="start_date">Ngày bắt đầu</label>
+                            <input type="date" name="start_date" id="start_date" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-white" for="end_date">Ngày kết thúc</label>
+                            <input type="date" name="end_date" id="end_date" class="form-control" required/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Thống kê</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4">
+        <div class="col-xl-6">
             <div class="card">
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
@@ -124,11 +135,68 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- {!! $doanhsoChart->container() !!}
-                    {!! $doanhsoChart->script() !!} --}}
+                    <div id="piechart-1" style="width:100%;height:400px;"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<input type="hidden" id="data" value="{{ json_encode(Session::get('revenues')) }}" />
+<input type="hidden" id="data_1" value="{{ json_encode($courses) }}" />
+@endsection
+@section('js')
+    <script type="text/javascript">
+        var total = 0;
+        var txt = document.getElementById('revenue').textContent;
+        var arr = [['Ngày', 'Doanh thu']];
+        var orders = JSON.parse(document.getElementById('data').value);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        for (var x of orders){
+        total += x.total_price;
+        arr.push([x.order_day,parseInt(x.total_price)])
+        }  
+        function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(
+            arr
+        );
+
+        var options = {
+            title: 'Thống kê doanh thu theo ngày'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+        }
+        if (total <= 0) {
+            document.getElementById('revenue').innerText = txt;
+        } else {
+            document.getElementById('revenue').innerText = total;
+        }
+    </script>
+    <script type="text/javascript">
+        var arr1 = [['Ngày', 'Số khóa học']];
+        var orders = JSON.parse(document.getElementById('data_1').value);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        for (var x of orders){
+        arr1.push([x.order_day,parseInt(x.total_course)])
+        }  
+        function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(
+            arr1
+        );
+
+        var options = {
+            title: 'Doanh số khóa học theo ngày'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart-1'));
+
+        chart.draw(data, options);
+        }
+    </script>
 @endsection
