@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CTHoaDon;
 use App\Models\CTLopHoc;
 use App\Models\KhoaHoc;
 use App\Models\TaiKhoan;
 use Illuminate\Http\Request;
 // use App\Charts\UserChart;
 use Illuminate\Support\Facades\DB;
+use App\Models\HoaDon;
 
 class DashBoardController extends Controller
 {
@@ -98,6 +100,20 @@ class DashBoardController extends Controller
         // $doanhthuChart->dataset('Users by trimester', 'line', $data)
         //     ->color("rgb(255, 99, 132)")
         //     ->backgroundcolor("rgb(255, 99, 132)");
-        return view('admin.dashboard.index', compact('khoahoc', 'hocvien', 'giangvien', 'tongdoanhthu'));
+        $courses = DB::table('hoadon')
+        ->join('cthoadon','hoadon.MAHD', '=', 'cthoadon.MAHD')
+        ->select(DB::raw('DATE_FORMAT(hoadon.NGAYHD,"%d/%m/%Y") order_day, COUNT(DISTINCT(cthoadon.MAKH)) total_course'))
+        ->groupBy('order_day')->get()->toArray();
+        return view('admin.dashboard.index', compact('khoahoc', 'hocvien', 'giangvien', 'tongdoanhthu', 'courses'));
+    }
+
+    public function reportRevenue(Request $request)
+    {
+        $revenues = DB::table('hoadon')->whereBetween('NGAYHD', [$request->start_date, $request->end_date])
+        ->join('cthoadon','hoadon.MAHD', '=', 'cthoadon.MAHD')
+        ->join('khoahoc','cthoadon.MAKH','=','khoahoc.MAKH')
+        ->select(DB::raw('DATE_FORMAT(hoadon.NGAYHD,"%d/%m/%Y") order_day, SUM(khoahoc.DONGIA) total_price'))
+        ->groupBy('order_day')->get()->toArray();
+        return redirect()->route('admin.dashboard.index')->with('revenues',$revenues);
     }
 }

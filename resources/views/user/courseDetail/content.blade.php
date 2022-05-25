@@ -52,16 +52,37 @@
             <h2 class="modal-custom-title"> Chọn lớp học</h2>
         </header>
         <div class="modal-custom-body">
-            <form method="POST" action="{{ route('post.buyClass',['id' => $product->MAKH]) }}" >
+            <form method="POST" action="{{ route('post.buyClass',['id' => $product->MAKH]) }}" id="checkout-course-form">
                 @csrf
-                <label for="code-to-test" class="label-custom">Danh sách lớp học:</label>
-                <select class="form-select"   style="height:46px" aria-label="Default select example" name="listClass" id="listClass">
-                    @if (!empty($classRoom))
-                        @foreach ($classRoom as $class)
-                            <option value="{{$class->MALH}}">{{$class->TENLOP}}</option>
-                        @endforeach
-                    @endif
-                </select>
+
+                <input type="hidden" name="email" value="{{ Session::get('customer')->EMAIL }}" />
+                <input type='hidden' name='currency_code' value='VND'>
+                <div class="form-group">
+                    <label for="code-to-test" class="label-custom">Danh sách lớp học:</label>
+                    <select class="form-select"   style="height:46px" aria-label="Default select example" name="listClass" id="listClass">
+                        @if (!empty($classRoom))
+                            @foreach ($classRoom as $class)
+                                <option value="{{$class->MALH}}">{{$class->TENLOP}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group">
+                    <p class="label-custom">Số thẻ</p>
+                    <input type="text" placeholder="Nhập số thẻ" id="card-number" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <p class="label-custom">Hạn mức tháng</p>
+                    <input type="number" placeholder="Nhập số thẻ" id="card-expiry-month" min=1 max=12 class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <p class="label-custom">Hạn mức năm</p>
+                    <input type="number" placeholder="Nhập số thẻ" id="card-expiry-year" min=2022 max=2030 class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <p class="label-custom">CVC</p>
+                    <input type="text" placeholder="Nhập CVC" id="card-cvc" class="form-control" required>
+                </div>
                 <div class="form-group">
                     <input  type="submit" id="btn-to-test" class="btn-to-test mt-20" value="Mua lớp học" >
                 </div>

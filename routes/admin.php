@@ -35,7 +35,8 @@ Route::middleware(['Admin'])->prefix('admin')->name('admin.')->group(function ()
     });
 
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
-        Route::get('/', 'App\Http\Controllers\admin\DashBoardController@index');
+        Route::get('/', 'App\Http\Controllers\admin\DashBoardController@index')->name('index');
+        Route::get('/thong-ke-doanh-thu', 'App\Http\Controllers\admin\DashBoardController@reportRevenue')->name('report.revenue');
     });
 
     Route::prefix('khoahoc')->name('khoahoc.')->group(function () {
