@@ -19,6 +19,8 @@
                         @php($tien = 1)
                     @endif
                 @endforeach
+
+
                <li class="list-best-seller list-item">
                    <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                        <div class="img-course">
@@ -39,16 +41,30 @@
                                 </div>
                                 @endif
                             </div>
-                           <div class="price-course d-flex flex-space">
+                           <div class="price-course d-flex flex-space align-items-center">
                                <div class="rate">
-                                   <p>
-                                       <span class="star-rate">
-                                           <i class="fas fa-star star-color"></i>
-                                           <i class="fas fa-star star-color"></i>
-                                           <i class="fas fa-star star-color"></i>
-                                           <i class="fas fa-star star-color"></i>
-                                       </span>
-                                   </p>
+                                    <div class="d-flex">
+                                        <div class="rateYo"   data-rating="{{$ratingBestSeller[$course->MAKH]}}"></div>
+                                      <span class="text-danger font-size-12"> ({{$countRateBestSeller[$course->MAKH]}} đánh giá)</span>
+                                    </div>
+
+
+                                    {{-- @if($countRateBestSeller[$course->MAKH] > 0)
+                                        @for( $i = 1 ; $i <= $ratingBestSeller[$course->MAKH]; $i++)
+                                             <i class="fas fa-star star-homepage"></i>
+                                        @endfor
+
+                                        <span class="text-danger font-size-10 "> ({{$countRateBestSeller[$course->MAKH]}} đánh giá)</span>
+                                    @else
+                                    <span class="start-container-courses ">
+                                        <i class="fas fa-star star-color-dark"></i>
+                                        <i class="fas fa-star star-color-dark"></i>
+                                        <i class="fas fa-star star-color-dark"></i>
+                                        <i class="fas fa-star star-color-dark"></i>
+                                        <i class="fas fa-star star-color-dark"></i>
+                                    </span>
+                                    <span class="text-danger font-size-10 "> ({{$countRateBestSeller[$course->MAKH]}} đánh giá)</span>
+                                    @endif --}}
                                </div>
                                @if($tien == 1)
                                 <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
@@ -121,6 +137,8 @@
                             @php($tien2 = 1)
                         @endif
                     @endforeach
+
+
                 <li class="list-best-seller list-item">
                     <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                         <div class="img-course">
@@ -141,16 +159,12 @@
                                 </div>
                                 @endif
                             </div>
-                            <div class="price-course d-flex flex-space">
+                            <div class="price-course d-flex flex-space align-items-center">
                                 <div class="rate">
-                                    <p>
-                                        <span class="star-rate">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                        </span>
-                                    </p>
+                                    <div class="d-flex">
+                                      <div class="rateYo"  data-rating="{{$ratingEnglish[$course->MAKH]}}"></div>
+                                      <span class="text-danger font-size-12"> ({{$countRateEnglish[$course->MAKH]}} đánh giá)</span>
+                                    </div>
                                 </div>
                                 @if($tien2 == 1)
                                     <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
@@ -220,52 +234,48 @@
             <div class="container">
                 <ul class="swiper list-business-courses list-course  ">
                     <div class="swiper-wrapper">
-                        @foreach ($listBusinessCourse as $businessCourse)
+                        @foreach ($listBusinessCourse as $course)
                         @php($tien3 = 0)
                         @foreach($listKM as $km)
-                            @if($km->MAKH == $businessCourse->MAKH)
+                            @if($km->MAKH == $course->MAKH)
                                 @php($tien3 = 1)
                             @endif
                         @endforeach
-                            <li class="swiper-slide list-business-course list-item">
-                                    <a href="{{URL::to('/courseDetail/'.$businessCourse->MAKH)}}" class="course-box">
-                                        <div class="img-course">
-                                            <img class="img-responsive "
-                                                src="{{('./user/assets/imgCourse')}}/{{$businessCourse->ANH}}"
-                                                alt="{{$businessCourse->TENKH}}">
-                                        </div>
-                                        <div class="course-des">
-                                            <div class="name-course">
-                                                <h4>{{$businessCourse->TENKH}} </h4>
-                                            </div>
-                                            <div class="name-teacher d-flex flex-space">
-                                                <p class="">{{$businessCourse->HOTEN}}</p>
-                                                @if($tien3 == 1)
-                                                <div class="price price-discount">
-                                                    <p><del>{{number_format($businessCourse->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
-                                                </div>
-                                                @endif
-                                            </div>
-                                            <div class="price-course d-flex flex-space">
-                                                <div class="rate">
-                                                    <p>
-                                                        <span class="star-rate">
-                                                            <i class="fas fa-star star-color"></i>
-                                                            <i class="fas fa-star star-color"></i>
-                                                            <i class="fas fa-star star-color"></i>
-                                                            <i class="fas fa-star star-color"></i>
-                                                        </span>
-                                                    </p>
-                                                </div>
-                                                @if($tien3 == 1)
-                                                <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
-                                            @else
-                                <p>{{number_format($course->DONGIA)}}<span class="price-unit"><sup>vnd</sup></span></p>
-                                            @endif
-                                            </div>
 
+                            <li class="swiper-slide list-business-course list-item">
+                                <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
+                                    <div class="img-course">
+                                        <img class="img-responsive "
+                                            src="{{('./user/assets/imgCourse')}}/{{$course->ANH}}"
+                                            alt="{{$course->TENKH}}">
+                                    </div>
+                                    <div class="course-des">
+                                        <div class="name-course">
+                                            <h4>{{$course->TENKH}} </h4>
                                         </div>
-                                    </a>
+                                        <div class="name-teacher d-flex flex-space">
+                                            <p class="">{{$course->HOTEN}}</p>
+                                            @if($tien3 == 1)
+                                            <div class="price price-discount">
+                                                <p><del>{{number_format($course->DONGIA)}}</del><span class="price-unit"><sup>vnd</sup></span></p>
+                                            </div>
+                                            @endif
+                                        </div>
+                                        <div class="price-course d-flex flex-space align-items-center">
+                                            <div class="rate">
+                                                <div class="d-flex">
+                                                    <div class="rateYo"  data-rating="{{$ratingBusiness[$course->MAKH]}}"></div>
+                                                    <span class="text-danger font-size-12"> ({{$countRateBusiness[$course->MAKH]}} đánh giá)</span>
+                                                </div>
+                                            </div>
+                                            @if($tien3 == 1)
+                                            <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                        @else
+                                           <p>{{number_format($course->DONGIA)}}<span class="price-unit"><sup>vnd</sup></span></p>
+                                        @endif
+                                        </div>
+                                    </div>
+                                </a>
                             </li>
                         @endforeach
                     </div>
@@ -299,6 +309,7 @@
                                 @php($tien4 = 1)
                             @endif
                         @endforeach
+
                 <li class="list-best-seller list-item">
                     <a href="{{URL::to('/courseDetail/'.$course->MAKH)}}" class="course-box">
                         <div class="img-course">
@@ -319,16 +330,12 @@
                                 </div>
                                 @endif
                              </div>
-                            <div class="price-course d-flex flex-space">
+                            <div class="price-course d-flex flex-space align-items-center">
                                 <div class="rate">
-                                    <p>
-                                        <span class="star-rate">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                        </span>
-                                    </p>
+                                    <div class="d-flex">
+                                        <div class="rateYo"  data-rating="{{$ratingHealthy[$course->MAKH]}}"></div>
+                                        <span class="text-danger font-size-12"> ({{$countRateHealthy[$course->MAKH]}} đánh giá)</span>
+                                    </div>
                                 </div>
                                 @if($tien4 == 1)
                                     <p>{{number_format($course->DONGIA-($course->DONGIA*$km->TYLEKM/100))}}<span class="price-unit"><sup>vnd</sup></span></p>

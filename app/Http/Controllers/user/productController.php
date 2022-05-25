@@ -60,9 +60,24 @@ class productController extends Controller
             ->join('khoahoc', 'khoahoc.MAKH', '=', 'danhgia.MAKH')
             ->join('taikhoan', 'danhgia.MAHV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
 
+        $rating = DB::table('danhgia')->where('danhgia.MAKH', $productId)->avg('SOSAO');
         $idHvFirst = TaiKhoan::select('id')->first()->id;
 
+        //customer is login
+        $customer = Session::get('customer');
+        $customerJoinCourse = false;
+        if ($customer) {
+            //check customer join course
+            $customerJoinCourse = TaiKhoan::select(['cthoadon.*', 'taikhoan.ID as MaHV', 'taikhoan.HOTEN'])
+                ->join('hoadon', 'hoadon.MaHV', '=', 'taikhoan.ID')
+                ->join('cthoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
+                ->where('taikhoan.ID', $customer->ID)
+                ->where('cthoadon.MaKH', $productId)
+                ->first();
+        }
+
         $today = Carbon::createFromTimestamp(strtotime(date("Y-m-d h:i:sa")));
+
         $listKM = DB::table('khoahoc')
             ->join('ctkhuyenmai', 'khoahoc.MAKH', '=', 'ctkhuyenmai.MAKH')
             ->join('khuyenmai', 'ctkhuyenmai.MAKM', '=', 'khuyenmai.MAKM')
@@ -83,7 +98,9 @@ class productController extends Controller
             ->with('productId', $productId)
             ->with('idHvrandom', $idHvFirst)
             ->with('comments', $comments)
-            ->with('listKM', $listKM);
+            ->with('listKM', $listKM)
+            ->with('customerJoinCourse', $customerJoinCourse)
+            ->with('rating', $rating);
     }
 
     public function listCourse($courseCate)
@@ -323,6 +340,20 @@ class productController extends Controller
         $comments = db::table('danhgia')
             ->join('khoahoc', 'khoahoc.MAKH', '=', 'danhgia.MAKH')
             ->join('taikhoan', 'danhgia.MAHV', '=', 'ID')->where('khoahoc.MAKH',  $productId)->get();
+        $rating = DB::table('danhgia')->where('danhgia.MAKH', $productId)->avg('SOSAO');
+        $rating = round($rating);
+        //customer is login
+        $customer = Session::get('customer');
+        $customerJoinCourse = false;
+        if ($customer) {
+            //check customer join course
+            $customerJoinCourse = TaiKhoan::select(['cthoadon.*', 'taikhoan.ID as MaHV', 'taikhoan.HOTEN'])
+                ->join('hoadon', 'hoadon.MaHV', '=', 'taikhoan.ID')
+                ->join('cthoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
+                ->where('taikhoan.ID', $customer->ID)
+                ->where('cthoadon.MaKH', $productId)
+                ->first();
+        }
 
         return view('user.courseDetail.contentClass')
             ->with('category', $cateCourse)
@@ -334,7 +365,9 @@ class productController extends Controller
             ->with('countRate', $countRate)
             ->with('courseOnline', $courseOnline)
             ->with('classRoom', $classRoom)
-            ->with('comments', $comments);;
+            ->with('comments', $comments)
+            ->with('customerJoinCourse', $customerJoinCourse)
+            ->with('rating', $rating);
     }
 
     public function contentClassBought($id)
@@ -399,11 +432,11 @@ class productController extends Controller
     }
     public function sendComment(Request $request)
     {
-
         $data = $request->only([
             'MAHV',
             'MAKH',
-            'NOIDUNG'
+            'NOIDUNG',
+            'SOSAO'
         ]);
         if ($user = Auth::user()) {
             $data['MAHV'] = $user->id;

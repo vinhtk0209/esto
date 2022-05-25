@@ -129,16 +129,6 @@
                                     <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#formvideo" data-whatever="@mdo">Xem video</button>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Học thử</label></br>
-                                    <input name="HOCTHU" type="radio" id="co" value="1" style="vertical-align:middle; cursor: pointer;">
-                                    <label>Có</label><br>
-                                    <input name="HOCTHU" type="radio" id="khong" value="0" style="vertical-align:middle; cursor: pointer;" checked>
-                                    <label>Không</label>
-                                </div>
-                            </div>
-                        </div>
                         <div id="dtructuyen" @if($baihoc[0]->TRUCTUYEN == false)
                             {{"style=display:none"}}
                             @endif>

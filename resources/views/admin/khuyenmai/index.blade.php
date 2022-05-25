@@ -59,18 +59,18 @@
                                 </td>
                                 <td class="budget">
                                     @if($km->MATT==1)
-                                    Chưa áp dụng
+                                   <span class="text-warning"> Chưa áp dụng</span>
                                     @endif
                                     @if($km->MATT==2)
-                                        Đang áp dụng
+                                       <span class="text-success"> Đang áp dụng</span>
                                     @endif
                                     @if($km->MATT==3)
-                                        Ngưng áp dụng
+                                      <span class="text-danger">  Ngưng áp dụng</span>
                                     @endif
                                 </td>
                                 <td class="">
-                                    <a href="admin/khuyenmai/sua/{{$km->MAKM}}" class="edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="admin/khuyenmai/xoa/{{$km->MAKM}}" class="delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
+                                    <a href="admin/khuyenmai/sua/{{$km->MAKM}}" class="btn btn-sm btn-neutral edit text-yellow" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="admin/khuyenmai/xoa/{{$km->MAKM}}" class="btn btn-sm btn-neutral delete text-red" title="Delete" data-toggle="tooltip" onclick="return confirm('Bạn có muốn xóa mục này?')"><i class="material-icons">&#xE872;</i></a>
                                 </td>
                                 @endforeach
                         </tbody>

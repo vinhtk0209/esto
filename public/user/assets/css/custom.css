@@ -39,6 +39,21 @@ body {
     color: var(--star-color);
 }
 
+.star-color-dark {
+    color: black;
+}
+
+.start-container-courses {
+    font-size: 12px;
+
+}
+
+.font-size-12 {
+    font-size: 12px !important;
+}
+
+
+
 .name-web {
     color: transparent;
     -webkit-background-clip: text;
@@ -426,4 +441,9 @@ section.courses {
 
 .header .dropdown-menu-list .dropdown-item a:hover {
     color: var(--active-course-bg-color);
+}
+
+.rateYo.jq-ry-container {
+    padding-left: 0 !important;
+    padding-right: 5px !important;
 }

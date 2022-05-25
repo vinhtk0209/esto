@@ -1,4 +1,5 @@
 {{-- BUY COURSE STARTS --}}
+
 <div class="buy-course">
     <div class="img-course">
         <img class="img-responsive "
@@ -6,7 +7,7 @@
         src="{{('./user/assets/imgCourse')}}/{{$product->ANH}}"
         alt="{{$product->TENKH}}">
     </div>
-    <div class="price-container">
+    <div class="price-container ">
         @php($tien = 0)
         @foreach($listKM as $km)
             @if($km->MAKH == $product->MAKH)
@@ -92,15 +93,10 @@
                         <a href="" class="name-teacher">{{$product->HOTEN}}</a>
                     </div>
                     <div class="rate-teacher">
-                            <p>
-                                <span class="star-rate">
-                                    <i class="fas fa-star star-color"></i>
-                                    <i class="fas fa-star star-color"></i>
-                                    <i class="fas fa-star star-color"></i>
-                                    <i class="fas fa-star star-color"></i>
-                                </span>
-                                <span class="num-rate">{{$countRate}} đánh giá</span>
-                            </p>
+                        <div class="d-flex align-items-center">
+                            <div class="rateYo"   data-rating="{{$rating}}"></div>
+                            <span class="num-rate"> ({{$countRate}} đánh giá)</span>
+                        </div>
                     </div>
                     <div class="nums-student">
                         <span class="icon-student">
@@ -227,53 +223,92 @@
     {{-- CONTENT COURSE ENDS --}}
 
      {{-- RATE COURSE STARTS --}}
+     @if(session()->has('customer') && $customerJoinCourse)
      <div id="rate-course" class="mt-10">
         <div class="container">
             <div class="intro-course-des">
                 <div class="intro-title intro-header">
-                    <h3>Đánh giá khóa học</h3>
+                    <h3>Đánh giá khóa học </h3>
                 </div>
                 <div class="intro-body" id="comments">
                     <div class="col-sm-12">
-                        {{-- <ul>
-                            <li><a href=""><i class="fa fa-user">Người đăng: Admin 1</i></a></li>
-                            <li><a href=""><i class="fa fa-clock-o">Giờ đăng: 10:00 AM</i></a></li>
-                            <li><a href=""><i class="fa fa-calendar-o">Ngày đăng: 01/03/2022</i></a></li>
-                        </ul> --}}
-                        <style type="text/css">
-                            .style-comment{
-                                border: 1px solid #ddd;
-                                border-radius: 10px;
-                                background: #F0F0E9
-                            }
-                        </style>
-                        <div id="listComment">
+                        <div id="listComment" class="list-comment">
                             @foreach ($comments as $comment)
-                                <div class="row style-comment">
-
-                                    <div class="col-md-2">
-                                        <img width="40%" src=" {{ empty($comment->ANHDAIDIEN) ? asset('images/avatar.png') : asset('storage/'. $comment->ANHDAIDIEN)}}" alt="ESTO" class="img img-responsive img-thumbnail">
+                                <div class="row style-comment p-2">
+                                    <div class="col-md-3 ">
+                                            <div class="info-comment-container">
+                                                    <div class="d-flex">
+                                                        <img width="30%" src=" {{ empty($comment->ANHDAIDIEN) ? asset('images/avatar.png') : asset('storage/'. $comment->ANHDAIDIEN)}}" alt="ESTO" class="img img-responsive ">
+                                                    <div>
+                                                        <span class="star-rate mb-auto ms-2">
+                                                            @if ($comment->SOSAO)
+                                                                @for( $i = 1 ; $i <= $comment->SOSAO; $i++)
+                                                                <i class="fas fa-star star-color"></i>
+                                                                @endfor
+                                                            @endif
+                                                        </span>
+                                                    </div>
+                                                    </div>
+                                                <p style="color: #000;">{{$comment->NGAYDG}}</p>
+                                            </div>
                                     </div>
-                                    <div class="col-md-10">
-                                        <p style="color:blue;">{{$comment->HOTEN}}</p>
-                                        <p style="color: #000;">{{$comment->NGAYDG}}</p>
+                                    <div class="col-md-9">
+                                        <strong class="mb-auto">{{$comment->HOTEN}}</strong>
+
                                         <p>{{$comment->NOIDUNG}}</p>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
-                        @if(session()->has('customer'))
-                            <p><b>Viết đánh giá của bạn</b></p>
-                            <form action="{{route('send-comment-ajax')}}" method="POST" id="sendCommentForm">
-                                @csrf
-                                <input type="hidden" name="MAKH" value="{{$productId}}"/>
-                                <input type="hidden" name="MAHV" value="{{$idHvrandom}}"/>
-                                <textarea name="NOIDUNG" class="comment_content" style="width: 754px; height: 200px; " required></textarea>
-                                <br>
-                                <b>Đánh giá sao: </b>
-                                <button type="button" class="btn btn-primary pull-right" onclick="submitComment()" >Gửi đánh giá</button>
-                            </form>
-                        @endif
+                           <div class="form-comment-container ">
+                                <form action="{{route('send-comment-ajax')}}" method="POST" id="sendCommentForm" >
+                                    @csrf
+                                    <input type="hidden" name="MAKH" value="{{$productId}}"/>
+                                    <input type="hidden" name="MAHV" value="{{$idHvrandom}}"/>
+                                   <div class="d-flex align-items-center">
+                                    <p class="text-success"><strong>Nhận xét của học viên : </strong></p>
+                                        <div class="rating">
+                                            <label>
+                                            <input type="radio" name="SOSAO" value="1" />
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            </label>
+                                            <label>
+                                            <input type="radio" name="SOSAO" value="2" />
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            </label>
+                                            <label>
+                                            <input type="radio" name="SOSAO" value="3" />
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            </label>
+                                            <label>
+                                            <input type="radio" name="SOSAO" value="4" />
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            </label>
+                                            <label>
+                                            <input type="radio" name="SOSAO" value="5" />
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            </label>
+                                        </div>
+                                   </div>
+                                    <textarea name="NOIDUNG" id="commentContent" class="comment_content" onkeyup="isEmptyContentComment()" style="width: 754px; height: 200px; " required></textarea >
+
+                                    <button type="button" class="btn btn-success pull-right " id="sendComment" onclick="submitComment()" disabled >Gửi đánh giá</button>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </form>
+                           </div>
+
                     </div>
                 </div>
                 {{-- <div class="intro-body">
@@ -298,6 +333,25 @@
             </div>
         </div>
     </div>
+    @else
+    <div id="rate-course" class="mt-10">
+        <div class="container" >
+            <div class="intro-course-des">
+                <div class="intro-title intro-header">
+                    <h3>Đánh giá khóa học</h3>
+                </div>
+                <div class="intro-body">
+                    <div class="rate-course-summary">
+                    <div class="rate-course-rating-containerate-course-ratingnumberr">
+                        <p class="text-danger text-center fw-bold">Bạn chưa được phép đánh giá!</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @endif
      {{-- RATE COURSE ENDS --}}
 
     {{-- RELATED SCIENCE START --}}

@@ -25,6 +25,10 @@
 
 
     <!-- CUSTOM CSS -->
+    {{-- Basic styles of the plugin --}}
+     <link rel="stylesheet" href="jquery.rateyo.css"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <!-- GLOBAL CSS -->
     <link rel="stylesheet" href="./user/assets/css/global.css" >
     <!-- CHECKOUT CSS -->
@@ -84,6 +88,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./user/assets/js/jquery.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <title>ESTO</title>
 </head>
 
@@ -430,6 +435,45 @@
 
      {{-- COMMENT START --}}
      <script>
+          function generateStar(startNumber){
+            let html = "";
+            if (!startNumber){
+                return html;
+            }
+            for (let i = 1; i <= startNumber; i++) {
+                html += `<i class="fas fa-star star-color"></i>`;
+            }
+            return html;
+        }
+        function isEmptyContentComment(){
+            if(document.getElementById('commentContent').value.length > 0) {
+                document.getElementById('sendComment').disabled = false;
+            } else {
+                document.getElementById('sendComment').disabled = true;
+            }
+        }
+        function checkBadComment(comment){
+            const badComment = [
+                    'đm admin',
+                    'khóa học như cuc c*t hoàn tiền bố m',
+                    'shit',
+                    'c*c',
+                    'l*',
+                    'c*t',
+                    'cứt',
+                    'quá tệ',
+                    'ngu mà còn thích dạy',
+                    'ngu',
+                    'daỵ dở quá',
+                    'khóa học tệ',
+                    'chất lượng thấp'
+            ]
+            for(let i=0; i<badComment.length; i++) {
+                if (comment==badComment[i]) {
+                    return true;
+                }
+            }
+        }
         function submitComment () {
             let data = $("#sendCommentForm").serializeArray();
             let url = $("#sendCommentForm").attr('action');
@@ -440,17 +484,34 @@
                 dataType: "json",
                 success:function(response){
                     console.log(response)
+
                     if(response.status == 1){
-                        let html = `<div class="row style-comment">
-                                        <div class="col-md-2">
-                                            <img width="40%" src="${response.data.ANHDAIDIEN}" alt="ESTO" class="img img-responsive img-thumbnail">
-                                        </div>
-                                        <div class="col-md-10">
-                                            <p style="color:blue;">${response.data.HOTEN}</p>
-                                            <p style="color: #000;">${response.data.NGAYDG}</p>
-                                            <p>${response.data.NOIDUNG}</p>
-                                        </div>
-                                    </div>`;
+                        let comment = response.data.NOIDUNG;
+                        if(checkBadComment(comment)){
+                            comment = '**********';
+                        }else{
+                            comment = response.data.NOIDUNG;
+                        }
+                        let html = `<div class="row style-comment mt-2">
+                                    <div class="col-md-3 ">
+                                            <div class="info-comment-container">
+                                                    <div class="d-flex">
+                                                        <img width="40%" src=" ${response.data.ANHDAIDIEN}" alt="ESTO" class="img img-responsive ">
+                                                    <div>
+                                                        <span class="star-rate mb-auto ms-2">
+                                                            ${generateStar(response.data.SOSAO)}
+                                                        </span>
+                                                    </div>
+                                                    </div>
+                                                <p style="color: #000;">${response.data.NGAYDG}</p>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <strong class="mb-auto">${response.data.HOTEN}</strong>
+                                        <p class="text-warning">${comment}</p>
+                                    </div>
+                                </div> `;
+
                         $("#sendCommentForm")[0].reset();
                         $("#listComment").append(html);
                     }else{
@@ -466,6 +527,19 @@
     {{-- COMMENT END --}}
      <!-- JS ENDS  -->
 
+     {{-- RATE STARTS --}}
+     <script>
+     $('.rateYo').each(function() {
+        $(this).rateYo({
+            starWidth:'15px',
+            ratedFill: "#FFED00",
+            halfStar: true,
+            rating: this.dataset.rating,
+            readOnly: true
+        });
+    });
+     </script>
+    {{-- RATE ENDS --}}
 </body>
 
 </html>
