@@ -39,7 +39,7 @@ class loginController extends Controller
                 }
             }
         }
-        return redirect()->route('login.login')->with('wrongInfo', 'Sai tên đăng nhập hoặc mật khẩu');
+        return redirect()->route('login.login')->with('noActive', 'Sai tên đăng nhập hoặc mật khẩu');
     }
     public function register()
     {

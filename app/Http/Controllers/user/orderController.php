@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Stripe\Charge;
 use Stripe\Stripe;
 use Stripe\Customer;
+use Carbon\Carbon;
 
 class orderController extends Controller
 {
@@ -60,6 +61,7 @@ class orderController extends Controller
 
     public function handleBuyClass(Request $request, $id)
     {
+        $today = Carbon::createFromTimestamp(strtotime(date("Y-m-d h:i:sa")));
         $data = $request->all();
         $billExist = HoaDon::join('cthoadon', 'cthoadon.MAHD', '=', 'hoadon.MAHD')
             ->where('MALH', $data['listClass'])
@@ -83,24 +85,29 @@ class orderController extends Controller
                 "currency" => $request->currency_code,
             ));
             $numStudent = $classId->SLGIOIHAN;
-            if ($numStudent > 0) {
-                $classId->SLGIOIHAN = $numStudent - 1;
-                $classId->save();
-                HoaDon::create([
-                    'MAHD'   => $charge->id,
-                    'MAHV'   => Session::get('customer')->ID
-                ]);
-                CTHoaDon::create([
-                    'MAHD' => $charge->id,
-                    'MAKH' => $id,
-                    'MALH' => $data['listClass'],
-                ]);
-                CTLopHoc::create([
-                    'MALH' => $data['listClass'],
-                    'MAHV'   => Session::get('customer')->ID,
-                ]);
+            $dayStart = $classId->NGAYMOLOP;
+            if ($today < $dayStart) {
+                if ($numStudent > 0) {
+                    $classId->SLGIOIHAN = $numStudent - 1;
+                    $classId->save();
+                    HoaDon::create([
+                        'MAHD'   => $charge->id,
+                        'MAHV'   => Session::get('customer')->ID
+                    ]);
+                    CTHoaDon::create([
+                        'MAHD' => $charge->id,
+                        'MAKH' => $id,
+                        'MALH' => $data['listClass'],
+                    ]);
+                    CTLopHoc::create([
+                        'MALH' => $data['listClass'],
+                        'MAHV'   => Session::get('customer')->ID,
+                    ]);
+                } else {
+                    return redirect()->back()->with('buyClassFailed', 'Lớp này đã hết chỗ');
+                }
             } else {
-                return redirect()->back()->with('buyClassFailed', 'Lớp này đã hết chỗ');
+                return redirect()->back()->with('buyClassFailed', 'Lớp này đã bắt đầu không thể mua được');
             }
         }
         return redirect()->back()->with('buyClassSuccess', 'Mua thành công');

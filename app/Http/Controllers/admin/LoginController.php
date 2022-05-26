@@ -22,20 +22,32 @@ class LoginController extends Controller
         $taikhoan = TaiKhoan::all();
         foreach ($taikhoan as $tk) {
             if ($tk->EMAIL == $request->EMAIL && Hash::check($request->MATKHAU, $tk->MATKHAU) && $tk->LOAITK == 3) {
-                // admin
-                $login = $tk;
-                $check = 3;
-                break;
+                if ($tk->TRANGTHAI == 1) {
+                    // admin
+                    $login = $tk;
+                    $check = 3;
+                    break;
+                } else {
+                    return redirect('admin')->with('thongbao', 'Tài khoản đã bị vô hiệu hóa!');
+                }
             } else if ($tk->EMAIL == $request->EMAIL && Hash::check($request->MATKHAU, $tk->MATKHAU) && $tk->LOAITK == 2) {
-                // teacher
-                $login = $tk;
-                $check = 2;
-                break;
+                if ($tk->TRANGTHAI == 1) {
+                    // teacher
+                    $login = $tk;
+                    $check = 2;
+                    break;
+                } else {
+                    return redirect('admin')->with('thongbao', 'Tài khoản đã bị vô hiệu hóa!');
+                }
             } else if ($tk->EMAIL == $request->EMAIL && Hash::check($request->MATKHAU, $tk->MATKHAU) && $tk->LOAITK == 4) {
-                //nkd
-                $login = $tk;
-                $check = 4;
-                break;
+                if ($tk->TRANGTHAI == 1) {
+                    //nkd
+                    $login = $tk;
+                    $check = 4;
+                    break;
+                } else {
+                    return redirect('admin')->with('thongbao', 'Tài khoản đã bị vô hiệu hóa!');
+                }
             }
         }
         if ($check == 3) {

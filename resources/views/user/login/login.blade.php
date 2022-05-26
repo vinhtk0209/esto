@@ -50,14 +50,14 @@
             </div>
         @endif
 
-        @if (Session::has('noActive'))
+        {{-- @if (Session::has('noActive'))
          <div class="alert alert-warning alert-dismissible m-0 fade show" role="alert">
             <strong> {!!Session::get('noActive')!!}</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
           </div>
-        @endif
+        @endif --}}
 
 
 
@@ -82,8 +82,8 @@
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 
-                    @if (Session::has('wrongInfo'))
-                       <span class="error-message">{{Session::get('wrongInfo')}}</span>
+                    @if (Session::has('noActive'))
+                       <span class="error-message">{{Session::get('noActive')}}</span>
                    @endif
                    <div class="text-right p-t-8 ">
                         <a href="{{route('login.forgotPass')}}">
