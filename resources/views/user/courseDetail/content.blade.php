@@ -58,7 +58,7 @@
             <h2 class="modal-custom-title"> Chọn lớp học</h2>
         </header>
         <div class="modal-custom-body">
-            <form method="POST" action="{{ route('post.buyClass',['id' => $product->MAKH]) }}" id="checkout-course-form">
+            <form method="POST" action="{{ route('post.buyClass',['id' => $product->MAKH]) }}" id="checkout-form">
                 @csrf
 
                 <input type="hidden" name="email" value="{{ Session::get('customer')->EMAIL ?? '' }}" />
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input  type="submit" id="btn-to-test" class="btn-to-test mt-20" value="Mua lớp học" >
+                    <input  type="submit" id="btn-to-test" class="btn-to-test mt-20" name="btnSubmit" value="Mua lớp học" >
                 </div>
             </form>
         </div>
@@ -316,29 +316,29 @@
                                     <p class="text-success"><strong>Nhận xét của học viên : </strong></p>
                                         <div class="rating">
                                             <label>
-                                            <input type="radio" name="SOSAO" value="1" />
+                                            <input type="radio" name="SOSAO" value="1" id="start_1" />
                                             <span class="icon" style="font-size:30px">★</span>
                                             </label>
                                             <label>
-                                            <input type="radio" name="SOSAO" value="2" />
-                                            <span class="icon" style="font-size:30px">★</span>
-                                            <span class="icon" style="font-size:30px">★</span>
-                                            </label>
-                                            <label>
-                                            <input type="radio" name="SOSAO" value="3" />
-                                            <span class="icon" style="font-size:30px">★</span>
+                                            <input type="radio" name="SOSAO" value="2" id="start_2"/>
                                             <span class="icon" style="font-size:30px">★</span>
                                             <span class="icon" style="font-size:30px">★</span>
                                             </label>
                                             <label>
-                                            <input type="radio" name="SOSAO" value="4" />
-                                            <span class="icon" style="font-size:30px">★</span>
+                                            <input type="radio" name="SOSAO" value="3" id="start_3"/>
                                             <span class="icon" style="font-size:30px">★</span>
                                             <span class="icon" style="font-size:30px">★</span>
                                             <span class="icon" style="font-size:30px">★</span>
                                             </label>
                                             <label>
-                                            <input type="radio" name="SOSAO" value="5" />
+                                            <input type="radio" name="SOSAO" value="4" id="start_4"/>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            <span class="icon" style="font-size:30px">★</span>
+                                            </label>
+                                            <label>
+                                            <input type="radio" name="SOSAO" value="5" id="start_5"/>
                                             <span class="icon" style="font-size:30px">★</span>
                                             <span class="icon" style="font-size:30px">★</span>
                                             <span class="icon" style="font-size:30px">★</span>

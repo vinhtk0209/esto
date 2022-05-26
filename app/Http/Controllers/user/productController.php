@@ -165,12 +165,26 @@ class productController extends Controller
 
         $listCate = DB::table('danhmuc')->where('danhmuc.MADMCHA', $courseCate)->get();
 
+        $countRateCate = [];
+        $ratingCate = [];
+        foreach ($cateById as $cateCourse) {
+            $countRateCate[$cateCourse->MAKH] = DB::table('danhgia')->where('danhgia.MAKH', $cateCourse->MAKH)->count();
+            if ($countRateCate[$cateCourse->MAKH] > 0) {
+                $ratingCate[$cateCourse->MAKH] = DB::table('danhgia')->join('khoahoc', 'danhgia.MAKH', '=', 'khoahoc.MAKH')
+                    ->where('khoahoc.MAKH', $cateCourse->MAKH)->avg('SOSAO');
+            } else {
+                $ratingCate[$cateCourse->MAKH] = 0;
+            }
+        }
+
         return view('user.listCourse.index')
             ->with('cateById', $cateById)
             ->with('cateName', $cateName)
             ->with('listCate', $listCate)
             ->with('minPrice', $minPrice)
-            ->with('maxPrice', $maxPrice);
+            ->with('maxPrice', $maxPrice)
+            ->with('countRateCate', $countRateCate)
+            ->with('ratingCate', $ratingCate);
     }
 
     public function addToCart(Request $request)

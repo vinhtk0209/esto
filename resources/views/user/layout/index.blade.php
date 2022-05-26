@@ -92,7 +92,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <title>ESTO</title>
 </head>
-
 <body class="preLoading">
 
 
@@ -369,37 +368,10 @@
     </script>
     @endif
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-	<script>
+    <script>
 		Stripe.setPublishableKey('pk_test_51L2IngIbEDDXclFIH10Tovj5vbdZgiRzXGsz3pCxBy3h4oYZuI3mxLVJwHYR8q2hIJXoszOultEHIgzmFGITBa1Z00G3JHdXxi');
 
 		var $form = $('#checkout-form');
-
-
-		$form.submit(function(event) {
-		$form.find('button').prop('disabled', true);
-		Stripe.card.createToken({
-			number: $('#card-number').val(),
-			cvc: $('#card-cvc').val(),
-			exp_month: $('#card-expiry-month').val(),
-			exp_year: $('#card-expiry-year').val(),
-			name: $('#card-name').val()
-		}, stripeResponseHandler);
-		return false;
-		});
-
-	function stripeResponseHandler(status, response) {
-		var token = response.id;
-        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-
-        // Submit the form:
-        $form.get(0).submit();
-	}
-	</script>
-    <script>
-		Stripe.setPublishableKey('pk_test_51L2IngIbEDDXclFIH10Tovj5vbdZgiRzXGsz3pCxBy3h4oYZuI3mxLVJwHYR8q2hIJXoszOultEHIgzmFGITBa1Z00G3JHdXxi');
-        // pk_test_51L2IngIbEDDXclFIH10Tovj5vbdZgiRzXGsz3pCxBy3h4oYZuI3mxLVJwHYR8q2hIJXoszOultEHIgzmFGITBa1Z00G3JHdXxi
-
-		var $form = $('#checkout-course-form');
 
 
 		$form.submit(function(event) {
@@ -575,6 +547,7 @@
     });
      </script>
     {{-- RATE ENDS --}}
+    @yield('js')
 </body>
 
 </html>

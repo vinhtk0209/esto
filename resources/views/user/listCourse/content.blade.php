@@ -369,12 +369,10 @@
                             <div class="price-course d-flex flex-space">
                                 <div class="rate">
                                     <p>
-                                        <span class="star-rate">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                        </span>
+                                     <div class="d-flex">
+                                            <div class="rateYo"  data-rating="{{$ratingCate[$course->MAKH]}}"></div>
+                                            <span class="text-danger font-size-12"> ({{$countRateCate[$course->MAKH]}} đánh giá)</span>
+                                     </div>
                                     </p>
                                 </div>
                                 <p>{{number_format($course->DONGIA)}} <span class="price-unit"><sup>vnd</sup></span></p>

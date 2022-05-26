@@ -102,7 +102,7 @@
                                         </ul>
                                     </div>
                                     <div class="drop-info-user-ava">
-                                        {{-- @php
+                                        @php
                                         // function checkForImage($url){
                                         //     $subject = $url;
                                         //     $pattern = "/(http[s]?:)/i";
@@ -110,20 +110,20 @@
                                         //         return true;
                                         //     }
                                         //     return false;
-                                        //     }
+                                        // }
 
 
-                                            $imgUrl = Session::get('customer')->ANHDAIDIEN;
-                                            $nameUser=Session::get('customer')->HOTEN;
+                                            // $imgUrl = Session::get('customer')->ANHDAIDIEN;
+                                            // $nameUser=Session::get('customer')->HOTEN;
                                             // if (checkForImage($imgUrl)){
                                             //     echo "<img src='$imgUrl' class='showAva img-responsive' alt='$nameUser'>";
                                             // }
                                             // else{
-                                                echo "<img src='./user/assets/imgAva/$imgUrl' class='showAva img-responsive' alt='$nameUser '>";
+                                            //     echo "<img src='./user/assets/imgAva/$imgUrl' class='showAva img-responsive' alt='$nameUser '>";
                                             // }
-                                        @endphp --}}
+                                        @endphp
                                         @if(Session::get('customer')->ANHDAIDIEN!='')
-                                          <img src='{{Session::get('customer')->ANHDAIDIEN}}' class='showAva img-responsive' alt='{{Session::get('customer')->HOTEN}} '>
+                                          <img src='{{ @parse_url(Session::get('customer')->ANHDAIDIEN)['scheme'] == 'https' ? Session::get('customer')->ANHDAIDIEN : asset('user/assets/imgAva/' . Session::get('customer')->ANHDAIDIEN) }}' class='showAva img-responsive' alt='{{Session::get('customer')->HOTEN}} '>
                                         @endif
                                     </div>
                                 </div>

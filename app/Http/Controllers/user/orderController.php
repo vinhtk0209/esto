@@ -31,7 +31,7 @@ class orderController extends Controller
 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        Stripe::setApiKey('sk_test_51JnN53HEueodV3DA6Tg8aSXzG889RFopEqtwKsw2bbTLLDC2xzS03LHixGaan93SsqP52J1klY6DtE6Cxk7AicjF00JxnNE8cT');
+        Stripe::setApiKey('sk_test_51L2IngIbEDDXclFIDUro3TzOtoafIWpv20mYo4ODrZq09lYaJY8WHHp1rOgnMQOVHvuuTecaJN2oZwRypq6qEMVb00cC1i4EU6');
         $customer = new Customer();
         $customerDetailsAry = array(
             'email' => $request->email,
@@ -72,7 +72,7 @@ class orderController extends Controller
             return redirect()->back()->with('buyClassFailed', 'Bạn đã mua lớp học này');
         } else {
             $classId =  LopHoc::find($data['listClass']);
-            Stripe::setApiKey('sk_test_51JnN53HEueodV3DA6Tg8aSXzG889RFopEqtwKsw2bbTLLDC2xzS03LHixGaan93SsqP52J1klY6DtE6Cxk7AicjF00JxnNE8cT');
+            Stripe::setApiKey('sk_test_51L2IngIbEDDXclFIDUro3TzOtoafIWpv20mYo4ODrZq09lYaJY8WHHp1rOgnMQOVHvuuTecaJN2oZwRypq6qEMVb00cC1i4EU6');
             $customer = new Customer();
             $customerDetailsAry = array(
                 'email' => $request->email,
