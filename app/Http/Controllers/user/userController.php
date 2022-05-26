@@ -98,7 +98,6 @@ class userController extends Controller
     }
     public function showMyScore()
     {
-
         if (session::has('customer')) {
             $user = TaiKhoan::find(Session::get('customer')->ID);
             $mahv = $user->ID;
@@ -106,7 +105,7 @@ class userController extends Controller
                 ->join('TaiKhoan', 'TaiKhoan.ID', '=', 'BaiLam.MAHV')
                 ->join('BaiThi', 'BaiThi.MABT', '=', 'BaiLam.MABT')
                 ->orderBy('BaiLam.MABT', 'desc')
-                ->where('MAHV', $mahv)->paginate(5);
+                ->where('MAHV', $mahv)->paginate(8);
 
             $dsDiem = [];
             foreach ($bailamAll as $bla) {

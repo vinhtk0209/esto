@@ -68,20 +68,40 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <p class="label-custom">Số thẻ</p>
-                    <input type="text" placeholder="Nhập số thẻ" id="card-number" class="form-control" required>
+                    <label for="num-card" class="label-custom">Số thẻ</label>
+                    <div class="form-group-input position-relative flex-grow-1">
+                        <input type="text" placeholder="Nhập số thẻ" id="card-number" class="effect-7 form-input w-100 " required >
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <p class="label-custom">Hạn mức tháng</p>
-                    <input type="number" placeholder="Nhập số thẻ" id="card-expiry-month" min=1 max=12 class="form-control" required>
+                    <label class="label-custom">Hạn mức tháng</label>
+                    <div class="form-group-input position-relative flex-grow-1">
+                        <input type="number" placeholder="Nhập số thẻ" id="card-expiry-month"   min=1 max=12  class="effect-7 form-input w-100 " required>
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <p class="label-custom">Hạn mức năm</p>
-                    <input type="number" placeholder="Nhập số thẻ" id="card-expiry-year" min=2022 max=2030 class="form-control" required>
+                    <label class="label-custom">Hạn mức năm</label>
+                    <div class="form-group-input position-relative flex-grow-1">
+                        <input type="number" placeholder="Nhập số thẻ" id="card-expiry-year" min=2022 max=2030   class="effect-7 form-input w-100 " required>
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <p class="label-custom">CVC</p>
-                    <input type="text" placeholder="Nhập CVC" id="card-cvc" class="form-control" required>
+                    <label class="label-custom">CVC</label>
+                    <div class="form-group-input position-relative flex-grow-1">
+                        <input type="text" placeholder="Nhập CVC" id="card-cvc"  class="effect-7 form-input w-100 " required>
+                        <span class="focus-border">
+                            <i></i>
+                        </span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <input  type="submit" id="btn-to-test" class="btn-to-test mt-20" value="Mua lớp học" >

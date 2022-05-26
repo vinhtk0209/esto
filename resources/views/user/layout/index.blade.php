@@ -73,6 +73,7 @@
     <link rel="stylesheet" href="./user/assets/css/courseDetail.css">
      <!-- INFO MANAGER CSS -->
     <link rel="stylesheet" href="./user/assets/css/infoManager.css">
+
      <!-- LIST COURSE CSS -->
     <link rel="stylesheet" href="./user/assets/css/listCourse.css">
     <link rel="stylesheet" href="./user/assets/css/custom.css">
@@ -204,12 +205,17 @@
                 var seconds3 = Math.floor((timeLeft3 % (1000 * 60)) / 1000);
                 if (seconds3 < 10) seconds3 = "0" + seconds3;
                 document.getElementById("countdown").innerHTML = hours3 + "giờ " + minutes3 + "phút " + seconds3 + "giây";
+
                 if (timeLeft3 <= 0) {
                     clearInterval(timing3);
                     document.getElementById("countdown").innerHTML = "Đã hết thời gian làm bài";
                     alert('Bài của bạn đã được nộp');
                     document.location.href = 'https://esto.com/';
                 }
+                window.addEventListener('beforeunload', function (e) {
+                    e.preventDefault();
+                    e.returnValue = '';
+                });
             }, 1000);
         progress(secondProgress, secondProgress, $('#progressBar'));
         if (timeLeft3 <= 0) {
@@ -364,7 +370,7 @@
     @endif
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 	<script>
-		Stripe.setPublishableKey('pk_test_51JnN53HEueodV3DAJxPIvHgy2bBdP5BmKIlvaUb1WZ64OSUZ9UcsbP2iKXzHZulqcVWvXigwCF6Wsh5Si1Ral20M00Wvg1qjBH');
+		Stripe.setPublishableKey('pk_test_51L2IngIbEDDXclFIH10Tovj5vbdZgiRzXGsz3pCxBy3h4oYZuI3mxLVJwHYR8q2hIJXoszOultEHIgzmFGITBa1Z00G3JHdXxi');
 
 		var $form = $('#checkout-form');
 
@@ -390,7 +396,8 @@
 	}
 	</script>
     <script>
-		Stripe.setPublishableKey('pk_test_51JnN53HEueodV3DAJxPIvHgy2bBdP5BmKIlvaUb1WZ64OSUZ9UcsbP2iKXzHZulqcVWvXigwCF6Wsh5Si1Ral20M00Wvg1qjBH');
+		Stripe.setPublishableKey('pk_test_51L2IngIbEDDXclFIH10Tovj5vbdZgiRzXGsz3pCxBy3h4oYZuI3mxLVJwHYR8q2hIJXoszOultEHIgzmFGITBa1Z00G3JHdXxi');
+        // pk_test_51L2IngIbEDDXclFIH10Tovj5vbdZgiRzXGsz3pCxBy3h4oYZuI3mxLVJwHYR8q2hIJXoszOultEHIgzmFGITBa1Z00G3JHdXxi
 
 		var $form = $('#checkout-course-form');
 

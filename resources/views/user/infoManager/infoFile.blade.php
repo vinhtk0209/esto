@@ -62,7 +62,7 @@
                         <div class="form-group d-flex">
                             <label for="male" class="label-input  min-width-100 ">Giới tính</label>
                              <div class="form-checkbox d-flex align-items-center">
-                                <div class="form-checkbox-item mr-20">
+                                <div class="form-checkbox-item mr-20" style="cursor: pointer;">
                                     <input type="radio" class="form-checkbox " name="gender" id="male" value="1" {{ $user->GIOITINH == 1 ? "checked" : "" }}/>
                                     <label for="male" class="">Nam</label>
                                 </div>
@@ -90,7 +90,7 @@
                         </div>
                         <div class="form-group">
                             <label for="birthday" class="label-input min-width-100">Ngày sinh</label>
-                            <input type="date" class="form-input" name="birthday" id="birthday" value="{{ $user->NGAYSINH }}" />
+                            <input type="date" class="effect-8 form-input input-not-allowed" name="birthday" id="birthday" value="{{ $user->NGAYSINH }}" style="width:77%" />
                         </div>
                         <div class="form-group d-flex">
                             <label for="phonenumber" class="label-input  min-width-100 ">Số điện thoại</label>

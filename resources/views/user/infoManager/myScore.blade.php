@@ -64,7 +64,7 @@
                         </li>
                     </ul>
                 </div> --}}
-                @if ($bailamAll->lastPage() != 1)
+                {{-- @if ($bailamAll->lastPage() != 1)
                 <div class="card-footer py-4">
                     <ul class="pagination justify-content-end mb-0 pagintaion-custom" id="paginate">
                         <li class="page-item">
@@ -97,7 +97,7 @@
                         </li>
                     </ul>
                 </div>
-                @endif
+                @endif --}}
                 @endif
         </div>
     </div>
